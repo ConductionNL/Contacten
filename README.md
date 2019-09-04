@@ -1,6 +1,6 @@
 # About this application
 
-Het “contacten” component is bedoeld voor het opslaan van contact gegevens van personen en organisaties waarvoor nog geen BSN of KVK nummer bekend is (en dus geen bron verwijzing kan worden gedaan). Bijvoorbeeld omdat het om niet getekende gegevens gaat, of omdat bron gebruik ongewenst is.
+Het ï¿½contactenï¿½ component is bedoeld voor het opslaan van contact gegevens van personen en organisaties waarvoor nog geen BSN of KVK nummer bekend is (en dus geen bron verwijzing kan worden gedaan). Bijvoorbeeld omdat het om niet getekende gegevens gaat, of omdat bron gebruik ongewenst is.
 
 ## Documentation
 
@@ -20,7 +20,7 @@ This repository uses the power of the [commonground proto component](https://git
 
 ## License
 
-Copyright © Utrecht 2019
+Copyright ï¿½ Utrecht 2019
 
 Licensed under [EUPL](https://github.com/ConductionNL/contactencomponent/blob/master/LICENSE.md)
 
