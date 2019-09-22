@@ -1,6 +1,6 @@
-# About this application
+# About this component
 
-Het �contacten� component is bedoeld voor het opslaan van contact gegevens van personen en organisaties waarvoor nog geen BSN of KVK nummer bekend is (en dus geen bron verwijzing kan worden gedaan). Bijvoorbeeld omdat het om niet getekende gegevens gaat, of omdat bron gebruik ongewenst is.
+Het "contacten" component is bedoeld voor het opslaan van contactgegevens van personen en organisaties waarvoor nog geen BSN of KVK nummer bekend is (en dus geen bronverwijzing kan worden gedaan). Bijvoorbeeld omdat het om niet getekende gegevens gaat, of omdat brongebruik ongewenst is.
 
 ## Documentation
 
