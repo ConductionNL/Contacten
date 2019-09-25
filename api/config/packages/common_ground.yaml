@@ -10,20 +10,16 @@ parameters:
     common_ground.oas.servers:
             -
               description: Demo Omgeving
-              url: 'http://proto.demo.common-ground.dev'       
+              url: 'http://cc.zaakonline.nl'       
     common_ground.oas.externalDocs:
             -
               description: OAS Documentatie
-              url: 'http://proto.demo.common-ground.dev'  
+              url: 'http://cc.zaakonline.nl'  
     common_ground.oas.developers:
             -
               name: Conduction
               url: https://github.com/ConductionNL
               email: info@conduction.nl
-            -
-              name: Gemeente 's-Hertogenbosch
-              url: https://github.com/gemeenteshertogenbosch
-              email: info@s-hertogenbosch.nl/
             -
               name: Gemeente Utrecht
               url: https://github.com/GemeenteUtrecht
