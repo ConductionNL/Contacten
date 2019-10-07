@@ -27,13 +27,13 @@ First we always need to update our dependencys
 $ helm dependency update ./api/helm
 
 If you want to create a new instance
-$ helm install ./api/helm --name mrc --kubeconfig="api/helm/kubeconfig.yaml"
+$ helm install ./api/helm --name cc --kubeconfig="api/helm/kubeconfig.yaml"
 
 Or update if you want to update an existing one
-$ helm upgrade mrc  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" 
+$ helm upgrade cc  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" 
 
 Or del if you want to delete an existing  one
-$ helm del mrc  --purge --kubeconfig="api/helm/kubeconfig.yaml" 
+$ helm del cc  --purge --kubeconfig="api/helm/kubeconfig.yaml" 
 
 Note that you can replace commonground with the namespace that you want to use (normally the name of your component).
 
