@@ -18,9 +18,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *  	"get",
  *  	"post"
  *  })
- * @ORM\Entity(repositoryClass="App\Repository\OrganisationRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
  */
-class Organisation
+class Organization
 {
 	/**
 	 * @var \Ramsey\Uuid\UuidInterface
@@ -232,7 +232,7 @@ class Organisation
     {
         if (!$this->persons->contains($person)) {
             $this->persons[] = $person;
-            $person->setOrganisation($this);
+            $person->setOrganization($this);
         }
 
         return $this;
@@ -243,8 +243,8 @@ class Organisation
         if ($this->persons->contains($person)) {
             $this->persons->removeElement($person);
             // set the owning side to null (unless already changed)
-            if ($person->getOrganisation() === $this) {
-                $person->setOrganisation(null);
+            if ($person->getOrganization() === $this) {
+                $person->setOrganization(null);
             }
         }
 
@@ -263,7 +263,7 @@ class Organisation
     {
         if (!$this->contactLists->contains($contactList)) {
             $this->contactLists[] = $contactList;
-            $contactList->addOrganisation($this);
+            $contactList->addOrganization($this);
         }
 
         return $this;
@@ -273,7 +273,7 @@ class Organisation
     {
         if ($this->contactLists->contains($contactList)) {
             $this->contactLists->removeElement($contactList);
-            $contactList->removeOrganisation($this);
+            $contactList->removeOrganization($this);
         }
 
         return $this;

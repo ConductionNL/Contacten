@@ -1003,56 +1003,56 @@ paths:
             schema:
               $ref: '#/components/schemas/Email-write'
         description: 'The updated Email resource'
-  /organisations:
+  /organizations:
     get:
       tags:
-        - Organisation
-      operationId: getOrganisationCollection
-      summary: 'Retrieves the collection of Organisation resources.'
+        - Organization
+      operationId: getOrganizationCollection
+      summary: 'Retrieves the collection of Organization resources.'
       responses:
         200:
-          description: 'Organisation collection response'
+          description: 'Organization collection response'
           content:
             application/hal+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Organisation-read'
+                  $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Organisation-read'
+                  $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Organisation-read'
+                  $ref: '#/components/schemas/Organization-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Organisation-read'
+                  $ref: '#/components/schemas/Organization-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Organisation-read'
+                  $ref: '#/components/schemas/Organization-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Organisation-read'
+                  $ref: '#/components/schemas/Organization-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Organisation-read'
+                  $ref: '#/components/schemas/Organization-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Organisation-read'
+                  $ref: '#/components/schemas/Organization-read'
       parameters:
         -
           name: page
@@ -1063,43 +1063,43 @@ paths:
             type: integer
     post:
       tags:
-        - Organisation
-      operationId: postOrganisationCollection
-      summary: 'Creates a Organisation resource.'
+        - Organization
+      operationId: postOrganizationCollection
+      summary: 'Creates a Organization resource.'
       responses:
         201:
-          description: 'Organisation resource created'
+          description: 'Organization resource created'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
           links:
-            GetOrganisationItem:
+            GetOrganizationItem:
               parameters:
                 id: '$response.body#/id'
-              operationId: getOrganisationItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /organisations/{id}`.'
+              operationId: getOrganizationItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /organizations/{id}`.'
         400:
           description: 'Invalid input'
         404:
@@ -1108,35 +1108,35 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
-        description: 'The new Organisation resource'
-  '/organisations/{id}':
+              $ref: '#/components/schemas/Organization-write'
+        description: 'The new Organization resource'
+  '/organizations/{id}':
     get:
       tags:
-        - Organisation
-      operationId: getOrganisationItem
-      summary: 'Retrieves a Organisation resource.'
+        - Organization
+      operationId: getOrganizationItem
+      summary: 'Retrieves a Organization resource.'
       parameters:
         -
           name: id
@@ -1146,42 +1146,42 @@ paths:
             type: string
       responses:
         200:
-          description: 'Organisation resource response'
+          description: 'Organization resource response'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
         404:
           description: 'Resource not found'
     delete:
       tags:
-        - Organisation
-      operationId: deleteOrganisationItem
-      summary: 'Removes the Organisation resource.'
+        - Organization
+      operationId: deleteOrganizationItem
+      summary: 'Removes the Organization resource.'
       responses:
         204:
-          description: 'Organisation resource deleted'
+          description: 'Organization resource deleted'
         404:
           description: 'Resource not found'
       parameters:
@@ -1193,9 +1193,9 @@ paths:
             type: string
     put:
       tags:
-        - Organisation
-      operationId: putOrganisationItem
-      summary: 'Replaces the Organisation resource.'
+        - Organization
+      operationId: putOrganizationItem
+      summary: 'Replaces the Organization resource.'
       parameters:
         -
           name: id
@@ -1205,32 +1205,32 @@ paths:
             type: string
       responses:
         200:
-          description: 'Organisation resource updated'
+          description: 'Organization resource updated'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
         400:
           description: 'Invalid input'
         404:
@@ -1239,34 +1239,34 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
-        description: 'The updated Organisation resource'
+              $ref: '#/components/schemas/Organization-write'
+        description: 'The updated Organization resource'
     patch:
       tags:
-        - Organisation
-      operationId: patchOrganisationItem
-      summary: 'Updates the Organisation resource.'
+        - Organization
+      operationId: patchOrganizationItem
+      summary: 'Updates the Organization resource.'
       parameters:
         -
           name: id
@@ -1276,32 +1276,32 @@ paths:
             type: string
       responses:
         200:
-          description: 'Organisation resource updated'
+          description: 'Organization resource updated'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Organisation-read'
+                $ref: '#/components/schemas/Organization-read'
         400:
           description: 'Invalid input'
         404:
@@ -1310,29 +1310,29 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
+              $ref: '#/components/schemas/Organization-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Organisation-write'
-        description: 'The updated Organisation resource'
+              $ref: '#/components/schemas/Organization-write'
+        description: 'The updated Organization resource'
   /people:
     get:
       tags:
@@ -2066,10 +2066,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-read'
-        organisations:
+        organizations:
           type: array
           items:
-            $ref: '#/components/schemas/Organisation-read'
+            $ref: '#/components/schemas/Organization-read'
     ContactList-write:
       type: object
       description: ''
@@ -2082,10 +2082,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-write'
-        organisations:
+        organizations:
           type: array
           items:
-            $ref: '#/components/schemas/Organisation-write'
+            $ref: '#/components/schemas/Organization-write'
     Email-read:
       type: object
       description: ''
@@ -2105,7 +2105,7 @@ components:
           type: string
         email:
           type: string
-    Organisation-read:
+    Organization-read:
       type: object
       description: ''
       properties:
@@ -2134,7 +2134,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-read'
-    Organisation-write:
+    Organization-write:
       type: object
       description: ''
       properties:

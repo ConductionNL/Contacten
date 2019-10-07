@@ -83,14 +83,14 @@ class Email
     private $people;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Organisation", mappedBy="emails")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Organization", mappedBy="emails")
      */
-    private $organisations;
+    private $organizations;
 
     public function __construct()
     {
         $this->people = new ArrayCollection();
-        $this->organisations = new ArrayCollection();
+        $this->organizations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,28 +151,28 @@ class Email
     }
 
     /**
-     * @return Collection|Organisation[]
+     * @return Collection|Organization[]
      */
-    public function getOrganisations(): Collection
+    public function getOrganizations(): Collection
     {
-        return $this->organisations;
+        return $this->organizations;
     }
 
-    public function addOrganisation(Organisation $organisation): self
+    public function addOrganization(Organization $organization): self
     {
-        if (!$this->organisations->contains($organisation)) {
-            $this->organisations[] = $organisation;
-            $organisation->addEmail($this);
+        if (!$this->organizations->contains($organization)) {
+            $this->organizations[] = $organization;
+            $organization->addEmail($this);
         }
 
         return $this;
     }
 
-    public function removeOrganisation(Organisation $organisation): self
+    public function removeOrganization(Organization $organization): self
     {
-        if ($this->organisations->contains($organisation)) {
-            $this->organisations->removeElement($organisation);
-            $organisation->removeEmail($this);
+        if ($this->organizations->contains($organization)) {
+            $this->organizations->removeElement($organization);
+            $organization->removeEmail($this);
         }
 
         return $this;

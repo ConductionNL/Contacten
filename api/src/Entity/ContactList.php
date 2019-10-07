@@ -65,14 +65,14 @@ class ContactList
 
     /**
 	 * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Organisation", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Organization", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
      */
-    private $organisations;
+    private $organizations;
 
     public function __construct()
     {
         $this->persons = new ArrayCollection();
-        $this->organisations = new ArrayCollection();
+        $this->organizations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,26 +131,26 @@ class ContactList
     }
 
     /**
-     * @return Collection|Organisation[]
+     * @return Collection|Organization[]
      */
-    public function getOrganisations(): Collection
+    public function getOrganizations(): Collection
     {
-        return $this->organisations;
+        return $this->organizations;
     }
 
-    public function addOrganisation(Organisation $organisation): self
+    public function addOrganization(Organization $organization): self
     {
-        if (!$this->organisations->contains($organisation)) {
-            $this->organisations[] = $organisation;
+        if (!$this->organizations->contains($organization)) {
+            $this->organizations[] = $organization;
         }
 
         return $this;
     }
 
-    public function removeOrganisation(Organisation $organisation): self
+    public function removeOrganization(Organization $organization): self
     {
-        if ($this->organisations->contains($organisation)) {
-            $this->organisations->removeElement($organisation);
+        if ($this->organizations->contains($organization)) {
+            $this->organizations->removeElement($organization);
         }
 
         return $this;

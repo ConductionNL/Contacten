@@ -112,9 +112,9 @@ class Person
     private $emails;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="persons", fetch="EAGER", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
      */
-    private $organisation;
+    private $organization;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
@@ -249,14 +249,14 @@ class Person
     	
     	return $this;
     }
-    public function getOrganisation(): ?Organisation
+    public function getOrganization(): ?Organization
     {
-        return $this->organisation;
+        return $this->organization;
     }
 
-    public function setOrganisation(?Organisation $organisation): self
+    public function setOrganization(?Organization $organization): self
     {
-        $this->organisation = $organisation;
+        $this->organization = $organization;
 
         return $this;
     }
