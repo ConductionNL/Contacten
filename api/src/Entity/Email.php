@@ -8,6 +8,7 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -15,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 /**
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
- *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
+ *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *  collectionOperations={
  *  	"get",
  *  	"post"
@@ -95,7 +96,7 @@ class Email
         $this->organizations = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -127,7 +128,7 @@ class Email
     /**
      * @return Collection|Person[]
      */
-    public function getPeople(): Collection
+    public function getPeople()
     {
         return $this->people;
     }
@@ -155,7 +156,7 @@ class Email
     /**
      * @return Collection|Organization[]
      */
-    public function getOrganizations(): Collection
+    public function getOrganizations()
     {
         return $this->organizations;
     }
