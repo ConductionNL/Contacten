@@ -49,7 +49,6 @@ class Telephone
 
     /**
      * @ApiProperty(
-     * 	   identifier=true,
      *     attributes={
      *         "swagger_context"={
 	 *         	   "description" = "The name of this telephone number used to identify it in a user friendly way",
@@ -65,7 +64,6 @@ class Telephone
 
     /**
      * @ApiProperty(
-     * 	   identifier=true,
      *     attributes={
      *         "swagger_context"={
 	 *         	   "description" = "The actual phone number including any international prefixes",

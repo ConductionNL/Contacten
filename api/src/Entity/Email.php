@@ -50,7 +50,6 @@ class Email
 
     /**
      * @ApiProperty(
-     * 	   identifier=true,
      *     attributes={
      *         "swagger_context"={
 	 *         	   "description" = "The name of this email adress used to identify it in a user friendly way",
@@ -66,7 +65,6 @@ class Email
 
     /**
      * @ApiProperty(
-     * 	   identifier=true,
      *     attributes={
      *         "swagger_context"={
 	 *         	   "description" = "The actual email adress",
