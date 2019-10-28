@@ -3,6 +3,14 @@ info:
   title: 'Medewerker Registratie Component (MRC)'
   version: 0.0.1
   description: |
+    API Details
+    - Component: Proto Component
+    - Reference: pc
+    - Enviroment: dev
+    - Version: V.0.1
+    - Repository: []() / [zip](/archive/master.zip)
+    - Datamodel: [postman](/schema/openapi.postman_collection) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar. 
           
     Word lid van het slackkanaal [https://zaakonline.slack.com](https://zaakonline.slack.com) voor ondersteuning door het ontwikkel team. En krijg regelmatig updates over de ontwikkelingen op het gebied van de zaakonline componenten.
@@ -729,6 +737,39 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     post:
       tags:
         - Email
@@ -814,6 +855,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Email resource response'
@@ -861,6 +935,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     put:
       tags:
         - Email
@@ -873,6 +980,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Email resource updated'
@@ -944,6 +1084,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Email resource updated'
