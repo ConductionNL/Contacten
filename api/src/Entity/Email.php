@@ -60,6 +60,9 @@ class Email
      * )
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $name;
 
@@ -75,6 +78,10 @@ class Email
      * )
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Assert\NotBlank
      */
     private $email;
 

@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -26,7 +27,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Person
 {
 	/**
-	 * @var \Ramsey\Uuid\UuidInterface
+	 * @var UuidInterface
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -60,6 +61,10 @@ class Person
      * )
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Assert\NotBlank
      */
     private $givenName;
 
@@ -75,6 +80,9 @@ class Person
      * )
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length (
+     *     max = 255
+     * )
      */
     private $additionalName;
 
@@ -90,6 +98,9 @@ class Person
      * )
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length (
+     *     max = 255
+     * )
      */
     private $familyName;
 
@@ -104,7 +115,7 @@ class Person
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      */
     private $adresses;
-    
+
     /**
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="people", cascade={"persist"})
@@ -222,8 +233,8 @@ class Person
 
         return $this;
     }
-    
-    
+
+
     /**
      * @return Collection|Email[]
      */
@@ -231,22 +242,22 @@ class Person
     {
     	return $this->emails;
     }
-    
+
     public function addEmail(Email $email): self
     {
     	if (!$this->emails->contains($email)) {
     		$this->emails[] = $email;
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeEmail(Email $email): self
     {
     	if ($this->emails->contains($email)) {
     		$this->emails->removeElement($email);
     	}
-    	
+
     	return $this;
     }
     public function getOrganization(): ?Organization

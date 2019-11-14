@@ -7,7 +7,9 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -22,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Address
 {
 	/**
-	 * @var \Ramsey\Uuid\UuidInterface
+	 * @var UuidInterface
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -43,7 +45,7 @@ class Address
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
-	
+
 	/**
      * @ApiProperty(
      * 	   identifier=true,
@@ -57,6 +59,9 @@ class Address
      * )
 	 * @Groups({"read", "write"})
 	 * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
 	 */
 	private $name;
 
@@ -73,24 +78,36 @@ class Address
      * )
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
+     * @Assert\Length(
+     *     max = 15
+     * )
      */
     private $bagnummeraanduiding;
 
     /**
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $street;
-    
+
     /**
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $houseNumber;
-    
+
     /**
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $houseNumberSufix;
 
@@ -103,24 +120,36 @@ class Address
     /**
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     *)
      */
     private $region;
 
     /**
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     *)
      */
     private $locality;
 
     /**
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     *)
      */
     private $country;
 
     /**
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     *)
      */
     private $postOfficeBoxNumber;
 
@@ -128,16 +157,16 @@ class Address
     {
         return $this->id;
     }
-    
+
     public function getName(): ?string
     {
     	return $this->name;
     }
-    
+
     public function setName(?string $name): self
     {
     	$this->name = $name;
-    	
+
     	return $this;
     }
 
@@ -164,28 +193,28 @@ class Address
 
         return $this;
     }
-    
+
     public function getHouseNumber(): ?string
     {
     	return $this->houseNumber;
     }
-    
+
     public function setHouseNumber(?string $houseNumber): self
     {
     	$this->houseNumber = $houseNumber;
-    	
+
     	return $this;
     }
-    
+
     public function getHouseNumberSufix(): ?string
     {
     	return $this->houseNumberSufix;
     }
-    
+
     public function setHouseNumberSufix(?string $houseNumberSufix): self
     {
     	$this->houseNumberSufix = $houseNumberSufix;
-    	
+
     	return $this;
     }
 
