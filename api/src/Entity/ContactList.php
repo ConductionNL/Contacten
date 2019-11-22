@@ -15,6 +15,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
+ * All properties that the entity ContactList holds.
+ *
+ * Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ * @category Entity
+ * @package contactcatalogus
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -27,7 +36,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class ContactList
 {
 	/**
-	 * @var UuidInterface
+	 * @var UuidInterface UUID of this contact list
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -50,6 +59,20 @@ class ContactList
 	private $id;
 
     /**
+     * @var string $name Name of this contact list
+     * @example All users
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The name of this contact list used to identify it in a user friendly way",
+     *             "type"="string",
+     *             "example"="All users"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -60,20 +83,66 @@ class ContactList
     private $name;
 
     /**
+     * @var string $description Description of this contact list
+     * @example This contact list holds all users.
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The description of a contact list",
+     *             "type"="string",
+     *             "example"="This contact list holds all users."
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
+     * @var Person $persons Persons this contact list has
+     * @example Hans
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The persons this contact list has",
+     *             "type"="Person",
+     *             "example"="Hans"
+     *         }
+     *     }
+     * )
+     *
+     *
 	 * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $persons;
 
     /**
+     * @var Organization $organizations Organisations this contact list has
+     * @example Ajax
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The organisations this contact list has",
+     *             "type"="Organization",
+     *             "example"="Ajax"
+     *         }
+     *     }
+     * )
+     *
+     *
 	 * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $organizations;
 

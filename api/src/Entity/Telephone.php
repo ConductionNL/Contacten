@@ -14,6 +14,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 /**
+ *  * All properties that the entity Telephone holds.
+ *
+ * Entity Telephone exists of an id, a name and a telephone.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ * @category Entity
+ * @package contactcatalogus
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -26,7 +35,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Telephone
 {
 	/**
-	 * @var UuidInterface
+	 * @var UuidInterface UUID of this telephone
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -49,6 +58,9 @@ class Telephone
 	private $id;
 
     /**
+     * @var string $name Name of this telephone
+     * @example Mobile
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -67,6 +79,9 @@ class Telephone
     private $name;
 
     /**
+     * @var string $telephone of this telephone
+     * @example +31 (0)10-1234567
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={

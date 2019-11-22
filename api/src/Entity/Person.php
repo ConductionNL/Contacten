@@ -15,6 +15,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
+ * All properties that the entity Person holds.
+ *
+ * Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ * @category Entity
+ * @package contactcatalogus
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -27,7 +36,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Person
 {
 	/**
-	 * @var UuidInterface
+	 * @var UuidInterface UUID of this person
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -50,6 +59,9 @@ class Person
 	private $id;
 
     /**
+     * @var string $givenName Given name of this person
+     * @example John
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -69,6 +81,9 @@ class Person
     private $givenName;
 
     /**
+     * @var string $additionalName Additional name of this person
+     * @example von
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -87,6 +102,9 @@ class Person
     private $additionalName;
 
     /**
+     * @var string $familyName Family name of this person
+     * @example Do
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -105,30 +123,100 @@ class Person
     private $familyName;
 
     /**
+     * @var Telephone $telephones Telephone of this person
+     * @example Mobile
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "This is the telephone of this person",
+     *             "type"="Telephone",
+     *             "example"="Mobile"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $telephones;
 
     /**
+     * @var Address $adresses Adresses of this person
+     * @example Amsterdam Office
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "This is the adress of this person",
+     *             "type"="Address",
+     *             "example"="Amsterdam Office"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $adresses;
 
     /**
+     * @var Email $emails Emails of this person
+     * @example john@do.com
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "This is the email of this person",
+     *             "type"="Email",
+     *             "example"="john@do.com"
+     *         }
+     *     }
+     * )
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="people", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $emails;
 
     /**
+     * @var Organization $organization Organisations of this person
+     * @example Ajax
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "This is the organisation of this person",
+     *             "type"="Organization",
+     *             "example"="Ajax"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $organization;
 
     /**
+     * @var ContactList $contactLists Contact lists of this person
+     * @example All users
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "These are the contact list this person belongs to",
+     *             "type"="ContactList",
+     *             "example"="All users"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
+     * @MaxDepth(1)
      */
     private $contactLists;
 
