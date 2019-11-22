@@ -15,6 +15,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
+ * All properties that the entity Organisation holds.
+ *
+ * Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ * @category Entity
+ * @package contactcatalogus
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -27,7 +36,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Organization
 {
 	/**
-	 * @var UuidInterface
+	 * @var UuidInterface UUID of this organisation
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -50,6 +59,19 @@ class Organization
 	private $id;
 
     /**
+     * @var string $name Name of this organisation
+     * @example Ajax
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "This is the name of this organisation",
+     *             "type"="string",
+     *             "example"="Ajax"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -60,6 +82,19 @@ class Organization
     private $name;
 
     /**
+     * @var string $description Description of this organisation
+     * @example Ajax is a dutch soccer club
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "This is the description of this organisation",
+     *             "type"="string",
+     *             "example"="Ajax is a dutch soccer club"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="text")
      * @Assert\NotBlank
@@ -67,6 +102,19 @@ class Organization
     private $description;
 
     /**
+     * @var string $kvk Kvk of this organisation
+     * @example 12345678
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "This is the kamer van koophandel number of this organisation",
+     *             "type"="string",
+     *             "example"="12345678"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      * @Assert\Length(
@@ -76,30 +124,100 @@ class Organization
     private $kvk;
 
     /**
+     * @var Telephone $telephones Telephone of this organisation
+     * @example Mobile
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "These are the telephones of this organisation",
+     *             "type"="Telephone",
+     *             "example"="Mobile"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $telephones;
     /**
+     * @var Address $adresses Address of this organisation
+     * @example Amsterdam Office
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "These are the adresses of this organisation",
+     *             "type"="Address",
+     *             "example"="Amsterdam Office"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $adresses;
 
     /**
+     * @var Email $emails Email of this organisation
+     * @example john@do.com
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "These are the emails of this organisation",
+     *             "type"="Email",
+     *             "example"="john@do.com"
+     *         }
+     *     }
+     * )
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organisations")
+     * @MaxDepth(1)
      */
     private $emails;
 
     /**
+     * @var Person $persons Person of this organisation
+     * @example Hans
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "These are the persons of this organisation",
+     *             "type"="Person",
+     *             "example"="Hans"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organisation")
+     * @MaxDepth(1)
      */
     private $persons;
 
     /**
+     * @var ContactList $contactLists Contact list of this organisation
+     * @example All users
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "These are the contact lists of this organisation",
+     *             "type"="ContactList",
+     *             "example"="All users"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organisations")
+     * @MaxDepth(1)
      */
     private $contactLists;
 

@@ -9,11 +9,21 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
+ * All properties that the entity Email holds.
+ *
+ * Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ * @category Entity
+ * @package contactcatalogus
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -26,7 +36,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Email
 {
 	/**
-	 * @var \Ramsey\Uuid\UuidInterface
+	 * @var UuidInterface UUID of this email
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -49,6 +59,9 @@ class Email
 	private $id;
 
     /**
+     * @var string $name Name of this email
+     * @example Private
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -67,6 +80,9 @@ class Email
     private $name;
 
     /**
+     * @var string $email Email of this email
+     * @example Private
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -86,12 +102,40 @@ class Email
     private $email;
 
     /**
+     * @var Person $person Person of this email
+     * @example Hans
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "People of this email",
+     *             "type"="Person",
+     *             "example"="Hans"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", mappedBy="emails")
+     * @MaxDepth(1)
      */
     private $people;
 
     /**
+     * @var Organization $organizations Organisation of this email
+     * @example Ajax
+     *
+     * @ApiProperty(
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "Organisations of this email",
+     *             "type"="Person",
+     *             "example"="Ajax"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", mappedBy="emails")
+     * @MaxDepth(1)
      */
     private $organizations;
 

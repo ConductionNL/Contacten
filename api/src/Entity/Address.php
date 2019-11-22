@@ -12,6 +12,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * All properties that the entity Address holds.
+ *
+ * Entity Address exists of an id, a name, a bagnummeraanduiding, a street, a houseNumber, a houseNumberSufix, a postalCode, a region, a locality and country.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ * @category Entity
+ * @package contactcatalogus
+ *
  * @ApiResource(
  *  normalizationContext={"groups"={"read"}},
  *  denormalizationContext={"groups"={"write"}},
@@ -24,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Address
 {
 	/**
-	 * @var UuidInterface
+	 * @var UuidInterface Uuid of this address
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -43,10 +52,16 @@ class Address
 	 * @ORM\Column(type="uuid", unique=true)
 	 * @ORM\GeneratedValue(strategy="CUSTOM")
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     *
+     * @Assert\NotBlank
+     * @Assert\Uuid
 	 */
 	private $id;
 
 	/**
+     * @var string $name Name of this Address
+     * @example Amsterdam Office
+     *
      * @ApiProperty(
      * 	   identifier=true,
      *     attributes={
@@ -59,6 +74,7 @@ class Address
      * )
 	 * @Groups({"read", "write"})
 	 * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Assert\Length(
      *     max = 255
      * )
@@ -66,6 +82,9 @@ class Address
 	private $name;
 
     /**
+     * @var string $bagnummeraanduiding Bagnummeraanduiding of this Address
+     * @example 0363200000218908
+     *
      * @ApiProperty(
      * 	   identifier=true,
      *     attributes={
@@ -85,6 +104,19 @@ class Address
     private $bagnummeraanduiding;
 
     /**
+     * @var string $street Street of this Address
+     * @example appelstreet
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The street of this address",
+     *             "type"="string",
+     *             "example"="appelstreet"
+     *         }
+     *     }
+     * )
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -94,6 +126,20 @@ class Address
     private $street;
 
     /**
+     * @var string $houseNumber House number of this Address
+     * @example 8
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The house number of this address",
+     *             "type"="string",
+     *             "example"="8"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -103,6 +149,20 @@ class Address
     private $houseNumber;
 
     /**
+     * @var string $houseNumberSufix House number sufix of this Address
+     * @example b
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The house number sufix of this address",
+     *             "type"="string",
+     *             "example"="b"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -112,12 +172,40 @@ class Address
     private $houseNumberSufix;
 
     /**
+     * @var string $postalCode Postalcode of a Address
+     * @example 1234AB
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The postalcode of this address",
+     *             "type"="string",
+     *             "example"="1234AB"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $postalCode;
 
     /**
+     * @var string region Region of a Address
+     * @example Noord-Holland
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The region of this address",
+     *             "type"="string",
+     *             "example"="Noord-Holland"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -127,6 +215,20 @@ class Address
     private $region;
 
     /**
+     * @var string $locality Locality of a Address
+     * @example Oud-Zuid
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The locality of this address",
+     *             "type"="string",
+     *             "example"="Oud-Zuid"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -136,6 +238,20 @@ class Address
     private $locality;
 
     /**
+     * @var string $country Country of a Address
+     * @example The Netherlands
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The country of this address",
+     *             "type"="string",
+     *             "example"="The Netherlands"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -145,6 +261,20 @@ class Address
     private $country;
 
     /**
+     * @var string $postOfficeBoxNumber Post office box number of a Address
+     * @example PO Box 1234
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The Post office box number of this address",
+     *             "type"="string",
+     *             "example"="PO Box 1234"
+     *         }
+     *     }
+     * )
+     *
 	 * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
