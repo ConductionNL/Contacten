@@ -4,15 +4,12 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * All properties that the entity Organisation holds.
@@ -21,8 +18,8 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  *
  * @author Ruben van der Linde <ruben@conduction.nl>
  * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ *
  * @category Entity
- * @package contactcatalogus
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -35,31 +32,32 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  */
 class Organization
 {
-	/**
-	 * @var UuidInterface UUID of this organisation
-	 *
-	 * @ApiProperty(
-	 * 	   identifier=true,
-	 *     attributes={
-	 *         "swagger_context"={
-	 *         	   "description" = "The UUID identifier of this object",
-	 *             "type"="string",
-	 *             "format"="uuid",
-	 *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-	 *         }
-	 *     }
-	 * )
-	 *
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
+    /**
+     * @var UuidInterface UUID of this organisation
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The UUID identifier of this object",
+     *             "type"="string",
+     *             "format"="uuid",
+     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
+     *         }
+     *     }
+     * )
+     *
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
     /**
-     * @var string $name Name of this organisation
+     * @var string Name of this organisation
+     *
      * @example Ajax
      *
      * @ApiProperty(
@@ -72,7 +70,7 @@ class Organization
      *     }
      * )
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *     max = 255
@@ -82,7 +80,8 @@ class Organization
     private $name;
 
     /**
-     * @var string $description Description of this organisation
+     * @var string Description of this organisation
+     *
      * @example Ajax is a dutch soccer club
      *
      * @ApiProperty(
@@ -95,14 +94,15 @@ class Organization
      *     }
      * )
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="text")
      * @Assert\NotBlank
      */
     private $description;
 
     /**
-     * @var string $kvk Kvk of this organisation
+     * @var string Kvk of this organisation
+     *
      * @example 12345678
      *
      * @ApiProperty(
@@ -115,7 +115,7 @@ class Organization
      *     }
      * )
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      * @Assert\Length(
      *     max = 15
@@ -124,7 +124,8 @@ class Organization
     private $kvk;
 
     /**
-     * @var Telephone $telephones Telephone of this organisation
+     * @var Telephone Telephone of this organisation
+     *
      * @example Mobile
      *
      * @ApiProperty(
@@ -137,13 +138,14 @@ class Organization
      *     }
      * )
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $telephones;
     /**
-     * @var Address $adresses Address of this organisation
+     * @var Address Address of this organisation
+     *
      * @example Amsterdam Office
      *
      * @ApiProperty(
@@ -156,14 +158,15 @@ class Organization
      *     }
      * )
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $adresses;
 
     /**
-     * @var Email $emails Email of this organisation
+     * @var Email Email of this organisation
+     *
      * @example john@do.com
      *
      * @ApiProperty(
@@ -183,7 +186,8 @@ class Organization
     private $emails;
 
     /**
-     * @var Person $persons Person of this organisation
+     * @var Person Person of this organisation
+     *
      * @example Hans
      *
      * @ApiProperty(
@@ -196,14 +200,15 @@ class Organization
      *     }
      * )
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organisation")
      * @MaxDepth(1)
      */
     private $persons;
 
     /**
-     * @var ContactList $contactLists Contact list of this organisation
+     * @var ContactList Contact list of this organisation
+     *
      * @example All users
      *
      * @ApiProperty(
@@ -220,7 +225,6 @@ class Organization
      * @MaxDepth(1)
      */
     private $contactLists;
-
 
     public function __construct()
     {
@@ -329,25 +333,25 @@ class Organization
      */
     public function getEmails()
     {
-    	return $this->emails;
+        return $this->emails;
     }
 
     public function addEmail(Email $email): self
     {
-    	if (!$this->emails->contains($email)) {
-    		$this->emails[] = $email;
-    	}
+        if (!$this->emails->contains($email)) {
+            $this->emails[] = $email;
+        }
 
-    	return $this;
+        return $this;
     }
 
     public function removeEmail(Email $email): self
     {
-    	if ($this->emails->contains($email)) {
-    		$this->emails->removeElement($email);
-    	}
+        if ($this->emails->contains($email)) {
+            $this->emails->removeElement($email);
+        }
 
-    	return $this;
+        return $this;
     }
 
     /**
@@ -408,5 +412,4 @@ class Organization
 
         return $this;
     }
-
 }
