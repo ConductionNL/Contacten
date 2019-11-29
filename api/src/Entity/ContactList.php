@@ -4,15 +4,12 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * All properties that the entity ContactList holds.
@@ -21,8 +18,8 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  *
  * @author Ruben van der Linde <ruben@conduction.nl>
  * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ *
  * @category Entity
- * @package contactcatalogus
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -35,31 +32,32 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  */
 class ContactList
 {
-	/**
-	 * @var UuidInterface UUID of this contact list
-	 *
-	 * @ApiProperty(
-	 * 	   identifier=true,
-	 *     attributes={
-	 *         "swagger_context"={
-	 *         	   "description" = "The UUID identifier of this object",
-	 *             "type"="string",
-	 *             "format"="uuid",
-	 *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-	 *         }
-	 *     }
-	 * )
-	 *
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
+    /**
+     * @var UuidInterface UUID of this contact list
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The UUID identifier of this object",
+     *             "type"="string",
+     *             "format"="uuid",
+     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
+     *         }
+     *     }
+     * )
+     *
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
     /**
-     * @var string $name Name of this contact list
+     * @var string Name of this contact list
+     *
      * @example All users
      *
      * @ApiProperty(
@@ -73,7 +71,7 @@ class ContactList
      *     }
      * )
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *     max = 255
@@ -83,7 +81,8 @@ class ContactList
     private $name;
 
     /**
-     * @var string $description Description of this contact list
+     * @var string Description of this contact list
+     *
      * @example This contact list holds all users.
      *
      * @ApiProperty(
@@ -97,13 +96,14 @@ class ContactList
      *     }
      * )
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @var Person $persons Persons this contact list has
+     * @var Person Persons this contact list has
+     *
      * @example Hans
      *
      * @ApiProperty(
@@ -118,14 +118,15 @@ class ContactList
      * )
      *
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $persons;
 
     /**
-     * @var Organization $organizations Organisations this contact list has
+     * @var Organization Organisations this contact list has
+     *
      * @example Ajax
      *
      * @ApiProperty(
@@ -140,7 +141,7 @@ class ContactList
      * )
      *
      *
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
