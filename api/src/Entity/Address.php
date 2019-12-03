@@ -2,11 +2,9 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -23,60 +21,60 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Address
 {
-	/**
-	 * @var UuidInterface
-	 *
-	 * @ApiProperty(
-	 * 	   identifier=true,
-	 *     attributes={
-	 *         "swagger_context"={
-	 *         	   "description" = "The UUID identifier of this object",
-	 *             "type"="string",
-	 *             "format"="uuid",
-	 *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-	 *         }
-	 *     }
-	 * )
-	 *
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
-
-	/**
+    /**
+     * @var UuidInterface
+     *
      * @ApiProperty(
      * 	   identifier=true,
      *     attributes={
      *         "swagger_context"={
-	 *         	   "description" = "The name of this adress used to identify it in a user friendly way",
+     *         	   "description" = "The UUID identifier of this object",
      *             "type"="string",
-     *             "example"="Amsterdam Office"
+     *             "format"="uuid",
+     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
      *         }
      *     }
      * )
-	 * @Groups({"read", "write"})
-	 * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(
-     *     max = 255
-     * )
-	 */
-	private $name;
+     *
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
     /**
      * @ApiProperty(
      * 	   identifier=true,
      *     attributes={
      *         "swagger_context"={
-	 *         	   "description" = "The BAG identifier of this address",
+     *         	   "description" = "The name of this adress used to identify it in a user friendly way",
+     *             "type"="string",
+     *             "example"="Amsterdam Office"
+     *         }
+     *     }
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
+     */
+    private $name;
+
+    /**
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The BAG identifier of this address",
      *             "type"="string",
      *             "example"="0363200000218908"
      *         }
      *     }
      * )
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      * @Assert\Length(
      *     max = 15
@@ -85,7 +83,7 @@ class Address
     private $bagnummeraanduiding;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
@@ -94,7 +92,7 @@ class Address
     private $street;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
@@ -103,7 +101,7 @@ class Address
     private $houseNumber;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
@@ -112,13 +110,13 @@ class Address
     private $houseNumberSufix;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $postalCode;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
@@ -127,7 +125,7 @@ class Address
     private $region;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
@@ -136,7 +134,7 @@ class Address
     private $locality;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
@@ -145,7 +143,7 @@ class Address
     private $country;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
@@ -160,14 +158,14 @@ class Address
 
     public function getName(): ?string
     {
-    	return $this->name;
+        return $this->name;
     }
 
     public function setName(?string $name): self
     {
-    	$this->name = $name;
+        $this->name = $name;
 
-    	return $this;
+        return $this;
     }
 
     public function getBagnummeraanduiding(): ?string
@@ -196,26 +194,26 @@ class Address
 
     public function getHouseNumber(): ?string
     {
-    	return $this->houseNumber;
+        return $this->houseNumber;
     }
 
     public function setHouseNumber(?string $houseNumber): self
     {
-    	$this->houseNumber = $houseNumber;
+        $this->houseNumber = $houseNumber;
 
-    	return $this;
+        return $this;
     }
 
     public function getHouseNumberSufix(): ?string
     {
-    	return $this->houseNumberSufix;
+        return $this->houseNumberSufix;
     }
 
     public function setHouseNumberSufix(?string $houseNumberSufix): self
     {
-    	$this->houseNumberSufix = $houseNumberSufix;
+        $this->houseNumberSufix = $houseNumberSufix;
 
-    	return $this;
+        return $this;
     }
 
     public function getPostalCode(): ?string

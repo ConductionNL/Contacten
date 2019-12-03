@@ -4,15 +4,11 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * @ApiResource(
@@ -26,40 +22,40 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  */
 class Person
 {
-	/**
-	 * @var UuidInterface
-	 *
-	 * @ApiProperty(
-	 * 	   identifier=true,
-	 *     attributes={
-	 *         "swagger_context"={
-	 *         	   "description" = "The UUID identifier of this object",
-	 *             "type"="string",
-	 *             "format"="uuid",
-	 *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-	 *         }
-	 *     }
-	 * )
-	 *
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
+    /**
+     * @var UuidInterface
+     *
+     * @ApiProperty(
+     * 	   identifier=true,
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The UUID identifier of this object",
+     *             "type"="string",
+     *             "format"="uuid",
+     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
+     *         }
+     *     }
+     * )
+     *
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
     /**
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
-	 *         	   "description" = "Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property.",
+     *         	   "description" = "Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property.",
      *             "type"="string",
      *             "example"="John"
      *         }
      *     }
      * )
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *     max = 255
@@ -72,13 +68,13 @@ class Person
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
-	 *         	   "description" = "An additional name for a Person, can be used for a middle name.",
+     *         	   "description" = "An additional name for a Person, can be used for a middle name.",
      *             "type"="string",
      *             "example"="von"
      *         }
      *     }
      * )
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
      *     max = 255
@@ -90,13 +86,13 @@ class Person
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
-	 *         	   "description" = "Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.",
+     *         	   "description" = "Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.",
      *             "type"="string",
      *             "example"="Do"
      *         }
      *     }
      * )
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
      *     max = 255
@@ -105,13 +101,13 @@ class Person
     private $familyName;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      */
     private $telephones;
 
     /**
-	 * @Groups({"read", "write"})
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      */
     private $adresses;
@@ -131,7 +127,6 @@ class Person
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
      */
     private $contactLists;
-
 
     public function __construct()
     {
@@ -234,32 +229,32 @@ class Person
         return $this;
     }
 
-
     /**
      * @return Collection|Email[]
      */
     public function getEmails()
     {
-    	return $this->emails;
+        return $this->emails;
     }
 
     public function addEmail(Email $email): self
     {
-    	if (!$this->emails->contains($email)) {
-    		$this->emails[] = $email;
-    	}
+        if (!$this->emails->contains($email)) {
+            $this->emails[] = $email;
+        }
 
-    	return $this;
+        return $this;
     }
 
     public function removeEmail(Email $email): self
     {
-    	if ($this->emails->contains($email)) {
-    		$this->emails->removeElement($email);
-    	}
+        if ($this->emails->contains($email)) {
+            $this->emails->removeElement($email);
+        }
 
-    	return $this;
+        return $this;
     }
+
     public function getOrganization(): ?Organization
     {
         return $this->organization;
