@@ -35,18 +35,6 @@ class ContactList
     /**
      * @var UuidInterface UUID of this contact list
      *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read"})
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
@@ -59,17 +47,6 @@ class ContactList
      * @var string Name of this contact list
      *
      * @example All users
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this contact list used to identify it in a user friendly way",
-     *             "type"="string",
-     *             "example"="All users"
-     *         }
-     *     }
-     * )
      *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
@@ -85,17 +62,6 @@ class ContactList
      *
      * @example This contact list holds all users.
      *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The description of a contact list",
-     *             "type"="string",
-     *             "example"="This contact list holds all users."
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */
@@ -105,18 +71,6 @@ class ContactList
      * @var Person Persons this contact list has
      *
      * @example Hans
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The persons this contact list has",
-     *             "type"="Person",
-     *             "example"="Hans"
-     *         }
-     *     }
-     * )
-     *
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
@@ -128,18 +82,6 @@ class ContactList
      * @var Organization Organisations this contact list has
      *
      * @example Ajax
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The organisations this contact list has",
-     *             "type"="Organization",
-     *             "example"="Ajax"
-     *         }
-     *     }
-     * )
-     *
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})

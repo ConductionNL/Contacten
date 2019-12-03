@@ -60,3 +60,8 @@ This repository uses the power of the [commonground proto component](https://git
 Credits
 -------
 
+## License
+Copyright &copy; [Gemeente Utrecht](https://www.utrecht.nl/)  2019 
+
+[Licensed under the EUPL](LICENCE.md)
+
