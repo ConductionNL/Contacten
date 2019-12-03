@@ -33,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ContactList
 {
     /**
-     * @var UuidInterface UUID of this contact list
+     * @var UuidInterface
      *
      * @ApiProperty(
      * 	   identifier=true,
@@ -56,21 +56,6 @@ class ContactList
     private $id;
 
     /**
-     * @var string Name of this contact list
-     *
-     * @example All users
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this contact list used to identify it in a user friendly way",
-     *             "type"="string",
-     *             "example"="All users"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -81,43 +66,12 @@ class ContactList
     private $name;
 
     /**
-     * @var string Description of this contact list
-     *
-     * @example This contact list holds all users.
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The description of a contact list",
-     *             "type"="string",
-     *             "example"="This contact list holds all users."
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @var Person Persons this contact list has
-     *
-     * @example Hans
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The persons this contact list has",
-     *             "type"="Person",
-     *             "example"="Hans"
-     *         }
-     *     }
-     * )
-     *
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -125,22 +79,6 @@ class ContactList
     private $persons;
 
     /**
-     * @var Organization Organisations this contact list has
-     *
-     * @example Ajax
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The organisations this contact list has",
-     *             "type"="Organization",
-     *             "example"="Ajax"
-     *         }
-     *     }
-     * )
-     *
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)

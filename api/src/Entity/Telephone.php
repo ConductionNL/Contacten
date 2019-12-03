@@ -31,7 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Telephone
 {
     /**
-     * @var UuidInterface UUID of this telephone
+     * @var UuidInterface
      *
      * @ApiProperty(
      * 	   identifier=true,

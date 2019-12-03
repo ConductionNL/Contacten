@@ -33,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Person
 {
     /**
-     * @var UuidInterface UUID of this person
+     * @var UuidInterface
      *
      * @ApiProperty(
      * 	   identifier=true,
@@ -123,20 +123,6 @@ class Person
     private $familyName;
 
     /**
-     * @var Telephone Telephone of this person
-     *
-     * @example Mobile
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "This is the telephone of this person",
-     *             "type"="Telephone",
-     *             "example"="Mobile"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -144,20 +130,6 @@ class Person
     private $telephones;
 
     /**
-     * @var Address Adresses of this person
-     *
-     * @example Amsterdam Office
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "This is the adress of this person",
-     *             "type"="Address",
-     *             "example"="Amsterdam Office"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)

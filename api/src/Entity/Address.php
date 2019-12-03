@@ -31,7 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Address
 {
     /**
-     * @var UuidInterface Uuid of this address
+     * @var UuidInterface
      *
      * @ApiProperty(
      * 	   identifier=true,
@@ -50,17 +50,10 @@ class Address
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     *
-     * @Assert\NotBlank
-     * @Assert\Uuid
      */
     private $id;
 
     /**
-     * @var string Name of this Address
-     *
-     * @example Amsterdam Office
-     *
      * @ApiProperty(
      * 	   identifier=true,
      *     attributes={
@@ -73,7 +66,6 @@ class Address
      * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Length(
      *     max = 255
      * )
@@ -104,20 +96,6 @@ class Address
     private $bagnummeraanduiding;
 
     /**
-     * @var string Street of this Address
-     *
-     * @example appelstreet
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The street of this address",
-     *             "type"="string",
-     *             "example"="appelstreet"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -127,21 +105,6 @@ class Address
     private $street;
 
     /**
-     * @var string House number of this Address
-     *
-     * @example 8
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The house number of this address",
-     *             "type"="string",
-     *             "example"="8"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -151,21 +114,6 @@ class Address
     private $houseNumber;
 
     /**
-     * @var string House number sufix of this Address
-     *
-     * @example b
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The house number sufix of this address",
-     *             "type"="string",
-     *             "example"="b"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -175,42 +123,12 @@ class Address
     private $houseNumberSufix;
 
     /**
-     * @var string Postalcode of a Address
-     *
-     * @example 1234AB
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The postalcode of this address",
-     *             "type"="string",
-     *             "example"="1234AB"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $postalCode;
 
     /**
-     * @var string region Region of a Address
-     *
-     * @example Noord-Holland
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The region of this address",
-     *             "type"="string",
-     *             "example"="Noord-Holland"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -220,21 +138,6 @@ class Address
     private $region;
 
     /**
-     * @var string Locality of a Address
-     *
-     * @example Oud-Zuid
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The locality of this address",
-     *             "type"="string",
-     *             "example"="Oud-Zuid"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -244,21 +147,6 @@ class Address
     private $locality;
 
     /**
-     * @var string Country of a Address
-     *
-     * @example The Netherlands
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The country of this address",
-     *             "type"="string",
-     *             "example"="The Netherlands"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -268,21 +156,6 @@ class Address
     private $country;
 
     /**
-     * @var string Post office box number of a Address
-     *
-     * @example PO Box 1234
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The Post office box number of this address",
-     *             "type"="string",
-     *             "example"="PO Box 1234"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
