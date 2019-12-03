@@ -8,9 +8,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * All properties that the entity Organisation holds.
+ *
+ * Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ *
+ * @category Entity
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -23,19 +33,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Organization
 {
     /**
-     * @var UuidInterface
+     * @var UuidInterface UUID of this organisation
      *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
      *
      * @Groups({"read"})
      * @ORM\Id
@@ -46,6 +45,10 @@ class Organization
     private $id;
 
     /**
+     * @var string Name of this organisation
+     *
+     * @example Ajax
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -56,6 +59,10 @@ class Organization
     private $name;
 
     /**
+     * @var string Description of this organisation
+     *
+     * @example Ajax is a dutch soccer club
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="text")
      * @Assert\NotBlank
@@ -63,6 +70,9 @@ class Organization
     private $description;
 
     /**
+     * @var string Kvk of this organisation
+     *
+     * @example 123456
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      * @Assert\Length(
@@ -72,30 +82,56 @@ class Organization
     private $kvk;
 
     /**
+     * @var Telephone Telephone of this organisation
+     *
+     * @example Mobile
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $telephones;
     /**
+     * @var Address Address of this organisation
+     *
+     * @example Amsterdam Office
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $adresses;
 
     /**
+     * @var Email Email of this organisation
+     *
+     * @example john@do.com
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organisations")
+     * @MaxDepth(1)
      */
     private $emails;
 
     /**
+     * @var Person Person of this organisation
+     *
+     * @example Hans
+     *
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organisation")
+     * @MaxDepth(1)
      */
     private $persons;
 
     /**
+     * @var ContactList Contact list of this organisation
+     *
+     * @example All users
+     *
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organisations")
+     * @MaxDepth(1)
      */
     private $contactLists;
 

@@ -8,9 +8,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * All properties that the entity Person holds.
+ *
+ * Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ *
+ * @category Entity
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -23,19 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Person
 {
     /**
-     * @var UuidInterface
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
+     * @var UuidInterface UUID of this person
      *
      * @Groups({"read"})
      * @ORM\Id
@@ -46,15 +44,10 @@ class Person
     private $id;
 
     /**
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property.",
-     *             "type"="string",
-     *             "example"="John"
-     *         }
-     *     }
-     * )
+     * @var string Given name of this person
+     *
+     * @example John
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -65,15 +58,10 @@ class Person
     private $givenName;
 
     /**
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "An additional name for a Person, can be used for a middle name.",
-     *             "type"="string",
-     *             "example"="von"
-     *         }
-     *     }
-     * )
+     * @var string Additional name of this person
+     *
+     * @example von
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
@@ -83,15 +71,10 @@ class Person
     private $additionalName;
 
     /**
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.",
-     *             "type"="string",
-     *             "example"="Do"
-     *         }
-     *     }
-     * )
+     * @var string Family name of this person
+     *
+     * @example Do
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
@@ -101,30 +84,55 @@ class Person
     private $familyName;
 
     /**
+     * @var Telephone Telephone of this person
+     *
+     * @example Mobile
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $telephones;
 
     /**
+     * @var Address Adresses of this person
+     *
+     * @example Amsterdam Office
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $adresses;
 
     /**
+     * @var Email Emails of this person
+     *
+     * @example john@do.com
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="people", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $emails;
 
     /**
+     * @var Organization Organisations of this person
+     *
+     * @example Ajax
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $organization;
 
     /**
+     * @var ContactList Contact lists of this person
+     *
+     * @example All users
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
+     * @MaxDepth(1)
      */
     private $contactLists;
 

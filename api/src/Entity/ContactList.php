@@ -8,9 +8,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * All properties that the entity ContactList holds.
+ *
+ * Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ *
+ * @category Entity
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -23,19 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ContactList
 {
     /**
-     * @var UuidInterface
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
+     * @var UuidInterface UUID of this contact list
      *
      * @Groups({"read"})
      * @ORM\Id
@@ -46,6 +44,10 @@ class ContactList
     private $id;
 
     /**
+     * @var string Name of this contact list
+     *
+     * @example All users
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -56,20 +58,34 @@ class ContactList
     private $name;
 
     /**
+     * @var string Description of this contact list
+     *
+     * @example This contact list holds all users.
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
+     * @var Person Persons this contact list has
+     *
+     * @example Hans
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $persons;
 
     /**
+     * @var Organization Organisations this contact list has
+     *
+     * @example Ajax
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $organizations;
 

@@ -6,10 +6,21 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * All properties that the entity Email holds.
+ *
+ * Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ *
+ * @category Entity
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -22,19 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Email
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
+     * @var UuidInterface UUID of this email
      *
      * @Groups({"read"})
      * @ORM\Id
@@ -45,15 +44,10 @@ class Email
     private $id;
 
     /**
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this email adress used to identify it in a user friendly way",
-     *             "type"="string",
-     *             "example"="Private"
-     *         }
-     *     }
-     * )
+     * @var string Name of this email
+     *
+     * @example Private
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -63,6 +57,10 @@ class Email
     private $name;
 
     /**
+     * @var string Email of this email
+     *
+     * @example Private
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -82,12 +80,23 @@ class Email
     private $email;
 
     /**
+     * @var Person Person of this email
+     *
+     * @example Hans
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", mappedBy="emails")
+     * @MaxDepth(1)
      */
     private $people;
 
     /**
+     * @var Organization Organisation of this email
+     *
+     * @example Ajax
+     *
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", mappedBy="emails")
+     * @MaxDepth(1)
      */
     private $organizations;
 

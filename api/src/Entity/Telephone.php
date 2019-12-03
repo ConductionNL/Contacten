@@ -10,6 +10,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ *  * All properties that the entity Telephone holds.
+ *
+ * Entity Telephone exists of an id, a name and a telephone.
+ *
+ * @author Ruben van der Linde <ruben@conduction.nl>
+ * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
+ *
+ * @category Entity
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
@@ -22,19 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Telephone
 {
     /**
-     * @var UuidInterface
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
+     * @var UuidInterface UUID of this telephone
      *
      * @Groups({"read"})
      * @ORM\Id
@@ -45,6 +42,10 @@ class Telephone
     private $id;
 
     /**
+     * @var string Name of this telephone
+     *
+     * @example Mobile
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -63,6 +64,10 @@ class Telephone
     private $name;
 
     /**
+     * @var string of this telephone
+     *
+     * @example +31 (0)10-1234567
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
