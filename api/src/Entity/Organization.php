@@ -110,14 +110,14 @@ class Organization
      * )
      *
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organisations")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organizations")
      * @MaxDepth(1)
      */
     private $emails;
 
     /**
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organisation")
+     * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization")
      * @MaxDepth(1)
      */
     private $persons;
@@ -137,7 +137,7 @@ class Organization
      *     }
      * )
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organisations")
+     * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organizations")
      * @MaxDepth(1)
      */
     private $contactLists;
