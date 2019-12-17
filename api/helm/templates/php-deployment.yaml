@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  replicas: {{ .Values.php.replicaCount }}
+  replicas: 1
   template:
     metadata:
       labels:

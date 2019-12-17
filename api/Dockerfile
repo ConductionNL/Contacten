@@ -114,8 +114,8 @@ RUN bin/console api:swagger:export --output=/srv/api/public/schema/openapi.yaml 
 # depends on the "php" stage above
 FROM nginx:${NGINX_VERSION}-alpine AS api_platform_nginx
 
-COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
-
+# Due to our config we need a copy of the public folder for serving static content
+COPY docker/nginx/conf.d/default.conf.template /etc/nginx/conf.d/default.conf
 WORKDIR /srv/api
 
 COPY public public/

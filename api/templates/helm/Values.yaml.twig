@@ -3,56 +3,66 @@
 # Declare variables to be passed into your templates.
 
 settings:
-  registryBase: docker.io/conduction
-  projectName: cc
-  name: cc
-  title: Contacten Catalogus
-  version: V.0.1
-  description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
-  repro: 'https://github.com/ConductionNL/Proto-component-commonground'
-  subdomain: pc  
+  registryBase: {{ container_registry_base }}
+  projectName: {{ container_project_name }}
+  name: {{ app_name }}
+  title: {{ app_title }}
+  version: {{ app_version }}
+  description: '{{ app_description }}'
+  repro: '{{ app_repro }}'
+  subdomain: {{ app_subdomain }}  
   domains:
-    - conduction.nl
-  #  - vng.cloud
-  #  - zaakonline.nl
-  #  - larping.eu
-  #  - common-ground.dev
-  #  - trouwplanner.online
-    - huwelijksplanner.online
-  organisationName: Conduction
-  email: info@conduction.nl
-  country: Netherlands
-  state: Noord-Holland
-  locality: Amsterdam
-  unit: Common-Ground  
-  demo: pc.zaakonline.nl
-  env: dev
-  debug: 1
+{% for domain in app_domains %}
+    - {{ domain }}
+{% endfor %}
+  organisationName: {{ organization_name }}
+  email: {{ organization_email }}
+  country: {{ organization_country }}
+  state: {{ organization_state }}
+  locality: {{ organization_locality }}
+  unit: {{ organization_unit }}  
+  demo: {{ app_demo }}
+  env: {{ app_env }}
+  debug: {{ app_debug }}
   replicaCount: 1
-  mercure:
-    jwtSecret: ""
-  env: prod
-  debug: '0'
-  secret: ""
   corsAllowOrigin: ['*']
-  trustedHosts: '^(.+\.)?conduction\.nl$|^(.+\.)?vng\.cloud$|^(.+\.)?huwelijksplanner\.online$|^(.+\.)?larping\.eu$|^(.+\.)?common-ground\.dev$|^(.+\.)?trouwplanner\.online$|^(.+\.)?zaakonline\.nl$|localhost'
+  trustedHosts: '{{ trusted_hosts }}'
   pullPolicy: Always
   # You will need these proxies on kubernetes
   trustedProxies:
     - 10.0.0.0/8
     - 172.16.0.0/12
     - 192.168.0.0/16
+  # If you are runnig a single component on a kubernetes cluster you can just easaliy enable the load balancer, if not you need to set up a multi component load balancer
+  loadbalancerEnabled: false
+  # If you want to enable NLX you are requered to add the appropreate certificates to you nlx-settings folder (located in the /api folder)
+  nlxInwayEnabled: {{ nlx_inway }}
+  # If you are runnig a single component on a kubernetes cluster you can just easaliy enable the load balancer, if not you need to set up a multi component load balancer
+  notificationEnabled: false
+  audittrailEnabled: false
+  authorisationEnabled: false
+  healthEnabled: false
+  archiveEnabled: false
+
+
+php:
+  repository: docker.io/conduction/protocomponent-php
+  tag: latest
+  mercure:
+    jwtSecret: ""
+  env: prod
+  secret: ""
 
 nginx:
-  repository: docker.io/conduction/cc-nginx
+  repository: docker.io/conduction/protocomponent-nginx
   tag: latest
   pullPolicy: Always
   replicaCount: 1
 
 varnish:
   enabled: true
-  url: https://cc-varnish
-  repository: docker.io/conduction/cc-varnish
+  #url: https://example.com
+  repository: docker.io/conduction/protocomponent-varnish
   tag: latest
   pullPolicy: Always
   replicaCount: 1
