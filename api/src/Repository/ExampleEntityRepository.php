@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\ExampleEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method ExampleEntity|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,7 +14,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class ExampleEntityRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, ExampleEntity::class);
     }
