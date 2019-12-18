@@ -33,18 +33,6 @@ class Telephone
     /**
      * @var UuidInterface UUID of this telephone
      *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read"})
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
@@ -55,50 +43,30 @@ class Telephone
 
     /**
      * @var string Name of this telephone
-     *
      * @example Mobile
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this telephone number used to identify it in a user friendly way",
-     *             "type"="string",
-     *             "example"="Mobile"
-     *         }
-     *     }
-     * )
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
      *     max = 255
      * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string of this telephone
-     *
      * @example +31 (0)10-1234567
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The actual phone number including any international prefixes",
-     *             "type"="string",
-     *             "example"="+31 (0)10-1234567"
-     *         }
-     *     }
-     * )
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      * @Assert\Length (
      *     max = 255
      * )
-     * @Assert\NotBlank
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255)
      */
     private $telephone;
 
-    public function getId()
+    public function getId(): ?string
     {
         return $this->id;
     }

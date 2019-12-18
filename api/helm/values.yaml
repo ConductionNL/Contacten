@@ -4,13 +4,13 @@
 
 settings:
   registryBase: docker.io/conduction
-  projectName: pc
-  name: pc
-  title: Proto Component
+  projectName: cc
+  name: cc
+  title: Contacten Component
   version: V.0.1
   description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
   repro: https://github.com/ConductionNL/Proto-component-commonground'
-  demo: pc.zaakonline.nl
+  demo: cc.zaakonline.nl
   env: dev
   debug: 1
   replicaCount: 1
@@ -43,15 +43,15 @@ php:
   secret: ""
 
 nginx:
-  repository: docker.io/conduction/cc-nginx
+  repository: docker.io/conduction/protocomponent-nginx
   tag: latest
   pullPolicy: Always
   replicaCount: 1
 
 varnish:
   enabled: true
-  url: https://cc-varnish
-  repository: docker.io/conduction/cc-varnish
+  #url: https://example.com
+  repository: docker.io/conduction/protocomponent-varnish
   tag: latest
   pullPolicy: Always
   replicaCount: 1

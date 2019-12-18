@@ -35,18 +35,6 @@ class Email
     /**
      * @var UuidInterface UUID of this email
      *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read"})
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
@@ -57,63 +45,32 @@ class Email
 
     /**
      * @var string Name of this email
-     *
      * @example Private
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this email adress used to identify it in a user friendly way",
-     *             "type"="string",
-     *             "example"="Private"
-     *         }
-     *     }
-     * )
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
      * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string Email of this email
-     *
      * @example Private
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The actual email adress",
-     *             "type"="string",
-     *             "example"="john@do.com"
-     *         }
-     *     }
-     * )
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      * @Assert\Length(
      *     max = 255
      * )
-     * @Assert\NotBlank
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
      * @var Person Person of this email
-     *
      * @example Hans
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "People of this email",
-     *             "type"="Person",
-     *             "example"="Hans"
-     *         }
-     *     }
-     * )
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", mappedBy="emails")
      * @MaxDepth(1)
@@ -122,18 +79,7 @@ class Email
 
     /**
      * @var Organization Organisation of this email
-     *
      * @example Ajax
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "Organisations of this email",
-     *             "type"="Person",
-     *             "example"="Ajax"
-     *         }
-     *     }
-     * )
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", mappedBy="emails")
      * @MaxDepth(1)
@@ -146,7 +92,7 @@ class Email
         $this->organizations = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): ?string
     {
         return $this->id;
     }
