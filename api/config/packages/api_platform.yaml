@@ -18,10 +18,14 @@ api_platform:
     # The basic API data
     title: '%env(APP_TITLE)%'
     description: |
-        %env(APP_DESCRIPTION)% 
-              
-        Word lid van het slackkanaal [https://zaakonline.slack.com](https://zaakonline.slack.com) voor ondersteuning door het ontwikkel team. En krijg regelmatig updates over de ontwikkelingen op het gebied van de zaakonline componenten.
-                
+        API Details
+        - Component: %env(APP_TITLE)%
+        - Reference: %env(APP_NAME)%
+        - Enviroment: %env(APP_ENV)%
+        - Version: %env(APP_VERSION)%
+        - Repository: [online](%env(APP_REPRO)%) / [zip](%env(APP_REPRO)%/archive/master.zip)
+        - Docker Image: [online](%env(CONTAINER_REPRO)%) 
+        - Datamodel: [postman](/schema/%env(APP_NAME)%.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
         
     
     version: '%env(APP_VERSION)%'  
