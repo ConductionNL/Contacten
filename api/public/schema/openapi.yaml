@@ -8,8 +8,9 @@ info:
     - Reference: crc
     - Enviroment: dev
     - Version: V.0.1
-    - Repository: []() / [zip](/archive/master.zip)
-    - Datamodel: [postman](/schema/openapi.postman_collection) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    - Repository: [online](https://github.com/ConductionNL/Proto-component-commonground) / [zip](https://github.com/ConductionNL/Proto-component-commonground/archive/master.zip)
+    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/pc-php) 
+    - Datamodel: [postman](/schema/pc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
     
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar. 
                              
@@ -37,7 +38,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Address:jsonld-read' } }
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/ExampleEntity:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
@@ -1553,7 +1554,7 @@ paths:
                 $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Organization:jsonld-read'
+                $ref: '#/components/schemas/ExampleEntity:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Organization-read'
@@ -1589,7 +1590,7 @@ paths:
               $ref: '#/components/schemas/Organization-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Organization:jsonld-write'
+              $ref: '#/components/schemas/ExampleEntity:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Organization-write'
@@ -2337,7 +2338,7 @@ paths:
                 $ref: '#/components/schemas/Person-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Person:jsonld-read'
+                $ref: '#/components/schemas/ExampleEntity:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Person-read'
@@ -2581,7 +2582,7 @@ paths:
                 $ref: '#/components/schemas/Telephone-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Telephone:jsonld-read'
+                $ref: '#/components/schemas/ExampleEntity:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
@@ -2617,7 +2618,7 @@ paths:
               $ref: '#/components/schemas/Telephone-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Telephone:jsonld-write'
+              $ref: '#/components/schemas/ExampleEntity:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Telephone-write'
@@ -2992,7 +2993,6 @@ components:
       properties:
         id:
           readOnly: true
-          description: 'Uuid of this address'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
@@ -3274,29 +3274,9 @@ components:
           readOnly: true
           description: 'UUID of this email'
           type: string
-        name:
-          description: 'Name of this email'
-          type: string
-        email:
-          description: 'Email of this email'
-          type: string
-      required:
-        - email
-    Email-write:
+    'ExampleEntity:jsonld-read':
       type: object
-      description: 'All properties that the entity Email holds.'
-      properties:
-        name:
-          description: 'Name of this email'
-          type: string
-        email:
-          description: 'Email of this email'
-          type: string
-      required:
-        - email
-    'Email:jsonld-read':
-      type: object
-      description: 'All properties that the entity Email holds.'
+      description: 'This is an example entity.'
       properties:
         '@context':
           readOnly: true
@@ -3309,428 +3289,97 @@ components:
           type: string
         id:
           readOnly: true
-          description: 'UUID of this email'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         name:
-          description: 'Name of this email'
-          type: string
-        email:
-          description: 'Email of this email'
-          type: string
-      required:
-        - email
-    'Email:jsonld-write':
-      type: object
-      description: 'All properties that the entity Email holds.'
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        name:
-          description: 'Name of this email'
-          type: string
-        email:
-          description: 'Email of this email'
-          type: string
-      required:
-        - email
-    Organization-read:
-      type: object
-      description: 'All properties that the entity Organisation holds.'
-      properties:
-        id:
-          readOnly: true
-          description: 'UUID of this organisation'
-          type: string
-        name:
-          description: 'Name of this organisation'
+          description: 'The name of this example property'
           type: string
         description:
-          description: 'Description of this organisation'
+          description: 'The description of this example property'
           type: string
-        kvk:
-          description: 'Kvk of this organisation'
+        camelCase:
+          description: 'Proof that we camel case our api'
           type: string
-        telephones:
-          description: 'Telephone of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone-read'
-        adresses:
-          description: 'Address of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-read'
-        emails:
-          description: 'Email of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Email-read'
-        persons:
-          description: 'Person of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Person-read'
       required:
         - name
-        - description
-    Organization-write:
+    'ExampleEntity:jsonld-write':
       type: object
-      description: 'All properties that the entity Organisation holds.'
+      description: 'This is an example entity.'
       required:
         - name
-        - description
       properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
         name:
-          description: 'Name of this organisation'
+          description: 'The name of this example property'
           type: string
         description:
-          description: 'Description of this organisation'
+          description: 'The description of this example property'
           type: string
-        kvk:
-          description: 'Kvk of this organisation'
+        camelCase:
+          description: 'Proof that we camel case our api'
           type: string
-        telephones:
-          description: 'Telephone of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone-write'
-        adresses:
-          description: 'Address of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-write'
-        emails:
-          description: 'Email of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Email-write'
-        persons:
-          description: 'Person of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Person-write'
-    'Organization:jsonld-read':
-      type: object
-      description: 'All properties that the entity Organisation holds.'
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        id:
-          readOnly: true
-          description: 'UUID of this organisation'
-          type: string
-        name:
-          description: 'Name of this organisation'
-          type: string
-        description:
-          description: 'Description of this organisation'
-          type: string
-        kvk:
-          description: 'Kvk of this organisation'
-          type: string
-        telephones:
-          description: 'Telephone of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone:jsonld-read'
-        adresses:
-          description: 'Address of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Address:jsonld-read'
-        emails:
-          description: 'Email of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Email:jsonld-read'
-        persons:
-          description: 'Person of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Person:jsonld-read'
-      required:
-        - name
-        - description
-    'Organization:jsonld-write':
-      type: object
-      description: 'All properties that the entity Organisation holds.'
-      required:
-        - name
-        - description
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        name:
-          description: 'Name of this organisation'
-          type: string
-        description:
-          description: 'Description of this organisation'
-          type: string
-        kvk:
-          description: 'Kvk of this organisation'
-          type: string
-        telephones:
-          description: 'Telephone of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone:jsonld-write'
-        adresses:
-          description: 'Address of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Address:jsonld-write'
-        emails:
-          description: 'Email of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Email:jsonld-write'
-        persons:
-          description: 'Person of this organisation'
-          type: array
-          items:
-            $ref: '#/components/schemas/Person:jsonld-write'
-    Person-read:
-      type: object
-      description: 'All properties that the entity Person holds.'
-      properties:
-        id:
-          readOnly: true
-          description: 'UUID of this person'
-          type: string
-        given_name:
-          description: 'Given name of this person'
-          type: string
-        additional_name:
-          description: 'Additional name of this person'
-          type: string
-        family_name:
-          description: 'Family name of this person'
-          type: string
-        telephones:
-          description: 'Telephone of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone-read'
-        adresses:
-          description: 'Adresses of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-read'
-        emails:
-          description: 'Emails of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Email-read'
-      required:
-        - given_name
-    Person-write:
-      type: object
-      description: 'All properties that the entity Person holds.'
-      required:
-        - given_name
-      properties:
-        given_name:
-          description: 'Given name of this person'
-          type: string
-        additional_name:
-          description: 'Additional name of this person'
-          type: string
-        family_name:
-          description: 'Family name of this person'
-          type: string
-        telephones:
-          description: 'Telephone of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone-write'
-        adresses:
-          description: 'Adresses of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-write'
-        emails:
-          description: 'Emails of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Email-write'
-    'Person:jsonld-read':
-      type: object
-      description: 'All properties that the entity Person holds.'
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        id:
-          readOnly: true
-          description: 'UUID of this person'
-          type: string
-        given_name:
-          description: 'Given name of this person'
-          type: string
-        additional_name:
-          description: 'Additional name of this person'
-          type: string
-        family_name:
-          description: 'Family name of this person'
-          type: string
-        telephones:
-          description: 'Telephone of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone:jsonld-read'
-        adresses:
-          description: 'Adresses of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Address:jsonld-read'
-        emails:
-          description: 'Emails of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Email:jsonld-read'
-      required:
-        - given_name
-    'Person:jsonld-write':
-      type: object
-      description: 'All properties that the entity Person holds.'
-      required:
-        - given_name
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        given_name:
-          description: 'Given name of this person'
-          type: string
-        additional_name:
-          description: 'Additional name of this person'
-          type: string
-        family_name:
-          description: 'Family name of this person'
-          type: string
-        telephones:
-          description: 'Telephone of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone:jsonld-write'
-        adresses:
-          description: 'Adresses of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Address:jsonld-write'
-        emails:
-          description: 'Emails of this person'
-          type: array
-          items:
-            $ref: '#/components/schemas/Email:jsonld-write'
-    Telephone-read:
-      type: object
-      description: '* All properties that the entity Telephone holds.'
-      properties:
-        id:
-          readOnly: true
-          description: 'UUID of this telephone'
-          type: string
-        name:
-          description: 'Name of this telephone'
-          type: string
-        telephone:
-          description: 'of this telephone'
-          type: string
-      required:
-        - telephone
-    Telephone-write:
-      type: object
-      description: '* All properties that the entity Telephone holds.'
-      properties:
-        name:
-          description: 'Name of this telephone'
-          type: string
-        telephone:
-          description: 'of this telephone'
-          type: string
-      required:
-        - telephone
-    'Telephone:jsonld-read':
-      type: object
-      description: '* All properties that the entity Telephone holds.'
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        id:
-          readOnly: true
-          description: 'UUID of this telephone'
-          type: string
-        name:
-          description: 'Name of this telephone'
-          type: string
-        telephone:
-          description: 'of this telephone'
-          type: string
-      required:
-        - telephone
-    'Telephone:jsonld-write':
-      type: object
-      description: '* All properties that the entity Telephone holds.'
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        name:
-          description: 'Name of this telephone'
-          type: string
-        telephone:
-          description: 'of this telephone'
-          type: string
-      required:
-        - telephone
-host: pc.zaakonline.nl
+definitions:
+  ExampleEntity-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        example: 'My Group'
+        maxLength: 255
+      description:
+        example: 'Is the best group ever'
+        maxLength: 2555
+      camelCase:
+        example: 'Best api ever'
+        maxLength: 255
+    required:
+      - name
+  ExampleEntity-write:
+    properties:
+      name:
+        example: 'My Group'
+        maxLength: 255
+      description:
+        example: 'Is the best group ever'
+        maxLength: 2555
+      camelCase:
+        example: 'Best api ever'
+        maxLength: 255
+    required:
+      - name
+tags:
+  -
+    name: ExampleEntity
+    description: |
+      This is an example entity.
+      
+      With an adtional description, all in all its pritty nice [url](www.google.nl)
+securityDefinitions:
+  JWT-Oauth:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
+    flow: implicit
+    scopes:
+      read: 'read right to the ExampleEntity resource'
+      write: 'write right to the ExampleEntity resource'
+  JWT-Token:
+    type: apiKey
+    in: header
+    name: Authorization
+    scopes:
+      read: 'read right to the ExampleEntity resource'
+      write: 'write right to the ExampleEntity resource'
+host: irc.zaakonline.nl
 servers:
   -
     description: 'Demo Omgeving'
