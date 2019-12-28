@@ -112,9 +112,13 @@ CMD ["php-fpm"]
 # Let update the docs to show the latest chages
 RUN bin/console api:swagger:export --output=/srv/api/public/schema/openapi.yaml --yaml --spec-version=3
 
-# "nginx" stage
-# depends on the "php" stage above
-FROM nginx:${NGINX_VERSION}-alpine AS api_platform_nginx
+RUN bin/console app:publiccode:update --location=/srv/api/public/schema/ --spec-version=0.2	
+
+#############################
+# 		"nginx" stage 		#
+#############################
+# depends on the "php" stage above, and with an litle bit of help from https://github.com/shiphp/nginx-env
+FROM shiphp/nginx-env AS api_platform_nginx
 
 # Due to our config we need a copy of the public folder for serving static content
 COPY docker/nginx/conf.d/default.conf.template /etc/nginx/conf.d/default.conf

@@ -285,18 +285,15 @@ More inforation on using datafixtures can be found at the [symfony website](http
 ## Sharing your work 
 A vital part of te common ground community is sharing your work, and telling other people what you are working. This way people can help you wiht problems that you run into. And keep tabs on any (security) updates that you make to you code. Sounds like a lot of work right?
 
-Wel it actually isn't, there is a specific commonground platform over at common-gorund.dev that reads repositorys and updates user. So the only thing we need to do is tell this platform that we have started a new common ground repository. And tell it when we have updates ours. We can do all that by simply adding a webhook to our component. 
+Wel it actually isn't, there is a specific common ground platform over at common-ground.dev that reads repositories and updates user. So the only thing we need to do is tell this platform that we have started a new common ground repository. How do we do that? Simple we use the name common ground (or commonground) in the discription of our repository. common-ground.dev should then pick up our repository within the hour.
 
-When using Github. To set up a webhook, go to the settings page of your repository or organization. From there, click Webhooks, then Add webhook. Use te following settings:
-* Payload URL: https://www.common-ground.dev/webhook/github
-* Content type: Application/JSON
-* Secret: [leave blanck]
-* Events: [just the push event]
+Another option that we have is to declare our repository on [publiccode](), to do this you need to copy the publiccode.yaml from the [api/public/schema](api/public/schema]) folder to your root folder (dont forget to redo this every time you make a change to your repository).
 
-Now every time you update your repository the commonground dev page will allerted, rescan your repository and do al the apropriate platform actions. It just as easy as that.
 
-## Commonground specific data types
-
+Continues integration
+-------
+> The following bit of the tutorial requires an additional account
+> - [https://hub.docker.com/](https://hub.docker.com/) (You might already have this for docker for desktop)
 
 ### incompleteDate
 

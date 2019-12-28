@@ -11,7 +11,7 @@ parameters:
     env(APP_DEMO): ''
     env(CONTAINER_PROJECT_NAME): ''
 
-api_platform:
+api_platform:            
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
 
