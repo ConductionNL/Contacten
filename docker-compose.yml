@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.4'
 
 x-cache:
   &cache
@@ -19,10 +19,9 @@ services:
       <<: *cache
     depends_on:
       - db
+    # Comment out these volumes in production
     volumes:
       - ./api:/srv/api:rw,cached
-      - ./nlx-setup:/cert:rw,cached
-      #- ./nlx-setup:/Users/<your-username>/nlx-setup:rw,cached
       # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
       # - ./api/var:/srv/api/var:rw
     environment:
@@ -78,8 +77,6 @@ services:
       - ./api/public:/srv/api/public:ro
     ports:
       - "8080:80"
-    environment:
-      - NGINX_HOST=php
 
   cache-proxy:
     &varnish
@@ -92,7 +89,7 @@ services:
       - api
       - php
     volumes:
-      - ./api/docker/varnish/conf:/usr/local/etc/varnish:rw,cached
+      - ./api/docker/varnish/conf:/usr/local/etc/varnish:ro
     tmpfs:
       - /usr/local/var/varnish:exec
     ports:
@@ -218,6 +215,8 @@ services:
     volumes:
       - ./client:/usr/src/client:rw,cached
       - /usr/src/client/node_modules
+    ports:
+      - "80:3000"
 
   admin:
     # Use a static website hosting service in production
@@ -230,7 +229,9 @@ services:
     volumes:
       - ./admin:/usr/src/admin:rw,cached
       - /usr/src/admin/node_modules
-    
+    ports:
+      - "81:3000"
+
   h2-proxy:
     # Don't use this proxy in prod
     build:
@@ -249,19 +250,10 @@ services:
     #volumes:
     #  - ./conf.d/:/etc/nginx/conf.d/:rw,cached
     ports:
-      - "80:80" #http port
-      - "443:443" #ssl port
+      - "443:443"
       - "444:444"
       - "8443:8443"
-      - "8444:8444" 
-      - "5432:5432" #postgress port
-    environment:
-      - APP_ENV=${APP_ENV}
-      - APP_NAME=${CONTAINER_PROJECT_NAME}
-
-networks:
-  nlx:
-    name: nlx
+      - "8444:8444"
 
 volumes:
   db-data: {}

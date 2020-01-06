@@ -1,39 +1,16 @@
+# About this component
 
-# Readme
--------
-Welcome to the the VNG Common Ground proto component!
+Het "contacten" component is bedoeld voor het opslaan van contactgegevens van personen en organisaties waarvoor nog geen BSN of KVK nummer bekend is (en dus geen bronverwijzing kan worden gedaan). Bijvoorbeeld omdat het om niet getekende gegevens gaat, of omdat brongebruik ongewenst is.
 
-This "proto" component provides a plug and play solution for component generation on Common Ground. That means that it takes away all the hassle of setting op codebases, containers and following the VNG Api Standaard. It does all that for you! 
+## Documentation
 
-For that we use **[Api Platform](https://api-platform.com)**, a next-generation web framework designed to easily create API-first projects, without compromising extensibility and flexibility. 
-
-Getting started
--------
-Do you want to create your own Commonground component? Take a look at our in depht [tutorial](TUTORIAL.md) on spinning up your own component!
-
-The commonground bundle
--------
-This repository uses the power of conductions [commonground bundle](https://packagist.org/packages/conduction/commongroundbundle) for symfony to provide common ground specific functionality based on the [VNG Api Strategie](https://docs.geostandaarden.nl/api/API-Strategie/). Including  
-
-* Build in support for public API's like BAG (Kadaster), KVK (Kamer van Koophandel)
-* Build in validators for common dutch variables like BSN (Burger service nummer), RSIN(), KVK(), BTW()
-* AVG and VNG proof audit trails
-* And [muchs more](https://packagist.org/packages/conduction/commongroundbundle) .... 
-
-Be sure to read our [design considerations](/design.md) concerning the [VNG Api Strategie](https://docs.geostandaarden.nl/api/API-Strategie/). 
-
-
-Requesting features
--------
-Do you need a feature that is not on this list? don't hesitate to send us a [feature request](https://github.com/ConductionNL/commonground-component/issues/new?assignees=&labels=&template=feature_request.md&title=).  
-
-Staying up to date
--------
+- [Installation manual](https://github.com/ConductionNL/contactencomponent/blob/master/INSTALLATION.md).
+- [contributing](https://github.com/ConductionNL/contactencomponent/blob/master/CONTRIBUTING.md) for tips tricks and general rules concerning contributing to this component.
+- [codebase](https://github.com/ConductionNL/contactencomponent) on github.
+- [codebase](https://github.com/ConductionNL/contactencomponent/archive/master.zip) as a download.
 
 ## Features
--------
-API Platform embraces open web standards (OpenAPI, JSON-LD, GraphQL, Hydra, HAL, JSONAPI, JWT, OAuth, HTTP...) and the [Linked Data](https://www.w3.org/standards/semanticweb/data) movement. Your API will automatically expose structured data in Schema.org/JSON-LD.
-It means that your commonground application is usable **out of the box** with technologies of the semantic web.
+This repository uses the power of the [commonground proto component](https://github.com/ConductionNL/commonground-component) provide common ground specific functionality based on the [VNG Api Strategie](https://docs.geostandaarden.nl/api/API-Strategie/). Including  
 
 * Comes with a paired [React](https://reactjs.org/) application, to provide face to your code
 * And a fully functional (and automatically updated) [React Admin](https://marmelab.com/react-admin/) backend to easily test and proof your component
@@ -60,4 +37,8 @@ It means that your commonground application is usable **out of the box** with te
 Credits
 -------
 
-Created by [Ruben van der Linde](https://www.conduction.nl/team) for conduction. But based on [api platform](https://api-platform.com) by [Kévin Dunglas](https://dunglas.fr). Commercial support for common ground components available from [Conduction](https://www.conduction.nl).
+## License
+Copyright &copy; [Gemeente Utrecht](https://www.utrecht.nl/)  2019 
+
+[Licensed under the EUPL](LICENCE.md)
+

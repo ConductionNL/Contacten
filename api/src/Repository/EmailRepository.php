@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\ExampleEntity;
+use App\Entity\Email;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method ExampleEntity|null find($id, $lockMode = null, $lockVersion = null)
- * @method ExampleEntity|null findOneBy(array $criteria, array $orderBy = null)
- * @method ExampleEntity[]    findAll()
- * @method ExampleEntity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Email|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Email|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Email[]    findAll()
+ * @method Email[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ExampleEntityRepository extends ServiceEntityRepository
+class EmailRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ExampleEntity::class);
+        parent::__construct($registry, Email::class);
     }
 
     // /**
-    //  * @return ExampleEntity[] Returns an array of ExampleEntity objects
+    //  * @return Email[] Returns an array of Email objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ExampleEntityRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ExampleEntity
+    public function findOneBySomeField($value): ?Email
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')
