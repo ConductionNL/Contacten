@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  replicas: {{ .Values.nginx.replicaCount }}
+  replicas: 1
   template:
     metadata:
       labels:
@@ -21,10 +21,17 @@ spec:
     spec:
       containers:
         - name: {{ include "name" . }}-nginx
-          image: "{{ .Values.nginx.repository }}:{{ .Values.nginx.tag }}"
-          imagePullPolicy: {{ .Values.nginx.pullPolicy }}
+          image: "{{ .Values.settings.registryBase }}/{{ .Values.settings.projectName }}-nginx:{{ .Values.settings.env }}"
+          imagePullPolicy: {{ .Values.settings.pullPolicy }}
           ports:
             - containerPort: 80
+          env:
+            - name: PHP_SERVICE
+              value: {{ include "name" . }}-php
+            - name: NGINX_HOST
+              value: {{ include "name" . }}-php
+            - name: BACKENDS
+              value: {{ include "name" . }}-php
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- if .Values.nodeSelector }}
