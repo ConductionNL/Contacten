@@ -255,6 +255,10 @@ services:
       - "8443:8443"
       - "8444:8444"
 
+networks:
+  nlx:
+    name: nlx
+
 volumes:
   db-data: {}
   db-mysql: {}
