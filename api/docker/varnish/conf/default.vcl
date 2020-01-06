@@ -2,9 +2,9 @@ vcl 4.0;
 
 import std;
 
-backend default {
-  .host = "cc-api";
-  .port = "80";
+#backend default {
+  # .host = "php";
+  # .port = "80";
   # Health check
   #.probe = {
   #  .url = "/";
@@ -16,9 +16,9 @@ backend default {
 }
 
 # Hosts allowed to send BAN requests
-acl invalidators {
-  "localhost";
-  "cc-php";
+#acl invalidators {
+#  "localhost";
+#  "php";
   # local Kubernetes network
   "10.0.0.0"/8;
   "172.16.0.0"/12;

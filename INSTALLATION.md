@@ -27,15 +27,24 @@ First we always need to update our dependencys
 $ helm dependency update ./api/helm
 
 If you want to create a new instance
-$ helm install ./api/helm --name cc --kubeconfig="api/helm/kubeconfig.yaml"
-
-Or update if you want to update an existing one
-$ helm upgrade cc  ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" 
-
-Or del if you want to delete an existing  one
-$ helm del cc  --purge --kubeconfig="api/helm/kubeconfig.yaml" 
+```CLI
+$ helm install --name pc-dev ./api/helm  --kubeconfig="api/helm/kubeconfig.yaml" --namespace=dev  --set settings.env=dev,settings.debug=1
+$ helm install --name pc-stag ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --namespace=stag --set settings.env=stag,settings.debug=0
+$ helm install --name pc-prod ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --namespace=prod --set settings.env=prod,settings.debug=0
+```
 
 Note that you can replace commonground with the namespace that you want to use (normally the name of your component).
+
+
+Note that you can replace common ground with the namespace that you want to use (normally the name of your component).
+
+
+## Making your app known on NLX
+The proto component comes with an default NLX setup, if you made your own component however you might want to provide it trough the [NLX](https://www.nlx.io/) service. Fortunately the proto component comes with an nice setup for NLX integration.
+
+First of all change the necessary lines in the [.env](.env) file, basically everything under the NLX setup tag. Keep in mind that you wil need to have your component available on an (sub)domain name (a simple IP wont sufice).
+
+To force the re-generation of certificates simply delete the org.crt en org.key in the api/nlx-setup folder.
 
 
 ## Deploying trough common-ground.dev

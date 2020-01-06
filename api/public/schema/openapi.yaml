@@ -1,12 +1,18 @@
 openapi: 3.0.2
 info:
-  title: 'Medewerker Registratie Component (MRC)'
-  version: 0.0.1
+  title: 'Contact Registratie Component'
+  version: V.0.1
   description: |
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar. 
-          
-    Word lid van het slackkanaal [https://zaakonline.slack.com](https://zaakonline.slack.com) voor ondersteuning door het ontwikkel team. En krijg regelmatig updates over de ontwikkelingen op het gebied van de zaakonline componenten.
-            
+    API Details
+    - Component: Contact Registratie Component
+    - Reference: crc
+    - Enviroment: dev
+    - Version: V.0.1
+    - Repository: [online](https://github.com/ConductionNL/Proto-component-commonground) / [zip](https://github.com/ConductionNL/Proto-component-commonground/archive/master.zip)
+    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/pc-php) 
+    - Datamodel: [postman](/schema/pc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   /addresses:
@@ -23,42 +29,47 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address-read'
+                  $ref: '#/components/schemas/ExampleEntity-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Address-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/ExampleEntity:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address-read'
+                  $ref: '#/components/schemas/ExampleEntity-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address-read'
+                  $ref: '#/components/schemas/ExampleEntity-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address-read'
+                  $ref: '#/components/schemas/ExampleEntity-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address-read'
+                  $ref: '#/components/schemas/ExampleEntity-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address-read'
+                  $ref: '#/components/schemas/ExampleEntity-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address-read'
+                  $ref: '#/components/schemas/ExampleEntity-read'
       parameters:
         -
           name: page
@@ -67,6 +78,40 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     post:
       tags:
         - Address
@@ -81,7 +126,7 @@ paths:
                 $ref: '#/components/schemas/Address-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Address-read'
+                $ref: '#/components/schemas/Address:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -106,6 +151,14 @@ paths:
                 id: '$response.body#/id'
                 name: '$response.body#/name'
                 bagnummeraanduiding: '$response.body#/bagnummeraanduiding'
+                street: '$response.body#/street'
+                houseNumber: '$response.body#/houseNumber'
+                houseNumberSufix: '$response.body#/houseNumberSufix'
+                postalCode: '$response.body#/postalCode'
+                region: '$response.body#/region'
+                locality: '$response.body#/locality'
+                country: '$response.body#/country'
+                postOfficeBoxNumber: '$response.body#/postOfficeBoxNumber'
               operationId: getAddressItem
               description: 'The values returned in the response can be used in `GET /addresses/{id}`.'
         400:
@@ -119,7 +172,7 @@ paths:
               $ref: '#/components/schemas/Address-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Address-write'
+              $ref: '#/components/schemas/Address:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Address-write'
@@ -139,6 +192,40 @@ paths:
             schema:
               $ref: '#/components/schemas/Address-write'
         description: 'The new Address resource'
+      parameters:
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
   '/addresses/{id}':
     get:
       tags:
@@ -152,6 +239,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Address resource response'
@@ -161,7 +281,7 @@ paths:
                 $ref: '#/components/schemas/Address-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Address-read'
+                $ref: '#/components/schemas/Address:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -199,6 +319,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     put:
       tags:
         - Address
@@ -211,6 +364,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Address resource updated'
@@ -220,7 +406,7 @@ paths:
                 $ref: '#/components/schemas/Address-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Address-read'
+                $ref: '#/components/schemas/Address:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -250,7 +436,7 @@ paths:
               $ref: '#/components/schemas/Address-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Address-write'
+              $ref: '#/components/schemas/Address:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Address-write'
@@ -282,6 +468,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Address resource updated'
@@ -291,7 +510,7 @@ paths:
                 $ref: '#/components/schemas/Address-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Address-read'
+                $ref: '#/components/schemas/Address:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -316,28 +535,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Address-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Address-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Address-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Address-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Address-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Address-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Address-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/Address-write'
         description: 'The updated Address resource'
@@ -358,9 +556,14 @@ paths:
                   $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactList-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/ContactList:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -399,6 +602,40 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     post:
       tags:
         - ContactList
@@ -413,7 +650,7 @@ paths:
                 $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/ContactList-read'
+                $ref: '#/components/schemas/ContactList:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -436,8 +673,12 @@ paths:
             GetContactListItem:
               parameters:
                 id: '$response.body#/id'
+                name: '$response.body#/name'
+                description: '$response.body#/description'
+                persons: '$response.body#/persons'
+                organizations: '$response.body#/organizations'
               operationId: getContactListItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /contact_lists/{id}`.'
+              description: 'The values returned in the response can be used in `GET /contact_lists/{id}`.'
         400:
           description: 'Invalid input'
         404:
@@ -449,7 +690,7 @@ paths:
               $ref: '#/components/schemas/ContactList-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/ContactList-write'
+              $ref: '#/components/schemas/ContactList:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/ContactList-write'
@@ -469,6 +710,40 @@ paths:
             schema:
               $ref: '#/components/schemas/ContactList-write'
         description: 'The new ContactList resource'
+      parameters:
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
   '/contact_lists/{id}':
     get:
       tags:
@@ -482,6 +757,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'ContactList resource response'
@@ -491,7 +799,7 @@ paths:
                 $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/ContactList-read'
+                $ref: '#/components/schemas/ContactList:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -529,6 +837,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     put:
       tags:
         - ContactList
@@ -541,6 +882,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'ContactList resource updated'
@@ -550,7 +924,7 @@ paths:
                 $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/ContactList-read'
+                $ref: '#/components/schemas/ContactList:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -580,7 +954,7 @@ paths:
               $ref: '#/components/schemas/ContactList-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/ContactList-write'
+              $ref: '#/components/schemas/ContactList:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/ContactList-write'
@@ -612,6 +986,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'ContactList resource updated'
@@ -621,7 +1028,7 @@ paths:
                 $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/ContactList-read'
+                $ref: '#/components/schemas/ContactList:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -646,28 +1053,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/ContactList-write'
         description: 'The updated ContactList resource'
@@ -688,9 +1074,14 @@ paths:
                   $ref: '#/components/schemas/Email-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Email-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Email:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -729,6 +1120,44 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     post:
       tags:
         - Email
@@ -740,36 +1169,34 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity:jsonld-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
           links:
             GetEmailItem:
               parameters:
                 id: '$response.body#/id'
-                name: '$response.body#/name'
-                email: '$response.body#/email'
               operationId: getEmailItem
-              description: 'The values returned in the response can be used in `GET /emails/{id}`.'
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /emails/{id}`.'
         400:
           description: 'Invalid input'
         404:
@@ -778,35 +1205,69 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity:jsonld-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Email-write'
-        description: 'The new Email resource'
-  '/emails/{id}':
+              $ref: '#/components/schemas/ExampleEntity-write'
+        description: 'The new ExampleEntity resource'
+      parameters:
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/telephones/{id}':
     get:
       tags:
-        - Email
-      operationId: getEmailItem
-      summary: 'Retrieves a Email resource.'
+        - ExampleEntity
+      operationId: audittrailExampleEntityItem
+      summary: 'Retrieves a ExampleEntity resource.'
       parameters:
         -
           name: id
@@ -814,44 +1275,67 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Email resource response'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity:jsonld-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Email-read'
-        404:
-          description: 'Resource not found'
-    delete:
-      tags:
-        - Email
-      operationId: deleteEmailItem
-      summary: 'Removes the Email resource.'
-      responses:
-        204:
-          description: 'Email resource deleted'
+                $ref: '#/components/schemas/ExampleEntity-read'
         404:
           description: 'Resource not found'
       parameters:
@@ -861,6 +1345,39 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     put:
       tags:
         - Email
@@ -873,34 +1390,67 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Request-User-Id
+          description: 'The id of the user performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Application-Id
+          description: 'The id of the application performing the request'
+          in: header
+        -
+          name: X-NLX-Request-Subject-Identifier
+          description: 'An subject identifier for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Email resource updated'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity:jsonld-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Email-read'
+                $ref: '#/components/schemas/ExampleEntity-read'
         400:
           description: 'Invalid input'
         404:
@@ -909,279 +1459,37 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity:jsonld-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Email-write'
+              $ref: '#/components/schemas/ExampleEntity-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Email-write'
-        description: 'The updated Email resource'
-    patch:
-      tags:
-        - Email
-      operationId: patchEmailItem
-      summary: 'Updates the Email resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Email resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-        description: 'The updated Email resource'
-  /organizations:
-    get:
-      tags:
-        - Organization
-      operationId: getOrganizationCollection
-      summary: 'Retrieves the collection of Organization resources.'
-      responses:
-        200:
-          description: 'Organization collection response'
-          content:
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            application/ld+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-      parameters:
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-    post:
-      tags:
-        - Organization
-      operationId: postOrganizationCollection
-      summary: 'Creates a Organization resource.'
-      responses:
-        201:
-          description: 'Organization resource created'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-          links:
-            GetOrganizationItem:
-              parameters:
-                id: '$response.body#/id'
-              operationId: getOrganizationItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /organizations/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-        description: 'The new Organization resource'
-  '/organizations/{id}':
-    get:
-      tags:
-        - Organization
-      operationId: getOrganizationItem
-      summary: 'Retrieves a Organization resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Organization resource response'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-        404:
-          description: 'Resource not found'
+              $ref: '#/components/schemas/ExampleEntity-write'
+        description: 'The updated ExampleEntity resource'
     delete:
       tags:
-        - Organization
-      operationId: deleteOrganizationItem
-      summary: 'Removes the Organization resource.'
+        - ExampleEntity
+      operationId: deleteExampleEntityItem
+      summary: 'Removes the ExampleEntity resource.'
       responses:
         204:
-          description: 'Organization resource deleted'
+          description: 'ExampleEntity resource deleted'
         404:
           description: 'Resource not found'
       parameters:
@@ -1191,1041 +1499,354 @@ paths:
           required: true
           schema:
             type: string
-    put:
-      tags:
-        - Organization
-      operationId: putOrganizationItem
-      summary: 'Replaces the Organization resource.'
-      parameters:
         -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Organization resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-        description: 'The updated Organization resource'
-    patch:
-      tags:
-        - Organization
-      operationId: patchOrganizationItem
-      summary: 'Updates the Organization resource.'
-      parameters:
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
         -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Organization resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-        description: 'The updated Organization resource'
-  /people:
-    get:
-      tags:
-        - Person
-      operationId: getPersonCollection
-      summary: 'Retrieves the collection of Person resources.'
-      responses:
-        200:
-          description: 'Person collection response'
-          content:
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            application/ld+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-      parameters:
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
         -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-    post:
-      tags:
-        - Person
-      operationId: postPersonCollection
-      summary: 'Creates a Person resource.'
-      responses:
-        201:
-          description: 'Person resource created'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-          links:
-            GetPersonItem:
-              parameters:
-                id: '$response.body#/id'
-                givenName: '$response.body#/givenName'
-                additionalName: '$response.body#/additionalName'
-                familyName: '$response.body#/familyName'
-              operationId: getPersonItem
-              description: 'The values returned in the response can be used in `GET /people/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-        description: 'The new Person resource'
-  '/people/{id}':
-    get:
-      tags:
-        - Person
-      operationId: getPersonItem
-      summary: 'Retrieves a Person resource.'
-      parameters:
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
         -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Person resource response'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-        404:
-          description: 'Resource not found'
-    delete:
-      tags:
-        - Person
-      operationId: deletePersonItem
-      summary: 'Removes the Person resource.'
-      responses:
-        204:
-          description: 'Person resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
         -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-    put:
-      tags:
-        - Person
-      operationId: putPersonItem
-      summary: 'Replaces the Person resource.'
-      parameters:
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
         -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Person resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-        description: 'The updated Person resource'
-    patch:
-      tags:
-        - Person
-      operationId: patchPersonItem
-      summary: 'Updates the Person resource.'
-      parameters:
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
         -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Person resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-        description: 'The updated Person resource'
-  /telephones:
-    get:
-      tags:
-        - Telephone
-      operationId: getTelephoneCollection
-      summary: 'Retrieves the collection of Telephone resources.'
-      responses:
-        200:
-          description: 'Telephone collection response'
-          content:
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            application/ld+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-      parameters:
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-    post:
-      tags:
-        - Telephone
-      operationId: postTelephoneCollection
-      summary: 'Creates a Telephone resource.'
-      responses:
-        201:
-          description: 'Telephone resource created'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-          links:
-            GetTelephoneItem:
-              parameters:
-                id: '$response.body#/id'
-                name: '$response.body#/name'
-                telephone: '$response.body#/telephone'
-              operationId: getTelephoneItem
-              description: 'The values returned in the response can be used in `GET /telephones/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-        description: 'The new Telephone resource'
-  '/telephones/{id}':
-    get:
-      tags:
-        - Telephone
-      operationId: getTelephoneItem
-      summary: 'Retrieves a Telephone resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Telephone resource response'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-        404:
-          description: 'Resource not found'
-    delete:
-      tags:
-        - Telephone
-      operationId: deleteTelephoneItem
-      summary: 'Removes the Telephone resource.'
-      responses:
-        204:
-          description: 'Telephone resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-    put:
-      tags:
-        - Telephone
-      operationId: putTelephoneItem
-      summary: 'Replaces the Telephone resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Telephone resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-        description: 'The updated Telephone resource'
-    patch:
-      tags:
-        - Telephone
-      operationId: patchTelephoneItem
-      summary: 'Updates the Telephone resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'Telephone resource updated'
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-        description: 'The updated Telephone resource'
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
 components:
   schemas:
-    Address-read:
+    ExampleEntity-read:
       type: object
-      description: ''
+      description: 'This is an example entity.'
       properties:
         id:
           readOnly: true
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         name:
+          description: 'The name of this example property'
           type: string
         bagnummeraanduiding:
+          description: 'Bagnummeraanduiding of this Address'
           type: string
         street:
+          description: 'Street of this Address'
           type: string
         house_number:
+          description: 'House number of this Address'
           type: string
         house_number_sufix:
+          description: 'House number sufix of this Address'
           type: string
         postal_code:
+          description: 'Postalcode of a Address'
           type: string
         region:
+          description: 'region Region of a Address'
           type: string
         locality:
+          description: 'Locality of a Address'
           type: string
         country:
+          description: 'Country of a Address'
           type: string
         post_office_box_number:
+          description: 'Post office box number of a Address'
           type: string
     Address-write:
       type: object
-      description: ''
+      description: 'All properties that the entity Address holds.'
       properties:
         name:
+          description: 'Name of this Address'
           type: string
         bagnummeraanduiding:
+          description: 'Bagnummeraanduiding of this Address'
           type: string
         street:
+          description: 'Street of this Address'
           type: string
         house_number:
+          description: 'House number of this Address'
           type: string
         house_number_sufix:
+          description: 'House number sufix of this Address'
           type: string
         postal_code:
+          description: 'Postalcode of a Address'
           type: string
         region:
+          description: 'region Region of a Address'
           type: string
         locality:
+          description: 'Locality of a Address'
           type: string
         country:
+          description: 'Country of a Address'
           type: string
         post_office_box_number:
+          description: 'Post office box number of a Address'
+          type: string
+    'Address:jsonld-read':
+      type: object
+      description: 'All properties that the entity Address holds.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'Uuid of this address'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        name:
+          description: 'Name of this Address'
+          type: string
+        bagnummeraanduiding:
+          description: 'Bagnummeraanduiding of this Address'
+          type: string
+        street:
+          description: 'Street of this Address'
+          type: string
+        house_number:
+          description: 'House number of this Address'
+          type: string
+        house_number_sufix:
+          description: 'House number sufix of this Address'
+          type: string
+        postal_code:
+          description: 'Postalcode of a Address'
+          type: string
+        region:
+          description: 'region Region of a Address'
+          type: string
+        locality:
+          description: 'Locality of a Address'
+          type: string
+        country:
+          description: 'Country of a Address'
+          type: string
+        post_office_box_number:
+          description: 'Post office box number of a Address'
+          type: string
+    'Address:jsonld-write':
+      type: object
+      description: 'All properties that the entity Address holds.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'Name of this Address'
+          type: string
+        bagnummeraanduiding:
+          description: 'Bagnummeraanduiding of this Address'
+          type: string
+        street:
+          description: 'Street of this Address'
+          type: string
+        house_number:
+          description: 'House number of this Address'
+          type: string
+        house_number_sufix:
+          description: 'House number sufix of this Address'
+          type: string
+        postal_code:
+          description: 'Postalcode of a Address'
+          type: string
+        region:
+          description: 'region Region of a Address'
+          type: string
+        locality:
+          description: 'Locality of a Address'
+          type: string
+        country:
+          description: 'Country of a Address'
+          type: string
+        post_office_box_number:
+          description: 'Post office box number of a Address'
           type: string
     ContactList-read:
       type: object
-      description: ''
+      description: 'All properties that the entity ContactList holds.'
       properties:
         id:
           readOnly: true
+          description: 'UUID of this contact list'
           type: string
         name:
+          description: 'Name of this contact list'
           type: string
         description:
+          description: 'The description of this example property'
           type: string
-        persons:
-          type: array
-          items:
-            $ref: '#/components/schemas/Person-read'
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization-read'
-    ContactList-write:
+        camelCase:
+          description: 'Proof that we camel case our api'
+          type: string
+      required:
+        - name
+    'ContactList:jsonld-write':
       type: object
-      description: ''
+      description: 'All properties that the entity ContactList holds.'
+      required:
+        - name
       properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
         name:
+          description: 'Name of this contact list'
           type: string
         description:
+          description: 'Description of this contact list'
           type: string
-        persons:
-          type: array
-          items:
-            $ref: '#/components/schemas/Person-write'
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization-write'
-    Email-read:
+        camelCase:
+          description: 'Proof that we camel case our api'
+          type: string
+    'ExampleEntity:jsonld-read':
       type: object
-      description: ''
+      description: 'This is an example entity.'
       properties:
-        id:
+        '@context':
+          readOnly: true
+          description: 'UUID of this email'
+          type: string
+        '@id':
           readOnly: true
           type: string
-        name:
-          type: string
-        email:
-          type: string
-    Email-write:
-      type: object
-      description: ''
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-    Organization-read:
-      type: object
-      description: ''
-      properties:
-        id:
+        '@type':
           readOnly: true
           type: string
+        id:
+          readOnly: true
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
         name:
+          description: 'The name of this example property'
           type: string
         description:
+          description: 'The description of this example property'
           type: string
-        kvk:
+        camelCase:
+          description: 'Proof that we camel case our api'
           type: string
-        telephones:
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone-read'
-        adresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-read'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/Email-read'
-        persons:
-          type: array
-          items:
-            $ref: '#/components/schemas/Person-read'
-    Organization-write:
+      required:
+        - name
+    'ExampleEntity:jsonld-write':
       type: object
-      description: ''
+      description: 'This is an example entity.'
+      required:
+        - name
       properties:
+        '@context':
+          readOnly: true
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
         name:
+          description: 'The name of this example property'
           type: string
         description:
+          description: 'The description of this example property'
           type: string
-        kvk:
+        camelCase:
+          description: 'Proof that we camel case our api'
           type: string
-        telephones:
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone-write'
-        adresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-write'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/Email-write'
-        persons:
-          type: array
-          items:
-            $ref: '#/components/schemas/Person-write'
-    Person-read:
-      type: object
-      description: ''
-      properties:
-        id:
-          readOnly: true
-          type: string
-        given_name:
-          type: string
-        additional_name:
-          type: string
-        family_name:
-          type: string
-        telephones:
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone-read'
-        adresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-read'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/Email-read'
-    Person-write:
-      type: object
-      description: ''
-      properties:
-        given_name:
-          type: string
-        additional_name:
-          type: string
-        family_name:
-          type: string
-        telephones:
-          type: array
-          items:
-            $ref: '#/components/schemas/Telephone-write'
-        adresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address-write'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/Email-write'
-    Telephone-read:
-      type: object
-      description: ''
-      properties:
-        id:
-          readOnly: true
-          type: string
-        name:
-          type: string
-        telephone:
-          type: string
-    Telephone-write:
-      type: object
-      description: ''
-      properties:
-        name:
-          type: string
-        telephone:
-          type: string
+definitions:
+  ExampleEntity-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        example: 'My Group'
+        maxLength: 255
+      description:
+        example: 'Is the best group ever'
+        maxLength: 2555
+      camelCase:
+        example: 'Best api ever'
+        maxLength: 255
+    required:
+      - name
+  ExampleEntity-write:
+    properties:
+      name:
+        example: 'My Group'
+        maxLength: 255
+      description:
+        example: 'Is the best group ever'
+        maxLength: 2555
+      camelCase:
+        example: 'Best api ever'
+        maxLength: 255
+    required:
+      - name
+tags:
+  -
+    name: ExampleEntity
+    description: |
+      This is an example entity.
+      
+      With an adtional description, all in all its pritty nice [url](www.google.nl)
+securityDefinitions:
+  JWT-Oauth:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
+    flow: implicit
+    scopes:
+      read: 'read right to the ExampleEntity resource'
+      write: 'write right to the ExampleEntity resource'
+  JWT-Token:
+    type: apiKey
+    in: header
+    name: Authorization
+    scopes:
+      read: 'read right to the ExampleEntity resource'
+      write: 'write right to the ExampleEntity resource'
+host: irc.zaakonline.nl
 servers:
   -
     description: 'Demo Omgeving'
