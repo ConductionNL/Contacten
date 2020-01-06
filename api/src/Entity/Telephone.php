@@ -31,19 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Telephone
 {
     /**
-     * @var UuidInterface
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
+     * @var UuidInterface UUID of this telephone
      *
      * @Groups({"read"})
      * @ORM\Id

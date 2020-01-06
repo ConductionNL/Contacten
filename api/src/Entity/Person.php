@@ -33,19 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Person
 {
     /**
-     * @var UuidInterface
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
+     * @var UuidInterface UUID of this person
      *
      * @Groups({"read"})
      * @ORM\Id
@@ -60,15 +48,6 @@ class Person
      *
      * @example John
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property.",
-     *             "type"="string",
-     *             "example"="John"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -83,15 +62,6 @@ class Person
      *
      * @example von
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "An additional name for a Person, can be used for a middle name.",
-     *             "type"="string",
-     *             "example"="von"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
@@ -105,15 +75,6 @@ class Person
      *
      * @example Do
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.",
-     *             "type"="string",
-     *             "example"="Do"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
@@ -123,6 +84,10 @@ class Person
     private $familyName;
 
     /**
+     * @var Telephone Telephone of this person
+     *
+     * @example Mobile
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -130,6 +95,10 @@ class Person
     private $telephones;
 
     /**
+     * @var Address Adresses of this person
+     *
+     * @example Amsterdam Office
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -140,16 +109,6 @@ class Person
      * @var Email Emails of this person
      *
      * @example john@do.com
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "This is the email of this person",
-     *             "type"="Email",
-     *             "example"="john@do.com"
-     *         }
-     *     }
-     * )
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="people", cascade={"persist"})
@@ -162,16 +121,6 @@ class Person
      *
      * @example Ajax
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "This is the organisation of this person",
-     *             "type"="Organization",
-     *             "example"="Ajax"
-     *         }
-     *     }
-     * )
-     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
@@ -181,16 +130,6 @@ class Person
      * @var ContactList Contact lists of this person
      *
      * @example All users
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "These are the contact list this person belongs to",
-     *             "type"="ContactList",
-     *             "example"="All users"
-     *         }
-     *     }
-     * )
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
      * @MaxDepth(1)

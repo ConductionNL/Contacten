@@ -31,39 +31,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Address
 {
     /**
-     * @var UuidInterface
+     * @var UuidInterface Uuid of this address
      *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
      *
      * @Groups({"read"})
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     *
+     * @Assert\NotBlank
+     * @Assert\Uuid
      */
     private $id;
 
     /**
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this adress used to identify it in a user friendly way",
-     *             "type"="string",
-     *             "example"="Amsterdam Office"
-     *         }
-     *     }
-     * )
+     * @var string Name of this Address
+     *
+     * @example Amsterdam Office
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -77,16 +63,6 @@ class Address
      *
      * @example 0363200000218908
      *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The BAG identifier of this address",
-     *             "type"="string",
-     *             "example"="0363200000218908"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      * @Assert\Length(
@@ -96,6 +72,10 @@ class Address
     private $bagnummeraanduiding;
 
     /**
+     * @var string Street of this Address
+     *
+     * @example appelstreet
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -105,6 +85,10 @@ class Address
     private $street;
 
     /**
+     * @var string House number of this Address
+     *
+     * @example 8
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -114,6 +98,10 @@ class Address
     private $houseNumber;
 
     /**
+     * @var string House number sufix of this Address
+     *
+     * @example b
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -123,12 +111,20 @@ class Address
     private $houseNumberSufix;
 
     /**
+     * @var string Postalcode of a Address
+     *
+     * @example 1234AB
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $postalCode;
 
     /**
+     * @var string region Region of a Address
+     *
+     * @example Noord-Holland
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -138,6 +134,10 @@ class Address
     private $region;
 
     /**
+     * @var string Locality of a Address
+     *
+     * @example Oud-Zuid
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -147,6 +147,10 @@ class Address
     private $locality;
 
     /**
+     * @var string Country of a Address
+     *
+     * @example The Netherlands
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
@@ -156,6 +160,10 @@ class Address
     private $country;
 
     /**
+     * @var string Post office box number of a Address
+     *
+     * @example PO Box 1234
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(

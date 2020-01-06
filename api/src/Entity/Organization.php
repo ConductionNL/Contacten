@@ -33,19 +33,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Organization
 {
     /**
-     * @var UuidInterface
+     * @var UuidInterface UUID of this organisation
      *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
      *
      * @Groups({"read"})
      * @ORM\Id
@@ -56,6 +45,10 @@ class Organization
     private $id;
 
     /**
+     * @var string Name of this organisation
+     *
+     * @example Ajax
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -66,6 +59,10 @@ class Organization
     private $name;
 
     /**
+     * @var string Description of this organisation
+     *
+     * @example Ajax is a dutch soccer club
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="text")
      * @Assert\NotBlank
@@ -73,6 +70,9 @@ class Organization
     private $description;
 
     /**
+     * @var string Kvk of this organisation
+     *
+     * @example 123456
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      * @Assert\Length(
@@ -82,12 +82,20 @@ class Organization
     private $kvk;
 
     /**
+     * @var Telephone Telephone of this organisation
+     *
+     * @example Mobile
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $telephones;
     /**
+     * @var Address Address of this organisation
+     *
+     * @example Amsterdam Office
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -99,16 +107,6 @@ class Organization
      *
      * @example john@do.com
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "These are the emails of this organisation",
-     *             "type"="Email",
-     *             "example"="john@do.com"
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organizations")
      * @MaxDepth(1)
@@ -116,6 +114,10 @@ class Organization
     private $emails;
 
     /**
+     * @var Person Person of this organisation
+     *
+     * @example Hans
+     *
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization")
      * @MaxDepth(1)
@@ -127,15 +129,6 @@ class Organization
      *
      * @example All users
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "These are the contact lists of this organisation",
-     *             "type"="ContactList",
-     *             "example"="All users"
-     *         }
-     *     }
-     * )
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organizations")
      * @MaxDepth(1)

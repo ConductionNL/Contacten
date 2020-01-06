@@ -10,8 +10,9 @@ x-cache:
     - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-client
 
 services:
-  cc-php:
-    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-php
+  php:
+    &php
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-php:${APP_ENV}
     build:
       context: ./api
       target: api_platform_php
@@ -59,28 +60,34 @@ services:
     ports:
       - "8082:80"
 
-  cc-api:
-    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-nginx
+  api:
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-nginx:${APP_ENV}
     build:
       context: ./api
       target: api_platform_nginx
       <<: *cache
     depends_on:
-      - cc-php
+      - php
+    # Comment out this volume in production if you do not want to use nlx
+    #  - nlx-outway
+    # If you us this docker-compose file for production enviroments and want to us nlx-inway uncomment the following lins
+    #  - nlx-inway
     # Comment out this volume in production
     volumes:
       - ./api/public:/srv/api/public:ro
     ports:
       - "8080:80"
 
-  cc-cache-proxy:
-    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-varnish
+  cache-proxy:
+    &varnish
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-varnish:${APP_ENV}
     build:
       context: ./api
       target: api_platform_varnish
       <<: *cache
     depends_on:
-      - cc-api
+      - api
+      - php
     volumes:
       - ./api/docker/varnish/conf:/usr/local/etc/varnish:ro
     tmpfs:
@@ -235,8 +242,13 @@ services:
       - db
       - client
       - admin
-      - cc-api
-      - cc-cache-proxy
+      - api
+      - cache-proxy
+      - mercure
+      #- stag-pc-cache-proxy
+      #- dev-pc-cache-proxy
+    #volumes:
+    #  - ./conf.d/:/etc/nginx/conf.d/:rw,cached
     ports:
       - "443:443"
       - "444:444"
