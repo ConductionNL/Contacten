@@ -46,15 +46,6 @@ class Telephone
      *
      * @example Mobile
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this telephone number used to identify it in a user friendly way",
-     *             "type"="string",
-     *             "example"="Mobile"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (

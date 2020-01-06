@@ -61,15 +61,6 @@ class Email
      *
      * @example Private
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The actual email adress",
-     *             "type"="string",
-     *             "example"="john@do.com"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(

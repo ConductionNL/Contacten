@@ -98,7 +98,7 @@ class Address
     private $houseNumber;
 
     /**
-     * @var string House number sufix of this Address
+     * @var string House number suffix of this Address
      *
      * @example b
      *
@@ -108,7 +108,7 @@ class Address
      *     max = 255
      * )
      */
-    private $houseNumberSufix;
+    private $houseNumberSuffix;
 
     /**
      * @var string Postalcode of a Address
@@ -227,12 +227,12 @@ class Address
 
     public function getHouseNumberSufix(): ?string
     {
-        return $this->houseNumberSufix;
+        return $this->houseNumberSuffix;
     }
 
-    public function setHouseNumberSufix(?string $houseNumberSufix): self
+    public function setHouseNumberSufix(?string $houseNumberSuffix): self
     {
-        $this->houseNumberSufix = $houseNumberSufix;
+        $this->houseNumberSuffix = $houseNumberSuffix;
 
         return $this;
     }
