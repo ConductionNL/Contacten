@@ -43,6 +43,25 @@ class Person
      */
     private $id;
 
+    
+    /**
+     * @var string The full name of a person consisting of given and fammily name
+     *
+     * @example John Do
+     *
+     * @Groups({"read"})
+     */
+    private $name;    
+    
+    /**
+     * @var string The full name of a person consisting of fammily and given name
+     *
+     * @example Do, John
+     *
+     * @Groups({"read"})
+     */
+    private $formalName;
+    
     /**
      * @var string Given name of this person
      *
@@ -148,7 +167,25 @@ class Person
     {
         return $this->id;
     }
-
+    
+    public function getName(): ?string
+    {
+    	if($this->getAdditionalName()){
+    		return $this->givenName.' '.$this->additionalName.' '.$this->familyNames;
+    	}
+    	
+    	return $this->givenName.' '.$this->familyNames;
+    }
+        
+    public function getFormalName(): ?string
+    {
+    	if($this->getAdditionalName()){
+    		return $this->familyName.', '.$this->givenName.' '.$this->additionalName;
+    	}
+    	
+    	return $this->familyName.', '.$this->givenName;
+    }
+    
     public function getGivenName(): ?string
     {
         return $this->givenName;
