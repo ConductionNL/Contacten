@@ -174,7 +174,7 @@ class Person
     		return $this->givenName.' '.$this->additionalName.' '.$this->familyNames;
     	}
     	
-    	return $this->givenName.' '.$this->familyNames;
+    	return $this->givenName.' '.$this->familyName;
     }
         
     public function getFormalName(): ?string
