@@ -2567,7 +2567,7 @@ components:
             $ref: '#/components/schemas/Email:jsonld-write'
     Telephone-read:
       type: object
-      description: '* All properties that the entity Telephone holds.'
+      description: 'All properties that the entity Telephone holds.'
       properties:
         id:
           readOnly: true
@@ -2577,25 +2577,25 @@ components:
           description: 'Name of this telephone'
           type: string
         telephone:
-          description: 'of this telephone'
+          description: 'The actual phone number including any international prefixes'
           type: string
       required:
         - telephone
     Telephone-write:
       type: object
-      description: '* All properties that the entity Telephone holds.'
+      description: 'All properties that the entity Telephone holds.'
       properties:
         name:
           description: 'Name of this telephone'
           type: string
         telephone:
-          description: 'of this telephone'
+          description: 'The actual phone number including any international prefixes'
           type: string
       required:
         - telephone
     'Telephone:jsonld-read':
       type: object
-      description: '* All properties that the entity Telephone holds.'
+      description: 'All properties that the entity Telephone holds.'
       properties:
         '@context':
           readOnly: true
@@ -2614,13 +2614,13 @@ components:
           description: 'Name of this telephone'
           type: string
         telephone:
-          description: 'of this telephone'
+          description: 'The actual phone number including any international prefixes'
           type: string
       required:
         - telephone
     'Telephone:jsonld-write':
       type: object
-      description: '* All properties that the entity Telephone holds.'
+      description: 'All properties that the entity Telephone holds.'
       properties:
         '@context':
           readOnly: true
@@ -2635,7 +2635,7 @@ components:
           description: 'Name of this telephone'
           type: string
         telephone:
-          description: 'of this telephone'
+          description: 'The actual phone number including any international prefixes'
           type: string
       required:
         - telephone
