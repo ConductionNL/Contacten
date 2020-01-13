@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- *  * All properties that the entity Telephone holds.
+ * All properties that the entity Telephone holds.
  *
  * Entity Telephone exists of an id, a name and a telephone.
  *
