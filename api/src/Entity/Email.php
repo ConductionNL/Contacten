@@ -58,8 +58,6 @@ class Email
     /**
      * @var string Email of this email
      *
-     * @example Private
-     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -72,8 +70,6 @@ class Email
     /**
      * @var Person Person of this email
      *
-     * @example Hans
-     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", mappedBy="emails")
      * @MaxDepth(1)
      */
@@ -81,8 +77,6 @@ class Email
 
     /**
      * @var Organization Organisation of this email
-     *
-     * @example Ajax
      *
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Organization", mappedBy="emails")

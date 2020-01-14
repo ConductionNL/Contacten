@@ -4382,7 +4382,6 @@ definitions:
       email:
         description: 'Email of this email'
         type: string
-        example: Private
         maxLength: 255
     required: []
   Email-write:
@@ -4395,7 +4394,6 @@ definitions:
       email:
         description: 'Email of this email'
         type: string
-        example: Private
         maxLength: 255
     required: []
   Organization-read:
@@ -4420,19 +4418,15 @@ definitions:
       telephones:
         description: 'Telephone of this organisation'
         type: \Telephone
-        example: Mobile
       adresses:
         description: 'Address of this organisation'
         type: \Address
-        example: 'Amsterdam Office'
       emails:
         description: 'Email of this organisation'
         type: \Email
-        example: john@do.com
       persons:
         description: 'Person of this organisation'
         type: \Person
-        example: Hans
     required: []
   Organization-write:
     properties:
@@ -4453,19 +4447,15 @@ definitions:
       telephones:
         description: 'Telephone of this organisation'
         type: \Telephone
-        example: Mobile
       adresses:
         description: 'Address of this organisation'
         type: \Address
-        example: 'Amsterdam Office'
       emails:
         description: 'Email of this organisation'
         type: \Email
-        example: john@do.com
       persons:
         description: 'Person of this organisation'
         type: \Person
-        example: Hans
     required: []
   Person-read:
     properties:
@@ -4490,15 +4480,12 @@ definitions:
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
-        example: Mobile
       adresses:
         description: 'Adresses of this person'
         type: \Address
-        example: 'Amsterdam Office'
       emails:
         description: 'Emails of this person'
         type: \Email
-        example: john@do.com
     required: []
   Person-write:
     properties:
@@ -4520,15 +4507,12 @@ definitions:
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
-        example: Mobile
       adresses:
         description: 'Adresses of this person'
         type: \Address
-        example: 'Amsterdam Office'
       emails:
         description: 'Emails of this person'
         type: \Email
-        example: john@do.com
     required: []
   Telephone-read:
     properties:
