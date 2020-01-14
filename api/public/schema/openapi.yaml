@@ -4221,205 +4221,341 @@ definitions:
   Address-read:
     properties:
       id:
+        description: 'Uuid of this address'
+        type: string
         format: uuid
       name:
+        description: 'Name of this Address'
+        type: string
         example: 'Amsterdam Office'
         maxLength: 255
       bagnummeraanduiding:
+        description: 'Bagnummeraanduiding of this Address'
+        type: string
         example: '0363200000218908'
         maxLength: 16
       street:
+        description: 'Street of this Address'
+        type: string
         example: appelstreet
         maxLength: 255
       houseNumber:
+        description: 'House number of this Address'
+        type: string
         example: '8'
         maxLength: 255
       houseNumberSuffix:
+        description: 'House number suffix of this Address'
+        type: string
         example: b
         maxLength: 255
       postalCode:
+        description: 'Postalcode of a Address'
+        type: string
         example: 1234AB
       region:
+        description: 'region Region of a Address'
+        type: string
         example: Noord-Holland
         maxLength: 255
       locality:
+        description: 'Locality of a Address'
+        type: string
         example: Oud-Zuid
         maxLength: 255
       country:
+        description: 'Country of a Address'
+        type: string
         example: 'The Netherlands'
         maxLength: 255
       postOfficeBoxNumber:
+        description: 'Post office box number of a Address'
+        type: string
         example: 'PO Box 1234'
         maxLength: 255
     required: []
   Address-write:
     properties:
       name:
+        description: 'Name of this Address'
+        type: string
         example: 'Amsterdam Office'
         maxLength: 255
       bagnummeraanduiding:
+        description: 'Bagnummeraanduiding of this Address'
+        type: string
         example: '0363200000218908'
         maxLength: 16
       street:
+        description: 'Street of this Address'
+        type: string
         example: appelstreet
         maxLength: 255
       houseNumber:
+        description: 'House number of this Address'
+        type: string
         example: '8'
         maxLength: 255
       houseNumberSuffix:
+        description: 'House number suffix of this Address'
+        type: string
         example: b
         maxLength: 255
       postalCode:
+        description: 'Postalcode of a Address'
+        type: string
         example: 1234AB
       region:
+        description: 'region Region of a Address'
+        type: string
         example: Noord-Holland
         maxLength: 255
       locality:
+        description: 'Locality of a Address'
+        type: string
         example: Oud-Zuid
         maxLength: 255
       country:
+        description: 'Country of a Address'
+        type: string
         example: 'The Netherlands'
         maxLength: 255
       postOfficeBoxNumber:
+        description: 'Post office box number of a Address'
+        type: string
         example: 'PO Box 1234'
         maxLength: 255
     required: []
   ContactList-read:
     properties:
-      id: []
+      id:
+        description: 'UUID of this contact list'
+        type: \UuidInterface
       name:
+        description: 'Name of this contact list'
+        type: string
         example: 'All users'
         maxLength: 255
       description:
+        description: 'Description of this contact list'
+        type: string
         example: 'This contact list holds all users.'
       persons:
+        description: 'Persons this contact list has'
+        type: \Person
         example: Hans
       organizations:
+        description: 'Organisations this contact list has'
+        type: \Organization
         example: Ajax
     required: []
   ContactList-write:
     properties:
       name:
+        description: 'Name of this contact list'
+        type: string
         example: 'All users'
         maxLength: 255
       description:
+        description: 'Description of this contact list'
+        type: string
         example: 'This contact list holds all users.'
       persons:
+        description: 'Persons this contact list has'
+        type: \Person
         example: Hans
       organizations:
+        description: 'Organisations this contact list has'
+        type: \Organization
         example: Ajax
     required: []
   Email-read:
     properties:
-      id: []
+      id:
+        description: 'UUID of this email'
+        type: \UuidInterface
       name:
+        description: 'Name of this email'
+        type: string
         example: Private
         maxLength: 255
       email:
+        description: 'Email of this email'
+        type: string
         example: Private
         maxLength: 255
     required: []
   Email-write:
     properties:
       name:
+        description: 'Name of this email'
+        type: string
         example: Private
         maxLength: 255
       email:
+        description: 'Email of this email'
+        type: string
         example: Private
         maxLength: 255
     required: []
   Organization-read:
     properties:
-      id: []
+      id:
+        description: 'UUID of this organisation'
+        type: \UuidInterface
       name:
+        description: 'Name of this organisation'
+        type: string
         example: Ajax
         maxLength: 255
       description:
+        description: 'Description of this organisation'
+        type: string
         example: 'Ajax is a dutch soccer club'
       kvk:
+        description: 'Kvk of this organisation'
+        type: string
         example: '123456'
         maxLength: 15
       telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
         example: Mobile
       adresses:
+        description: 'Address of this organisation'
+        type: \Address
         example: 'Amsterdam Office'
       emails:
+        description: 'Email of this organisation'
+        type: \Email
         example: john@do.com
       persons:
+        description: 'Person of this organisation'
+        type: \Person
         example: Hans
     required: []
   Organization-write:
     properties:
       name:
+        description: 'Name of this organisation'
+        type: string
         example: Ajax
         maxLength: 255
       description:
+        description: 'Description of this organisation'
+        type: string
         example: 'Ajax is a dutch soccer club'
       kvk:
+        description: 'Kvk of this organisation'
+        type: string
         example: '123456'
         maxLength: 15
       telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
         example: Mobile
       adresses:
+        description: 'Address of this organisation'
+        type: \Address
         example: 'Amsterdam Office'
       emails:
+        description: 'Email of this organisation'
+        type: \Email
         example: john@do.com
       persons:
+        description: 'Person of this organisation'
+        type: \Person
         example: Hans
     required: []
   Person-read:
     properties:
-      id: []
+      id:
+        description: 'UUID of this person'
+        type: \UuidInterface
       givenName:
+        description: 'Given name of this person'
+        type: string
         example: John
         maxLength: 255
       additionalName:
+        description: 'Additional name of this person'
+        type: string
         example: von
         maxLength: 255
       familyName:
+        description: 'Family name of this person'
+        type: string
         example: Do
         maxLength: 255
       telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
         example: Mobile
       adresses:
+        description: 'Adresses of this person'
+        type: \Address
         example: 'Amsterdam Office'
       emails:
+        description: 'Emails of this person'
+        type: \Email
         example: john@do.com
     required: []
   Person-write:
     properties:
       givenName:
+        description: 'Given name of this person'
+        type: string
         example: John
         maxLength: 255
       additionalName:
+        description: 'Additional name of this person'
+        type: string
         example: von
         maxLength: 255
       familyName:
+        description: 'Family name of this person'
+        type: string
         example: Do
         maxLength: 255
       telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
         example: Mobile
       adresses:
+        description: 'Adresses of this person'
+        type: \Address
         example: 'Amsterdam Office'
       emails:
+        description: 'Emails of this person'
+        type: \Email
         example: john@do.com
     required: []
   Telephone-read:
     properties:
-      id: []
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
       name:
+        description: 'Name of this telephone'
+        type: string
         example: Mobile
         maxLength: 255
       telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
         example: '+31 (0)10-1234567'
         maxLength: 255
     required: []
   Telephone-write:
     properties:
       name:
+        description: 'Name of this telephone'
+        type: string
         example: Mobile
         maxLength: 255
       telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
         example: '+31 (0)10-1234567'
         maxLength: 255
     required: []
