@@ -83,8 +83,6 @@ class Organization
     /**
      * @var Telephone Telephone of this organisation
      *
-     * @example Mobile
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -92,8 +90,6 @@ class Organization
     private $telephones;
     /**
      * @var Address Address of this organisation
-     *
-     * @example Amsterdam Office
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
@@ -104,8 +100,6 @@ class Organization
     /**
      * @var Email Email of this organisation
      *
-     * @example john@do.com
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organizations")
      * @MaxDepth(1)
@@ -115,8 +109,6 @@ class Organization
     /**
      * @var Person Person of this organisation
      *
-     * @example Hans
-     *
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization")
      * @MaxDepth(1)
@@ -125,8 +117,6 @@ class Organization
 
     /**
      * @var ContactList Contact list of this organisation
-     *
-     * @example All users
      *
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organizations")
