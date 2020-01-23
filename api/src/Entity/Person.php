@@ -171,7 +171,7 @@ class Person
     public function getName(): ?string
     {
     	if($this->getAdditionalName()){
-    		return $this->givenName.' '.$this->additionalName.' '.$this->familyNames;
+    		return $this->givenName.' '.$this->additionalName.' '.$this->familyName;
     	}
     	
     	return $this->givenName.' '.$this->familyName;
