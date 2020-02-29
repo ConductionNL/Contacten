@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
@@ -10,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- *  * All properties that the entity Telephone holds.
+ * All properties that the entity Telephone holds.
  *
  * Entity Telephone exists of an id, a name and a telephone.
  *
@@ -55,19 +54,10 @@ class Telephone
     private $name;
 
     /**
-     * @var string of this telephone
+     * @var string The actual phone number including any international prefixes
      *
      * @example +31 (0)10-1234567
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The actual phone number including any international prefixes",
-     *             "type"="string",
-     *             "example"="+31 (0)10-1234567"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length (

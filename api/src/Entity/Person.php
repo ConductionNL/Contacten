@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -42,6 +41,24 @@ class Person
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
+
+    /**
+     * @var string The full name of a person consisting of given and fammily name
+     *
+     * @example John Do
+     *
+     * @Groups({"read"})
+     */
+    private $name;
+
+    /**
+     * @var string The full name of a person consisting of fammily and given name
+     *
+     * @example Do, John
+     *
+     * @Groups({"read"})
+     */
+    private $formalName;
 
     /**
      * @var string Given name of this person
@@ -86,8 +103,6 @@ class Person
     /**
      * @var Telephone Telephone of this person
      *
-     * @example Mobile
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -96,8 +111,6 @@ class Person
 
     /**
      * @var Address Adresses of this person
-     *
-     * @example Amsterdam Office
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
@@ -108,8 +121,6 @@ class Person
     /**
      * @var Email Emails of this person
      *
-     * @example john@do.com
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="people", cascade={"persist"})
      * @MaxDepth(1)
@@ -119,8 +130,6 @@ class Person
     /**
      * @var Organization Organisations of this person
      *
-     * @example Ajax
-     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
@@ -128,8 +137,6 @@ class Person
 
     /**
      * @var ContactList Contact lists of this person
-     *
-     * @example All users
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
      * @MaxDepth(1)
@@ -147,6 +154,24 @@ class Person
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+    	if($this->getAdditionalName()){
+    		return $this->givenName.' '.$this->additionalName.' '.$this->familyName;
+    	}
+    	
+    	return $this->givenName.' '.$this->familyName;
+    }
+
+    public function getFormalName(): ?string
+    {
+        if ($this->getAdditionalName()) {
+            return $this->familyName.', '.$this->givenName.' '.$this->additionalName;
+        }
+
+        return $this->familyName.', '.$this->givenName;
     }
 
     public function getGivenName(): ?string

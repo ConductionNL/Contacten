@@ -38,8 +38,6 @@ class Address
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     *
-     * @Assert\NotBlank
      * @Assert\Uuid
      */
     private $id;
@@ -63,9 +61,9 @@ class Address
      * @example 0363200000218908
      *
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=15, nullable=true)
+     * @ORM\Column(type="string", length=16, nullable=true)
      * @Assert\Length(
-     *     max = 15
+     *     max = 16
      * )
      */
     private $bagnummeraanduiding;
