@@ -4223,7 +4223,9 @@ definitions:
       id:
         description: 'Uuid of this address'
         type: string
+        eaxample: '#/components/schemas/RamseyUuidUuidInterface-read'
         format: uuid
+        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
       name:
         description: 'Name of this Address'
         type: string
