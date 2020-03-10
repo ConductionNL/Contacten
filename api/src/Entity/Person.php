@@ -56,6 +56,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *  	"post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\PersonRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -98,6 +99,7 @@ class Person
      *
      * @example John
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -112,6 +114,7 @@ class Person
      *
      * @example von
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
@@ -125,7 +128,8 @@ class Person
      *
      * @example Do
      *
-     * @Groups({"read", "write"})
+     * @Groups(
+     * @Gedmo\Versioned{"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
      *     max = 255

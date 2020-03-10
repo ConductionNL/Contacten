@@ -53,7 +53,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *  	"get",
  *  	"post"
  *  })
- * @ORM\Entity(repositoryClass="App\Repository\TelephoneRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TelephoneRepository") * 
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -78,6 +79,7 @@ class Telephone
      *
      * @example Mobile
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
@@ -91,6 +93,7 @@ class Telephone
      *
      * @example +31 (0)10-1234567
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length (

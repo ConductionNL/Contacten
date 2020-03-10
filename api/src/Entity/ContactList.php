@@ -56,6 +56,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *  	"post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\ContactListRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -80,6 +81,7 @@ class ContactList
      *
      * @example All users
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -94,6 +96,7 @@ class ContactList
      *
      * @example This contact list holds all users.
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */

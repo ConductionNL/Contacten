@@ -56,6 +56,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *  	"post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -81,6 +82,7 @@ class Organization
      *
      * @example Ajax
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -95,6 +97,7 @@ class Organization
      *
      * @example Ajax is a dutch soccer club
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="text")
      * @Assert\NotBlank
@@ -104,6 +107,7 @@ class Organization
     /**
      * @var string Kvk of this organisation
      *
+     * @Gedmo\Versioned
      * @example 123456
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
