@@ -128,8 +128,8 @@ class Person
      *
      * @example Do
      *
-     * @Groups(
-     * @Gedmo\Versioned{"read", "write"})
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
      *     max = 255
