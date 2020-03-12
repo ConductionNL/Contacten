@@ -11,6 +11,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -57,7 +58,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -160,7 +161,7 @@ class Organization
      * @MaxDepth(1)
      */
     private $contactLists;
-    
+
     /**
      * @var Datetime $dateCreated The moment this resource was created
      *
@@ -169,7 +170,7 @@ class Organization
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this resource last Modified
      *
@@ -191,6 +192,13 @@ class Organization
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId(Uuid $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -365,28 +373,28 @@ class Organization
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
