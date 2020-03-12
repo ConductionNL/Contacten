@@ -45,6 +45,7 @@ class AppFixtures extends Fixture
             $id = Uuid::fromString('27141158-fde5-4e8b-a2b7-07c7765f0c63');
             $organization = new Organization();
             $organization->setName("Vortex Adventures");
+            $organization->setDescription(" ");
             $email = new Email();
             $email->setName("algemene email");
             $email->setEmail('vasecretaris@gmail.com');
