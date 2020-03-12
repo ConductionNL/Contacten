@@ -139,7 +139,7 @@ class Organization
      * @var Email Email of this organisation
      *
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organizations")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organizations", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $emails;
