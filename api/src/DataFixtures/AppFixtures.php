@@ -47,13 +47,13 @@ class AppFixtures extends Fixture
             $organization->setName("Vortex Adventures");
             $organization->setDescription(" ");
             $manager->persist($organization);
+            $organization->setId($id);
+            $manager->persist($organization);
             $email = new Email();
             $email->setName("algemene email");
             $email->setEmail('vasecretaris@gmail.com');
             $organization->addEmail($email);
             $manager->persist($email);
-            $manager->persist($organization);
-            $organization->setId($id);
             $manager->persist($organization);
             $manager->flush();
         }
