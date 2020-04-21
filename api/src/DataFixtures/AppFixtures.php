@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
-        if(in_array("huwelijksplanner.online",$this->params->get('app_domains'))) {
+        if($this->params->get('app_domain') == "huwelijksplanner.online" || strpos($this->params->get('app_domain'), "huwelijksplanner.online") != false) {
             $id = Uuid::fromString('95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
             $organization = new Organization();
             $organization->setName('Gemeente Utrecht');
@@ -36,7 +36,7 @@ class AppFixtures extends Fixture
             $email->setEmail('info@utrecht.nl');
             $manager->persist($email);
             $manager->flush();
-            
+
             $organization->addEmail($email);
             $manager->persist($organization);
             $manager->flush();
@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
 
             $manager->flush();
         }
-        if(in_array("larping.eu",$this->params->get('app_domains'))){
+        if($this->params->get('app_domain') == "larping.eu" || strpos($this->params->get('app_domain'), "larping.eu") != false){
             $id = Uuid::fromString('27141158-fde5-4e8b-a2b7-07c7765f0c63');
             $organization = new Organization();
             $organization->setName("Vortex Adventures");

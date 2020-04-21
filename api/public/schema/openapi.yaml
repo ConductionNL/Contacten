@@ -8372,6 +8372,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'Name of this Address'
           type: string
@@ -8459,6 +8460,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'Name of this Address'
           type: string
@@ -8546,6 +8548,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         request:
           readOnly: true
           description: 'The id of the request within that application'
@@ -8676,6 +8679,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         request:
           readOnly: true
           description: 'The id of the request within that application'
@@ -8807,6 +8811,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         action:
           readOnly: true
           type: string
@@ -8867,6 +8872,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         action:
           readOnly: true
           type: string
@@ -8926,6 +8932,7 @@ components:
           readOnly: true
           description: 'UUID of this contact list'
           type: string
+          format: uuid
         name:
           description: 'Name of this contact list'
           type: string
@@ -8993,6 +9000,7 @@ components:
           readOnly: true
           description: 'UUID of this contact list'
           type: string
+          format: uuid
         name:
           description: 'Name of this contact list'
           type: string
@@ -9060,6 +9068,7 @@ components:
           readOnly: true
           description: 'UUID of this email'
           type: string
+          format: uuid
         name:
           description: 'Name of this email'
           type: string
@@ -9107,6 +9116,7 @@ components:
           readOnly: true
           description: 'UUID of this email'
           type: string
+          format: uuid
         name:
           description: 'Name of this email'
           type: string
@@ -9154,6 +9164,7 @@ components:
           readOnly: true
           description: 'UUID of this organisation'
           type: string
+          format: uuid
         name:
           description: 'Name of this organisation'
           type: string
@@ -9249,6 +9260,7 @@ components:
           readOnly: true
           description: 'UUID of this organisation'
           type: string
+          format: uuid
         name:
           description: 'Name of this organisation'
           type: string
@@ -9344,6 +9356,7 @@ components:
           readOnly: true
           description: 'UUID of this person'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The full name of a person consisting of given and fammily name'
@@ -9435,6 +9448,7 @@ components:
           readOnly: true
           description: 'UUID of this person'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The full name of a person consisting of given and fammily name'
@@ -9526,6 +9540,7 @@ components:
           readOnly: true
           description: 'UUID of this telephone'
           type: string
+          format: uuid
         name:
           description: 'Name of this telephone'
           type: string
@@ -9573,6 +9588,7 @@ components:
           readOnly: true
           description: 'UUID of this telephone'
           type: string
+          format: uuid
         name:
           description: 'Name of this telephone'
           type: string
@@ -9727,6 +9743,59 @@ definitions:
         example: 'PO Box 1234'
         maxLength: 255
     required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: \sting
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-04-21 12:16:56'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-04-21 12:16:56'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -9831,12 +9900,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 08:33:51'
+        example: '2020-04-21 12:16:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 08:33:51'
+        example: '2020-04-21 12:16:56'
     required: []
   AuditTrail-write:
     properties:
@@ -9844,59 +9913,6 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: \sting
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-03-11 08:33:51'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-03-11 08:33:51'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
   ContactList-read:
@@ -9947,6 +9963,104 @@ definitions:
         description: 'Organisations this contact list has'
         type: \Organization
         example: Ajax
+    required: []
+  Person-read:
+    properties:
+      id:
+        description: 'UUID of this person'
+        type: \UuidInterface
+      givenName:
+        description: 'Given name of this person'
+        type: string
+        example: John
+        maxLength: 255
+      additionalName:
+        description: 'Additional name of this person'
+        type: string
+        example: von
+        maxLength: 255
+      familyName:
+        description: 'Family name of this person'
+        type: string
+        example: Do
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
+      adresses:
+        description: 'Adresses of this person'
+        type: \Address
+      emails:
+        description: 'Emails of this person'
+        type: \Email
+    required: []
+  Person-write:
+    properties:
+      givenName:
+        description: 'Given name of this person'
+        type: string
+        example: John
+        maxLength: 255
+      additionalName:
+        description: 'Additional name of this person'
+        type: string
+        example: von
+        maxLength: 255
+      familyName:
+        description: 'Family name of this person'
+        type: string
+        example: Do
+        maxLength: 255
+      telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
+      adresses:
+        description: 'Adresses of this person'
+        type: \Address
+      emails:
+        description: 'Emails of this person'
+        type: \Email
+    required: []
+  Telephone-read:
+    properties:
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Telephone-write:
+    properties:
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
     required: []
   Email-read:
     properties:
@@ -10048,104 +10162,6 @@ definitions:
         description: 'Person of this organisation'
         type: \Person
     required: []
-  Person-read:
-    properties:
-      id:
-        description: 'UUID of this person'
-        type: \UuidInterface
-      givenName:
-        description: 'Given name of this person'
-        type: string
-        example: John
-        maxLength: 255
-      additionalName:
-        description: 'Additional name of this person'
-        type: string
-        example: von
-        maxLength: 255
-      familyName:
-        description: 'Family name of this person'
-        type: string
-        example: Do
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      telephones:
-        description: 'Telephone of this person'
-        type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
-        type: \Address
-      emails:
-        description: 'Emails of this person'
-        type: \Email
-    required: []
-  Person-write:
-    properties:
-      givenName:
-        description: 'Given name of this person'
-        type: string
-        example: John
-        maxLength: 255
-      additionalName:
-        description: 'Additional name of this person'
-        type: string
-        example: von
-        maxLength: 255
-      familyName:
-        description: 'Family name of this person'
-        type: string
-        example: Do
-        maxLength: 255
-      telephones:
-        description: 'Telephone of this person'
-        type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
-        type: \Address
-      emails:
-        description: 'Emails of this person'
-        type: \Email
-    required: []
-  Telephone-read:
-    properties:
-      id:
-        description: 'UUID of this telephone'
-        type: \UuidInterface
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Telephone-write:
-    properties:
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-    required: []
 tags:
   -
     name: Address
@@ -10154,13 +10170,13 @@ tags:
       
       Entity Address exists of an id, a name, a bagnummeraanduiding, a street, a houseNumber, a houseNumberSufix, a postalCode, a region, a locality and country.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
@@ -10171,18 +10187,6 @@ tags:
       All properties that the entity ContactList holds.
       
       Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
-  -
-    name: Email
-    description: |
-      All properties that the entity Email holds.
-      
-      Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
-  -
-    name: Organization
-    description: |
-      All properties that the entity Organisation holds.
-      
-      Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
   -
     name: Person
     description: |
@@ -10195,26 +10199,38 @@ tags:
       All properties that the entity Telephone holds.
       
       Entity Telephone exists of an id, a name and a telephone.
+  -
+    name: Email
+    description: |
+      All properties that the entity Email holds.
+      
+      Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
+  -
+    name: Organization
+    description: |
+      All properties that the entity Organisation holds.
+      
+      Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
 securityDefinitions:
   JWT-Oauth:
     type: oauth2
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the Telephone resource'
-      write: 'write right to the Telephone resource'
+      read: 'read right to the Organization resource'
+      write: 'write right to the Organization resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the Telephone resource'
-      write: 'write right to the Telephone resource'
+      read: 'read right to the Organization resource'
+      write: 'write right to the Organization resource'
 host: irc.zaakonline.nl
 servers:
   -
-    description: 'Demo Omgeving'
-    url: 'http://proto.demo.common-ground.dev'
+    name: conduction.nl
+    url: cc.dev.conduction.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
