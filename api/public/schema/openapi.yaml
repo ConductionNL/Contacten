@@ -8372,6 +8372,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'Name of this Address'
           type: string
@@ -8459,6 +8460,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'Name of this Address'
           type: string
@@ -8930,6 +8932,7 @@ components:
           readOnly: true
           description: 'UUID of this contact list'
           type: string
+          format: uuid
         name:
           description: 'Name of this contact list'
           type: string
@@ -8997,6 +9000,7 @@ components:
           readOnly: true
           description: 'UUID of this contact list'
           type: string
+          format: uuid
         name:
           description: 'Name of this contact list'
           type: string
@@ -9064,6 +9068,7 @@ components:
           readOnly: true
           description: 'UUID of this email'
           type: string
+          format: uuid
         name:
           description: 'Name of this email'
           type: string
@@ -9111,6 +9116,7 @@ components:
           readOnly: true
           description: 'UUID of this email'
           type: string
+          format: uuid
         name:
           description: 'Name of this email'
           type: string
@@ -9158,6 +9164,7 @@ components:
           readOnly: true
           description: 'UUID of this organisation'
           type: string
+          format: uuid
         name:
           description: 'Name of this organisation'
           type: string
@@ -9253,6 +9260,7 @@ components:
           readOnly: true
           description: 'UUID of this organisation'
           type: string
+          format: uuid
         name:
           description: 'Name of this organisation'
           type: string
@@ -9348,6 +9356,7 @@ components:
           readOnly: true
           description: 'UUID of this person'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The full name of a person consisting of given and fammily name'
@@ -9439,6 +9448,7 @@ components:
           readOnly: true
           description: 'UUID of this person'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The full name of a person consisting of given and fammily name'
@@ -9530,6 +9540,7 @@ components:
           readOnly: true
           description: 'UUID of this telephone'
           type: string
+          format: uuid
         name:
           description: 'Name of this telephone'
           type: string
@@ -9577,6 +9588,7 @@ components:
           readOnly: true
           description: 'UUID of this telephone'
           type: string
+          format: uuid
         name:
           description: 'Name of this telephone'
           type: string
@@ -9835,12 +9847,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-15 12:20:56'
+        example: '2020-04-21 12:14:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-15 12:20:56'
+        example: '2020-04-21 12:14:15'
     required: []
   AuditTrail-write:
     properties:
@@ -9888,12 +9900,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-15 12:20:56'
+        example: '2020-04-21 12:14:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-15 12:20:56'
+        example: '2020-04-21 12:14:15'
     required: []
   ChangeLog-write:
     properties:
