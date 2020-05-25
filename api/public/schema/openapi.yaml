@@ -8376,40 +8376,49 @@ components:
         name:
           description: 'Name of this Address'
           type: string
+          nullable: true
         bagnummeraanduiding:
           description: 'Bagnummeraanduiding of this Address'
           type: string
+          nullable: true
         street:
           description: 'Street of this Address'
           type: string
+          nullable: true
         houseNumber:
           description: 'House number of this Address'
           type: string
+          nullable: true
         postalCode:
           description: 'Postalcode of a Address'
           type: string
+          nullable: true
         region:
           description: 'region Region of a Address'
           type: string
+          nullable: true
         locality:
           description: 'Locality of a Address'
           type: string
+          nullable: true
         country:
           description: 'Country of a Address'
           type: string
+          nullable: true
         postOfficeBoxNumber:
           description: 'Post office box number of a Address'
           type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
     Address-write:
       type: object
       description: 'All properties that the entity Address holds.'
@@ -8417,30 +8426,39 @@ components:
         name:
           description: 'Name of this Address'
           type: string
+          nullable: true
         bagnummeraanduiding:
           description: 'Bagnummeraanduiding of this Address'
           type: string
+          nullable: true
         street:
           description: 'Street of this Address'
           type: string
+          nullable: true
         houseNumber:
           description: 'House number of this Address'
           type: string
+          nullable: true
         postalCode:
           description: 'Postalcode of a Address'
           type: string
+          nullable: true
         region:
           description: 'region Region of a Address'
           type: string
+          nullable: true
         locality:
           description: 'Locality of a Address'
           type: string
+          nullable: true
         country:
           description: 'Country of a Address'
           type: string
+          nullable: true
         postOfficeBoxNumber:
           description: 'Post office box number of a Address'
           type: string
+          nullable: true
     'Address:jsonld-read':
       type: object
       description: 'All properties that the entity Address holds.'
@@ -8464,40 +8482,49 @@ components:
         name:
           description: 'Name of this Address'
           type: string
+          nullable: true
         bagnummeraanduiding:
           description: 'Bagnummeraanduiding of this Address'
           type: string
+          nullable: true
         street:
           description: 'Street of this Address'
           type: string
+          nullable: true
         houseNumber:
           description: 'House number of this Address'
           type: string
+          nullable: true
         postalCode:
           description: 'Postalcode of a Address'
           type: string
+          nullable: true
         region:
           description: 'region Region of a Address'
           type: string
+          nullable: true
         locality:
           description: 'Locality of a Address'
           type: string
+          nullable: true
         country:
           description: 'Country of a Address'
           type: string
+          nullable: true
         postOfficeBoxNumber:
           description: 'Post office box number of a Address'
           type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
     'Address:jsonld-write':
       type: object
       description: 'All properties that the entity Address holds.'
@@ -8514,30 +8541,39 @@ components:
         name:
           description: 'Name of this Address'
           type: string
+          nullable: true
         bagnummeraanduiding:
           description: 'Bagnummeraanduiding of this Address'
           type: string
+          nullable: true
         street:
           description: 'Street of this Address'
           type: string
+          nullable: true
         houseNumber:
           description: 'House number of this Address'
           type: string
+          nullable: true
         postalCode:
           description: 'Postalcode of a Address'
           type: string
+          nullable: true
         region:
           description: 'region Region of a Address'
           type: string
+          nullable: true
         locality:
           description: 'Locality of a Address'
           type: string
+          nullable: true
         country:
           description: 'Country of a Address'
           type: string
+          nullable: true
         postOfficeBoxNumber:
           description: 'Post office box number of a Address'
           type: string
+          nullable: true
     AuditTrail-read:
       type: object
       description: 'An resource representing a log line.'
@@ -8931,6 +8967,7 @@ components:
         description:
           description: 'Description of this contact list'
           type: string
+          nullable: true
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -8942,15 +8979,15 @@ components:
           items:
             $ref: '#/components/schemas/Organization-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
     ContactList-write:
@@ -8965,6 +9002,7 @@ components:
         description:
           description: 'Description of this contact list'
           type: string
+          nullable: true
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -8999,6 +9037,7 @@ components:
         description:
           description: 'Description of this contact list'
           type: string
+          nullable: true
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -9010,15 +9049,15 @@ components:
           items:
             $ref: '#/components/schemas/Organization:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
     'ContactList:jsonld-write':
@@ -9042,6 +9081,7 @@ components:
         description:
           description: 'Description of this contact list'
           type: string
+          nullable: true
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -9064,19 +9104,20 @@ components:
         name:
           description: 'Name of this email'
           type: string
+          nullable: true
         email:
           description: 'Email of this email'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - email
     Email-write:
@@ -9086,6 +9127,7 @@ components:
         name:
           description: 'Name of this email'
           type: string
+          nullable: true
         email:
           description: 'Email of this email'
           type: string
@@ -9112,19 +9154,20 @@ components:
         name:
           description: 'Name of this email'
           type: string
+          nullable: true
         email:
           description: 'Email of this email'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - email
     'Email:jsonld-write':
@@ -9143,6 +9186,7 @@ components:
         name:
           description: 'Name of this email'
           type: string
+          nullable: true
         email:
           description: 'Email of this email'
           type: string
@@ -9166,6 +9210,7 @@ components:
         kvk:
           description: 'Kvk of this organisation'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9187,15 +9232,15 @@ components:
           items:
             $ref: '#/components/schemas/Person-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -9215,6 +9260,7 @@ components:
         kvk:
           description: 'Kvk of this organisation'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9262,6 +9308,7 @@ components:
         kvk:
           description: 'Kvk of this organisation'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9283,15 +9330,15 @@ components:
           items:
             $ref: '#/components/schemas/Person:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
@@ -9320,6 +9367,7 @@ components:
         kvk:
           description: 'Kvk of this organisation'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9363,9 +9411,11 @@ components:
         additionalName:
           description: 'Additional name of this person'
           type: string
+          nullable: true
         familyName:
           description: 'Family name of this person'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -9382,15 +9432,15 @@ components:
           items:
             $ref: '#/components/schemas/Email-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - givenName
     Person-write:
@@ -9405,9 +9455,11 @@ components:
         additionalName:
           description: 'Additional name of this person'
           type: string
+          nullable: true
         familyName:
           description: 'Family name of this person'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -9455,9 +9507,11 @@ components:
         additionalName:
           description: 'Additional name of this person'
           type: string
+          nullable: true
         familyName:
           description: 'Family name of this person'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -9474,15 +9528,15 @@ components:
           items:
             $ref: '#/components/schemas/Email:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - givenName
     'Person:jsonld-write':
@@ -9506,9 +9560,11 @@ components:
         additionalName:
           description: 'Additional name of this person'
           type: string
+          nullable: true
         familyName:
           description: 'Family name of this person'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -9536,19 +9592,20 @@ components:
         name:
           description: 'Name of this telephone'
           type: string
+          nullable: true
         telephone:
           description: 'The actual phone number including any international prefixes'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - telephone
     Telephone-write:
@@ -9558,6 +9615,7 @@ components:
         name:
           description: 'Name of this telephone'
           type: string
+          nullable: true
         telephone:
           description: 'The actual phone number including any international prefixes'
           type: string
@@ -9584,19 +9642,20 @@ components:
         name:
           description: 'Name of this telephone'
           type: string
+          nullable: true
         telephone:
           description: 'The actual phone number including any international prefixes'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - telephone
     'Telephone:jsonld-write':
@@ -9615,6 +9674,7 @@ components:
         name:
           description: 'Name of this telephone'
           type: string
+          nullable: true
         telephone:
           description: 'The actual phone number including any international prefixes'
           type: string
@@ -9734,178 +9794,6 @@ definitions:
         type: string
         example: 'PO Box 1234'
         maxLength: 255
-    required: []
-  AuditTrail-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line looks suspicius'
-        maxLength: 2555
-      application:
-        description: 'The application that made the request'
-        type: string
-        format: url
-        maxLength: 255
-      request:
-        description: 'The id of the request within that application'
-        type: string
-        format: url
-        maxLength: 255
-      user:
-        description: 'The user on behalf of wich the request was made'
-        type: string
-        format: url
-        maxLength: 255
-      subject:
-        description: '???'
-        type: string
-        maxLength: 255
-      process:
-        description: 'The procces on behalf of wich the request was made'
-        type: string
-        maxLength: 255
-      dataElements:
-        description: 'The moment this request was created'
-        type: array
-      dataSubjects:
-        description: 'The moment this request was created'
-        type: array
-      resource:
-        description: 'The resource that was requested'
-        type: string
-        maxLength: 255
-      resourceType:
-        description: 'The type of the resource that was requested'
-        type: string
-        maxLength: 255
-      route:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      endpoint:
-        description: 'The endpoint that the request was made to'
-        type: string
-        maxLength: 255
-      method:
-        description: 'The method that was used'
-        type: string
-        maxLength: 255
-      accept:
-        description: 'The contentType that was reqousted'
-        type: string
-        maxLength: 255
-      contentType:
-        description: 'The contentType that was suplieds'
-        type: string
-        maxLength: 255
-      content:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 2555
-      ip:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      headers:
-        description: 'The headers supplied by client'
-        type: array
-      statusCode:
-        description: 'The status code returned to client'
-        type: int
-        example: '200'
-      notFound:
-        description: 'Whether or not the reqousted endpoint was found'
-        type: bool
-        example: 'false'
-      forbidden:
-        description: 'Whether or not the client was allowed to the reqousted endpoint'
-        type: bool
-        example: 'false'
-      ok:
-        description: 'Whether or not there where any problems'
-        type: bool
-        example: 'true'
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-04-23 07:30:09'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-04-23 07:30:09'
-    required: []
-  AuditTrail-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-04-23 07:30:09'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-04-23 07:30:09'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
     required: []
   ContactList-read:
     properties:
@@ -10154,6 +10042,178 @@ definitions:
         example: '+31 (0)10-1234567'
         maxLength: 255
     required: []
+  AuditTrail-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line looks suspicius'
+        maxLength: 2555
+      application:
+        description: 'The application that made the request'
+        type: string
+        format: url
+        maxLength: 255
+      request:
+        description: 'The id of the request within that application'
+        type: string
+        format: url
+        maxLength: 255
+      user:
+        description: 'The user on behalf of wich the request was made'
+        type: string
+        format: url
+        maxLength: 255
+      subject:
+        description: '???'
+        type: string
+        maxLength: 255
+      process:
+        description: 'The procces on behalf of wich the request was made'
+        type: string
+        maxLength: 255
+      dataElements:
+        description: 'The moment this request was created'
+        type: array
+      dataSubjects:
+        description: 'The moment this request was created'
+        type: array
+      resource:
+        description: 'The resource that was requested'
+        type: string
+        maxLength: 255
+      resourceType:
+        description: 'The type of the resource that was requested'
+        type: string
+        maxLength: 255
+      route:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      endpoint:
+        description: 'The endpoint that the request was made to'
+        type: string
+        maxLength: 255
+      method:
+        description: 'The method that was used'
+        type: string
+        maxLength: 255
+      accept:
+        description: 'The contentType that was reqousted'
+        type: string
+        maxLength: 255
+      contentType:
+        description: 'The contentType that was suplieds'
+        type: string
+        maxLength: 255
+      content:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 2555
+      ip:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      headers:
+        description: 'The headers supplied by client'
+        type: array
+      statusCode:
+        description: 'The status code returned to client'
+        type: int
+        example: '200'
+      notFound:
+        description: 'Whether or not the reqousted endpoint was found'
+        type: bool
+        example: 'false'
+      forbidden:
+        description: 'Whether or not the client was allowed to the reqousted endpoint'
+        type: bool
+        example: 'false'
+      ok:
+        description: 'Whether or not there where any problems'
+        type: bool
+        example: 'true'
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-05-25 14:38:17'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-05-25 14:38:17'
+    required: []
+  AuditTrail-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-05-25 14:38:17'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-05-25 14:38:17'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
 tags:
   -
     name: Address
@@ -10161,18 +10221,6 @@ tags:
       All properties that the entity Address holds.
       
       Entity Address exists of an id, a name, a bagnummeraanduiding, a street, a houseNumber, a houseNumberSufix, a postalCode, a region, a locality and country.
-  -
-    name: AuditTrail
-    description: |
-      An resource representing a log line.
-      
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
-  -
-    name: ChangeLog
-    description: |
-      An resource representing a log line.
-      
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
     name: ContactList
     description: |
@@ -10203,21 +10251,33 @@ tags:
       All properties that the entity Telephone holds.
       
       Entity Telephone exists of an id, a name and a telephone.
+  -
+    name: AuditTrail
+    description: |
+      An resource representing a log line.
+      
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
+  -
+    name: ChangeLog
+    description: |
+      An resource representing a log line.
+      
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
 securityDefinitions:
   JWT-Oauth:
     type: oauth2
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the Telephone resource'
-      write: 'write right to the Telephone resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the Telephone resource'
-      write: 'write right to the Telephone resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
