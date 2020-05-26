@@ -299,3 +299,92 @@ Continues integration
 
 ### underInvestigation
 
+
+Continues deployment
+-------
+> The following bit of the tutorial requires an additional account
+> - [https://www.digitalocean.com/](https://www.digitalocean.com/) 
+
+Actually the repository goes a bit further then just getting your containers ready to deploy, it can acctually deploy them for you! Again all the code is already there. The only thing that you need to do is add a kubeconfig file. You can get a kubeconfig file from a running kubernetes clusters, it provides your repository with both the credentials and endpoints it needs to deploy the application. How you get a Kubeconfig file difers a bit from provider to provider. But you can get more information on that here
+
+- [Digitalocean](https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/)
+- [Google Cloud](https://cloud.google.com/sdk/gcloud/reference/container/clusters/get-credentials)
+- [Amazone AWS](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html)
+
+Afther you have abtained a kuneconfig you need to save it to your repository as a secret (NEVER COMMIT A KUBECONFIG FILE), use the secret `KUBECONFIG` to save your cubeconfig file. Now simply commit and push your code to your repository and presto! You have a working common-ground component online.
+
+Documentation and dockblocks
+-------
+You want both your redoc documentation and your code to be readable and reausable to other developers. To this effect we use docblok annotation. You can read more about that [here](https://docs.phpdoc.org/references/phpdoc/basic-syntax.html) but the basic is this, we supply each class and propery with a docblock contained within /\* \* / characters. At the very least we want to describe our properties, the expected results and example data (see the example under [audittrail](#audittrail)
+
+You can generate documantation trough docker-compose exec php php phpDocumentor.phar -d src -t public/docs
+
+### Adjusting your readme file 
+
+### Using docblocks for in code documentation
+
+### Setting up you Read the Docs page
+
+### Setting up github pages
+
+### Exposing your API documentation
+
+Audittrail
+-------
+As you might expect the proto-component ships with a neat function for generating audit trails, that basically exist of three parts. 
+
+First we need to activate logging on the entities that we want logged (for obvious security reasons we don't log resource changes by default) to do that by adding the `@Gedmo\Loggable` annotation to our php class, which should then look something like:
+
+```PHP
+//...
+/**
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
+ *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
+ * )
+ * @ORM\Entity(repositoryClass="App\Repository\ExampleEntityRepository")
+ * @Gedmo\Loggable
+ */
+class ExampleEntity
+	{
+//...
+```
+
+Next we need to tell the specific properties that we want to log that they are loggable (again this is a conscious choice, to prevent us from accidentally logging stuff like bsn numbers), we do that by adding the `@Gedmo\Versioned` annotation to those specific properties. That would then look something like this:
+
+```PHP
+//...
+    /**
+	 * @var string $name The name of this example property
+	 * @example My Group
+	 * 
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *      max = 255
+	 * )
+     * @Gedmo\Versioned
+	 * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+//...
+```
+
+Okay actually we are now good to go, at least we are logging those things that we want logged. But.... How do we view those logs? In common ground we have a [convention](https://zaakgerichtwerken.vng.cloud/themas/achtergronddocumentatie/audit-trail) to expose a /audittrail subresource on resources that are logged. So lets add that trough our `@ApiResource` annotation.
+
+```PHP
+//...
+/**
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
+ *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
+ * )
+ * @ORM\Entity(repositoryClass="App\Repository\ExampleEntityRepository")
+ * @Gedmo\Loggable
+ */
+class ExampleEntity
+	{
+//...
+```
+
+And now we have a fully nl api strategy integrated audit trail!

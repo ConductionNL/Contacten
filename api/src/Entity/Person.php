@@ -56,8 +56,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *  	"post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\PersonRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -179,7 +179,7 @@ class Person
      * @MaxDepth(1)
      */
     private $contactLists;
-    
+
     /**
      * @var Datetime $dateCreated The moment this resource was created
      *
@@ -188,12 +188,12 @@ class Person
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this resource last Modified
      *
      * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
@@ -216,7 +216,7 @@ class Person
     	if($this->getAdditionalName()){
     		return $this->givenName.' '.$this->additionalName.' '.$this->familyName;
     	}
-    	
+
     	return $this->givenName.' '.$this->familyName;
     }
 
@@ -382,28 +382,28 @@ class Person
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
