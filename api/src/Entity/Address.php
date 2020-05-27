@@ -283,12 +283,12 @@ class Address //
         return $this;
     }
 
-    public function getHouseNumberSufix(): ?string
+    public function getHouseNumberSuffix(): ?string
     {
         return $this->houseNumberSuffix;
     }
 
-    public function setHouseNumberSufix(?string $houseNumberSuffix): self
+    public function setHouseNumberSuffix(?string $houseNumberSuffix): self
     {
         $this->houseNumberSuffix = $houseNumberSuffix;
 
