@@ -18,6 +18,7 @@ class AppFixtures extends Fixture
     {
         $this->params = $params;
     }
+
     public function load(ObjectManager $manager)
     {
         if(
@@ -27,6 +28,7 @@ class AppFixtures extends Fixture
             strpos($this->params->get('app_domain'), "utrecht.commonground.nu") != false
 
         ) {
+
             $id = Uuid::fromString('95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
             $organization = new Organization();
             $organization->setName('Gemeente Utrecht');
@@ -67,11 +69,11 @@ class AppFixtures extends Fixture
 
             $manager->flush();
         }
-        if($this->params->get('app_domain') == "larping.eu" || strpos($this->params->get('app_domain'), "larping.eu") != false){
+        if ($this->params->get('app_domain') == 'larping.eu' || strpos($this->params->get('app_domain'), 'larping.eu') != false) {
             $id = Uuid::fromString('27141158-fde5-4e8b-a2b7-07c7765f0c63');
             $organization = new Organization();
-            $organization->setName("Vortex Adventures");
-            $organization->setDescription(" ");
+            $organization->setName('Vortex Adventures');
+            $organization->setDescription(' ');
             $manager->persist($organization);
 
             $organization->setId($id);
@@ -80,7 +82,7 @@ class AppFixtures extends Fixture
             $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
             $email = new Email();
-            $email->setName("algemene email");
+            $email->setName('algemene email');
             $email->setEmail('vasecretaris@gmail.com');
             $manager->persist($email);
             $manager->flush();
