@@ -1,36 +1,15 @@
 # Installation
 
-
-
-## Setting up tiller
-
 ## Setting up helm
-
-Next, bind the tiller service account to the cluster-admin role:
+We first need to be sure the stable repository of helm and kubernetes is added. We do this using the following command:
 ```CLI
-$ kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller --kubeconfig="api/helm/kubeconfig.yaml"
+$ helm repo list
 ```
 
-Now we can run helm init, which installs Tiller on our cluster, along with some local housekeeping tasks such as downloading the stable repo details:
-```CLI
-$ helm init --service-account tiller --kubeconfig="kubeconfig.yaml"
-```
-
-To verify that Tiller is running, list the pods in the kube-system namespace:
-```CLI
-$ kubectl get pods --namespace kube-system --kubeconfig="kubeconfig.yaml"
-```
-
-The Tiller pod name begins with the prefix tiller-deploy-.
-
-Now that we've installed both Helm components, we're ready to use helm to install our first application.
-
-Or all in one go
+If in the output there is no repository 'stable' we need to add it:
 
 ```CLI
-$ kubectl -n kube-system create serviceaccount tiller --kubeconfig="kubeconfig.yaml"
-$ kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller --kubeconfig="kubeconfig.yaml"
-$ helm init --service-account tiller --kubeconfig="kubeconfig.yaml"
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com
 ```
 
 ## Setting up ingress
@@ -50,17 +29,44 @@ $ kubectl describe ingress pc-dev-ingress -n=kube-system --kubeconfig="kubeconfi
 Nadat we helm hebben geïnstalleerd, kunnen we helm ook meteen gebruiken om gemakkelijke kubernetes dashboard te downloaden
 helm install stable/kubernetes-dashboard --name dashboard --kubeconfig="kubernetes/kubeconfig.yaml" --namespace="kube-system"
 
-Maar voordat we op het dashboard kunnen inloggen hebben we eerste een token nodig, die kunnen we ophalen via de secrets 
-kubectl -n kube-system get secret  --kubeconfig="kubernetes/kubeconfig.yaml"
+```CLI
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml --kubeconfig=kubeconfig.yaml
+```
 
 Omdat we deployen vanuit helm over tiller is het handig om het dashboard ook als tiller te gebruiken. Kijk naar het tiller secret <tiller-token-XXXXX>, en vraag vervolgens het token daarvoor op met:
 
-kubectl -n kube-system describe secrets tiller-token-5m4tg  --kubeconfig="kubernetes/kubeconfig.yaml"
 
-Vanaf hier is het simpel we starten een proxy op
-kubectl proxy --kubeconfig="api/helm/kubeconfig.yaml"
-En kunnen vervolgens het dashboard aanroepen in onze favoriete browser met:
+This should return the token, copy it to somewhere save (just the token not the other returned information) and start up a dashboard connection
+
+```CLI
+$ kubectl proxy --kubeconfig="kubeconfig.yaml"
+```
+
+This should proxy our dashboard to helm making it available trough our favorite browser and a simple link
+```CLI
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:dashboard-kubernetes-dashboard:https/proxy/#!/login
+
+
+## Cert Manager
+https://cert-manager.io/docs/installation/kubernetes/
+ 
+```CLI
+$ kubectl create namespace cert-manager --kubeconfig="kubeconfig.yaml"
+```
+ 
+ The we need tp deploy the cert manager to our cluster
+ 
+```CLI
+$ helm repo add jetstack https://charts.jetstack.io
+$ helm install cert-manager --namespace cert-manager --version v0.15.0 jetstack/cert-manager --set installCRDS=true --kubeconfig="kubeconfig.yaml"
+```
+
+lets check if everything is working
+
+```CLI
+$ kubectl get pods --namespace cert-manager --kubeconfig="kubeconfig.yaml"
+$ kubectl describe certificate -n dev --kubeconfig="kubeconfig.yaml"
+```
 
 ## Deploying trough helm
 First we always need to update our dependencys
