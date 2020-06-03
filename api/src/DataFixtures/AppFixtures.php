@@ -21,7 +21,15 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        if ($this->params->get('app_domain') == 'huwelijksplanner.online' || strpos($this->params->get('app_domain'), 'huwelijksplanner.online') != false) {
+        var_dump($this->params->get('app_domain'));
+        if(
+            $this->params->get('app_domain') == "huwelijksplanner.online" ||
+            strpos($this->params->get('app_domain'), "huwelijksplanner.online") != false ||
+            $this->params->get('app_domain') == "utrecht.commonground.nu" ||
+            strpos($this->params->get('app_domain'), "utrecht.commonground.nu") != false
+
+        ) {
+
             $id = Uuid::fromString('95c3da92-b7d3-4ea0-b6d4-3bc24944e622');
             $organization = new Organization();
             $organization->setName('Gemeente Utrecht');
