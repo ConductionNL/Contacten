@@ -2,10 +2,15 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -24,11 +29,38 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     itemOperations={
+ *          "get",
+ *          "put",
+ *          "delete",
+ *          "get_change_logs"={
+ *              "path"="/persons/{id}/change_log",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Changelogs",
+ *                  "description"="Gets al the change logs for this resource"
+ *              }
+ *          },
+ *          "get_audit_trail"={
+ *              "path"="/persons/{id}/audit_trail",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Audittrail",
+ *                  "description"="Gets the audit trail for this resource"
+ *              }
+ *          }
+ *     },
  *  collectionOperations={
  *  	"get",
  *  	"post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\PersonRepository")
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
+ * @ApiFilter(BooleanFilter::class)
+ * @ApiFilter(OrderFilter::class)
+ * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
+ * @ApiFilter(SearchFilter::class)
  */
 class Person
 {
@@ -44,10 +76,29 @@ class Person
     private $id;
 
     /**
+     * @var string The full name of a person consisting of given and fammily name
+     *
+     * @example John Do
+     *
+     * @Groups({"read"})
+     */
+    private $name;
+
+    /**
+     * @var string The full name of a person consisting of fammily and given name
+     *
+     * @example Do, John
+     *
+     * @Groups({"read"})
+     */
+    private $formalName;
+
+    /**
      * @var string Given name of this person
      *
      * @example John
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
@@ -62,6 +113,7 @@ class Person
      *
      * @example von
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
@@ -75,6 +127,7 @@ class Person
      *
      * @example Do
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length (
@@ -86,8 +139,6 @@ class Person
     /**
      * @var Telephone Telephone of this person
      *
-     * @example Mobile
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -96,8 +147,6 @@ class Person
 
     /**
      * @var Address Adresses of this person
-     *
-     * @example Amsterdam Office
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
@@ -108,8 +157,6 @@ class Person
     /**
      * @var Email Emails of this person
      *
-     * @example john@do.com
-     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="people", cascade={"persist"})
      * @MaxDepth(1)
@@ -119,8 +166,6 @@ class Person
     /**
      * @var Organization Organisations of this person
      *
-     * @example Ajax
-     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
@@ -129,12 +174,28 @@ class Person
     /**
      * @var ContactList Contact lists of this person
      *
-     * @example All users
-     *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
      * @MaxDepth(1)
      */
     private $contactLists;
+
+    /**
+     * @var Datetime The moment this resource was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCreated;
+
+    /**
+     * @var Datetime The moment this resource last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateModified;
 
     public function __construct()
     {
@@ -147,6 +208,24 @@ class Person
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        if ($this->getAdditionalName()) {
+            return $this->givenName.' '.$this->additionalName.' '.$this->familyName;
+        }
+
+        return $this->givenName.' '.$this->familyName;
+    }
+
+    public function getFormalName(): ?string
+    {
+        if ($this->getAdditionalName()) {
+            return $this->familyName.', '.$this->givenName.' '.$this->additionalName;
+        }
+
+        return $this->familyName.', '.$this->givenName;
     }
 
     public function getGivenName(): ?string
@@ -299,6 +378,30 @@ class Person
             $this->contactLists->removeElement($contactList);
             $contactList->removePerson($this);
         }
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->dateCreated;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getDateModified(): ?\DateTimeInterface
+    {
+        return $this->dateModified;
+    }
+
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+        $this->dateModified = $dateModified;
 
         return $this;
     }
