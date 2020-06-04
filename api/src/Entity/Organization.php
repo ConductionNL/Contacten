@@ -105,6 +105,21 @@ class Organization
     private $description;
 
     /**
+     * @var string Type of this organisation
+     *
+     * @example Township
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Assert\NotBlank
+     */
+    private $type;
+
+    /**
      * @var string Kvk of this organisation
      *
      * @Gedmo\Versioned
@@ -221,6 +236,18 @@ class Organization
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
