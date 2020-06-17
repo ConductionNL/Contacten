@@ -14,7 +14,7 @@ settings:
   repro: https://github.com/ConductionNL/contactcatalogus
   demo: cc.zaakonline.nl
   container: https://hub.docker.com/repository/docker/conduction/cc-php
-  domain: conduction.nl
+  domain: dev
   subdomain: cc
   organisationName: Conduction
   email: info@conduction.nl
