@@ -475,6 +475,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -1631,6 +1640,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -2528,6 +2546,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -3414,6 +3441,15 @@ paths:
           schema:
             type: integer
             default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -4445,6 +4481,15 @@ paths:
           schema:
             type: integer
             default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -5527,6 +5572,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -6583,6 +6637,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -7613,6 +7676,15 @@ paths:
           schema:
             type: integer
             default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -9251,6 +9323,7 @@ components:
         type:
           description: 'Type of this organisation'
           type: string
+          nullable: true
         kvk:
           description: 'Kvk of this organisation'
           type: string
@@ -9288,14 +9361,12 @@ components:
       required:
         - name
         - description
-        - type
     Organization-write:
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
         - description
-        - type
       properties:
         name:
           description: 'Name of this organisation'
@@ -9306,6 +9377,7 @@ components:
         type:
           description: 'Type of this organisation'
           type: string
+          nullable: true
         kvk:
           description: 'Kvk of this organisation'
           type: string
@@ -9357,6 +9429,7 @@ components:
         type:
           description: 'Type of this organisation'
           type: string
+          nullable: true
         kvk:
           description: 'Kvk of this organisation'
           type: string
@@ -9394,14 +9467,12 @@ components:
       required:
         - name
         - description
-        - type
     'Organization:jsonld-write':
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
         - description
-        - type
       properties:
         '@context':
           readOnly: true
@@ -9421,6 +9492,7 @@ components:
         type:
           description: 'Type of this organisation'
           type: string
+          nullable: true
         kvk:
           description: 'Kvk of this organisation'
           type: string
@@ -10147,12 +10219,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 12:12:29'
+        example: '2020-06-17 14:04:44'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 12:12:29'
+        example: '2020-06-17 14:04:44'
     required: []
   ChangeLog-write:
     properties:
@@ -10266,12 +10338,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 12:12:29'
+        example: '2020-06-17 14:04:44'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 12:12:29'
+        example: '2020-06-17 14:04:44'
     required: []
   AuditTrail-write:
     properties:
