@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Organization;
-use Conduction\CommonGroundBundle\CommonGroundBundle;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -107,7 +106,5 @@ class WestfrieslandFixtures extends Fixture
         $koggenland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         $manager->flush();
-
-
     }
 }
