@@ -565,7 +565,7 @@ paths:
         201:
           description: 'Address resource created'
           content:
-            application/ld+json:
+            application/health+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -616,7 +616,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/ld+json:
+          application/health+json:
             schema:
               $ref: '#/components/schemas/Address:jsonld-write'
           application/json+ld:
@@ -774,7 +774,7 @@ paths:
         200:
           description: 'Address resource response'
           content:
-            application/ld+json:
+            application/health+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -862,7 +862,7 @@ paths:
         200:
           description: 'Address resource updated'
           content:
-            application/ld+json:
+            application/health+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -907,7 +907,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/ld+json:
+          application/health+json:
             schema:
               $ref: '#/components/schemas/Address:jsonld-write'
           application/json+ld:
@@ -1081,7 +1081,7 @@ paths:
         200:
           description: 'Address resource response'
           content:
-            application/ld+json:
+            application/health+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -9225,7 +9225,6 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
-          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9458,7 +9457,6 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
-          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9564,7 +9562,6 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
-          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9660,7 +9657,6 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
-          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
