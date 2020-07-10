@@ -10,7 +10,7 @@ info:
     - Version: V.0.1
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
-    - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
@@ -25,26 +25,6 @@ paths:
         200:
           description: 'Address collection response'
           content:
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Address-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Address-read'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Address-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Address-read'
             application/ld+json:
               schema:
                 type: object
@@ -65,6 +45,16 @@ paths:
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address-read'
             application/vnd.api+json:
               schema:
                 type: array
@@ -76,6 +66,16 @@ paths:
                 items:
                   $ref: '#/components/schemas/Address-read'
             application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address-read'
+            application/json+health:
               schema:
                 type: array
                 items:
@@ -558,22 +558,16 @@ paths:
           content:
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Address-read'
-            application/json+health:
+                $ref: '#/components/schemas/Address:jsonld-read'
+            application/json+ld:
               schema:
-                $ref: '#/components/schemas/Address-read'
+                $ref: '#/components/schemas/Address:jsonld-read'
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json+hal:
               schema:
                 $ref: '#/components/schemas/Address-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Address:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/Address:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -581,6 +575,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/xml:
@@ -609,22 +609,16 @@ paths:
         content:
           application/health+json:
             schema:
-              $ref: '#/components/schemas/Address-write'
-          application/json+health:
+              $ref: '#/components/schemas/Address:jsonld-write'
+          application/json+ld:
             schema:
-              $ref: '#/components/schemas/Address-write'
+              $ref: '#/components/schemas/Address:jsonld-write'
           application/hal+json:
             schema:
               $ref: '#/components/schemas/Address-write'
           application/json+hal:
             schema:
               $ref: '#/components/schemas/Address-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Address:jsonld-write'
-          application/json+ld:
-            schema:
-              $ref: '#/components/schemas/Address:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Address-write'
@@ -632,6 +626,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Address-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Address-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Address-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Address-write'
           application/xml:
@@ -767,22 +767,16 @@ paths:
           content:
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Address-read'
-            application/json+health:
+                $ref: '#/components/schemas/Address:jsonld-read'
+            application/json+ld:
               schema:
-                $ref: '#/components/schemas/Address-read'
+                $ref: '#/components/schemas/Address:jsonld-read'
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json+hal:
               schema:
                 $ref: '#/components/schemas/Address-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Address:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/Address:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -790,6 +784,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/xml:
@@ -855,22 +855,16 @@ paths:
           content:
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Address-read'
-            application/json+health:
+                $ref: '#/components/schemas/Address:jsonld-read'
+            application/json+ld:
               schema:
-                $ref: '#/components/schemas/Address-read'
+                $ref: '#/components/schemas/Address:jsonld-read'
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json+hal:
               schema:
                 $ref: '#/components/schemas/Address-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Address:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/Address:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -878,6 +872,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/xml:
@@ -900,22 +900,16 @@ paths:
         content:
           application/health+json:
             schema:
-              $ref: '#/components/schemas/Address-write'
-          application/json+health:
+              $ref: '#/components/schemas/Address:jsonld-write'
+          application/json+ld:
             schema:
-              $ref: '#/components/schemas/Address-write'
+              $ref: '#/components/schemas/Address:jsonld-write'
           application/hal+json:
             schema:
               $ref: '#/components/schemas/Address-write'
           application/json+hal:
             schema:
               $ref: '#/components/schemas/Address-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Address:jsonld-write'
-          application/json+ld:
-            schema:
-              $ref: '#/components/schemas/Address:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Address-write'
@@ -923,6 +917,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Address-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Address-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Address-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Address-write'
           application/xml:
@@ -984,7 +984,7 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/adresses/{id}/audit_trial':
+  '/adresses/{id}/audit_trail':
     get:
       tags:
         - Address
@@ -1074,22 +1074,16 @@ paths:
           content:
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Address-read'
-            application/json+health:
+                $ref: '#/components/schemas/Address:jsonld-read'
+            application/json+ld:
               schema:
-                $ref: '#/components/schemas/Address-read'
+                $ref: '#/components/schemas/Address:jsonld-read'
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json+hal:
               schema:
                 $ref: '#/components/schemas/Address-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Address:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/Address:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -1097,6 +1091,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/xml:
@@ -1203,24 +1203,18 @@ paths:
         200:
           description: 'Address resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Address-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Address-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Address-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Address-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Address-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Address-read'
@@ -1228,6 +1222,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Address-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Address-read'
             application/xml:
@@ -3165,26 +3165,6 @@ paths:
         200:
           description: 'ContactList collection response'
           content:
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactList-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactList-read'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactList-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
                 type: object
@@ -3205,6 +3185,16 @@ paths:
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactList-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactList-read'
             application/vnd.api+json:
               schema:
                 type: array
@@ -3216,6 +3206,16 @@ paths:
                 items:
                   $ref: '#/components/schemas/ContactList-read'
             application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactList-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactList-read'
+            application/json+health:
               schema:
                 type: array
                 items:
@@ -3496,24 +3496,18 @@ paths:
         201:
           description: 'ContactList resource created'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -3521,6 +3515,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/xml:
@@ -3547,24 +3547,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/ContactList:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/ContactList:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/ContactList-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/ContactList-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/ContactList-write'
@@ -3572,6 +3566,12 @@ paths:
             schema:
               $ref: '#/components/schemas/ContactList-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/ContactList-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/ContactList-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/ContactList-write'
           application/xml:
@@ -3705,24 +3705,18 @@ paths:
         200:
           description: 'ContactList resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -3730,6 +3724,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/xml:
@@ -3793,24 +3793,18 @@ paths:
         200:
           description: 'ContactList resource updated'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -3818,6 +3812,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/xml:
@@ -3838,24 +3838,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/ContactList-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/ContactList:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/ContactList:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/ContactList-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/ContactList-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/ContactList-write'
@@ -3863,6 +3857,12 @@ paths:
             schema:
               $ref: '#/components/schemas/ContactList-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/ContactList-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/ContactList-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/ContactList-write'
           application/xml:
@@ -3924,7 +3924,7 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/contact_lists/{id}/audit_trial':
+  '/contact_lists/{id}/audit_trail':
     get:
       tags:
         - ContactList
@@ -4012,24 +4012,18 @@ paths:
         200:
           description: 'ContactList resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -4037,6 +4031,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/xml:
@@ -4143,24 +4143,18 @@ paths:
         200:
           description: 'ContactList resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/ContactList-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/ContactList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
@@ -4168,6 +4162,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/ContactList-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/ContactList-read'
             application/xml:
@@ -4196,26 +4196,6 @@ paths:
         200:
           description: 'Email collection response'
           content:
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Email-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Email-read'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Email-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Email-read'
             application/ld+json:
               schema:
                 type: object
@@ -4236,6 +4216,16 @@ paths:
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Email-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Email-read'
             application/vnd.api+json:
               schema:
                 type: array
@@ -4247,6 +4237,16 @@ paths:
                 items:
                   $ref: '#/components/schemas/Email-read'
             application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Email-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Email-read'
+            application/json+health:
               schema:
                 type: array
                 items:
@@ -4527,24 +4527,18 @@ paths:
         201:
           description: 'Email resource created'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Email-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Email-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Email-read'
@@ -4552,6 +4546,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/xml:
@@ -4578,24 +4578,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Email-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Email:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/Email:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Email-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Email-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Email-write'
@@ -4603,6 +4597,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Email-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Email-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Email-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Email-write'
           application/xml:
@@ -4736,24 +4736,18 @@ paths:
         200:
           description: 'Email resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Email-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Email-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Email-read'
@@ -4761,6 +4755,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/xml:
@@ -4824,24 +4824,18 @@ paths:
         200:
           description: 'Email resource updated'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Email-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Email-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Email-read'
@@ -4849,6 +4843,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/xml:
@@ -4869,24 +4869,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Email-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Email-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Email:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/Email:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Email-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Email-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Email-write'
@@ -4894,6 +4888,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Email-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Email-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Email-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Email-write'
           application/xml:
@@ -4955,7 +4955,7 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/emails/{id}/audit_trial':
+  '/emails/{id}/audit_trail':
     get:
       tags:
         - Email
@@ -5043,24 +5043,18 @@ paths:
         200:
           description: 'Email resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Email-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Email-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Email-read'
@@ -5068,6 +5062,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/xml:
@@ -5174,24 +5174,18 @@ paths:
         200:
           description: 'Email resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Email-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Email-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Email:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Email-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Email-read'
@@ -5199,6 +5193,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Email-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Email-read'
             application/xml:
@@ -5227,26 +5227,6 @@ paths:
         200:
           description: 'Organization collection response'
           content:
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
                 type: object
@@ -5267,6 +5247,16 @@ paths:
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
                 type: array
@@ -5278,6 +5268,16 @@ paths:
                 items:
                   $ref: '#/components/schemas/Organization-read'
             application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization-read'
+            application/json+health:
               schema:
                 type: array
                 items:
@@ -5323,6 +5323,15 @@ paths:
               - desc
         -
           name: 'order[description]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[type]'
           in: query
           required: false
           schema:
@@ -5445,6 +5454,22 @@ paths:
             type: string
         -
           name: 'description[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: type
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'type[]'
           in: query
           required: false
           schema:
@@ -5583,24 +5608,18 @@ paths:
         201:
           description: 'Organization resource created'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Organization-read'
@@ -5608,6 +5627,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/xml:
@@ -5634,24 +5659,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Organization:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/Organization:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Organization-write'
@@ -5659,6 +5678,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Organization-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Organization-write'
           application/xml:
@@ -5792,24 +5817,18 @@ paths:
         200:
           description: 'Organization resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Organization-read'
@@ -5817,6 +5836,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/xml:
@@ -5880,24 +5905,18 @@ paths:
         200:
           description: 'Organization resource updated'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Organization-read'
@@ -5905,6 +5924,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/xml:
@@ -5925,24 +5950,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Organization-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Organization:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/Organization:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Organization-write'
@@ -5950,6 +5969,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Organization-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Organization-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Organization-write'
           application/xml:
@@ -6011,7 +6036,7 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/organizations/{id}/audit_trial':
+  '/organizations/{id}/audit_trail':
     get:
       tags:
         - Organization
@@ -6099,24 +6124,18 @@ paths:
         200:
           description: 'Organization resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Organization-read'
@@ -6124,6 +6143,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/xml:
@@ -6230,24 +6255,18 @@ paths:
         200:
           description: 'Organization resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Organization-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Organization:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Organization-read'
@@ -6255,6 +6274,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Organization-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Organization-read'
             application/xml:
@@ -6283,26 +6308,6 @@ paths:
         200:
           description: 'Person collection response'
           content:
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Person-read'
             application/ld+json:
               schema:
                 type: object
@@ -6323,6 +6328,16 @@ paths:
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person-read'
             application/vnd.api+json:
               schema:
                 type: array
@@ -6334,6 +6349,16 @@ paths:
                 items:
                   $ref: '#/components/schemas/Person-read'
             application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person-read'
+            application/json+health:
               schema:
                 type: array
                 items:
@@ -6639,24 +6664,18 @@ paths:
         201:
           description: 'Person resource created'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Person-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Person-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Person-read'
@@ -6664,6 +6683,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/xml:
@@ -6690,24 +6715,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Person-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Person:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/Person:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Person-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Person-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Person-write'
@@ -6715,6 +6734,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Person-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Person-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Person-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Person-write'
           application/xml:
@@ -6848,24 +6873,18 @@ paths:
         200:
           description: 'Person resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Person-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Person-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Person-read'
@@ -6873,6 +6892,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/xml:
@@ -6936,24 +6961,18 @@ paths:
         200:
           description: 'Person resource updated'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Person-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Person-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Person-read'
@@ -6961,6 +6980,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/xml:
@@ -6981,24 +7006,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Person-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Person-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Person:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/Person:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Person-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Person-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Person-write'
@@ -7006,6 +7025,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Person-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Person-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Person-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Person-write'
           application/xml:
@@ -7067,7 +7092,7 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/persons/{id}/audit_trial':
+  '/persons/{id}/audit_trail':
     get:
       tags:
         - Person
@@ -7155,24 +7180,18 @@ paths:
         200:
           description: 'Person resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Person-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Person-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Person-read'
@@ -7180,6 +7199,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/xml:
@@ -7286,24 +7311,18 @@ paths:
         200:
           description: 'Person resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Person-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Person-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Person:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Person-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Person-read'
@@ -7311,6 +7330,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Person-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Person-read'
             application/xml:
@@ -7339,26 +7364,6 @@ paths:
         200:
           description: 'Telephone collection response'
           content:
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Telephone-read'
             application/ld+json:
               schema:
                 type: object
@@ -7379,6 +7384,16 @@ paths:
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Telephone-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Telephone-read'
             application/vnd.api+json:
               schema:
                 type: array
@@ -7390,6 +7405,16 @@ paths:
                 items:
                   $ref: '#/components/schemas/Telephone-read'
             application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Telephone-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Telephone-read'
+            application/json+health:
               schema:
                 type: array
                 items:
@@ -7670,24 +7695,18 @@ paths:
         201:
           description: 'Telephone resource created'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
@@ -7695,6 +7714,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/xml:
@@ -7721,24 +7746,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Telephone:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/Telephone:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Telephone-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Telephone-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Telephone-write'
@@ -7746,6 +7765,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Telephone-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Telephone-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Telephone-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Telephone-write'
           application/xml:
@@ -7879,24 +7904,18 @@ paths:
         200:
           description: 'Telephone resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
@@ -7904,6 +7923,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/xml:
@@ -7967,24 +7992,18 @@ paths:
         200:
           description: 'Telephone resource updated'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
@@ -7992,6 +8011,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/xml:
@@ -8012,24 +8037,18 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Telephone-write'
           application/ld+json:
             schema:
               $ref: '#/components/schemas/Telephone:jsonld-write'
           application/json+ld:
             schema:
               $ref: '#/components/schemas/Telephone:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Telephone-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Telephone-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Telephone-write'
@@ -8037,6 +8056,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Telephone-write'
           application/json:
+            schema:
+              $ref: '#/components/schemas/Telephone-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Telephone-write'
+          application/json+health:
             schema:
               $ref: '#/components/schemas/Telephone-write'
           application/xml:
@@ -8098,7 +8123,7 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/telephones/{id}/audit_trial':
+  '/telephones/{id}/audit_trail':
     get:
       tags:
         - Telephone
@@ -8186,24 +8211,18 @@ paths:
         200:
           description: 'Telephone resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
@@ -8211,6 +8230,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/xml:
@@ -8317,24 +8342,18 @@ paths:
         200:
           description: 'Telephone resource response'
           content:
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Telephone-read'
             application/ld+json:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
             application/json+ld:
               schema:
                 $ref: '#/components/schemas/Telephone:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
@@ -8342,6 +8361,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Telephone-read'
+            application/json+health:
               schema:
                 $ref: '#/components/schemas/Telephone-read'
             application/xml:
@@ -8372,43 +8397,57 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'Name of this Address'
           type: string
+          nullable: true
         bagnummeraanduiding:
           description: 'Bagnummeraanduiding of this Address'
           type: string
+          nullable: true
         street:
           description: 'Street of this Address'
           type: string
+          nullable: true
         houseNumber:
           description: 'House number of this Address'
           type: string
+          nullable: true
+        houseNumberSuffix:
+          description: 'House number suffix of this Address'
+          type: string
+          nullable: true
         postalCode:
           description: 'Postalcode of a Address'
           type: string
+          nullable: true
         region:
           description: 'region Region of a Address'
           type: string
+          nullable: true
         locality:
           description: 'Locality of a Address'
           type: string
+          nullable: true
         country:
           description: 'Country of a Address'
           type: string
+          nullable: true
         postOfficeBoxNumber:
           description: 'Post office box number of a Address'
           type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
     Address-write:
       type: object
       description: 'All properties that the entity Address holds.'
@@ -8416,30 +8455,43 @@ components:
         name:
           description: 'Name of this Address'
           type: string
+          nullable: true
         bagnummeraanduiding:
           description: 'Bagnummeraanduiding of this Address'
           type: string
+          nullable: true
         street:
           description: 'Street of this Address'
           type: string
+          nullable: true
         houseNumber:
           description: 'House number of this Address'
           type: string
+          nullable: true
+        houseNumberSuffix:
+          description: 'House number suffix of this Address'
+          type: string
+          nullable: true
         postalCode:
           description: 'Postalcode of a Address'
           type: string
+          nullable: true
         region:
           description: 'region Region of a Address'
           type: string
+          nullable: true
         locality:
           description: 'Locality of a Address'
           type: string
+          nullable: true
         country:
           description: 'Country of a Address'
           type: string
+          nullable: true
         postOfficeBoxNumber:
           description: 'Post office box number of a Address'
           type: string
+          nullable: true
     'Address:jsonld-read':
       type: object
       description: 'All properties that the entity Address holds.'
@@ -8459,43 +8511,57 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           description: 'Name of this Address'
           type: string
+          nullable: true
         bagnummeraanduiding:
           description: 'Bagnummeraanduiding of this Address'
           type: string
+          nullable: true
         street:
           description: 'Street of this Address'
           type: string
+          nullable: true
         houseNumber:
           description: 'House number of this Address'
           type: string
+          nullable: true
+        houseNumberSuffix:
+          description: 'House number suffix of this Address'
+          type: string
+          nullable: true
         postalCode:
           description: 'Postalcode of a Address'
           type: string
+          nullable: true
         region:
           description: 'region Region of a Address'
           type: string
+          nullable: true
         locality:
           description: 'Locality of a Address'
           type: string
+          nullable: true
         country:
           description: 'Country of a Address'
           type: string
+          nullable: true
         postOfficeBoxNumber:
           description: 'Post office box number of a Address'
           type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
     'Address:jsonld-write':
       type: object
       description: 'All properties that the entity Address holds.'
@@ -8512,30 +8578,43 @@ components:
         name:
           description: 'Name of this Address'
           type: string
+          nullable: true
         bagnummeraanduiding:
           description: 'Bagnummeraanduiding of this Address'
           type: string
+          nullable: true
         street:
           description: 'Street of this Address'
           type: string
+          nullable: true
         houseNumber:
           description: 'House number of this Address'
           type: string
+          nullable: true
+        houseNumberSuffix:
+          description: 'House number suffix of this Address'
+          type: string
+          nullable: true
         postalCode:
           description: 'Postalcode of a Address'
           type: string
+          nullable: true
         region:
           description: 'region Region of a Address'
           type: string
+          nullable: true
         locality:
           description: 'Locality of a Address'
           type: string
+          nullable: true
         country:
           description: 'Country of a Address'
           type: string
+          nullable: true
         postOfficeBoxNumber:
           description: 'Post office box number of a Address'
           type: string
+          nullable: true
     AuditTrail-read:
       type: object
       description: 'An resource representing a log line.'
@@ -8922,12 +9001,14 @@ components:
           readOnly: true
           description: 'UUID of this contact list'
           type: string
+          format: uuid
         name:
           description: 'Name of this contact list'
           type: string
         description:
           description: 'Description of this contact list'
           type: string
+          nullable: true
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -8939,15 +9020,15 @@ components:
           items:
             $ref: '#/components/schemas/Organization-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
     ContactList-write:
@@ -8962,6 +9043,7 @@ components:
         description:
           description: 'Description of this contact list'
           type: string
+          nullable: true
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -8989,12 +9071,14 @@ components:
           readOnly: true
           description: 'UUID of this contact list'
           type: string
+          format: uuid
         name:
           description: 'Name of this contact list'
           type: string
         description:
           description: 'Description of this contact list'
           type: string
+          nullable: true
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -9006,15 +9090,15 @@ components:
           items:
             $ref: '#/components/schemas/Organization:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
     'ContactList:jsonld-write':
@@ -9038,6 +9122,7 @@ components:
         description:
           description: 'Description of this contact list'
           type: string
+          nullable: true
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -9056,22 +9141,23 @@ components:
           readOnly: true
           description: 'UUID of this email'
           type: string
+          format: uuid
         name:
           description: 'Name of this email'
           type: string
+          nullable: true
         email:
           description: 'Email of this email'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - email
     Email-write:
@@ -9081,6 +9167,7 @@ components:
         name:
           description: 'Name of this email'
           type: string
+          nullable: true
         email:
           description: 'Email of this email'
           type: string
@@ -9103,22 +9190,24 @@ components:
           readOnly: true
           description: 'UUID of this email'
           type: string
+          format: uuid
         name:
           description: 'Name of this email'
           type: string
+          nullable: true
         email:
           description: 'Email of this email'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - email
     'Email:jsonld-write':
@@ -9137,6 +9226,7 @@ components:
         name:
           description: 'Name of this email'
           type: string
+          nullable: true
         email:
           description: 'Email of this email'
           type: string
@@ -9150,15 +9240,20 @@ components:
           readOnly: true
           description: 'UUID of this organisation'
           type: string
+          format: uuid
         name:
           description: 'Name of this organisation'
           type: string
         description:
           description: 'Description of this organisation'
           type: string
+        type:
+          description: 'Type of this organisation'
+          type: string
         kvk:
           description: 'Kvk of this organisation'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9180,24 +9275,26 @@ components:
           items:
             $ref: '#/components/schemas/Person-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
+        - type
     Organization-write:
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
         - description
+        - type
       properties:
         name:
           description: 'Name of this organisation'
@@ -9205,9 +9302,13 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+        type:
+          description: 'Type of this organisation'
+          type: string
         kvk:
           description: 'Kvk of this organisation'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9245,15 +9346,20 @@ components:
           readOnly: true
           description: 'UUID of this organisation'
           type: string
+          format: uuid
         name:
           description: 'Name of this organisation'
           type: string
         description:
           description: 'Description of this organisation'
           type: string
+        type:
+          description: 'Type of this organisation'
+          type: string
         kvk:
           description: 'Kvk of this organisation'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9275,24 +9381,25 @@ components:
           items:
             $ref: '#/components/schemas/Person:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - name
         - description
+        - type
     'Organization:jsonld-write':
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
         - description
+        - type
       properties:
         '@context':
           readOnly: true
@@ -9309,9 +9416,13 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+        type:
+          description: 'Type of this organisation'
+          type: string
         kvk:
           description: 'Kvk of this organisation'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9340,6 +9451,7 @@ components:
           readOnly: true
           description: 'UUID of this person'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The full name of a person consisting of given and fammily name'
@@ -9354,9 +9466,11 @@ components:
         additionalName:
           description: 'Additional name of this person'
           type: string
+          nullable: true
         familyName:
           description: 'Family name of this person'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -9373,15 +9487,14 @@ components:
           items:
             $ref: '#/components/schemas/Email-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - givenName
     Person-write:
@@ -9396,9 +9509,11 @@ components:
         additionalName:
           description: 'Additional name of this person'
           type: string
+          nullable: true
         familyName:
           description: 'Family name of this person'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -9431,6 +9546,7 @@ components:
           readOnly: true
           description: 'UUID of this person'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The full name of a person consisting of given and fammily name'
@@ -9445,9 +9561,11 @@ components:
         additionalName:
           description: 'Additional name of this person'
           type: string
+          nullable: true
         familyName:
           description: 'Family name of this person'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -9464,15 +9582,14 @@ components:
           items:
             $ref: '#/components/schemas/Email:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - givenName
     'Person:jsonld-write':
@@ -9496,9 +9613,11 @@ components:
         additionalName:
           description: 'Additional name of this person'
           type: string
+          nullable: true
         familyName:
           description: 'Family name of this person'
           type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -9522,22 +9641,24 @@ components:
           readOnly: true
           description: 'UUID of this telephone'
           type: string
+          format: uuid
         name:
           description: 'Name of this telephone'
           type: string
+          nullable: true
         telephone:
           description: 'The actual phone number including any international prefixes'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - telephone
     Telephone-write:
@@ -9547,6 +9668,7 @@ components:
         name:
           description: 'Name of this telephone'
           type: string
+          nullable: true
         telephone:
           description: 'The actual phone number including any international prefixes'
           type: string
@@ -9569,22 +9691,24 @@ components:
           readOnly: true
           description: 'UUID of this telephone'
           type: string
+          format: uuid
         name:
           description: 'Name of this telephone'
           type: string
+          nullable: true
         telephone:
           description: 'The actual phone number including any international prefixes'
           type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
         - telephone
     'Telephone:jsonld-write':
@@ -9603,6 +9727,7 @@ components:
         name:
           description: 'Name of this telephone'
           type: string
+          nullable: true
         telephone:
           description: 'The actual phone number including any international prefixes'
           type: string
@@ -9723,6 +9848,316 @@ definitions:
         example: 'PO Box 1234'
         maxLength: 255
     required: []
+  ContactList-read:
+    properties:
+      id:
+        description: 'UUID of this contact list'
+        type: \UuidInterface
+      name:
+        description: 'Name of this contact list'
+        type: string
+        example: 'All users'
+        maxLength: 255
+      description:
+        description: 'Description of this contact list'
+        type: string
+        example: 'This contact list holds all users.'
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      persons:
+        description: 'Persons this contact list has'
+        type: \Person
+        example: Hans
+      organizations:
+        description: 'Organisations this contact list has'
+        type: \Organization
+        example: Ajax
+    required: []
+  ContactList-write:
+    properties:
+      name:
+        description: 'Name of this contact list'
+        type: string
+        example: 'All users'
+        maxLength: 255
+      description:
+        description: 'Description of this contact list'
+        type: string
+        example: 'This contact list holds all users.'
+      persons:
+        description: 'Persons this contact list has'
+        type: \Person
+        example: Hans
+      organizations:
+        description: 'Organisations this contact list has'
+        type: \Organization
+        example: Ajax
+    required: []
+  Person-read:
+    properties:
+      id:
+        description: 'UUID of this person'
+        type: \UuidInterface
+      givenName:
+        description: 'Given name of this person'
+        type: string
+        example: John
+        maxLength: 255
+      additionalName:
+        description: 'Additional name of this person'
+        type: string
+        example: von
+        maxLength: 255
+      familyName:
+        description: 'Family name of this person'
+        type: string
+        example: Do
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
+      adresses:
+        description: 'Adresses of this person'
+        type: \Address
+      emails:
+        description: 'Emails of this person'
+        type: \Email
+    required: []
+  Person-write:
+    properties:
+      givenName:
+        description: 'Given name of this person'
+        type: string
+        example: John
+        maxLength: 255
+      additionalName:
+        description: 'Additional name of this person'
+        type: string
+        example: von
+        maxLength: 255
+      familyName:
+        description: 'Family name of this person'
+        type: string
+        example: Do
+        maxLength: 255
+      telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
+      adresses:
+        description: 'Adresses of this person'
+        type: \Address
+      emails:
+        description: 'Emails of this person'
+        type: \Email
+    required: []
+  Telephone-read:
+    properties:
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Telephone-write:
+    properties:
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+    required: []
+  Email-read:
+    properties:
+      id:
+        description: 'UUID of this email'
+        type: \UuidInterface
+      name:
+        description: 'Name of this email'
+        type: string
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Email-write:
+    properties:
+      name:
+        description: 'Name of this email'
+        type: string
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+    required: []
+  Organization-read:
+    properties:
+      id:
+        description: 'UUID of this organisation'
+        type: \UuidInterface
+      name:
+        description: 'Name of this organisation'
+        type: string
+        example: Ajax
+        maxLength: 255
+      description:
+        description: 'Description of this organisation'
+        type: string
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
+        maxLength: 255
+      kvk:
+        description: 'Kvk of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      adresses:
+        description: 'Address of this organisation'
+        type: \Address
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+    required: []
+  Organization-write:
+    properties:
+      name:
+        description: 'Name of this organisation'
+        type: string
+        example: Ajax
+        maxLength: 255
+      description:
+        description: 'Description of this organisation'
+        type: string
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
+        maxLength: 255
+      kvk:
+        description: 'Kvk of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      adresses:
+        description: 'Address of this organisation'
+        type: \Address
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-06-05 12:12:29'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-06-05 12:12:29'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -9827,12 +10262,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-10 06:17:08'
+        example: '2020-06-05 12:12:29'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-10 06:17:08'
+        example: '2020-06-05 12:12:29'
     required: []
   AuditTrail-write:
     properties:
@@ -9842,306 +10277,6 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-03-10 06:17:08'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-03-10 06:17:08'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
-  ContactList-read:
-    properties:
-      id:
-        description: 'UUID of this contact list'
-        type: \UuidInterface
-      name:
-        description: 'Name of this contact list'
-        type: string
-        example: 'All users'
-        maxLength: 255
-      description:
-        description: 'Description of this contact list'
-        type: string
-        example: 'This contact list holds all users.'
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      persons:
-        description: 'Persons this contact list has'
-        type: \Person
-        example: Hans
-      organizations:
-        description: 'Organisations this contact list has'
-        type: \Organization
-        example: Ajax
-    required: []
-  ContactList-write:
-    properties:
-      name:
-        description: 'Name of this contact list'
-        type: string
-        example: 'All users'
-        maxLength: 255
-      description:
-        description: 'Description of this contact list'
-        type: string
-        example: 'This contact list holds all users.'
-      persons:
-        description: 'Persons this contact list has'
-        type: \Person
-        example: Hans
-      organizations:
-        description: 'Organisations this contact list has'
-        type: \Organization
-        example: Ajax
-    required: []
-  Email-read:
-    properties:
-      id:
-        description: 'UUID of this email'
-        type: \UuidInterface
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Email-write:
-    properties:
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-    required: []
-  Organization-read:
-    properties:
-      id:
-        description: 'UUID of this organisation'
-        type: \UuidInterface
-      name:
-        description: 'Name of this organisation'
-        type: string
-        example: Ajax
-        maxLength: 255
-      description:
-        description: 'Description of this organisation'
-        type: string
-        example: 'Ajax is a dutch soccer club'
-      kvk:
-        description: 'Kvk of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      adresses:
-        description: 'Address of this organisation'
-        type: \Address
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-    required: []
-  Organization-write:
-    properties:
-      name:
-        description: 'Name of this organisation'
-        type: string
-        example: Ajax
-        maxLength: 255
-      description:
-        description: 'Description of this organisation'
-        type: string
-        example: 'Ajax is a dutch soccer club'
-      kvk:
-        description: 'Kvk of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      adresses:
-        description: 'Address of this organisation'
-        type: \Address
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-    required: []
-  Person-read:
-    properties:
-      id:
-        description: 'UUID of this person'
-        type: \UuidInterface
-      givenName:
-        description: 'Given name of this person'
-        type: string
-        example: John
-        maxLength: 255
-      additionalName:
-        description: 'Additional name of this person'
-        type: string
-        example: von
-        maxLength: 255
-      familyName:
-        description: 'Family name of this person'
-        type: string
-        example: Do
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      telephones:
-        description: 'Telephone of this person'
-        type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
-        type: \Address
-      emails:
-        description: 'Emails of this person'
-        type: \Email
-    required: []
-  Person-write:
-    properties:
-      givenName:
-        description: 'Given name of this person'
-        type: string
-        example: John
-        maxLength: 255
-      additionalName:
-        description: 'Additional name of this person'
-        type: string
-        example: von
-        maxLength: 255
-      familyName:
-        description: 'Family name of this person'
-        type: string
-        example: Do
-        maxLength: 255
-      telephones:
-        description: 'Telephone of this person'
-        type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
-        type: \Address
-      emails:
-        description: 'Emails of this person'
-        type: \Email
-    required: []
-  Telephone-read:
-    properties:
-      id:
-        description: 'UUID of this telephone'
-        type: \UuidInterface
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Telephone-write:
-    properties:
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-    required: []
 tags:
   -
     name: Address
@@ -10150,23 +10285,23 @@ tags:
       
       Entity Address exists of an id, a name, a bagnummeraanduiding, a street, a houseNumber, a houseNumberSufix, a postalCode, a region, a locality and country.
   -
-    name: AuditTrail
-    description: |
-      An resource representing a log line.
-      
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
-  -
-    name: ChangeLog
-    description: |
-      An resource representing a log line.
-      
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
-  -
     name: ContactList
     description: |
       All properties that the entity ContactList holds.
       
       Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
+  -
+    name: Person
+    description: |
+      All properties that the entity Person holds.
+      
+      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
+  -
+    name: Telephone
+    description: |
+      All properties that the entity Telephone holds.
+      
+      Entity Telephone exists of an id, a name and a telephone.
   -
     name: Email
     description: |
@@ -10180,37 +10315,37 @@ tags:
       
       Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
   -
-    name: Person
+    name: ChangeLog
     description: |
-      All properties that the entity Person holds.
+      An resource representing a log line.
       
-      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: Telephone
+    name: AuditTrail
     description: |
-      All properties that the entity Telephone holds.
+      An resource representing a log line.
       
-      Entity Telephone exists of an id, a name and a telephone.
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
 securityDefinitions:
   JWT-Oauth:
     type: oauth2
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the Telephone resource'
-      write: 'write right to the Telephone resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the Telephone resource'
-      write: 'write right to the Telephone resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -
     name: conduction.nl
-    url: pc.dev.conduction.nl
+    url: cc.dev.conduction.nl
 externalDocs:
   -
     description: 'OAS Documentatie'

@@ -2,18 +2,17 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * All properties that the entity Address holds.
@@ -54,14 +53,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *  	"post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\AddressRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
  */
-class Address //         
+class Address //
 {
     /**
      * @var UuidInterface Uuid of this address
@@ -154,8 +153,8 @@ class Address //
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=15, nullable=true)
-     */ 
-    private $postalCode;  
+     */
+    private $postalCode;
 
     /**
      * @var string region Region of a Address
@@ -197,7 +196,7 @@ class Address //
      *     max = 255
      *)
      */
-    private $country; 
+    private $country;
 
     /**
      * @var string Post office box number of a Address
@@ -212,21 +211,21 @@ class Address //
      *)
      */
     private $postOfficeBoxNumber;
-    
+
     /**
-     * @var Datetime $dateCreated The moment this resource was created
+     * @var Datetime The moment this resource was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
-     * @var Datetime $dateModified  The moment this resource last Modified
+     * @var Datetime The moment this resource last Modified
      *
      * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
@@ -284,12 +283,12 @@ class Address //
         return $this;
     }
 
-    public function getHouseNumberSufix(): ?string
+    public function getHouseNumberSuffix(): ?string
     {
         return $this->houseNumberSuffix;
     }
 
-    public function setHouseNumberSufix(?string $houseNumberSuffix): self
+    public function setHouseNumberSuffix(?string $houseNumberSuffix): self
     {
         $this->houseNumberSuffix = $houseNumberSuffix;
 
@@ -355,28 +354,28 @@ class Address //
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateCreated;
+        return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
-    	
-    	return $this;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
-    	
-    	return $this;
+        $this->dateModified = $dateModified;
+
+        return $this;
     }
 }
