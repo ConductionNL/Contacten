@@ -34,8 +34,8 @@ class ConductionFixtures extends Fixture
         // Test Student
         $id = Uuid::fromString('d961291d-f5c1-46f4-8b4a-6abb41df88db');
         $testStudent = new Person();
-        $testStudent->setGivenName("Wilco");
-        $testStudent->setFamilyName("Louwerse");
+        $testStudent->setGivenName('Wilco');
+        $testStudent->setFamilyName('Louwerse');
         $manager->persist($testStudent);
         $testStudent->setId($id);
         $manager->persist($testStudent);
