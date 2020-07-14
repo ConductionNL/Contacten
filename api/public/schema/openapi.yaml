@@ -565,7 +565,7 @@ paths:
         201:
           description: 'Address resource created'
           content:
-            application/health+json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -616,7 +616,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
+          application/ld+json:
             schema:
               $ref: '#/components/schemas/Address:jsonld-write'
           application/json+ld:
@@ -774,7 +774,7 @@ paths:
         200:
           description: 'Address resource response'
           content:
-            application/health+json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -862,7 +862,7 @@ paths:
         200:
           description: 'Address resource updated'
           content:
-            application/health+json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -907,7 +907,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
+          application/ld+json:
             schema:
               $ref: '#/components/schemas/Address:jsonld-write'
           application/json+ld:
@@ -1081,7 +1081,7 @@ paths:
         200:
           description: 'Address resource response'
           content:
-            application/health+json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -9225,6 +9225,7 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9457,6 +9458,7 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9562,6 +9564,7 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9657,6 +9660,7 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9969,104 +9973,6 @@ definitions:
         type: \Organization
         example: Ajax
     required: []
-  Person-read:
-    properties:
-      id:
-        description: 'UUID of this person'
-        type: \UuidInterface
-      givenName:
-        description: 'Given name of this person'
-        type: string
-        example: John
-        maxLength: 255
-      additionalName:
-        description: 'Additional name of this person'
-        type: string
-        example: von
-        maxLength: 255
-      familyName:
-        description: 'Family name of this person'
-        type: string
-        example: Do
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      telephones:
-        description: 'Telephone of this person'
-        type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
-        type: \Address
-      emails:
-        description: 'Emails of this person'
-        type: \Email
-    required: []
-  Person-write:
-    properties:
-      givenName:
-        description: 'Given name of this person'
-        type: string
-        example: John
-        maxLength: 255
-      additionalName:
-        description: 'Additional name of this person'
-        type: string
-        example: von
-        maxLength: 255
-      familyName:
-        description: 'Family name of this person'
-        type: string
-        example: Do
-        maxLength: 255
-      telephones:
-        description: 'Telephone of this person'
-        type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
-        type: \Address
-      emails:
-        description: 'Emails of this person'
-        type: \Email
-    required: []
-  Telephone-read:
-    properties:
-      id:
-        description: 'UUID of this telephone'
-        type: \UuidInterface
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Telephone-write:
-    properties:
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-    required: []
   Email-read:
     properties:
       id:
@@ -10177,58 +10083,103 @@ definitions:
         description: 'Person of this organisation'
         type: \Person
     required: []
-  ChangeLog-read:
+  Person-read:
     properties:
       id:
-        description: 'The UUID identifier of this object'
+        description: 'UUID of this person'
+        type: \UuidInterface
+      givenName:
+        description: 'Given name of this person'
         type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
+        example: John
+        maxLength: 255
+      additionalName:
+        description: 'Additional name of this person'
         type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
+        example: von
+        maxLength: 255
+      familyName:
+        description: 'Family name of this person'
         type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
+        example: Do
         maxLength: 255
       dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-06-17 14:04:44'
+        description: 'The moment this resource was created'
+        type: \Datetime
       dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-06-17 14:04:44'
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
+      adresses:
+        description: 'Adresses of this person'
+        type: \Address
+      emails:
+        description: 'Emails of this person'
+        type: \Email
     required: []
-  ChangeLog-write:
+  Person-write:
     properties:
-      note:
-        description: 'A note conserning this log lin'
+      givenName:
+        description: 'Given name of this person'
         type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
+        example: John
+        maxLength: 255
+      additionalName:
+        description: 'Additional name of this person'
+        type: string
+        example: von
+        maxLength: 255
+      familyName:
+        description: 'Family name of this person'
+        type: string
+        example: Do
+        maxLength: 255
+      telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
+      adresses:
+        description: 'Adresses of this person'
+        type: \Address
+      emails:
+        description: 'Emails of this person'
+        type: \Email
+    required: []
+  Telephone-read:
+    properties:
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Telephone-write:
+    properties:
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
     required: []
   AuditTrail-read:
     properties:
@@ -10334,12 +10285,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-17 14:04:44'
+        example: '2020-07-14 09:31:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-17 14:04:44'
+        example: '2020-07-14 09:31:20'
     required: []
   AuditTrail-write:
     properties:
@@ -10347,6 +10298,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-07-14 09:31:20'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-07-14 09:31:20'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -10363,18 +10367,6 @@ tags:
       
       Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
   -
-    name: Person
-    description: |
-      All properties that the entity Person holds.
-      
-      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
-  -
-    name: Telephone
-    description: |
-      All properties that the entity Telephone holds.
-      
-      Entity Telephone exists of an id, a name and a telephone.
-  -
     name: Email
     description: |
       All properties that the entity Email holds.
@@ -10387,13 +10379,25 @@ tags:
       
       Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
   -
-    name: ChangeLog
+    name: Person
+    description: |
+      All properties that the entity Person holds.
+      
+      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
+  -
+    name: Telephone
+    description: |
+      All properties that the entity Telephone holds.
+      
+      Entity Telephone exists of an id, a name and a telephone.
+  -
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -10404,15 +10408,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
