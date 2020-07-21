@@ -7,7 +7,6 @@ use App\Entity\Person;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\Mapping\Entity;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -50,7 +49,7 @@ class ZuidDrechtFixtures extends Fixture
 
         $email = new Email();
         $email->setName('primary');
-        $email->setEmail("c.kat@zuid-drecht.nl");
+        $email->setEmail('c.kat@zuid-drecht.nl');
         $email->addPerson($person);
     }
 }
