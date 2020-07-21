@@ -51,5 +51,8 @@ class ZuidDrechtFixtures extends Fixture
         $email->setName('primary');
         $email->setEmail('c.kat@zuid-drecht.nl');
         $email->addPerson($person);
+
+        $manager->persist($email);
+        $manager->flush();
     }
 }
