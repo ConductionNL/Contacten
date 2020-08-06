@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
     - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /addresses:
@@ -9328,6 +9328,16 @@ components:
           description: 'Kvk of this organisation'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-read'
+        subOrganizations:
+          description: 'The sub-organizations of which this organization is the parent organization.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization-read'
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9382,6 +9392,16 @@ components:
           description: 'Kvk of this organisation'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-write'
+        subOrganizations:
+          description: 'The sub-organizations of which this organization is the parent organization.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization-write'
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9434,6 +9454,16 @@ components:
           description: 'Kvk of this organisation'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-read'
+        subOrganizations:
+          description: 'The sub-organizations of which this organization is the parent organization.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization:jsonld-read'
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9497,6 +9527,16 @@ components:
           description: 'Kvk of this organisation'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-write'
+        subOrganizations:
+          description: 'The sub-organizations of which this organization is the parent organization.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization:jsonld-write'
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -10036,6 +10076,10 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
       telephones:
         description: 'Telephone of this organisation'
         type: \Telephone
@@ -10070,6 +10114,10 @@ definitions:
         type: string
         example: '123456'
         maxLength: 15
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
       telephones:
         description: 'Telephone of this organisation'
         type: \Telephone
@@ -10285,12 +10333,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-23 10:55:49'
+        example: '2020-08-06 14:03:57'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-23 10:55:49'
+        example: '2020-08-06 14:03:57'
     required: []
   AuditTrail-write:
     properties:
@@ -10338,12 +10386,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-23 10:55:49'
+        example: '2020-08-06 14:03:57'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-23 10:55:49'
+        example: '2020-08-06 14:03:57'
     required: []
   ChangeLog-write:
     properties:
