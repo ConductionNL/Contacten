@@ -147,12 +147,13 @@ class ConductionFixtures extends Fixture
         $testStudiegroep->setDescription('Dit is een test studiegroep');
         $testStudiegroep->setType('Studiegroep');
         $testStudiegroep->setParentOrganization($testKlas);
-        $testStudiegroep->addPerson($testStudent);
         $manager->persist($testStudiegroep);
         $testStudiegroep->setId($id);
         $manager->persist($testStudiegroep);
         $manager->flush();
         $testStudiegroep = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $testStudiegroep->addPerson($testStudent);
+        $manager->persist($testStudiegroep);
 
         $manager->flush();
     }
