@@ -3,14 +3,14 @@ entries:
   cc:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-08-06T14:03:28.975824358Z"
-    description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
-      interface beschikbaar.&#039;'
-    digest: fccf5bf248107da03cdd2101c50159f268a53b4a7e685fc1353ad285e3784ddd
+    created: "2020-08-06T14:08:13.356437184Z"
+    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
+      beschikbaar.
+    digest: 1b5ff77b56e0e483378b80a50a4ac11504dd9b6cf656bb47881e28a14833cdb4
     home: cc.zaakonline.nl
     icon: cc.zaakonline.nl
     name: cc
     urls:
     - cc-0.1.0.tgz
     version: 0.1.0
-generated: "2020-08-06T14:03:28.965625158Z"
+generated: "2020-08-06T14:08:13.344286684Z"
