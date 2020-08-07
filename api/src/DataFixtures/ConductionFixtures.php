@@ -102,8 +102,8 @@ class ConductionFixtures extends Fixture
         // Test Participant
         $id = Uuid::fromString('80403186-62c4-4986-a5ed-d58655a9a316');
         $testParticipant = new Organization();
-        $testParticipant->setName('Test participant 1');
-        $testParticipant->setDescription('Dit is een test participant');
+        $testParticipant->setName('Test participant organisatie 1');
+        $testParticipant->setDescription('Dit is een test participant organisatie');
         $testParticipant->setType('Participant');
         $manager->persist($testParticipant);
         $testParticipant->setId($id);
