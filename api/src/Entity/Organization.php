@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -131,6 +132,24 @@ class Organization
      * )
      */
     private $kvk;
+
+    /**
+     * @param Organization $parentOrganization The larger organization that this organization is a subOrganization of.
+     *
+     * @Groups({"read", "write"})
+     * @MaxDepth(1)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="subOrganizations")
+     */
+    private $parentOrganization;
+
+    /**
+     * @var ArrayCollection|Organization[] The sub-organizations of which this organization is the parent organization.
+     *
+     * @Groups({"read", "write"})
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Organization", mappedBy="parentOrganization")
+     */
+    private $subOrganizations;
 
     /**
      * @var Telephone Telephone of this organisation
@@ -259,6 +278,49 @@ class Organization
     public function setKvk(?string $kvk): self
     {
         $this->kvk = $kvk;
+
+        return $this;
+    }
+
+    public function getParentOrganization(): ?self
+    {
+        return $this->parentOrganization;
+    }
+
+    public function setParentOrganization(?self $parentOrganization): self
+    {
+        $this->parentOrganization = $parentOrganization;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getSubOrganizations(): Collection
+    {
+        return $this->subOrganizations;
+    }
+
+    public function addSubOrganization(self $subOrganization): self
+    {
+        if (!$this->subOrganizations->contains($subOrganization)) {
+            $this->subOrganizations[] = $subOrganization;
+            $subOrganization->setParentOrganization($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubOrganization(self $subOrganization): self
+    {
+        if ($this->subOrganizations->contains($subOrganization)) {
+            $this->subOrganizations->removeElement($subOrganization);
+            // set the owning side to null (unless already changed)
+            if ($subOrganization->getParentOrganization() === $this) {
+                $subOrganization->setParentOrganization(null);
+            }
+        }
 
         return $this;
     }

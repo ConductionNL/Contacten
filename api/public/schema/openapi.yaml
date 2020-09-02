@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
     - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /addresses:
@@ -475,6 +475,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -556,7 +565,7 @@ paths:
         201:
           description: 'Address resource created'
           content:
-            application/health+json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -607,7 +616,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
+          application/ld+json:
             schema:
               $ref: '#/components/schemas/Address:jsonld-write'
           application/json+ld:
@@ -765,7 +774,7 @@ paths:
         200:
           description: 'Address resource response'
           content:
-            application/health+json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -853,7 +862,7 @@ paths:
         200:
           description: 'Address resource updated'
           content:
-            application/health+json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -898,7 +907,7 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/health+json:
+          application/ld+json:
             schema:
               $ref: '#/components/schemas/Address:jsonld-write'
           application/json+ld:
@@ -1072,7 +1081,7 @@ paths:
         200:
           description: 'Address resource response'
           content:
-            application/health+json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Address:jsonld-read'
             application/json+ld:
@@ -3433,6 +3442,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -4463,6 +4481,15 @@ paths:
           schema:
             type: integer
             default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -5545,6 +5572,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -6601,6 +6637,15 @@ paths:
             type: integer
             default: 1
         -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
           name: Authorization
           description: 'The JWT of the entity performing the request'
           in: header
@@ -7631,6 +7676,15 @@ paths:
           schema:
             type: integer
             default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
         -
           name: Authorization
           description: 'The JWT of the entity performing the request'
@@ -9171,6 +9225,7 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9268,10 +9323,21 @@ components:
         type:
           description: 'Type of this organisation'
           type: string
+          nullable: true
         kvk:
           description: 'Kvk of this organisation'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-read'
+        subOrganizations:
+          description: 'The sub-organizations of which this organization is the parent organization.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization-read'
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9305,14 +9371,12 @@ components:
       required:
         - name
         - description
-        - type
     Organization-write:
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
         - description
-        - type
       properties:
         name:
           description: 'Name of this organisation'
@@ -9323,10 +9387,21 @@ components:
         type:
           description: 'Type of this organisation'
           type: string
+          nullable: true
         kvk:
           description: 'Kvk of this organisation'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-write'
+        subOrganizations:
+          description: 'The sub-organizations of which this organization is the parent organization.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization-write'
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9374,10 +9449,21 @@ components:
         type:
           description: 'Type of this organisation'
           type: string
+          nullable: true
         kvk:
           description: 'Kvk of this organisation'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-read'
+        subOrganizations:
+          description: 'The sub-organizations of which this organization is the parent organization.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization:jsonld-read'
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9402,6 +9488,7 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9410,14 +9497,12 @@ components:
       required:
         - name
         - description
-        - type
     'Organization:jsonld-write':
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
         - description
-        - type
       properties:
         '@context':
           readOnly: true
@@ -9437,10 +9522,21 @@ components:
         type:
           description: 'Type of this organisation'
           type: string
+          nullable: true
         kvk:
           description: 'Kvk of this organisation'
           type: string
           nullable: true
+        parentOrganization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-write'
+        subOrganizations:
+          description: 'The sub-organizations of which this organization is the parent organization.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization:jsonld-write'
         telephones:
           description: 'Telephone of this organisation'
           type: array
@@ -9508,6 +9604,7 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -9603,6 +9700,7 @@ components:
           description: 'The moment this resource was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
           description: 'The moment this resource last Modified'
           type: string
@@ -10076,6 +10174,10 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
       telephones:
         description: 'Telephone of this organisation'
         type: \Telephone
@@ -10110,6 +10212,10 @@ definitions:
         type: string
         example: '123456'
         maxLength: 15
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
       telephones:
         description: 'Telephone of this organisation'
         type: \Telephone
@@ -10161,12 +10267,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 12:12:29'
+        example: '2020-08-07 08:10:17'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 12:12:29'
+        example: '2020-08-07 08:10:17'
     required: []
   ChangeLog-write:
     properties:
@@ -10280,12 +10386,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 12:12:29'
+        example: '2020-08-07 08:10:17'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 12:12:29'
+        example: '2020-08-07 08:10:17'
     required: []
   AuditTrail-write:
     properties:
@@ -10362,8 +10468,8 @@ securityDefinitions:
 host: irc.zaakonline.nl
 servers:
   -
-    name: conduction.nl
-    url: cc.dev.conduction.nl
+    name: zuid-drecht.nl
+    url: cc.dev.zuid-drecht.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
