@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Email;
+use App\Entity\Organization;
 use App\Entity\Person;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -34,6 +35,20 @@ class ZuidDrechtFixtures extends Fixture
         ) {
             return false;
         }
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('344867d7-d71d-44d6-90ff-8603c2422058');
+        $organization = new Organization();
+        $organization->setName('Zuid Drecht');
+        $organization->setDescription('De meest inovatieve gemeenten van nederland');
+        $organization->setType('township');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+
         // Test Student
         $id = Uuid::fromString('f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f');
         $person = new Person();
