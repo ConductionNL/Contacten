@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -210,12 +211,20 @@ class Person
      */
     private $dateModified;
 
+    /**
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="person")
+     * @MaxDepth(1)
+     */
+    private $socials;
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
         $this->adresses = new ArrayCollection();
         $this->contactLists = new ArrayCollection();
         $this->emails = new ArrayCollection();
+        $this->socials = new ArrayCollection();
     }
 
     public function getId()
@@ -434,6 +443,37 @@ class Person
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Social[]
+     */
+    public function getSocials(): Collection
+    {
+        return $this->socials;
+    }
+
+    public function addSocial(Social $social): self
+    {
+        if (!$this->socials->contains($social)) {
+            $this->socials[] = $social;
+            $social->setPerson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSocial(Social $social): self
+    {
+        if ($this->socials->contains($social)) {
+            $this->socials->removeElement($social);
+            // set the owning side to null (unless already changed)
+            if ($social->getPerson() === $this) {
+                $social->setPerson(null);
+            }
+        }
 
         return $this;
     }
