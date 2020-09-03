@@ -68,7 +68,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Social
 {
     /**
-    /**
      * @var UuidInterface UUID of this telephone
      *
      * @Groups({"read"})
