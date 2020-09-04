@@ -101,7 +101,5 @@ class ZuidDrechtFixtures extends Fixture
 
         $manager->persist($organization);
         $manager->flush();
-
-
     }
 }
