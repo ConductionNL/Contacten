@@ -93,17 +93,14 @@ class ZuidDrechtFixtures extends Fixture
         $manager->flush();
         $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
 
-        $id = Uuid::fromString('34c5e3d1-cc38-4913-b183-a1863bd2cee3');
         $organization = new Organization();
         $organization->setName('cafe de zwarte raaf');
         $organization->setDescription('cafe de zwarte raaf');
         $organization->setType('cafe');
         $organization->addPerson($person);
-        $manager->persist($organization);
-        $organization->setId($id);
+
         $manager->persist($organization);
         $manager->flush();
-        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
 
     }
