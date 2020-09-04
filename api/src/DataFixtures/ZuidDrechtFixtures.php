@@ -104,7 +104,5 @@ class ZuidDrechtFixtures extends Fixture
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
-
-
     }
 }
