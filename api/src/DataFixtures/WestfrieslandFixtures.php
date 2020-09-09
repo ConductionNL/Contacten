@@ -69,17 +69,41 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
         $medemblik = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
-        // SED
+        // Enkhuizen
         $id = Uuid::fromString('0012428b-dc06-444a-af20-17d3ee06a916');
-        $sed = new Organization();
-        $sed->setName('SED');
-        $sed->setDescription('Gemeenten Stede Broec, Enkhuizen en Drechterland');
-        $sed->setType('Gemeente');
-        $manager->persist($sed);
-        $sed->setId($id);
-        $manager->persist($sed);
+        $enkhuizen = new Organization();
+        $enkhuizen->setName('Enkhuizen');
+        $enkhuizen->setDescription('Gemeente Enkhuizen');
+        $enkhuizen->setType('Gemeente');
+        $manager->persist($enkhuizen);
+        $enkhuizen->setId($id);
+        $manager->persist($enkhuizen);
         $manager->flush();
-        $sed = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $enkhuizen = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Drechterland
+        $id = Uuid::fromString('756e50b8-4fd7-44d4-99d6-7f8ef47c3678');
+        $drechterland = new Organization();
+        $drechterland->setName('Drechterland');
+        $drechterland->setDescription('Gemeente Drechterland');
+        $drechterland->setType('Gemeente');
+        $manager->persist($drechterland);
+        $drechterland->setId($id);
+        $manager->persist($drechterland);
+        $manager->flush();
+        $drechterland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        // Stedebroec
+        $id = Uuid::fromString('93a892a9-d164-4d37-bfa5-a37c52ab3840');
+        $stedebroec = new Organization();
+        $stedebroec->setName('Stedebroec');
+        $stedebroec->setDescription('Gemeente Stedebroec');
+        $stedebroec->setType('Gemeente');
+        $manager->persist($stedebroec);
+        $stedebroec->setId($id);
+        $manager->persist($stedebroec);
+        $manager->flush();
+        $stedebroec = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         // Hoorn
         $id = Uuid::fromString('816395fc-4ba4-4fa5-90e9-780bb14a50c2');
