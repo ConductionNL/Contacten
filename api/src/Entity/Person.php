@@ -159,7 +159,7 @@ class Person
      * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dateOfBirth;
+    private $birthday;
 
     /**
      * @var string Birthplace of this person
@@ -330,14 +330,14 @@ class Person
         return $this;
     }
 
-    public function getDateOfBirth(): ?\DateTimeInterface
+    public function getBirthday(): ?\DateTimeInterface
     {
-        return $this->dateOfBirth;
+        return $this->birthday;
     }
 
-    public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
+    public function setBirthday(\DateTimeInterface $birthday): self
     {
-        $this->dateOfBirth = $dateOfBirth;
+        $this->birthday = $birthday;
 
         return $this;
     }
