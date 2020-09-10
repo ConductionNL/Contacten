@@ -54,7 +54,6 @@ class WestfrieslandFixtures extends Fixture
         $opmeer->setDescription('Gemeente Opmeer');
         $opmeer->setType('Gemeente');
 
-
         $manager->persist($opmeer);
         $opmeer->setId($id);
         $manager->persist($opmeer);
@@ -67,14 +66,12 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($opmeer);
         $manager->flush();
 
-
         // Medemblik
         $id = Uuid::fromString('47c8c694-62bb-4dec-b054-556537e896fe');
         $medemblik = new Organization();
         $medemblik->setName('Medemblik');
         $medemblik->setDescription('Gemeente Medemblik');
         $medemblik->setType('Gemeente');
-
 
         $manager->persist($medemblik);
         $medemblik->setId($id);
@@ -95,7 +92,6 @@ class WestfrieslandFixtures extends Fixture
         $enkhuizen->setDescription('Gemeente Enkhuizen');
         $enkhuizen->setType('Gemeente');
 
-
         $manager->persist($enkhuizen);
         $enkhuizen->setId($id);
         $manager->persist($enkhuizen);
@@ -115,7 +111,6 @@ class WestfrieslandFixtures extends Fixture
         $drechterland->setDescription('Gemeente Drechterland');
         $drechterland->setType('Gemeente');
 
-
         $manager->persist($drechterland);
         $drechterland->setId($id);
         $manager->persist($drechterland);
@@ -128,14 +123,12 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($drechterland);
         $manager->flush();
 
-
         // Stedebroec
         $id = Uuid::fromString('93a892a9-d164-4d37-bfa5-a37c52ab3840');
         $stedebroec = new Organization();
         $stedebroec->setName('Stedebroec');
         $stedebroec->setDescription('Gemeente Stedebroec');
         $stedebroec->setType('Gemeente');
-
 
         $manager->persist($stedebroec);
         $stedebroec->setId($id);
@@ -156,7 +149,6 @@ class WestfrieslandFixtures extends Fixture
         $hoorn->setDescription('Gemeente Hoorn');
         $hoorn->setType('Gemeente');
 
-
         $manager->persist($hoorn);
         $hoorn->setId($id);
         $manager->persist($hoorn);
@@ -175,7 +167,6 @@ class WestfrieslandFixtures extends Fixture
         $koggenland->setName('Koggenland');
         $koggenland->setDescription('Gemeente Koggenland');
         $koggenland->setType('Gemeente');
-
 
         $manager->persist($koggenland);
         $koggenland->setId($id);
