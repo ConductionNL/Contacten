@@ -150,7 +150,6 @@ class Person
      */
     private $familyName;
 
-
     /**
      * @var string Date of birth of this person
      *
@@ -161,7 +160,6 @@ class Person
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateOfBirth;
-
 
     /**
      * @var string Birthplace of this person
