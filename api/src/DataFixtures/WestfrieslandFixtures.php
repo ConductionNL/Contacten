@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Email;
 use App\Entity\Organization;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -46,11 +47,18 @@ class WestfrieslandFixtures extends Fixture
         $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         // Opmeer
+
         $id = Uuid::fromString('26dee7a2-0fb6-4cc8-b5f6-0b5e2f8aa789');
         $opmeer = new Organization();
         $opmeer->setName('Opmeer');
         $opmeer->setDescription('Gemeente Opmeer');
         $opmeer->setType('Gemeente');
+
+        $email = new Email();
+        $email->setEmail('info@opmeer.nl');
+
+        $opmeer->addEmail($email);
+
         $manager->persist($opmeer);
         $opmeer->setId($id);
         $manager->persist($opmeer);
@@ -63,6 +71,12 @@ class WestfrieslandFixtures extends Fixture
         $medemblik->setName('Medemblik');
         $medemblik->setDescription('Gemeente Medemblik');
         $medemblik->setType('Gemeente');
+
+        $email = new Email();
+        $email->setEmail('info@medemblik.nl');
+
+        $medemblik->addEmail($email);
+
         $manager->persist($medemblik);
         $medemblik->setId($id);
         $manager->persist($medemblik);
@@ -75,6 +89,12 @@ class WestfrieslandFixtures extends Fixture
         $enkhuizen->setName('Enkhuizen');
         $enkhuizen->setDescription('Gemeente Enkhuizen');
         $enkhuizen->setType('Gemeente');
+
+        $email = new Email();
+        $email->setEmail('info@enkhuizen.nl');
+
+        $enkhuizen->addEmail($email);
+
         $manager->persist($enkhuizen);
         $enkhuizen->setId($id);
         $manager->persist($enkhuizen);
@@ -87,6 +107,12 @@ class WestfrieslandFixtures extends Fixture
         $drechterland->setName('Drechterland');
         $drechterland->setDescription('Gemeente Drechterland');
         $drechterland->setType('Gemeente');
+
+        $email = new Email();
+        $email->setEmail('info@drechterland.nl');
+
+        $drechterland->addEmail($email);
+
         $manager->persist($drechterland);
         $drechterland->setId($id);
         $manager->persist($drechterland);
@@ -99,6 +125,12 @@ class WestfrieslandFixtures extends Fixture
         $stedebroec->setName('Stedebroec');
         $stedebroec->setDescription('Gemeente Stedebroec');
         $stedebroec->setType('Gemeente');
+
+        $email = new Email();
+        $email->setEmail('info@stedebroec.nl');
+
+        $stedebroec->addEmail($email);
+
         $manager->persist($stedebroec);
         $stedebroec->setId($id);
         $manager->persist($stedebroec);
@@ -111,6 +143,12 @@ class WestfrieslandFixtures extends Fixture
         $hoorn->setName('Hoorn');
         $hoorn->setDescription('Gemeente Hoorn');
         $hoorn->setType('Gemeente');
+
+        $email = new Email();
+        $email->setEmail('info@hoorn.nl');
+
+        $hoorn->addEmail($email);
+
         $manager->persist($hoorn);
         $hoorn->setId($id);
         $manager->persist($hoorn);
@@ -123,6 +161,12 @@ class WestfrieslandFixtures extends Fixture
         $koggenland->setName('Koggenland');
         $koggenland->setDescription('Gemeente Koggenland');
         $koggenland->setType('Gemeente');
+
+        $email = new Email();
+        $email->setEmail('info@koggenland.nl');
+
+        $koggenland->addEmail($email);
+
         $manager->persist($koggenland);
         $koggenland->setId($id);
         $manager->persist($koggenland);
