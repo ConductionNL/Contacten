@@ -81,5 +81,25 @@ class ZuidDrechtFixtures extends Fixture
 
         $manager->persist($email);
         $manager->flush();
+
+        // checkin gebruiker
+        $id = Uuid::fromString('25006d28-350a-42e9-b9ed-7afb25d4321d');
+        $person = new Person();
+        $person->setGivenName('Jan');
+        $person->setFamilyName('Willem');
+        $manager->persist($person);
+        $person->setId($id);
+        $manager->persist($person);
+        $manager->flush();
+        $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
+
+        $organization = new Organization();
+        $organization->setName('cafe de zwarte raaf');
+        $organization->setDescription('cafe de zwarte raaf');
+        $organization->setType('cafe');
+        $organization->addPerson($person);
+
+        $manager->persist($organization);
+        $manager->flush();
     }
 }
