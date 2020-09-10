@@ -151,6 +151,31 @@ class Person
     private $familyName;
 
     /**
+     * @var string Date of birth of this person
+     *
+     * @example 15-03-2000
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateOfBirth;
+
+    /**
+     * @var string Birthplace of this person
+     *
+     * @example Amsterdam
+     *
+     * @Assert\Length (
+     *     max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $birthplace;
+
+    /**
      * @var Telephone Telephone of this person
      *
      * @Groups({"read", "write"})
@@ -301,6 +326,30 @@ class Person
     public function setFamilyName(?string $familyName): self
     {
         $this->familyName = $familyName;
+
+        return $this;
+    }
+
+    public function getDateOfBirth(): ?\DateTimeInterface
+    {
+        return $this->dateOfBirth;
+    }
+
+    public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
+    {
+        $this->dateOfBirth = $dateOfBirth;
+
+        return $this;
+    }
+
+    public function getBirthplace(): ?string
+    {
+        return $this->birthplace;
+    }
+
+    public function setBirthplace(?string $birthplace): self
+    {
+        $this->birthplace = $birthplace;
 
         return $this;
     }
