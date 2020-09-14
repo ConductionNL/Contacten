@@ -100,8 +100,10 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setType('cafe');
         $manager->persist($organization);
         $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
-
         $manager->persist($organization);
         $manager->flush();
 
@@ -122,6 +124,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setType('cafe');
         $manager->persist($organization);
         $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
 
         $manager->persist($organization);
@@ -144,6 +149,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setType('cafe');
         $manager->persist($organization);
         $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
 
         $manager->persist($organization);
@@ -166,6 +174,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setType('cafe');
         $manager->persist($organization);
         $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
 
         $manager->persist($organization);
@@ -188,6 +199,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setType('restaurant');
         $manager->persist($organization);
         $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
 
         $manager->persist($organization);
@@ -210,6 +224,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setType('co-working space');
         $manager->persist($organization);
         $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
 
         $manager->persist($organization);

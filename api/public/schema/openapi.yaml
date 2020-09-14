@@ -6484,6 +6484,24 @@ paths:
               - asc
               - desc
         -
+          name: 'order[birthday]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[birthplace]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -6501,6 +6519,30 @@ paths:
             enum:
               - asc
               - desc
+        -
+          name: 'birthday[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: 'dateCreated[before]'
           in: query
@@ -6621,6 +6663,34 @@ paths:
             type: string
         -
           name: 'familyName[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: birthday
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: birthplace
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthplace[]'
           in: query
           required: false
           schema:
@@ -10777,6 +10847,15 @@ components:
           description: 'Family name of this person'
           type: string
           nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -10827,6 +10906,15 @@ components:
           nullable: true
         familyName:
           description: 'Family name of this person'
+          type: string
+          nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
           type: string
           nullable: true
         telephones:
@@ -10893,6 +10981,15 @@ components:
           description: 'Family name of this person'
           type: string
           nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -10952,6 +11049,15 @@ components:
           nullable: true
         familyName:
           description: 'Family name of this person'
+          type: string
+          nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
           type: string
           nullable: true
         telephones:
@@ -11644,6 +11750,15 @@ definitions:
         type: string
         example: Do
         maxLength: 255
+      birthday:
+        description: 'Date of birth of this person'
+        type: string
+        example: 15-03-2000
+      birthplace:
+        description: 'Birthplace of this person'
+        type: string
+        example: Amsterdam
+        maxLength: 255
       dateCreated:
         description: 'The moment this resource was created'
         type: \Datetime
@@ -11682,6 +11797,15 @@ definitions:
         description: 'Family name of this person'
         type: string
         example: Do
+        maxLength: 255
+      birthday:
+        description: 'Date of birth of this person'
+        type: string
+        example: 15-03-2000
+      birthplace:
+        description: 'Birthplace of this person'
+        type: string
+        example: Amsterdam
         maxLength: 255
       telephones:
         description: 'Telephone of this person'
@@ -11922,12 +12046,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-04 09:28:46'
+        example: '2020-09-14 06:35:32'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-04 09:28:46'
+        example: '2020-09-14 06:35:32'
     required: []
   AuditTrail-write:
     properties:
@@ -11975,12 +12099,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-04 09:28:46'
+        example: '2020-09-14 06:35:32'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-04 09:28:46'
+        example: '2020-09-14 06:35:32'
     required: []
   ChangeLog-write:
     properties:
