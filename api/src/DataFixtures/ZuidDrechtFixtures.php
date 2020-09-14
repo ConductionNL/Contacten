@@ -83,7 +83,7 @@ class ZuidDrechtFixtures extends Fixture
         $manager->flush();
 
         // checkin gebruiker
-        $id = Uuid::fromString('25006d28-350a-42e9-b9ed-7afb25d4321d');
+        $id = Uuid::fromString('499aedcd-5bfe-4718-a785-7d0a1764eb0b');
         $person = new Person();
         $person->setGivenName('Jan');
         $person->setFamilyName('Willem');
@@ -98,9 +98,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setName('Cafe de zotte raaf');
         $organization->setDescription('cafe de zwarte raaf');
         $organization->setType('cafe');
-        $organization->addPerson($person);
         $manager->persist($organization);
         $organization->setId($id);
+        $organization->addPerson($person);
 
         $manager->persist($organization);
         $manager->flush();
@@ -120,9 +120,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setName('Restautant Goudlust');
         $organization->setDescription('cafe de zwarte raaf');
         $organization->setType('cafe');
-        $organization->addPerson($person);
         $manager->persist($organization);
         $organization->setId($id);
+        $organization->addPerson($person);
 
         $manager->persist($organization);
         $manager->flush();
@@ -142,9 +142,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setName('Hotel Dijkzicht');
         $organization->setDescription('cafe de zwarte raaf');
         $organization->setType('cafe');
-        $organization->addPerson($person);
         $manager->persist($organization);
         $organization->setId($id);
+        $organization->addPerson($person);
 
         $manager->persist($organization);
         $manager->flush();
@@ -164,9 +164,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setName('Camping de alpen koe');
         $organization->setDescription('Camping de alpen koe');
         $organization->setType('cafe');
-        $organization->addPerson($person);
         $manager->persist($organization);
         $organization->setId($id);
+        $organization->addPerson($person);
 
         $manager->persist($organization);
         $manager->flush();
@@ -186,9 +186,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setName('Mc Donalds Zuid-Drecht');
         $organization->setDescription('Mc Donalds Zuid-Drecht');
         $organization->setType('restaurant');
-        $organization->addPerson($person);
         $manager->persist($organization);
         $organization->setId($id);
+        $organization->addPerson($person);
 
         $manager->persist($organization);
         $manager->flush();
@@ -208,9 +208,9 @@ class ZuidDrechtFixtures extends Fixture
         $organization->setName('Creative Ground');
         $organization->setDescription('Creative Ground');
         $organization->setType('co-working space');
-        $organization->addPerson($person);
         $manager->persist($organization);
         $organization->setId($id);
+        $organization->addPerson($person);
 
         $manager->persist($organization);
         $manager->flush();
