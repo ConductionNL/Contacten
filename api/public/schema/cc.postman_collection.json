@@ -42,9 +42,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -137,9 +134,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -149,7 +143,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"My ContactList\",\n    \"description\": \"This is the best ContactList ever\"\n}"
+							"raw": "{\n    \"name\": \"My ContactList\",\n    \"description\": \"This is the best ContactList ever\"\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/contact_lists",
@@ -296,9 +293,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -414,9 +408,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -426,7 +417,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"My ContactList\",\n    \"description\": \"This is not the best ContactList ever\"\n}"
+							"raw": "{\n    \"name\": \"My ContactList\",\n    \"description\": \"This is not the best ContactList ever\"\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/contact_lists/{{contactlist}}",
@@ -541,178 +535,6 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "Updates the ContactList resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "95ac93d7-c6b1-432c-b118-87846f9f32e9",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.api+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"description\": \"This is the best  patched ContactList ever\"\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/contact_lists/{{contactlist}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"contact_lists",
-								"{{contactlist}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"persons\": [\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        }\n    ],\n    \"organizations\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"kvk\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"persons\": [\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                },\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"kvk\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"persons\": [\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                },\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/contact_lists/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"contact_lists",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "ContactList resource updated",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"persons\": [\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        }\n    ],\n    \"organizations\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"kvk\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"persons\": [\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                },\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"kvk\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"persons\": [\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                },\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/contact_lists/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"contact_lists",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/hal+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"name\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"persons\": [\n  {\n   \"givenName\": \"<string>\",\n   \"id\": \"<string>\",\n   \"additionalName\": \"<string>\",\n   \"familyName\": \"<string>\",\n   \"telephones\": [\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ],\n   \"adresses\": [\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    },\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    }\n   ],\n   \"emails\": [\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ]\n  },\n  {\n   \"givenName\": \"<string>\",\n   \"id\": \"<string>\",\n   \"additionalName\": \"<string>\",\n   \"familyName\": \"<string>\",\n   \"telephones\": [\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ],\n   \"adresses\": [\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    },\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    }\n   ],\n   \"emails\": [\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ]\n  }\n ],\n \"organizations\": [\n  {\n   \"name\": \"<string>\",\n   \"description\": \"<string>\",\n   \"id\": \"<string>\",\n   \"kvk\": \"<string>\",\n   \"telephones\": [\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ],\n   \"adresses\": [\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    },\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    }\n   ],\n   \"emails\": [\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ],\n   \"persons\": [\n    {\n     \"givenName\": \"<string>\",\n     \"id\": \"<string>\",\n     \"additionalName\": \"<string>\",\n     \"familyName\": \"<string>\",\n     \"telephones\": [\n      {\n       \"telephone\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      },\n      {\n       \"telephone\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      }\n     ],\n     \"adresses\": [\n      {\n       \"id\": \"<string>\",\n       \"name\": \"<string>\",\n       \"bagnummeraanduiding\": \"<string>\",\n       \"street\": \"<string>\",\n       \"houseNumber\": \"<string>\",\n       \"postalCode\": \"<string>\",\n       \"region\": \"<string>\",\n       \"locality\": \"<string>\",\n       \"country\": \"<string>\",\n       \"postOfficeBoxNumber\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"name\": \"<string>\",\n       \"bagnummeraanduiding\": \"<string>\",\n       \"street\": \"<string>\",\n       \"houseNumber\": \"<string>\",\n       \"postalCode\": \"<string>\",\n       \"region\": \"<string>\",\n       \"locality\": \"<string>\",\n       \"country\": \"<string>\",\n       \"postOfficeBoxNumber\": \"<string>\"\n      }\n     ],\n     \"emails\": [\n      {\n       \"email\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      },\n      {\n       \"email\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      }\n     ]\n    },\n    {\n     \"givenName\": \"<string>\",\n     \"id\": \"<string>\",\n     \"additionalName\": \"<string>\",\n     \"familyName\": \"<string>\",\n     \"telephones\": [\n      {\n       \"telephone\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      },\n      {\n       \"telephone\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      }\n     ],\n     \"adresses\": [\n      {\n       \"id\": \"<string>\",\n       \"name\": \"<string>\",\n       \"bagnummeraanduiding\": \"<string>\",\n       \"street\": \"<string>\",\n       \"houseNumber\": \"<string>\",\n       \"postalCode\": \"<string>\",\n       \"region\": \"<string>\",\n       \"locality\": \"<string>\",\n       \"country\": \"<string>\",\n       \"postOfficeBoxNumber\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"name\": \"<string>\",\n       \"bagnummeraanduiding\": \"<string>\",\n       \"street\": \"<string>\",\n       \"houseNumber\": \"<string>\",\n       \"postalCode\": \"<string>\",\n       \"region\": \"<string>\",\n       \"locality\": \"<string>\",\n       \"country\": \"<string>\",\n       \"postOfficeBoxNumber\": \"<string>\"\n      }\n     ],\n     \"emails\": [\n      {\n       \"email\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      },\n      {\n       \"email\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      }\n     ]\n    }\n   ]\n  },\n  {\n   \"name\": \"<string>\",\n   \"description\": \"<string>\",\n   \"id\": \"<string>\",\n   \"kvk\": \"<string>\",\n   \"telephones\": [\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ],\n   \"adresses\": [\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    },\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    }\n   ],\n   \"emails\": [\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ],\n   \"persons\": [\n    {\n     \"givenName\": \"<string>\",\n     \"id\": \"<string>\",\n     \"additionalName\": \"<string>\",\n     \"familyName\": \"<string>\",\n     \"telephones\": [\n      {\n       \"telephone\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      },\n      {\n       \"telephone\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      }\n     ],\n     \"adresses\": [\n      {\n       \"id\": \"<string>\",\n       \"name\": \"<string>\",\n       \"bagnummeraanduiding\": \"<string>\",\n       \"street\": \"<string>\",\n       \"houseNumber\": \"<string>\",\n       \"postalCode\": \"<string>\",\n       \"region\": \"<string>\",\n       \"locality\": \"<string>\",\n       \"country\": \"<string>\",\n       \"postOfficeBoxNumber\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"name\": \"<string>\",\n       \"bagnummeraanduiding\": \"<string>\",\n       \"street\": \"<string>\",\n       \"houseNumber\": \"<string>\",\n       \"postalCode\": \"<string>\",\n       \"region\": \"<string>\",\n       \"locality\": \"<string>\",\n       \"country\": \"<string>\",\n       \"postOfficeBoxNumber\": \"<string>\"\n      }\n     ],\n     \"emails\": [\n      {\n       \"email\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      },\n      {\n       \"email\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      }\n     ]\n    },\n    {\n     \"givenName\": \"<string>\",\n     \"id\": \"<string>\",\n     \"additionalName\": \"<string>\",\n     \"familyName\": \"<string>\",\n     \"telephones\": [\n      {\n       \"telephone\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      },\n      {\n       \"telephone\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      }\n     ],\n     \"adresses\": [\n      {\n       \"id\": \"<string>\",\n       \"name\": \"<string>\",\n       \"bagnummeraanduiding\": \"<string>\",\n       \"street\": \"<string>\",\n       \"houseNumber\": \"<string>\",\n       \"postalCode\": \"<string>\",\n       \"region\": \"<string>\",\n       \"locality\": \"<string>\",\n       \"country\": \"<string>\",\n       \"postOfficeBoxNumber\": \"<string>\"\n      },\n      {\n       \"id\": \"<string>\",\n       \"name\": \"<string>\",\n       \"bagnummeraanduiding\": \"<string>\",\n       \"street\": \"<string>\",\n       \"houseNumber\": \"<string>\",\n       \"postalCode\": \"<string>\",\n       \"region\": \"<string>\",\n       \"locality\": \"<string>\",\n       \"country\": \"<string>\",\n       \"postOfficeBoxNumber\": \"<string>\"\n      }\n     ],\n     \"emails\": [\n      {\n       \"email\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      },\n      {\n       \"email\": \"<string>\",\n       \"id\": \"<string>\",\n       \"name\": \"<string>\"\n      }\n     ]\n    }\n   ]\n  }\n ]\n}"
-						},
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"persons\": [\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        }\n    ],\n    \"organizations\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"kvk\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"persons\": [\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                },\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"kvk\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"persons\": [\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                },\n                {\n                    \"givenName\": \"<string>\",\n                    \"additionalName\": \"<string>\",\n                    \"familyName\": \"<string>\",\n                    \"telephones\": [\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"telephone\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ],\n                    \"adresses\": [\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        },\n                        {\n                            \"name\": \"<string>\",\n                            \"bagnummeraanduiding\": \"<string>\",\n                            \"street\": \"<string>\",\n                            \"houseNumber\": \"<string>\",\n                            \"postalCode\": \"<string>\",\n                            \"region\": \"<string>\",\n                            \"locality\": \"<string>\",\n                            \"country\": \"<string>\",\n                            \"postOfficeBoxNumber\": \"<string>\"\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        },\n                        {\n                            \"email\": \"<string>\",\n                            \"name\": \"<string>\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/contact_lists/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"contact_lists",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
 							"_postman_previewlanguage": "text",
 							"header": [
 								{
@@ -786,9 +608,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -881,9 +700,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -893,7 +709,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"telephone\": \"+31 26 355 7772\",\n        \"name\": \"KPN Testtelefoon\"\n    }"
+							"raw": "    {\n        \"telephone\": \"+31 26 355 7772\",\n        \"name\": \"KPN Testtelefoon\"\n    }",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/telephones",
@@ -1040,9 +859,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1158,9 +974,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -1170,7 +983,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"telephone\": \"+31 (0)26 355 7772\",\n    \"name\": \"KPN Testtelefoon\"\n}"
+							"raw": "{\n    \"telephone\": \"+31 (0)26 355 7772\",\n    \"name\": \"KPN Testtelefoon\"\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/telephones/{{telephone}}",
@@ -1294,178 +1110,6 @@
 							],
 							"cookie": [],
 							"body": "{\n \"telephone\": \"<string>\",\n \"id\": \"<string>\",\n \"name\": \"<string>\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Updates the Telephone resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "5c2742ef-babf-46a2-a7fc-a667a153fff7",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.api+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"KPN Terugbelnummer\"\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/telephones/{{telephone}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"telephones",
-								"{{telephone}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"telephone\": \"<string>\",\n    \"name\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/telephones/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"telephones",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Telephone resource updated",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"telephone\": \"<string>\",\n    \"name\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/telephones/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"telephones",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/hal+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"telephone\": \"<string>\",\n \"id\": \"<string>\",\n \"name\": \"<string>\"\n}"
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"telephone\": \"<string>\",\n    \"name\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/telephones/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"telephones",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
 						}
 					]
 				}
@@ -1530,9 +1174,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1632,9 +1273,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -1644,7 +1282,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"email@example.org\",\n    \"name\": \"My email\"\n}"
+							"raw": "{\n    \"email\": \"email@example.org\",\n    \"name\": \"My email\"\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/emails",
@@ -1791,9 +1432,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1909,9 +1547,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -1921,7 +1556,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"email@example.com\",\n    \"name\": \"My email\"\n}"
+							"raw": "{\n    \"email\": \"email@example.com\",\n    \"name\": \"My email\"\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/emails/{{email}}",
@@ -2045,178 +1683,6 @@
 							],
 							"cookie": [],
 							"body": "{\n \"email\": \"<string>\",\n \"id\": \"<string>\",\n \"name\": \"<string>\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Updates the Email resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "9bbaabf3-05cf-49de-8716-2c8b60ceefb7",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.api+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"email@example.org\"\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/emails/{{email}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"emails",
-								"{{email}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Email resource updated",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/emails/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"emails",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/hal+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"email\": \"<string>\",\n \"id\": \"<string>\",\n \"name\": \"<string>\"\n}"
-						},
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/emails/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"emails",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/emails/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"emails",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
 						}
 					]
 				}
@@ -2281,9 +1747,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2383,9 +1846,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -2395,7 +1855,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"my address\",\n    \"bagnummeraanduiding\": \"0363200000218908\",\n    \"street\": \"appelstreet\",\n    \"houseNumber\": \"8\",\n    \"postalCode\": \"1234AB\",\n    \"region\": \"Noord-Holland\",\n    \"locality\": \"Oud-Zuid\",\n    \"country\": \"The Netherlands\",\n    \"postOfficeBoxNumber\": \"PO Box 1234\"\n}"
+							"raw": "{\n    \"name\": \"my address\",\n    \"bagnummeraanduiding\": \"0363200000218908\",\n    \"street\": \"appelstreet\",\n    \"houseNumber\": \"8\",\n    \"postalCode\": \"1234AB\",\n    \"region\": \"Noord-Holland\",\n    \"locality\": \"Oud-Zuid\",\n    \"country\": \"The Netherlands\",\n    \"postOfficeBoxNumber\": \"PO Box 1234\"\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/addresses",
@@ -2542,9 +2005,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2660,9 +2120,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -2672,7 +2129,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"my new address\",\n    \"bagnummeraanduiding\": \"0363200000218908\",\n    \"street\": \"appelstreet\",\n    \"houseNumber\": \"8\",\n    \"postalCode\": \"1234AB\",\n    \"region\": \"Noord-Holland\",\n    \"locality\": \"Oud-Zuid\",\n    \"country\": \"The Netherlands\",\n    \"postOfficeBoxNumber\": \"PO Box 1234\"\n}"
+							"raw": "{\n    \"name\": \"my new address\",\n    \"bagnummeraanduiding\": \"0363200000218908\",\n    \"street\": \"appelstreet\",\n    \"houseNumber\": \"8\",\n    \"postalCode\": \"1234AB\",\n    \"region\": \"Noord-Holland\",\n    \"locality\": \"Oud-Zuid\",\n    \"country\": \"The Netherlands\",\n    \"postOfficeBoxNumber\": \"PO Box 1234\"\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/addresses/{{address}}",
@@ -2764,178 +2224,6 @@
 							"name": "Address resource updated",
 							"originalRequest": {
 								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/addresses/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"addresses",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/hal+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"bagnummeraanduiding\": \"<string>\",\n \"street\": \"<string>\",\n \"houseNumber\": \"<string>\",\n \"postalCode\": \"<string>\",\n \"region\": \"<string>\",\n \"locality\": \"<string>\",\n \"country\": \"<string>\",\n \"postOfficeBoxNumber\": \"<string>\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Updates the Address resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c9f74a4a-198c-4d64-b38b-16e9982745a7",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.api+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"my address\",\n    \"bagnummeraanduiding\": \"0363200000218908\",\n    \"street\": \"appelstreet\",\n    \"houseNumber\": \"8\",\n    \"postalCode\": \"1234AB\",\n    \"region\": \"Noord-Holland\",\n    \"locality\": \"Oud-Zuid\",\n    \"country\": \"The Netherlands\",\n    \"postOfficeBoxNumber\": \"PO Box 1234\"\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/addresses/{{address}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"addresses",
-								"{{address}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/addresses/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"addresses",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/addresses/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"addresses",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Address resource updated",
-							"originalRequest": {
-								"method": "PATCH",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -3032,9 +2320,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -3127,9 +2412,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -3139,7 +2421,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"givenName\": \"John\",\n    \"additionalName\": \"Allan\",\n    \"familyName\": \"Doe\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ]\n}"
+							"raw": "{\n    \"givenName\": \"John\",\n    \"additionalName\": \"Allan\",\n    \"familyName\": \"Doe\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ]\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/people",
@@ -3286,9 +2571,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -3404,9 +2686,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -3416,7 +2695,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"givenName\": \"John\",\n    \"additionalName\": \"Allan\",\n    \"familyName\": \"Doe\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ]\n}"
+							"raw": "{\n    \"givenName\": \"John\",\n    \"additionalName\": \"Allan\",\n    \"familyName\": \"Doe\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ]\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/people/{{person}}",
@@ -3540,178 +2822,6 @@
 							],
 							"cookie": [],
 							"body": "{\n \"givenName\": \"<string>\",\n \"id\": \"<string>\",\n \"additionalName\": \"<string>\",\n \"familyName\": \"<string>\",\n \"telephones\": [\n  {\n   \"telephone\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  },\n  {\n   \"telephone\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  }\n ],\n \"adresses\": [\n  {\n   \"id\": \"<string>\",\n   \"name\": \"<string>\",\n   \"bagnummeraanduiding\": \"<string>\",\n   \"street\": \"<string>\",\n   \"houseNumber\": \"<string>\",\n   \"postalCode\": \"<string>\",\n   \"region\": \"<string>\",\n   \"locality\": \"<string>\",\n   \"country\": \"<string>\",\n   \"postOfficeBoxNumber\": \"<string>\"\n  },\n  {\n   \"id\": \"<string>\",\n   \"name\": \"<string>\",\n   \"bagnummeraanduiding\": \"<string>\",\n   \"street\": \"<string>\",\n   \"houseNumber\": \"<string>\",\n   \"postalCode\": \"<string>\",\n   \"region\": \"<string>\",\n   \"locality\": \"<string>\",\n   \"country\": \"<string>\",\n   \"postOfficeBoxNumber\": \"<string>\"\n  }\n ],\n \"emails\": [\n  {\n   \"email\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  },\n  {\n   \"email\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  }\n ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Updates the Person resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "1ac95003-c7ee-450d-8443-caebca131987",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.api+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"givenName\": \"Jane\",\n    \"additionalName\": \"Alice\",\n    \"familyName\": \"Doe\"\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/people/{{person}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"people",
-								"{{person}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Person resource updated",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"givenName\": \"<string>\",\n    \"additionalName\": \"<string>\",\n    \"familyName\": \"<string>\",\n    \"telephones\": [\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"adresses\": [\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        },\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        }\n    ],\n    \"emails\": [\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/people/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"people",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/hal+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"givenName\": \"<string>\",\n \"id\": \"<string>\",\n \"additionalName\": \"<string>\",\n \"familyName\": \"<string>\",\n \"telephones\": [\n  {\n   \"telephone\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  },\n  {\n   \"telephone\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  }\n ],\n \"adresses\": [\n  {\n   \"id\": \"<string>\",\n   \"name\": \"<string>\",\n   \"bagnummeraanduiding\": \"<string>\",\n   \"street\": \"<string>\",\n   \"houseNumber\": \"<string>\",\n   \"postalCode\": \"<string>\",\n   \"region\": \"<string>\",\n   \"locality\": \"<string>\",\n   \"country\": \"<string>\",\n   \"postOfficeBoxNumber\": \"<string>\"\n  },\n  {\n   \"id\": \"<string>\",\n   \"name\": \"<string>\",\n   \"bagnummeraanduiding\": \"<string>\",\n   \"street\": \"<string>\",\n   \"houseNumber\": \"<string>\",\n   \"postalCode\": \"<string>\",\n   \"region\": \"<string>\",\n   \"locality\": \"<string>\",\n   \"country\": \"<string>\",\n   \"postOfficeBoxNumber\": \"<string>\"\n  }\n ],\n \"emails\": [\n  {\n   \"email\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  },\n  {\n   \"email\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  }\n ]\n}"
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"givenName\": \"<string>\",\n    \"additionalName\": \"<string>\",\n    \"familyName\": \"<string>\",\n    \"telephones\": [\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"adresses\": [\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        },\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        }\n    ],\n    \"emails\": [\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/people/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"people",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"givenName\": \"<string>\",\n    \"additionalName\": \"<string>\",\n    \"familyName\": \"<string>\",\n    \"telephones\": [\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"adresses\": [\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        },\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        }\n    ],\n    \"emails\": [\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/people/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"people",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
 						}
 					]
 				}
@@ -3776,13 +2886,10 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/organizations?",
+							"raw": "{{baseUrl}}/organizations",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -3879,9 +2986,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -3891,7 +2995,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Ajax\",\r\n    \"description\": \"Ajax is a dutch soccer club\",\r\n    \"kvk\": \"123456789\",\r\n    \"telephones\": [\r\n        \"/telephones/{{telephone}}\"\r\n    ],\r\n    \"adresses\": [\r\n        \"/addresses/{{address}}\"\r\n    ],\r\n    \"emails\": [\r\n\t\t\"/emails/{{email}}\"\r\n    ]\r\n}"
+							"raw": "{\r\n    \"name\": \"Ajax\",\r\n    \"description\": \"Ajax is a dutch soccer club\",\r\n    \"kvk\": \"123456789\",\r\n    \"type\": \"Township\",\r\n    \"telephones\": [\r\n        \"/telephones/{{telephone}}\"\r\n    ],\r\n    \"adresses\": [\r\n        \"/addresses/{{address}}\"\r\n    ],\r\n    \"emails\": [\r\n\t\t\"/emails/{{email}}\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/organizations",
@@ -4038,9 +3145,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -4156,9 +3260,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -4168,7 +3269,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Ajax\",\r\n    \"description\": \"Ajax is a dutch soccer club\",\r\n    \"kvk\": \"123456789\",\r\n    \"telephones\": [\r\n        \"/telephones/{{telephone}}\"\r\n    ],\r\n    \"adresses\": [\r\n        \"/addresses/{{address}}\"\r\n    ],\r\n    \"emails\": [\r\n\t\t\"/emails/{{email}}\"\r\n    ]\r\n}"
+							"raw": "{\n    \"name\": \"Ajax\",\n    \"description\": \"Ajax is a dutch soccer club\",\n    \"kvk\": \"123456789\",\n    \"type\": \"Township\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ]\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/organizations/{{organization}}",
@@ -4260,178 +3364,6 @@
 							"name": "Organization resource updated",
 							"originalRequest": {
 								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"kvk\": \"<string>\",\n    \"telephones\": [\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"adresses\": [\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        },\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        }\n    ],\n    \"emails\": [\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"persons\": [\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/organizations/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"organizations",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/hal+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"name\": \"<string>\",\n \"description\": \"<string>\",\n \"id\": \"<string>\",\n \"kvk\": \"<string>\",\n \"telephones\": [\n  {\n   \"telephone\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  },\n  {\n   \"telephone\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  }\n ],\n \"adresses\": [\n  {\n   \"id\": \"<string>\",\n   \"name\": \"<string>\",\n   \"bagnummeraanduiding\": \"<string>\",\n   \"street\": \"<string>\",\n   \"houseNumber\": \"<string>\",\n   \"postalCode\": \"<string>\",\n   \"region\": \"<string>\",\n   \"locality\": \"<string>\",\n   \"country\": \"<string>\",\n   \"postOfficeBoxNumber\": \"<string>\"\n  },\n  {\n   \"id\": \"<string>\",\n   \"name\": \"<string>\",\n   \"bagnummeraanduiding\": \"<string>\",\n   \"street\": \"<string>\",\n   \"houseNumber\": \"<string>\",\n   \"postalCode\": \"<string>\",\n   \"region\": \"<string>\",\n   \"locality\": \"<string>\",\n   \"country\": \"<string>\",\n   \"postOfficeBoxNumber\": \"<string>\"\n  }\n ],\n \"emails\": [\n  {\n   \"email\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  },\n  {\n   \"email\": \"<string>\",\n   \"id\": \"<string>\",\n   \"name\": \"<string>\"\n  }\n ],\n \"persons\": [\n  {\n   \"givenName\": \"<string>\",\n   \"id\": \"<string>\",\n   \"additionalName\": \"<string>\",\n   \"familyName\": \"<string>\",\n   \"telephones\": [\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ],\n   \"adresses\": [\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    },\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    }\n   ],\n   \"emails\": [\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ]\n  },\n  {\n   \"givenName\": \"<string>\",\n   \"id\": \"<string>\",\n   \"additionalName\": \"<string>\",\n   \"familyName\": \"<string>\",\n   \"telephones\": [\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"telephone\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ],\n   \"adresses\": [\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    },\n    {\n     \"id\": \"<string>\",\n     \"name\": \"<string>\",\n     \"bagnummeraanduiding\": \"<string>\",\n     \"street\": \"<string>\",\n     \"houseNumber\": \"<string>\",\n     \"postalCode\": \"<string>\",\n     \"region\": \"<string>\",\n     \"locality\": \"<string>\",\n     \"country\": \"<string>\",\n     \"postOfficeBoxNumber\": \"<string>\"\n    }\n   ],\n   \"emails\": [\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    },\n    {\n     \"email\": \"<string>\",\n     \"id\": \"<string>\",\n     \"name\": \"<string>\"\n    }\n   ]\n  }\n ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Updates the Organization resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "a1770faa-9c0e-4f14-9582-ecb481008b28",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.api+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AFC Ajax\"\r\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/organizations/{{organization}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"organizations",
-								"{{organization}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"kvk\": \"<string>\",\n    \"telephones\": [\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"adresses\": [\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        },\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        }\n    ],\n    \"emails\": [\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"persons\": [\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/organizations/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"organizations",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"kvk\": \"<string>\",\n    \"telephones\": [\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"telephone\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"adresses\": [\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        },\n        {\n            \"name\": \"<string>\",\n            \"bagnummeraanduiding\": \"<string>\",\n            \"street\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"region\": \"<string>\",\n            \"locality\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postOfficeBoxNumber\": \"<string>\"\n        }\n    ],\n    \"emails\": [\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        },\n        {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n        }\n    ],\n    \"persons\": [\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"givenName\": \"<string>\",\n            \"additionalName\": \"<string>\",\n            \"familyName\": \"<string>\",\n            \"telephones\": [\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"telephone\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ],\n            \"adresses\": [\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                },\n                {\n                    \"name\": \"<string>\",\n                    \"bagnummeraanduiding\": \"<string>\",\n                    \"street\": \"<string>\",\n                    \"houseNumber\": \"<string>\",\n                    \"postalCode\": \"<string>\",\n                    \"region\": \"<string>\",\n                    \"locality\": \"<string>\",\n                    \"country\": \"<string>\",\n                    \"postOfficeBoxNumber\": \"<string>\"\n                }\n            ],\n            \"emails\": [\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                },\n                {\n                    \"email\": \"<string>\",\n                    \"name\": \"<string>\"\n                }\n            ]\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/organizations/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"organizations",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Organization resource updated",
-							"originalRequest": {
-								"method": "PATCH",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -4514,9 +3446,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -4618,9 +3547,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -4722,9 +3648,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -4826,9 +3749,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -4930,9 +3850,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -5034,9 +3951,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -5123,6 +4037,21 @@
 			"protocolProfileBehavior": {}
 		}
 	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{authorization}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -5147,10 +4076,14 @@
 	],
 	"variable": [
 		{
-			"id": "998a998c-b5e7-43d5-be0a-2ee45157c186",
+			"id": "45ffbcbe-903a-4bb3-b102-31379d47f257",
 			"key": "baseUrl",
-			"value": "http://localhost:8080",
-			"type": "string"
+			"value": "localhost"
+		},
+		{
+			"id": "fe5813af-abc0-4ced-bb88-a65b1d60ab0b",
+			"key": "authorization",
+			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
 	],
 	"protocolProfileBehavior": {}
