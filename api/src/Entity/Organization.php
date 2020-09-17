@@ -62,7 +62,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)s
+ * @ApiFilter(SearchFilter::class)
  */
 class Organization
 {
@@ -213,6 +213,13 @@ class Organization
      */
     private $dateModified;
 
+    /**
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="organization" , cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $socials;
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
@@ -220,6 +227,7 @@ class Organization
         $this->persons = new ArrayCollection();
         $this->contactLists = new ArrayCollection();
         $this->emails = new ArrayCollection();
+        $this->socials = new ArrayCollection();
     }
 
     public function getId()
@@ -462,26 +470,33 @@ class Organization
         return $this;
     }
 
-    public function getDateCreated(): ?\DateTimeInterface
+    /**
+     * @return Collection|Social[]
+     */
+    public function getSocials(): Collection
     {
-        return $this->dateCreated;
+        return $this->socials;
     }
 
-    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    public function addSocial(Social $social): self
     {
-        $this->dateCreated = $dateCreated;
+        if (!$this->socials->contains($social)) {
+            $this->socials[] = $social;
+            $social->setOrganization($this);
+        }
 
         return $this;
     }
 
-    public function getDateModified(): ?\DateTimeInterface
+    public function removeSocial(Social $social): self
     {
-        return $this->dateModified;
-    }
-
-    public function setDateModified(\DateTimeInterface $dateModified): self
-    {
-        $this->dateModified = $dateModified;
+        if ($this->socials->contains($social)) {
+            $this->socials->removeElement($social);
+            // set the owning side to null (unless already changed)
+            if ($social->getOrganization() === $this) {
+                $social->setOrganization(null);
+            }
+        }
 
         return $this;
     }

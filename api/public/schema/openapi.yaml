@@ -1,18 +1,18 @@
 openapi: 3.0.2
 info:
   title: 'Contacten Catalogus'
-  version: V.0.1
+  version: V1.0
   description: |
     API Details
     - Component: Contacten Catalogus
     - Reference: cc
     - Enviroment: dev
-    - Version: V.0.1
+    - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
     - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   /addresses:
@@ -6448,6 +6448,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[resource]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[givenName]'
           in: query
           required: false
@@ -6475,6 +6484,24 @@ paths:
               - asc
               - desc
         -
+          name: 'order[birthday]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[birthplace]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -6492,6 +6519,30 @@ paths:
             enum:
               - asc
               - desc
+        -
+          name: 'birthday[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: 'dateCreated[before]'
           in: query
@@ -6557,6 +6608,22 @@ paths:
           style: form
           explode: true
         -
+          name: resource
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'resource[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: givenName
           in: query
           required: false
@@ -6596,6 +6663,34 @@ paths:
             type: string
         -
           name: 'familyName[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: birthday
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: birthplace
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthplace[]'
           in: query
           required: false
           schema:
@@ -7413,6 +7508,1171 @@ paths:
             text/html:
               schema:
                 $ref: '#/components/schemas/Person-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  /socials:
+    get:
+      tags:
+        - Social
+      operationId: getSocialCollection
+      summary: 'Retrieves the collection of Social resources.'
+      responses:
+        200:
+          description: 'Social collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Social:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Social:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Social-read'
+      parameters:
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[name]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[description]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[website]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[twitter]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[facebook]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[linkedin]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[instagram]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[created]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[modified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'created[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'created[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'created[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'created[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'modified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'modified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'modified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'modified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'name[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: description
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'description[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: website
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'website[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: twitter
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'twitter[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: facebook
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'facebook[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: linkedin
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'linkedin[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: instagram
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'instagram[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: created
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'created[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: modified
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'modified[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Social
+      operationId: postSocialCollection
+      summary: 'Creates a Social resource.'
+      responses:
+        201:
+          description: 'Social resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+          links:
+            GetSocialItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getSocialItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /socials/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Social:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Social:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+        description: 'The new Social resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/socials/{id}':
+    get:
+      tags:
+        - Social
+      operationId: getSocialItem
+      summary: 'Retrieves a Social resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Social resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    put:
+      tags:
+        - Social
+      operationId: putSocialItem
+      summary: 'Replaces the Social resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Social resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Social:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Social:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Social-write'
+        description: 'The updated Social resource'
+    delete:
+      tags:
+        - Social
+      operationId: deleteSocialItem
+      summary: 'Removes the Social resource.'
+      responses:
+        204:
+          description: 'Social resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/socials/{id}/audit_trail':
+    get:
+      tags:
+        - Social
+      operationId: get_audit_trailSocialItem
+      summary: 'Retrieves a Social resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Social resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/socials/{id}/change_log':
+    get:
+      tags:
+        - Social
+      operationId: get_change_logsSocialItem
+      summary: 'Retrieves a Social resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Social resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Social:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Social-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Social-read'
         404:
           description: 'Resource not found'
       produces:
@@ -9358,16 +10618,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-read'
-        dateCreated:
-          description: 'The moment this resource was created'
-          type: string
-          format: date-time
-          nullable: true
-        dateModified:
-          description: 'The moment this resource last Modified'
-          type: string
-          format: date-time
-          nullable: true
+        socials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Social-read'
       required:
         - name
         - description
@@ -9422,6 +10676,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-write'
+        socials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Social-write'
     'Organization:jsonld-read':
       type: object
       description: 'All properties that the entity Organisation holds.'
@@ -9484,16 +10742,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person:jsonld-read'
-        dateCreated:
-          description: 'The moment this resource was created'
-          type: string
-          format: date-time
-          nullable: true
-        dateModified:
-          description: 'The moment this resource last Modified'
-          type: string
-          format: date-time
-          nullable: true
+        socials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Social:jsonld-read'
       required:
         - name
         - description
@@ -9557,6 +10809,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person:jsonld-write'
+        socials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Social:jsonld-write'
     Person-read:
       type: object
       description: 'All properties that the entity Person holds.'
@@ -9566,6 +10822,12 @@ components:
           description: 'UUID of this person'
           type: string
           format: uuid
+        resource:
+          description: 'A specific commonground resource'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         name:
           readOnly: true
           description: 'The full name of a person consisting of given and fammily name'
@@ -9583,6 +10845,15 @@ components:
           nullable: true
         familyName:
           description: 'Family name of this person'
+          type: string
+          nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
           type: string
           nullable: true
         telephones:
@@ -9610,14 +10881,22 @@ components:
           type: string
           format: date-time
           nullable: true
+        socials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Social-read'
       required:
         - givenName
     Person-write:
       type: object
       description: 'All properties that the entity Person holds.'
-      required:
-        - givenName
       properties:
+        resource:
+          description: 'A specific commonground resource'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         givenName:
           description: 'Given name of this person'
           type: string
@@ -9627,6 +10906,15 @@ components:
           nullable: true
         familyName:
           description: 'Family name of this person'
+          type: string
+          nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
           type: string
           nullable: true
         telephones:
@@ -9644,6 +10932,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email-write'
+        socials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Social-write'
+      required:
+        - givenName
     'Person:jsonld-read':
       type: object
       description: 'All properties that the entity Person holds.'
@@ -9662,6 +10956,12 @@ components:
           description: 'UUID of this person'
           type: string
           format: uuid
+        resource:
+          description: 'A specific commonground resource'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         name:
           readOnly: true
           description: 'The full name of a person consisting of given and fammily name'
@@ -9679,6 +10979,15 @@ components:
           nullable: true
         familyName:
           description: 'Family name of this person'
+          type: string
+          nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
           type: string
           nullable: true
         telephones:
@@ -9706,13 +11015,15 @@ components:
           type: string
           format: date-time
           nullable: true
+        socials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Social:jsonld-read'
       required:
         - givenName
     'Person:jsonld-write':
       type: object
       description: 'All properties that the entity Person holds.'
-      required:
-        - givenName
       properties:
         '@context':
           readOnly: true
@@ -9723,6 +11034,12 @@ components:
         '@type':
           readOnly: true
           type: string
+        resource:
+          description: 'A specific commonground resource'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         givenName:
           description: 'Given name of this person'
           type: string
@@ -9732,6 +11049,15 @@ components:
           nullable: true
         familyName:
           description: 'Family name of this person'
+          type: string
+          nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
           type: string
           nullable: true
         telephones:
@@ -9749,6 +11075,272 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email:jsonld-write'
+        socials:
+          type: array
+          items:
+            $ref: '#/components/schemas/Social:jsonld-write'
+      required:
+        - givenName
+    Social-read:
+      type: object
+      description: 'All properties that the entity Social holds.'
+      properties:
+        id:
+          readOnly: true
+          description: 'UUID of this telephone'
+          type: string
+          format: uuid
+        name:
+          description: 'Name of this social'
+          type: string
+        description:
+          description: 'Description of this social'
+          type: string
+        person:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person-read'
+        organization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-read'
+        website:
+          description: 'A website'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        twitter:
+          description: 'A link to a twitter page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        facebook:
+          description: 'A link to a facebook page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        linkedin:
+          description: 'A link to a linkedin page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        instagram:
+          description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        created:
+          description: 'The moment this resource was created'
+          type: string
+          format: date-time
+          nullable: true
+        modified:
+          description: 'The moment this resource last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+        - description
+    Social-write:
+      type: object
+      description: 'All properties that the entity Social holds.'
+      required:
+        - name
+        - description
+      properties:
+        name:
+          description: 'Name of this social'
+          type: string
+        description:
+          description: 'Description of this social'
+          type: string
+        person:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person-write'
+        organization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-write'
+        website:
+          description: 'A website'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        twitter:
+          description: 'A link to a twitter page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        facebook:
+          description: 'A link to a facebook page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        linkedin:
+          description: 'A link to a linkedin page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        instagram:
+          description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+    'Social:jsonld-read':
+      type: object
+      description: 'All properties that the entity Social holds.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'UUID of this telephone'
+          type: string
+          format: uuid
+        name:
+          description: 'Name of this social'
+          type: string
+        description:
+          description: 'Description of this social'
+          type: string
+        person:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person:jsonld-read'
+        organization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-read'
+        website:
+          description: 'A website'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        twitter:
+          description: 'A link to a twitter page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        facebook:
+          description: 'A link to a facebook page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        linkedin:
+          description: 'A link to a linkedin page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        instagram:
+          description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        created:
+          description: 'The moment this resource was created'
+          type: string
+          format: date-time
+          nullable: true
+        modified:
+          description: 'The moment this resource last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+        - description
+    'Social:jsonld-write':
+      type: object
+      description: 'All properties that the entity Social holds.'
+      required:
+        - name
+        - description
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'Name of this social'
+          type: string
+        description:
+          description: 'Description of this social'
+          type: string
+        person:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person:jsonld-write'
+        organization:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-write'
+        website:
+          description: 'A website'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        twitter:
+          description: 'A link to a twitter page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        facebook:
+          description: 'A link to a facebook page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        linkedin:
+          description: 'A link to a linkedin page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        instagram:
+          description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     Telephone-read:
       type: object
       description: 'All properties that the entity Telephone holds.'
@@ -10018,6 +11610,11 @@ definitions:
       id:
         description: 'UUID of this person'
         type: \UuidInterface
+      resource:
+        description: 'A specific commonground resource'
+        type: string
+        example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
+        format: url
       givenName:
         description: 'Given name of this person'
         type: string
@@ -10032,6 +11629,15 @@ definitions:
         description: 'Family name of this person'
         type: string
         example: Do
+        maxLength: 255
+      birthday:
+        description: 'Date of birth of this person'
+        type: string
+        example: 15-03-2000
+      birthplace:
+        description: 'Birthplace of this person'
+        type: string
+        example: Amsterdam
         maxLength: 255
       dateCreated:
         description: 'The moment this resource was created'
@@ -10048,9 +11654,15 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
+      socials: []
     required: []
   Person-write:
     properties:
+      resource:
+        description: 'A specific commonground resource'
+        type: string
+        example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
+        format: url
       givenName:
         description: 'Given name of this person'
         type: string
@@ -10066,6 +11678,15 @@ definitions:
         type: string
         example: Do
         maxLength: 255
+      birthday:
+        description: 'Date of birth of this person'
+        type: string
+        example: 15-03-2000
+      birthplace:
+        description: 'Birthplace of this person'
+        type: string
+        example: Amsterdam
+        maxLength: 255
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -10075,6 +11696,7 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
+      socials: []
     required: []
   Telephone-read:
     properties:
@@ -10144,6 +11766,95 @@ definitions:
         type: string
         maxLength: 255
     required: []
+  Social-read:
+    properties:
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
+      name:
+        description: 'Name of this social'
+        type: string
+        example: 'Social of an organization/person'
+        maxLength: 255
+      description:
+        description: 'Description of this social'
+        type: string
+        example: 'This is the social object of an organization or person'
+      website:
+        description: 'A website'
+        type: string
+        example: 'https://google.com'
+        format: url
+      twitter:
+        description: 'A link to a twitter page'
+        type: string
+        example: 'https://twitter.com/realdonaldtrump'
+        format: url
+      facebook:
+        description: 'A link to a facebook page'
+        type: string
+        example: 'https://nl-nl.facebook.com/DonaldTrump/'
+        format: url
+      linkedin:
+        description: 'A link to a linkedin page'
+        type: string
+        example: 'https://nl.linkedin.com/company/donaldj.trumpforpresidentinc.'
+        format: url
+      instagram:
+        description: 'A link to a instagram page'
+        type: string
+        example: 'https://www.instagram.com/realdonaldtrump/?hl=nl'
+        format: url
+      created:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      modified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      person: []
+      organization: []
+    required:
+      - name
+  Social-write:
+    properties:
+      name:
+        description: 'Name of this social'
+        type: string
+        example: 'Social of an organization/person'
+        maxLength: 255
+      description:
+        description: 'Description of this social'
+        type: string
+        example: 'This is the social object of an organization or person'
+      website:
+        description: 'A website'
+        type: string
+        example: 'https://google.com'
+        format: url
+      twitter:
+        description: 'A link to a twitter page'
+        type: string
+        example: 'https://twitter.com/realdonaldtrump'
+        format: url
+      facebook:
+        description: 'A link to a facebook page'
+        type: string
+        example: 'https://nl-nl.facebook.com/DonaldTrump/'
+        format: url
+      linkedin:
+        description: 'A link to a linkedin page'
+        type: string
+        example: 'https://nl.linkedin.com/company/donaldj.trumpforpresidentinc.'
+        format: url
+      instagram:
+        description: 'A link to a instagram page'
+        type: string
+        example: 'https://www.instagram.com/realdonaldtrump/?hl=nl'
+        format: url
+      person: []
+      organization: []
+    required:
+      - name
   Organization-read:
     properties:
       id:
@@ -10190,6 +11901,7 @@ definitions:
       persons:
         description: 'Person of this organisation'
         type: \Person
+      socials: []
     required: []
   Organization-write:
     properties:
@@ -10228,6 +11940,7 @@ definitions:
       persons:
         description: 'Person of this organisation'
         type: \Person
+      socials: []
     required: []
   ChangeLog-read:
     properties:
@@ -10267,12 +11980,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-07 08:10:17'
+        example: '2020-09-15 11:58:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-07 08:10:17'
+        example: '2020-09-15 11:58:05'
     required: []
   ChangeLog-write:
     properties:
@@ -10386,12 +12099,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-07 08:10:17'
+        example: '2020-09-15 11:58:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-07 08:10:17'
+        example: '2020-09-15 11:58:05'
     required: []
   AuditTrail-write:
     properties:
@@ -10432,6 +12145,12 @@ tags:
       All properties that the entity Email holds.
       
       Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
+  -
+    name: Social
+    description: |
+      All properties that the entity Social holds.
+      
+      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
   -
     name: Organization
     description: |
