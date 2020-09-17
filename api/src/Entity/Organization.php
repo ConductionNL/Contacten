@@ -215,7 +215,7 @@ class Organization
 
     /**
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="organization")
+     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="organization" , cascade={"persist"})
      * @MaxDepth(1)
      */
     private $socials;
