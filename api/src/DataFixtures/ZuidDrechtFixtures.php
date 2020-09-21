@@ -217,6 +217,14 @@ class ZuidDrechtFixtures extends Fixture
         $manager->flush();
         $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
 
+        $social = new Social();
+        $social->setName('Creative Ground');
+        $social->setDescription('Socials creative Ground');
+        $social->setWebsite('https://creativegrounds.com/');
+        $social->setInstagram('https://www.instagram.com/creativegroundsnl/');
+        $manager->persist($social);
+        $manager->flush();
+
         $id = Uuid::fromString('e11acb98-1fb3-4ae5-beea-1a33aa381d1a');
         $organization = new Organization();
         $organization->setName('Creative Ground');
@@ -228,7 +236,7 @@ class ZuidDrechtFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
-
+        $organization->addSocial($social);
         $manager->persist($organization);
         $manager->flush();
     }
