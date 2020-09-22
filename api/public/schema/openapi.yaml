@@ -1,18 +1,18 @@
 openapi: 3.0.2
 info:
   title: 'Contacten Catalogus'
-  version: V.0.1
+  version: V1.0
   description: |
     API Details
     - Component: Contacten Catalogus
     - Reference: cc
     - Enviroment: dev
-    - Version: V.0.1
+    - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
     - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   /addresses:
@@ -5262,6 +5262,1031 @@ paths:
           description: 'Resource not found'
       produces:
         - application/health+json
+  /login_logs:
+    get:
+      tags:
+        - LoginLog
+      operationId: getLoginLogCollection
+      summary: 'Retrieves the collection of LoginLog resources.'
+      responses:
+        200:
+          description: 'LoginLog collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/LoginLog:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/LoginLog:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoginLog-read'
+      parameters:
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[address]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[method]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[status]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateCreated]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'dateCreated[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: address
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'address[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: method
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'method[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: status
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'status[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - LoginLog
+      operationId: postLoginLogCollection
+      summary: 'Creates a LoginLog resource.'
+      responses:
+        201:
+          description: 'LoginLog resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+          links:
+            GetLoginLogItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getLoginLogItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /login_logs/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/LoginLog:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/LoginLog:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+        description: 'The new LoginLog resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/login_logs/{id}':
+    get:
+      tags:
+        - LoginLog
+      operationId: getLoginLogItem
+      summary: 'Retrieves a LoginLog resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'LoginLog resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    put:
+      tags:
+        - LoginLog
+      operationId: putLoginLogItem
+      summary: 'Replaces the LoginLog resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'LoginLog resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/LoginLog:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/LoginLog:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/LoginLog-write'
+        description: 'The updated LoginLog resource'
+    delete:
+      tags:
+        - LoginLog
+      operationId: deleteLoginLogItem
+      summary: 'Removes the LoginLog resource.'
+      responses:
+        204:
+          description: 'LoginLog resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/login_logs/{id}/audit_trail':
+    get:
+      tags:
+        - LoginLog
+      operationId: get_audit_trailLoginLogItem
+      summary: 'Retrieves a LoginLog resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'LoginLog resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/login_logs/{id}/change_log':
+    get:
+      tags:
+        - LoginLog
+      operationId: get_change_logsLoginLogItem
+      summary: 'Retrieves a LoginLog resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'LoginLog resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/LoginLog:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/LoginLog-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
   /organizations:
     get:
       tags:
@@ -10008,18 +11033,23 @@ components:
         route:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         endpoint:
           description: 'The endpoint that the request was made to'
           type: string
+          nullable: true
         method:
           description: 'The method that was used'
           type: string
+          nullable: true
         accept:
           description: 'The contentType that was reqousted'
           type: string
+          nullable: true
         contentType:
           description: 'The contentType that was suplieds'
           type: string
+          nullable: true
         content:
           description: 'The moment this request was created'
           type: string
@@ -10027,6 +11057,7 @@ components:
         ip:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         session:
           description: 'The moment this request was created'
           type: string
@@ -10138,18 +11169,23 @@ components:
         route:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         endpoint:
           description: 'The endpoint that the request was made to'
           type: string
+          nullable: true
         method:
           description: 'The method that was used'
           type: string
+          nullable: true
         accept:
           description: 'The contentType that was reqousted'
           type: string
+          nullable: true
         contentType:
           description: 'The contentType that was suplieds'
           type: string
+          nullable: true
         content:
           description: 'The moment this request was created'
           type: string
@@ -10157,6 +11193,7 @@ components:
         ip:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         session:
           description: 'The moment this request was created'
           type: string
@@ -10565,6 +11602,128 @@ components:
           type: string
       required:
         - email
+    LoginLog-read:
+      type: object
+      description: 'An entity representing an login log.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        address:
+          description: 'The ip address of the login'
+          type: string
+        method:
+          description: 'The method of the login'
+          type: string
+        status:
+          description: 'the status code of the login'
+          type: string
+        dateCreated:
+          writeOnly: true
+          description: 'The moment this login was made'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this login was updated'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - address
+        - method
+        - status
+    LoginLog-write:
+      type: object
+      description: 'An entity representing an login log.'
+      required:
+        - address
+        - method
+        - status
+      properties:
+        address:
+          description: 'The ip address of the login'
+          type: string
+        method:
+          description: 'The method of the login'
+          type: string
+        status:
+          description: 'the status code of the login'
+          type: string
+    'LoginLog:jsonld-read':
+      type: object
+      description: 'An entity representing an login log.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        address:
+          description: 'The ip address of the login'
+          type: string
+        method:
+          description: 'The method of the login'
+          type: string
+        status:
+          description: 'the status code of the login'
+          type: string
+        dateCreated:
+          writeOnly: true
+          description: 'The moment this login was made'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this login was updated'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - address
+        - method
+        - status
+    'LoginLog:jsonld-write':
+      type: object
+      description: 'An entity representing an login log.'
+      required:
+        - address
+        - method
+        - status
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        address:
+          description: 'The ip address of the login'
+          type: string
+        method:
+          description: 'The method of the login'
+          type: string
+        status:
+          description: 'the status code of the login'
+          type: string
     Organization-read:
       type: object
       description: 'All properties that the entity Organisation holds.'
@@ -11605,126 +12764,6 @@ definitions:
         type: \Organization
         example: Ajax
     required: []
-  Email-read:
-    properties:
-      id:
-        description: 'UUID of this email'
-        type: \UuidInterface
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Email-write:
-    properties:
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-    required: []
-  Organization-read:
-    properties:
-      id:
-        description: 'UUID of this organisation'
-        type: \UuidInterface
-      name:
-        description: 'Name of this organisation'
-        type: string
-        example: Ajax
-        maxLength: 255
-      description:
-        description: 'Description of this organisation'
-        type: string
-        example: 'Ajax is a dutch soccer club'
-      type:
-        description: 'Type of this organisation'
-        type: string
-        example: Township
-        maxLength: 255
-      kvk:
-        description: 'Kvk of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      parentOrganization: []
-      subOrganizations:
-        description: 'The sub-organizations of which this organization is the parent organization.'
-        type: '\ArrayCollection|\Organization[]'
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      adresses:
-        description: 'Address of this organisation'
-        type: \Address
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-      socials: []
-    required: []
-  Organization-write:
-    properties:
-      name:
-        description: 'Name of this organisation'
-        type: string
-        example: Ajax
-        maxLength: 255
-      description:
-        description: 'Description of this organisation'
-        type: string
-        example: 'Ajax is a dutch soccer club'
-      type:
-        description: 'Type of this organisation'
-        type: string
-        example: Township
-        maxLength: 255
-      kvk:
-        description: 'Kvk of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      parentOrganization: []
-      subOrganizations:
-        description: 'The sub-organizations of which this organization is the parent organization.'
-        type: '\ArrayCollection|\Organization[]'
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      adresses:
-        description: 'Address of this organisation'
-        type: \Address
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-      socials: []
-    required: []
   Person-read:
     properties:
       id:
@@ -11818,6 +12857,74 @@ definitions:
         type: \Email
       socials: []
     required: []
+  Telephone-read:
+    properties:
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Telephone-write:
+    properties:
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+    required: []
+  Email-read:
+    properties:
+      id:
+        description: 'UUID of this email'
+        type: \UuidInterface
+      name:
+        description: 'Name of this email'
+        type: string
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Email-write:
+    properties:
+      name:
+        description: 'Name of this email'
+        type: string
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+    required: []
   Social-read:
     properties:
       id:
@@ -11907,40 +13014,145 @@ definitions:
       organization: []
     required:
       - name
-  Telephone-read:
+  Organization-read:
     properties:
       id:
-        description: 'UUID of this telephone'
+        description: 'UUID of this organisation'
         type: \UuidInterface
       name:
-        description: 'Name of this telephone'
+        description: 'Name of this organisation'
         type: string
-        example: Mobile
+        example: Ajax
         maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
+      description:
+        description: 'Description of this organisation'
         type: string
-        example: '+31 (0)10-1234567'
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
         maxLength: 255
+      kvk:
+        description: 'Kvk of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
       dateCreated:
         description: 'The moment this resource was created'
         type: \Datetime
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      adresses:
+        description: 'Address of this organisation'
+        type: \Address
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+      socials: []
     required: []
-  Telephone-write:
+  Organization-write:
     properties:
       name:
-        description: 'Name of this telephone'
+        description: 'Name of this organisation'
         type: string
-        example: Mobile
+        example: Ajax
         maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
+      description:
+        description: 'Description of this organisation'
         type: string
-        example: '+31 (0)10-1234567'
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
         maxLength: 255
+      kvk:
+        description: 'Kvk of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      adresses:
+        description: 'Address of this organisation'
+        type: \Address
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+      socials: []
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-09-15 11:58:05'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-15 11:58:05'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
     required: []
   AuditTrail-read:
     properties:
@@ -12046,12 +13258,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-14 06:35:32'
+        example: '2020-09-15 11:58:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-14 06:35:32'
+        example: '2020-09-15 11:58:05'
     required: []
   AuditTrail-write:
     properties:
@@ -12059,59 +13271,6 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-09-14 06:35:32'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-09-14 06:35:32'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -12128,29 +13287,11 @@ tags:
       
       Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
   -
-    name: Email
-    description: |
-      All properties that the entity Email holds.
-      
-      Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
-  -
-    name: Organization
-    description: |
-      All properties that the entity Organisation holds.
-      
-      Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
-  -
     name: Person
     description: |
       All properties that the entity Person holds.
       
       Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
-  -
-    name: Social
-    description: |
-      All properties that the entity Social holds.
-      
-      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
   -
     name: Telephone
     description: |
@@ -12158,32 +13299,56 @@ tags:
       
       Entity Telephone exists of an id, a name and a telephone.
   -
-    name: AuditTrail
+    name: Email
     description: |
-      An resource representing a log line.
+      All properties that the entity Email holds.
       
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
+      Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
+  -
+    name: Social
+    description: |
+      All properties that the entity Social holds.
+      
+      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
+  -
+    name: Organization
+    description: |
+      All properties that the entity Organisation holds.
+      
+      Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
   -
     name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
+  -
+    name: AuditTrail
+    description: |
+      An resource representing a log line.
+      
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
+  -
+    name: LoginLog
+    description: |
+      An entity representing an login log.
+      
+      This entity logs all the login attempts
 securityDefinitions:
   JWT-Oauth:
     type: oauth2
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -
