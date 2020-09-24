@@ -120,7 +120,7 @@ class Organization
     private $type;
 
     /**
-     * @var string coc of this organisation
+     * @var string Chamber Of Comerce number of this organisation
      *
      * @Gedmo\Versioned
      *
@@ -134,7 +134,7 @@ class Organization
     private $coc;
 
     /**
-     * @var string VAT of this organisation
+     * @var string Value added tax id of this organisation
      *
      * @Gedmo\Versioned
      *
@@ -311,7 +311,7 @@ class Organization
 
     public function setVat(?string $vat): self
     {
-        $this->vat = vat;
+        $this->vat = $vat;
 
         return $this;
     }
