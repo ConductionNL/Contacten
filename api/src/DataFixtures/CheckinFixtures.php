@@ -46,7 +46,7 @@ class CheckinFixtures extends Fixture
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
-        $organization->addPerson($person);
+        //$organization->addPerson($person);
         $manager->persist($organization);
         $manager->flush();
 
