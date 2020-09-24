@@ -181,7 +181,7 @@ class Organization
      * @var Person Person of this organisation
      *
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $persons;
