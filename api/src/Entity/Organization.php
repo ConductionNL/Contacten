@@ -100,8 +100,7 @@ class Organization
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $description;
 
