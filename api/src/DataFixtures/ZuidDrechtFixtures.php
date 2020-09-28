@@ -81,7 +81,5 @@ class ZuidDrechtFixtures extends Fixture
 
         $manager->persist($email);
         $manager->flush();
-
-
     }
 }
