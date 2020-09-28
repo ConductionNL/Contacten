@@ -120,7 +120,7 @@ class Organization
     private $type;
 
     /**
-     * @var string Kvk of this organisation
+     * @var string Chamber Of Comerce number of this organisation
      *
      * @Gedmo\Versioned
      *
@@ -131,7 +131,21 @@ class Organization
      *     max = 15
      * )
      */
-    private $kvk;
+    private $coc;
+
+    /**
+     * @var string Value added tax id of this organisation
+     *
+     * @Gedmo\Versioned
+     *
+     * @example 123456
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=15, nullable=true)
+     * @Assert\Length(
+     *     max = 15
+     * )
+     */
+    private $vat;
 
     /**
      * @param Organization $parentOrganization The larger organization that this organization is a subOrganization of.
@@ -181,7 +195,7 @@ class Organization
      * @var Person Person of this organisation
      *
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $persons;
@@ -278,14 +292,26 @@ class Organization
         return $this;
     }
 
-    public function getKvk(): ?string
+    public function getCoc(): ?string
     {
-        return $this->kvk;
+        return $this->coc;
     }
 
-    public function setKvk(?string $kvk): self
+    public function setCoc(?string $coc): self
     {
-        $this->kvk = $kvk;
+        $this->coc = $coc;
+
+        return $this;
+    }
+
+    public function getVat(): ?string
+    {
+        return $this->vat;
+    }
+
+    public function setVat(?string $vat): self
+    {
+        $this->vat = $vat;
 
         return $this;
     }
