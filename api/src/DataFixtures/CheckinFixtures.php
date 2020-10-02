@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
 use App\Entity\Social;
@@ -46,6 +47,9 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         //$organization->addPerson($person);
+        $email = new Email();
+        $email->setEmail('info@conduction.nl');
+        $organization->addEmail($email);
         $manager->persist($organization);
         $manager->flush();
 
