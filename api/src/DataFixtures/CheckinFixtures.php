@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
 use App\Entity\Social;
