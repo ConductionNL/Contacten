@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
     - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /addresses:
@@ -6410,7 +6410,16 @@ paths:
               - asc
               - desc
         -
-          name: 'order[kvk]'
+          name: 'order[coc]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[vat]'
           in: query
           required: false
           schema:
@@ -6485,54 +6494,6 @@ paths:
           schema:
             type: string
         -
-          name: id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: name
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: type
           in: query
           required: false
@@ -6548,46 +6509,6 @@ paths:
               type: string
           style: form
           explode: true
-        -
-          name: kvk
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'kvk[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
-          in: query
-          required: false
-          schema:
-            type: string
         -
           name: page
           in: query
@@ -11739,12 +11660,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vat:
+          description: 'Value added tax id of this organisation'
           type: string
           nullable: true
         parentOrganization:
@@ -11783,13 +11709,11 @@ components:
             $ref: '#/components/schemas/Social-read'
       required:
         - name
-        - description
     Organization-write:
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
-        - description
       properties:
         name:
           description: 'Name of this organisation'
@@ -11797,12 +11721,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vat:
+          description: 'Value added tax id of this organisation'
           type: string
           nullable: true
         parentOrganization:
@@ -11863,12 +11792,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vat:
+          description: 'Value added tax id of this organisation'
           type: string
           nullable: true
         parentOrganization:
@@ -11907,13 +11841,11 @@ components:
             $ref: '#/components/schemas/Social:jsonld-read'
       required:
         - name
-        - description
     'Organization:jsonld-write':
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
-        - description
       properties:
         '@context':
           readOnly: true
@@ -11930,12 +11862,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vat:
+          description: 'Value added tax id of this organisation'
           type: string
           nullable: true
         parentOrganization:
@@ -13033,8 +12970,13 @@ definitions:
         type: string
         example: Township
         maxLength: 255
-      kvk:
-        description: 'Kvk of this organisation'
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vat:
+        description: 'Value added tax id of this organisation'
         type: string
         example: '123456'
         maxLength: 15
@@ -13078,8 +13020,13 @@ definitions:
         type: string
         example: Township
         maxLength: 255
-      kvk:
-        description: 'Kvk of this organisation'
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vat:
+        description: 'Value added tax id of this organisation'
         type: string
         example: '123456'
         maxLength: 15
@@ -13139,12 +13086,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-15 11:58:05'
+        example: '2020-10-08 09:02:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-15 11:58:05'
+        example: '2020-10-08 09:02:56'
     required: []
   ChangeLog-write:
     properties:
@@ -13258,12 +13205,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-15 11:58:05'
+        example: '2020-10-08 09:02:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-15 11:58:05'
+        example: '2020-10-08 09:02:56'
     required: []
   AuditTrail-write:
     properties:
@@ -13273,6 +13220,61 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
+  LoginLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      address:
+        description: 'The ip address of the login'
+        type: string
+        example: 12.12.12.123
+        maxLength: 50
+      method:
+        description: 'The method of the login'
+        type: string
+        example: facebook
+        maxLength: 255
+      status:
+        description: 'the status code of the login'
+        type: string
+        example: '200'
+        maxLength: 3
+      dateCreated:
+        description: 'The moment this login was made'
+        type: \DateTime
+        example: '20190101'
+      dateModified:
+        description: 'The moment this login was updated'
+        type: \DateTime
+        example: '20190101'
+    required:
+      - address
+      - method
+      - status
+  LoginLog-write:
+    properties:
+      address:
+        description: 'The ip address of the login'
+        type: string
+        example: 12.12.12.123
+        maxLength: 50
+      method:
+        description: 'The method of the login'
+        type: string
+        example: facebook
+        maxLength: 255
+      status:
+        description: 'the status code of the login'
+        type: string
+        example: '200'
+        maxLength: 3
+    required:
+      - address
+      - method
+      - status
 tags:
   -
     name: Address
@@ -13340,15 +13342,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the LoginLog resource'
+      write: 'write right to the LoginLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the LoginLog resource'
+      write: 'write right to the LoginLog resource'
 host: irc.zaakonline.nl
 servers:
   -

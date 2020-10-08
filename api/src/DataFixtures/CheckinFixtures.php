@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
 use App\Entity\Social;
@@ -46,6 +47,9 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         //$organization->addPerson($person);
+        $email = new Email();
+        $email->setEmail('info@conduction.nl');
+        $organization->addEmail($email);
         $manager->persist($organization);
         $manager->flush();
 
@@ -60,6 +64,12 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
 
+        $email = new Email();
+        $email->setName('Email');
+        $email->setEmail('info@conduction.nl');
+        $manager->persist($email);
+        $manager->flush();
+
         $id = Uuid::fromString('789b788e-fcd0-4627-b969-aaa4bd42aed7');
         $organization = new Organization();
         $organization->setName('Cafe de zotte raaf');
@@ -71,6 +81,7 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
+        $organization->addEmail($email);
         $manager->persist($organization);
         $manager->flush();
 
@@ -84,6 +95,12 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
 
+        $email = new Email();
+        $email->setName('Email');
+        $email->setEmail('info@conduction.nl');
+        $manager->persist($email);
+        $manager->flush();
+
         $id = Uuid::fromString('0550d019-502d-480a-ab46-6ed75bc8551a');
         $organization = new Organization();
         $organization->setName('Restautant Goudlust');
@@ -95,6 +112,7 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
+        $organization->addEmail($email);
 
         $manager->persist($organization);
         $manager->flush();
@@ -109,6 +127,12 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
 
+        $email = new Email();
+        $email->setName('Email');
+        $email->setEmail('info@conduction.nl');
+        $manager->persist($email);
+        $manager->flush();
+
         $id = Uuid::fromString('0265628a-1b0e-4505-bba9-370e5ca88671');
         $organization = new Organization();
         $organization->setName('Hotel Dijkzicht');
@@ -120,6 +144,7 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
+        $organization->addEmail($email);
 
         $manager->persist($organization);
         $manager->flush();
@@ -134,6 +159,12 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
 
+        $email = new Email();
+        $email->setName('Email');
+        $email->setEmail('info@conduction.nl');
+        $manager->persist($email);
+        $manager->flush();
+
         $id = Uuid::fromString('ff46b373-bcb3-4b9a-9837-c50c15915158');
         $organization = new Organization();
         $organization->setName('Camping de alpen koe');
@@ -145,6 +176,7 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
+        $organization->addEmail($email);
 
         $manager->persist($organization);
         $manager->flush();
@@ -159,6 +191,12 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
 
+        $email = new Email();
+        $email->setName('Email');
+        $email->setEmail('info@conduction.nl');
+        $manager->persist($email);
+        $manager->flush();
+
         $id = Uuid::fromString('35ca41b8-045d-4e52-a011-124ad37b5f04');
         $organization = new Organization();
         $organization->setName('Mc Donalds Zuid-Drecht');
@@ -170,6 +208,7 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
+        $organization->addEmail($email);
 
         $manager->persist($organization);
         $manager->flush();
@@ -192,6 +231,12 @@ class CheckinFixtures extends Fixture
         $manager->persist($social);
         $manager->flush();
 
+        $email = new Email();
+        $email->setName('Email');
+        $email->setEmail('info@conduction.nl');
+        $manager->persist($email);
+        $manager->flush();
+
         $id = Uuid::fromString('e11acb98-1fb3-4ae5-beea-1a33aa381d1a');
         $organization = new Organization();
         $organization->setName('Creative Ground');
@@ -204,6 +249,7 @@ class CheckinFixtures extends Fixture
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
         $organization->addSocial($social);
+        $organization->addEmail($email);
         $manager->persist($organization);
         $manager->flush();
     }

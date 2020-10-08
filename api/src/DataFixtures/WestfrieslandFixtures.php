@@ -45,6 +45,11 @@ class WestfrieslandFixtures extends Fixture
         $manager->persist($westfriesland);
         $manager->flush();
         $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $email = new Email();
+        $email->setEmail('info@hoorn.nl');
+        $westfriesland->addEmail($email);
+        $manager->persist($westfriesland);
+        $manager->flush();
 
         // Opmeer
 
