@@ -196,6 +196,12 @@ class CheckinFixtures extends Fixture
         $manager->persist($social);
         $manager->flush();
 
+        $email = new Email();
+        $email->setName('Email');
+        $email->setEmail('info@conduction.nl');
+        $manager->persist($email);
+        $manager->flush();
+
         $id = Uuid::fromString('e11acb98-1fb3-4ae5-beea-1a33aa381d1a');
         $organization = new Organization();
         $organization->setName('Creative Ground');
@@ -208,6 +214,7 @@ class CheckinFixtures extends Fixture
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
         $organization->addSocial($social);
+        $organization->addEmail($email);
         $manager->persist($organization);
         $manager->flush();
     }
