@@ -27,14 +27,15 @@ class ConductionFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
-            $this->params->get('app_domain') != 'conduction.nl' &&
-            strpos($this->params->get('app_domain'), 'conduction.nl') == false
+            !$this->params->get('app_build_all_fixtures') &&
+            $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
             return false;
         }
 
         /*
-        * stage.conduction.nl
+        * Online Stage Platform
         */
 
         // Test Student
