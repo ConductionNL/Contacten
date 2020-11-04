@@ -6,8 +6,8 @@ use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Ramsey\Uuid\Uuid;
 use Doctrine\Persistence\ObjectManager;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class AppFixtures extends Fixture
