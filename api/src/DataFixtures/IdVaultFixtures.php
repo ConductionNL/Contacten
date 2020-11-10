@@ -3,9 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Email;
-use App\Entity\Organization;
 use App\Entity\Person;
-use App\Entity\Social;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -35,7 +33,6 @@ class CheckinFixtures extends Fixture
         ) {
             return false;
         }
-
 
         // id-vault Ruben
         $id = Uuid::fromString('ce49a652-4b0b-4aa7-98a7-ff4a0cc9e33d');
@@ -173,6 +170,5 @@ class CheckinFixtures extends Fixture
         $email->setEmail('wilco@conduction.nl');
         $manager->persist($email);
         $manager->flush();
-
     }
 }
