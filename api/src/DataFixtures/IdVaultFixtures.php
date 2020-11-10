@@ -170,7 +170,7 @@ class CheckinFixtures extends Fixture
 
         $email = new Email();
         $email->setName('Email');
-        $email->setEmail('wilco@conduction.nl');
+        $email->setEmail('yorick@conduction.nl');
         $manager->persist($email);
         $manager->flush();
 
