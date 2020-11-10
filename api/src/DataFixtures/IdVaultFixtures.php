@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class CheckinFixtures extends Fixture
+class IdVaultFixtures extends Fixture
 {
     private $params;
     /**
