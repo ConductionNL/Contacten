@@ -176,7 +176,7 @@ class Person
     private $birthplace;
 
     /**
-     * @var string  TIN, CIF, NIF or BSN
+     * @var string TIN, CIF, NIF or BSN
      *
      * @example 999994670
      *
