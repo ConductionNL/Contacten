@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
     - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /addresses:
@@ -5385,7 +5385,16 @@ paths:
               - asc
               - desc
         -
-          name: 'order[kvk]'
+          name: 'order[coc]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[vat]'
           in: query
           required: false
           schema:
@@ -5460,54 +5469,6 @@ paths:
           schema:
             type: string
         -
-          name: id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: name
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: type
           in: query
           required: false
@@ -5523,46 +5484,6 @@ paths:
               type: string
           style: form
           explode: true
-        -
-          name: kvk
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'kvk[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
-          in: query
-          required: false
-          schema:
-            type: string
         -
           name: page
           in: query
@@ -10008,18 +9929,23 @@ components:
         route:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         endpoint:
           description: 'The endpoint that the request was made to'
           type: string
+          nullable: true
         method:
           description: 'The method that was used'
           type: string
+          nullable: true
         accept:
           description: 'The contentType that was reqousted'
           type: string
+          nullable: true
         contentType:
           description: 'The contentType that was suplieds'
           type: string
+          nullable: true
         content:
           description: 'The moment this request was created'
           type: string
@@ -10027,6 +9953,7 @@ components:
         ip:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         session:
           description: 'The moment this request was created'
           type: string
@@ -10138,18 +10065,23 @@ components:
         route:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         endpoint:
           description: 'The endpoint that the request was made to'
           type: string
+          nullable: true
         method:
           description: 'The method that was used'
           type: string
+          nullable: true
         accept:
           description: 'The contentType that was reqousted'
           type: string
+          nullable: true
         contentType:
           description: 'The contentType that was suplieds'
           type: string
+          nullable: true
         content:
           description: 'The moment this request was created'
           type: string
@@ -10157,6 +10089,7 @@ components:
         ip:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         session:
           description: 'The moment this request was created'
           type: string
@@ -10580,12 +10513,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vat:
+          description: 'Value added tax id of this organisation'
           type: string
           nullable: true
         parentOrganization:
@@ -10624,13 +10562,11 @@ components:
             $ref: '#/components/schemas/Social-read'
       required:
         - name
-        - description
     Organization-write:
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
-        - description
       properties:
         name:
           description: 'Name of this organisation'
@@ -10638,12 +10574,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vat:
+          description: 'Value added tax id of this organisation'
           type: string
           nullable: true
         parentOrganization:
@@ -10704,12 +10645,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vat:
+          description: 'Value added tax id of this organisation'
           type: string
           nullable: true
         parentOrganization:
@@ -10748,13 +10694,11 @@ components:
             $ref: '#/components/schemas/Social:jsonld-read'
       required:
         - name
-        - description
     'Organization:jsonld-write':
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
-        - description
       properties:
         '@context':
           readOnly: true
@@ -10771,12 +10715,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vat:
+          description: 'Value added tax id of this organisation'
           type: string
           nullable: true
         parentOrganization:
@@ -11605,6 +11554,136 @@ definitions:
         type: \Organization
         example: Ajax
     required: []
+  Email-read:
+    properties:
+      id:
+        description: 'UUID of this email'
+        type: \UuidInterface
+      name:
+        description: 'Name of this email'
+        type: string
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Email-write:
+    properties:
+      name:
+        description: 'Name of this email'
+        type: string
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+    required: []
+  Organization-read:
+    properties:
+      id:
+        description: 'UUID of this organisation'
+        type: \UuidInterface
+      name:
+        description: 'Name of this organisation'
+        type: string
+        example: Ajax
+        maxLength: 255
+      description:
+        description: 'Description of this organisation'
+        type: string
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
+        maxLength: 255
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vat:
+        description: 'Value added tax id of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      adresses:
+        description: 'Address of this organisation'
+        type: \Address
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+      socials: []
+    required: []
+  Organization-write:
+    properties:
+      name:
+        description: 'Name of this organisation'
+        type: string
+        example: Ajax
+        maxLength: 255
+      description:
+        description: 'Description of this organisation'
+        type: string
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
+        maxLength: 255
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vat:
+        description: 'Value added tax id of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      adresses:
+        description: 'Address of this organisation'
+        type: \Address
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+      socials: []
+    required: []
   Person-read:
     properties:
       id:
@@ -11698,74 +11777,6 @@ definitions:
         type: \Email
       socials: []
     required: []
-  Telephone-read:
-    properties:
-      id:
-        description: 'UUID of this telephone'
-        type: \UuidInterface
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Telephone-write:
-    properties:
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-    required: []
-  Email-read:
-    properties:
-      id:
-        description: 'UUID of this email'
-        type: \UuidInterface
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Email-write:
-    properties:
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-    required: []
   Social-read:
     properties:
       id:
@@ -11855,145 +11866,40 @@ definitions:
       organization: []
     required:
       - name
-  Organization-read:
+  Telephone-read:
     properties:
       id:
-        description: 'UUID of this organisation'
+        description: 'UUID of this telephone'
         type: \UuidInterface
       name:
-        description: 'Name of this organisation'
+        description: 'Name of this telephone'
         type: string
-        example: Ajax
+        example: Mobile
         maxLength: 255
-      description:
-        description: 'Description of this organisation'
+      telephone:
+        description: 'The actual phone number including any international prefixes'
         type: string
-        example: 'Ajax is a dutch soccer club'
-      type:
-        description: 'Type of this organisation'
-        type: string
-        example: Township
+        example: '+31 (0)10-1234567'
         maxLength: 255
-      kvk:
-        description: 'Kvk of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
       dateCreated:
         description: 'The moment this resource was created'
         type: \Datetime
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
-      parentOrganization: []
-      subOrganizations:
-        description: 'The sub-organizations of which this organization is the parent organization.'
-        type: '\ArrayCollection|\Organization[]'
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      adresses:
-        description: 'Address of this organisation'
-        type: \Address
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-      socials: []
     required: []
-  Organization-write:
+  Telephone-write:
     properties:
       name:
-        description: 'Name of this organisation'
+        description: 'Name of this telephone'
         type: string
-        example: Ajax
+        example: Mobile
         maxLength: 255
-      description:
-        description: 'Description of this organisation'
+      telephone:
+        description: 'The actual phone number including any international prefixes'
         type: string
-        example: 'Ajax is a dutch soccer club'
-      type:
-        description: 'Type of this organisation'
-        type: string
-        example: Township
+        example: '+31 (0)10-1234567'
         maxLength: 255
-      kvk:
-        description: 'Kvk of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      parentOrganization: []
-      subOrganizations:
-        description: 'The sub-organizations of which this organization is the parent organization.'
-        type: '\ArrayCollection|\Organization[]'
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      adresses:
-        description: 'Address of this organisation'
-        type: \Address
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-      socials: []
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-09-15 11:58:05'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-09-15 11:58:05'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
     required: []
   AuditTrail-read:
     properties:
@@ -12099,12 +12005,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-15 11:58:05'
+        example: '2020-11-13 10:52:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-15 11:58:05'
+        example: '2020-11-13 10:52:15'
     required: []
   AuditTrail-write:
     properties:
@@ -12112,6 +12018,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-11-13 10:52:15'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-11-13 10:52:15'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -12128,29 +12087,11 @@ tags:
       
       Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
   -
-    name: Person
-    description: |
-      All properties that the entity Person holds.
-      
-      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
-  -
-    name: Telephone
-    description: |
-      All properties that the entity Telephone holds.
-      
-      Entity Telephone exists of an id, a name and a telephone.
-  -
     name: Email
     description: |
       All properties that the entity Email holds.
       
       Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
-  -
-    name: Social
-    description: |
-      All properties that the entity Social holds.
-      
-      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
   -
     name: Organization
     description: |
@@ -12158,13 +12099,31 @@ tags:
       
       Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
   -
-    name: ChangeLog
+    name: Person
+    description: |
+      All properties that the entity Person holds.
+      
+      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
+  -
+    name: Social
+    description: |
+      All properties that the entity Social holds.
+      
+      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
+  -
+    name: Telephone
+    description: |
+      All properties that the entity Telephone holds.
+      
+      Entity Telephone exists of an id, a name and a telephone.
+  -
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -12175,15 +12134,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
