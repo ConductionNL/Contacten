@@ -6,7 +6,7 @@ use App\Entity\Email;
 use App\Entity\Organization;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -46,7 +46,7 @@ class WestfrieslandFixtures extends Fixture
         $manager->flush();
         $westfriesland = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $email = new Email();
-        $email->setEmail('info@hoorn.nl');
+        $email->setEmail('info@westfriesland.nl');
         $westfriesland->addEmail($email);
         $manager->persist($westfriesland);
         $manager->flush();
