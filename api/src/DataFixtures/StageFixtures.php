@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
@@ -38,6 +39,22 @@ class StageFixtures extends Fixture
         /*
         * Online Stage Platform
         */
+
+        $id = Uuid::fromString('faafee73-2b5a-4cd5-a339-c0c96ba0d7eb');
+        $organization = new Organization();
+        $organization->setName('conduction academy');
+        $organization->setDescription('conduction academy');
+        $organization->setType('platform');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $email = new Email();
+        $email->setEmail('info@conduction.nl');
+        $organization->addEmail($email);
+        $manager->persist($organization);
+        $manager->flush();
 
         // Test Student
         $id = Uuid::fromString('d961291d-f5c1-46f4-8b4a-6abb41df88db');
