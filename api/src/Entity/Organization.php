@@ -135,7 +135,7 @@ class Organization
     private $coc;
 
     /**
-     * @var string Value added tax id of this organisation
+     * @var string Value added tax id of this organisation (btw)
      *
      * @Gedmo\Versioned
      *
@@ -146,7 +146,7 @@ class Organization
      *     max = 15
      * )
      */
-    private $vat;
+    private $vatID;
 
     /**
      * @param Organization $parentOrganization The larger organization that this organization is a subOrganization of.
@@ -305,14 +305,14 @@ class Organization
         return $this;
     }
 
-    public function getVat(): ?string
+    public function getVatID(): ?string
     {
-        return $this->vat;
+        return $this->vatID;
     }
 
-    public function setVat(?string $vat): self
+    public function setVatID(?string $vatID): self
     {
-        $this->vat = $vat;
+        $this->vatID = $vatID;
 
         return $this;
     }

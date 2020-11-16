@@ -176,6 +176,20 @@ class Person
     private $birthplace;
 
     /**
+     * @var string TIN, CIF, NIF or BSN
+     *
+     * @example 999994670
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length (
+     *     max = 255
+     * )
+     */
+    private $taxID;
+
+    /**
      * @var Telephone Telephone of this person
      *
      * @Groups({"read", "write"})
@@ -350,6 +364,18 @@ class Person
     public function setBirthplace(?string $birthplace): self
     {
         $this->birthplace = $birthplace;
+
+        return $this;
+    }
+
+    public function getTaxID(): ?string
+    {
+        return $this->taxID;
+    }
+
+    public function setTaxID(?string $taxID): self
+    {
+        $this->taxID = $taxID;
 
         return $this;
     }
