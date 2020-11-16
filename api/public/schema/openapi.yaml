@@ -5394,7 +5394,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[vat]'
+          name: 'order[vatID]'
           in: query
           required: false
           schema:
@@ -6423,6 +6423,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[taxID]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -6612,6 +6621,22 @@ paths:
             type: string
         -
           name: 'birthplace[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: taxID
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'taxID[]'
           in: query
           required: false
           schema:
@@ -10522,8 +10547,8 @@ components:
           description: 'Chamber Of Comerce number of this organisation'
           type: string
           nullable: true
-        vat:
-          description: 'Value added tax id of this organisation'
+        vatID:
+          description: 'Value added tax id of this organisation (btw)'
           type: string
           nullable: true
         parentOrganization:
@@ -10583,8 +10608,8 @@ components:
           description: 'Chamber Of Comerce number of this organisation'
           type: string
           nullable: true
-        vat:
-          description: 'Value added tax id of this organisation'
+        vatID:
+          description: 'Value added tax id of this organisation (btw)'
           type: string
           nullable: true
         parentOrganization:
@@ -10654,8 +10679,8 @@ components:
           description: 'Chamber Of Comerce number of this organisation'
           type: string
           nullable: true
-        vat:
-          description: 'Value added tax id of this organisation'
+        vatID:
+          description: 'Value added tax id of this organisation (btw)'
           type: string
           nullable: true
         parentOrganization:
@@ -10724,8 +10749,8 @@ components:
           description: 'Chamber Of Comerce number of this organisation'
           type: string
           nullable: true
-        vat:
-          description: 'Value added tax id of this organisation'
+        vatID:
+          description: 'Value added tax id of this organisation (btw)'
           type: string
           nullable: true
         parentOrganization:
@@ -10805,6 +10830,10 @@ components:
           description: 'Birthplace of this person'
           type: string
           nullable: true
+        taxID:
+          description: 'TIN, CIF, NIF or BSN'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -10864,6 +10893,10 @@ components:
           nullable: true
         birthplace:
           description: 'Birthplace of this person'
+          type: string
+          nullable: true
+        taxID:
+          description: 'TIN, CIF, NIF or BSN'
           type: string
           nullable: true
         telephones:
@@ -10939,6 +10972,10 @@ components:
           description: 'Birthplace of this person'
           type: string
           nullable: true
+        taxID:
+          description: 'TIN, CIF, NIF or BSN'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -11007,6 +11044,10 @@ components:
           nullable: true
         birthplace:
           description: 'Birthplace of this person'
+          type: string
+          nullable: true
+        taxID:
+          description: 'TIN, CIF, NIF or BSN'
           type: string
           nullable: true
         telephones:
@@ -11611,8 +11652,8 @@ definitions:
         type: string
         example: '123456'
         maxLength: 15
-      vat:
-        description: 'Value added tax id of this organisation'
+      vatID:
+        description: 'Value added tax id of this organisation (btw)'
         type: string
         example: '123456'
         maxLength: 15
@@ -11661,8 +11702,8 @@ definitions:
         type: string
         example: '123456'
         maxLength: 15
-      vat:
-        description: 'Value added tax id of this organisation'
+      vatID:
+        description: 'Value added tax id of this organisation (btw)'
         type: string
         example: '123456'
         maxLength: 15
@@ -11718,6 +11759,11 @@ definitions:
         type: string
         example: Amsterdam
         maxLength: 255
+      taxID:
+        description: 'TIN, CIF, NIF or BSN'
+        type: string
+        example: '999994670'
+        maxLength: 255
       dateCreated:
         description: 'The moment this resource was created'
         type: \Datetime
@@ -11765,6 +11811,11 @@ definitions:
         description: 'Birthplace of this person'
         type: string
         example: Amsterdam
+        maxLength: 255
+      taxID:
+        description: 'TIN, CIF, NIF or BSN'
+        type: string
+        example: '999994670'
         maxLength: 255
       telephones:
         description: 'Telephone of this person'
@@ -12005,12 +12056,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-13 10:52:15'
+        example: '2020-11-16 14:18:12'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-13 10:52:15'
+        example: '2020-11-16 14:18:12'
     required: []
   AuditTrail-write:
     properties:
@@ -12058,12 +12109,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-13 10:52:15'
+        example: '2020-11-16 14:18:12'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-13 10:52:15'
+        example: '2020-11-16 14:18:12'
     required: []
   ChangeLog-write:
     properties:
