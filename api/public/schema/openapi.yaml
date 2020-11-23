@@ -1,13 +1,13 @@
 openapi: 3.0.2
 info:
   title: 'Contacten Catalogus'
-  version: V.0.1
+  version: V1.0
   description: |
     API Details
     - Component: Contacten Catalogus
     - Reference: cc
     - Enviroment: dev
-    - Version: V.0.1
+    - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
     - Datamodel: [postman](/schema/cc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
@@ -5385,7 +5385,16 @@ paths:
               - asc
               - desc
         -
-          name: 'order[kvk]'
+          name: 'order[coc]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[vatID]'
           in: query
           required: false
           schema:
@@ -5460,54 +5469,6 @@ paths:
           schema:
             type: string
         -
-          name: id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: name
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: type
           in: query
           required: false
@@ -5523,46 +5484,6 @@ paths:
               type: string
           style: form
           explode: true
-        -
-          name: kvk
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'kvk[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
-          in: query
-          required: false
-          schema:
-            type: string
         -
           name: page
           in: query
@@ -6484,6 +6405,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[birthday]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[birthplace]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[taxID]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -6501,6 +6449,30 @@ paths:
             enum:
               - asc
               - desc
+        -
+          name: 'birthday[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: 'dateCreated[before]'
           in: query
@@ -6621,6 +6593,50 @@ paths:
             type: string
         -
           name: 'familyName[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: birthday
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthday[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: birthplace
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'birthplace[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: taxID
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'taxID[]'
           in: query
           required: false
           schema:
@@ -9938,18 +9954,23 @@ components:
         route:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         endpoint:
           description: 'The endpoint that the request was made to'
           type: string
+          nullable: true
         method:
           description: 'The method that was used'
           type: string
+          nullable: true
         accept:
           description: 'The contentType that was reqousted'
           type: string
+          nullable: true
         contentType:
           description: 'The contentType that was suplieds'
           type: string
+          nullable: true
         content:
           description: 'The moment this request was created'
           type: string
@@ -9957,6 +9978,7 @@ components:
         ip:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         session:
           description: 'The moment this request was created'
           type: string
@@ -10068,18 +10090,23 @@ components:
         route:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         endpoint:
           description: 'The endpoint that the request was made to'
           type: string
+          nullable: true
         method:
           description: 'The method that was used'
           type: string
+          nullable: true
         accept:
           description: 'The contentType that was reqousted'
           type: string
+          nullable: true
         contentType:
           description: 'The contentType that was suplieds'
           type: string
+          nullable: true
         content:
           description: 'The moment this request was created'
           type: string
@@ -10087,6 +10114,7 @@ components:
         ip:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         session:
           description: 'The moment this request was created'
           type: string
@@ -10510,12 +10538,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vatID:
+          description: 'Value added tax id of this organisation (btw)'
           type: string
           nullable: true
         parentOrganization:
@@ -10554,13 +10587,11 @@ components:
             $ref: '#/components/schemas/Social-read'
       required:
         - name
-        - description
     Organization-write:
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
-        - description
       properties:
         name:
           description: 'Name of this organisation'
@@ -10568,12 +10599,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vatID:
+          description: 'Value added tax id of this organisation (btw)'
           type: string
           nullable: true
         parentOrganization:
@@ -10634,12 +10670,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vatID:
+          description: 'Value added tax id of this organisation (btw)'
           type: string
           nullable: true
         parentOrganization:
@@ -10678,13 +10719,11 @@ components:
             $ref: '#/components/schemas/Social:jsonld-read'
       required:
         - name
-        - description
     'Organization:jsonld-write':
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
-        - description
       properties:
         '@context':
           readOnly: true
@@ -10701,12 +10740,17 @@ components:
         description:
           description: 'Description of this organisation'
           type: string
+          nullable: true
         type:
           description: 'Type of this organisation'
           type: string
           nullable: true
-        kvk:
-          description: 'Kvk of this organisation'
+        coc:
+          description: 'Chamber Of Comerce number of this organisation'
+          type: string
+          nullable: true
+        vatID:
+          description: 'Value added tax id of this organisation (btw)'
           type: string
           nullable: true
         parentOrganization:
@@ -10777,6 +10821,19 @@ components:
           description: 'Family name of this person'
           type: string
           nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          type: string
+          nullable: true
+        taxID:
+          description: 'TIN, CIF, NIF or BSN'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -10827,6 +10884,19 @@ components:
           nullable: true
         familyName:
           description: 'Family name of this person'
+          type: string
+          nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          type: string
+          nullable: true
+        taxID:
+          description: 'TIN, CIF, NIF or BSN'
           type: string
           nullable: true
         telephones:
@@ -10893,6 +10963,19 @@ components:
           description: 'Family name of this person'
           type: string
           nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          type: string
+          nullable: true
+        taxID:
+          description: 'TIN, CIF, NIF or BSN'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -10952,6 +11035,19 @@ components:
           nullable: true
         familyName:
           description: 'Family name of this person'
+          type: string
+          nullable: true
+        birthday:
+          description: 'Date of birth of this person'
+          type: string
+          format: date-time
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          type: string
+          nullable: true
+        taxID:
+          description: 'TIN, CIF, NIF or BSN'
           type: string
           nullable: true
         telephones:
@@ -11551,8 +11647,13 @@ definitions:
         type: string
         example: Township
         maxLength: 255
-      kvk:
-        description: 'Kvk of this organisation'
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vatID:
+        description: 'Value added tax id of this organisation (btw)'
         type: string
         example: '123456'
         maxLength: 15
@@ -11596,8 +11697,13 @@ definitions:
         type: string
         example: Township
         maxLength: 255
-      kvk:
-        description: 'Kvk of this organisation'
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vatID:
+        description: 'Value added tax id of this organisation (btw)'
         type: string
         example: '123456'
         maxLength: 15
@@ -11644,6 +11750,20 @@ definitions:
         type: string
         example: Do
         maxLength: 255
+      birthday:
+        description: 'Date of birth of this person'
+        type: string
+        example: 15-03-2000
+      birthplace:
+        description: 'Birthplace of this person'
+        type: string
+        example: Amsterdam
+        maxLength: 255
+      taxID:
+        description: 'TIN, CIF, NIF or BSN'
+        type: string
+        example: '999994670'
+        maxLength: 255
       dateCreated:
         description: 'The moment this resource was created'
         type: \Datetime
@@ -11682,6 +11802,20 @@ definitions:
         description: 'Family name of this person'
         type: string
         example: Do
+        maxLength: 255
+      birthday:
+        description: 'Date of birth of this person'
+        type: string
+        example: 15-03-2000
+      birthplace:
+        description: 'Birthplace of this person'
+        type: string
+        example: Amsterdam
+        maxLength: 255
+      taxID:
+        description: 'TIN, CIF, NIF or BSN'
+        type: string
+        example: '999994670'
         maxLength: 255
       telephones:
         description: 'Telephone of this person'
@@ -11922,12 +12056,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-04 09:28:46'
+        example: '2020-11-16 14:18:12'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-04 09:28:46'
+        example: '2020-11-16 14:18:12'
     required: []
   AuditTrail-write:
     properties:
@@ -11975,12 +12109,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-04 09:28:46'
+        example: '2020-11-16 14:18:12'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-04 09:28:46'
+        example: '2020-11-16 14:18:12'
     required: []
   ChangeLog-write:
     properties:

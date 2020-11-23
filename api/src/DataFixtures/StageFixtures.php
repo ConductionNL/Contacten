@@ -2,15 +2,16 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class ConductionFixtures extends Fixture
+class StageFixtures extends Fixture
 {
     private $params;
     /**
@@ -27,15 +28,33 @@ class ConductionFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
-            $this->params->get('app_domain') != 'conduction.nl' &&
-            strpos($this->params->get('app_domain'), 'conduction.nl') == false
+            !$this->params->get('app_build_all_fixtures') &&
+            $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false &&
+            $this->params->get('app_domain') != 'conduction.academy' && strpos($this->params->get('app_domain'), 'conduction.academy') == false
         ) {
             return false;
         }
 
         /*
-        * stage.conduction.nl
+        * Online Stage Platform
         */
+
+        $id = Uuid::fromString('faafee73-2b5a-4cd5-a339-c0c96ba0d7eb');
+        $organization = new Organization();
+        $organization->setName('conduction academy');
+        $organization->setDescription('conduction academy');
+        $organization->setType('platform');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $email = new Email();
+        $email->setEmail('info@conduction.nl');
+        $organization->addEmail($email);
+        $manager->persist($organization);
+        $manager->flush();
 
         // Test Student
         $id = Uuid::fromString('d961291d-f5c1-46f4-8b4a-6abb41df88db');
