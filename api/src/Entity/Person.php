@@ -266,7 +266,7 @@ class Person
 
     /**
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="person")
+     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="person", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $socials;
