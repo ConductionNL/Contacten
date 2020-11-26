@@ -190,6 +190,20 @@ class Person
     private $taxID;
 
     /**
+     * @var string Information about this person
+     *
+     * @example I like to dance !
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length (
+     *     max = 255
+     * )
+     */
+    private $aboutMe;
+
+    /**
      * @var Telephone Telephone of this person
      *
      * @Groups({"read", "write"})
@@ -376,6 +390,18 @@ class Person
     public function setTaxID(?string $taxID): self
     {
         $this->taxID = $taxID;
+
+        return $this;
+    }
+
+    public function getAboutMe(): ?string
+    {
+        return $this->aboutMe;
+    }
+
+    public function setAboutMe(string $aboutMe): self
+    {
+        $this->aboutMe = $aboutMe;
 
         return $this;
     }
