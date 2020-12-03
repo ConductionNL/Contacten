@@ -6459,6 +6459,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[personalPhoto]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'birthday[before]'
           in: query
           required: false
@@ -6694,6 +6703,22 @@ paths:
           required: false
           schema:
             type: string
+        -
+          name: personalPhoto
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'personalPhoto[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
         -
           name: page
           in: query
@@ -10892,6 +10917,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Social-read'
+        personalPhoto:
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - givenName
     Person-write:
@@ -10951,6 +10981,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Social-write'
+        personalPhoto:
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-read':
@@ -11042,6 +11077,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Social:jsonld-read'
+        personalPhoto:
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-write':
@@ -11110,6 +11150,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Social:jsonld-write'
+        personalPhoto:
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - givenName
     Social-read:
@@ -11816,6 +11861,9 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
+      personalPhoto:
+        type: string
+        format: url
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11868,6 +11916,9 @@ definitions:
         type: string
         example: 'I like to dance !'
         maxLength: 255
+      personalPhoto:
+        type: string
+        format: url
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -12107,12 +12158,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-26 13:32:41'
+        example: '2020-12-03 15:35:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-26 13:32:41'
+        example: '2020-12-03 15:35:05'
     required: []
   AuditTrail-write:
     properties:
@@ -12160,12 +12211,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-26 13:32:41'
+        example: '2020-12-03 15:35:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-26 13:32:41'
+        example: '2020-12-03 15:35:05'
     required: []
   ChangeLog-write:
     properties:
