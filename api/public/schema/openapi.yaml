@@ -7667,6 +7667,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[github]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[created]'
           in: query
           required: false
@@ -7852,6 +7861,22 @@ paths:
             type: string
         -
           name: 'instagram[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: github
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'github[]'
           in: query
           required: false
           schema:
@@ -11212,6 +11237,12 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        github:
+          description: 'A link to a github page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         created:
           description: 'The moment this resource was created'
           type: string
@@ -11278,6 +11309,12 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        github:
+          description: 'A link to a github page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     'Social:jsonld-read':
       type: object
       description: 'All properties that the entity Social holds.'
@@ -11338,6 +11375,12 @@ components:
           nullable: true
         instagram:
           description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        github:
+          description: 'A link to a github page'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -11413,6 +11456,12 @@ components:
           nullable: true
         instagram:
           description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        github:
+          description: 'A link to a github page'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -11969,6 +12018,11 @@ definitions:
         type: string
         example: 'https://www.instagram.com/realdonaldtrump/?hl=nl'
         format: url
+      github:
+        description: 'A link to a github page'
+        type: string
+        example: 'https://www.github.com/ConductionNL/contactcatalogus'
+        format: url
       created:
         description: 'The moment this resource was created'
         type: \Datetime
@@ -12014,6 +12068,11 @@ definitions:
         description: 'A link to a instagram page'
         type: string
         example: 'https://www.instagram.com/realdonaldtrump/?hl=nl'
+        format: url
+      github:
+        description: 'A link to a github page'
+        type: string
+        example: 'https://www.github.com/ConductionNL/contactcatalogus'
         format: url
       person: []
       organization: []
@@ -12158,12 +12217,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-03 15:35:05'
+        example: '2020-12-07 10:59:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-03 15:35:05'
+        example: '2020-12-07 10:59:04'
     required: []
   AuditTrail-write:
     properties:
@@ -12211,12 +12270,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-03 15:35:05'
+        example: '2020-12-07 10:59:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-03 15:35:05'
+        example: '2020-12-07 10:59:04'
     required: []
   ChangeLog-write:
     properties:
