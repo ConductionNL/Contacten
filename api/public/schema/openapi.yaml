@@ -6432,6 +6432,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[aboutMe]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -6442,6 +6451,15 @@ paths:
               - desc
         -
           name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[personalPhoto]'
           in: query
           required: false
           schema:
@@ -6646,6 +6664,22 @@ paths:
           style: form
           explode: true
         -
+          name: aboutMe
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'aboutMe[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: dateCreated
           in: query
           required: false
@@ -6669,6 +6703,22 @@ paths:
           required: false
           schema:
             type: string
+        -
+          name: personalPhoto
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'personalPhoto[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
         -
           name: page
           in: query
@@ -7617,6 +7667,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[github]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[created]'
           in: query
           required: false
@@ -7802,6 +7861,22 @@ paths:
             type: string
         -
           name: 'instagram[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: github
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'github[]'
           in: query
           required: false
           schema:
@@ -10834,6 +10909,10 @@ components:
           description: 'TIN, CIF, NIF or BSN'
           type: string
           nullable: true
+        aboutMe:
+          description: 'Information about this person'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -10863,6 +10942,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Social-read'
+        personalPhoto:
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - givenName
     Person-write:
@@ -10899,6 +10983,10 @@ components:
           description: 'TIN, CIF, NIF or BSN'
           type: string
           nullable: true
+        aboutMe:
+          description: 'Information about this person'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -10918,6 +11006,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Social-write'
+        personalPhoto:
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-read':
@@ -10976,6 +11069,10 @@ components:
           description: 'TIN, CIF, NIF or BSN'
           type: string
           nullable: true
+        aboutMe:
+          description: 'Information about this person'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -11005,6 +11102,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Social:jsonld-read'
+        personalPhoto:
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-write':
@@ -11050,6 +11152,10 @@ components:
           description: 'TIN, CIF, NIF or BSN'
           type: string
           nullable: true
+        aboutMe:
+          description: 'Information about this person'
+          type: string
+          nullable: true
         telephones:
           description: 'Telephone of this person'
           type: array
@@ -11069,6 +11175,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Social:jsonld-write'
+        personalPhoto:
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - givenName
     Social-read:
@@ -11122,6 +11233,12 @@ components:
           nullable: true
         instagram:
           description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        github:
+          description: 'A link to a github page'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -11192,6 +11309,12 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        github:
+          description: 'A link to a github page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     'Social:jsonld-read':
       type: object
       description: 'All properties that the entity Social holds.'
@@ -11252,6 +11375,12 @@ components:
           nullable: true
         instagram:
           description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        github:
+          description: 'A link to a github page'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -11327,6 +11456,12 @@ components:
           nullable: true
         instagram:
           description: 'A link to a instagram page'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        github:
+          description: 'A link to a github page'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -11764,12 +11899,20 @@ definitions:
         type: string
         example: '999994670'
         maxLength: 255
+      aboutMe:
+        description: 'Information about this person'
+        type: string
+        example: 'I like to dance !'
+        maxLength: 255
       dateCreated:
         description: 'The moment this resource was created'
         type: \Datetime
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
+      personalPhoto:
+        type: string
+        format: url
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11817,6 +11960,14 @@ definitions:
         type: string
         example: '999994670'
         maxLength: 255
+      aboutMe:
+        description: 'Information about this person'
+        type: string
+        example: 'I like to dance !'
+        maxLength: 255
+      personalPhoto:
+        type: string
+        format: url
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11867,6 +12018,11 @@ definitions:
         type: string
         example: 'https://www.instagram.com/realdonaldtrump/?hl=nl'
         format: url
+      github:
+        description: 'A link to a github page'
+        type: string
+        example: 'https://www.github.com/ConductionNL/contactcatalogus'
+        format: url
       created:
         description: 'The moment this resource was created'
         type: \Datetime
@@ -11912,6 +12068,11 @@ definitions:
         description: 'A link to a instagram page'
         type: string
         example: 'https://www.instagram.com/realdonaldtrump/?hl=nl'
+        format: url
+      github:
+        description: 'A link to a github page'
+        type: string
+        example: 'https://www.github.com/ConductionNL/contactcatalogus'
         format: url
       person: []
       organization: []
@@ -12056,12 +12217,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-16 14:18:12'
+        example: '2020-12-07 10:59:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-16 14:18:12'
+        example: '2020-12-07 10:59:04'
     required: []
   AuditTrail-write:
     properties:
@@ -12109,12 +12270,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-16 14:18:12'
+        example: '2020-12-07 10:59:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-16 14:18:12'
+        example: '2020-12-07 10:59:04'
     required: []
   ChangeLog-write:
     properties:

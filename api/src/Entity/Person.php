@@ -266,10 +266,17 @@ class Person
 
     /**
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="person")
+     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="person", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $socials;
+
+    /**
+     * @Assert\Url
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $personalPhoto;
 
     public function __construct()
     {
@@ -575,6 +582,18 @@ class Person
                 $social->setPerson(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPersonalPhoto(): ?string
+    {
+        return $this->personalPhoto;
+    }
+
+    public function setPersonalPhoto(?string $personalPhoto): self
+    {
+        $this->personalPhoto = $personalPhoto;
 
         return $this;
     }
