@@ -29,7 +29,7 @@ class LarpingFixtures extends Fixture
     {
         if (
             !$this->params->get('app_build_all_fixtures') &&
-            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
+            $this->params->get('app_domain') != 'larping.eu' && strpos($this->params->get('app_domain'), 'larping.eu') == false
         ) {
             return false;
         }
