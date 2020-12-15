@@ -304,7 +304,7 @@ class Person
         return $this->resource;
     }
 
-    public function setResource(string $resource): self
+    public function setResource(?string $resource): self
     {
         $this->resource = $resource;
 
@@ -334,7 +334,7 @@ class Person
         return $this->givenName;
     }
 
-    public function setGivenName(string $givenName): self
+    public function setGivenName(?string $givenName): self
     {
         $this->givenName = $givenName;
 
@@ -370,7 +370,7 @@ class Person
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
 
@@ -406,7 +406,7 @@ class Person
         return $this->aboutMe;
     }
 
-    public function setAboutMe(string $aboutMe): self
+    public function setAboutMe(?string $aboutMe): self
     {
         $this->aboutMe = $aboutMe;
 
