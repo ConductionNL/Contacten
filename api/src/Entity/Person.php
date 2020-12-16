@@ -272,9 +272,8 @@ class Person
     private $socials;
 
     /**
-     * @Assert\Url
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     * @ORM\Column(type="text", nullable=true)
      */
     private $personalPhoto;
 
