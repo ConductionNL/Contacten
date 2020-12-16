@@ -176,6 +176,18 @@ class Social
     private $instagram;
 
     /**
+     * @var string A link to a github page
+     *
+     * @example https://www.github.com/ConductionNL/contactcatalogus
+     *
+     * @Gedmo\Versioned
+     * @Assert\Url
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $github;
+
+    /**
      * @var Datetime The moment this resource was created
      *
      * @Groups({"read"})
@@ -285,6 +297,18 @@ class Social
     public function setInstagram(?string $instagram): self
     {
         $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    public function getGithub(): ?string
+    {
+        return $this->github;
+    }
+
+    public function setGithub(?string $github): self
+    {
+        $this->github = $github;
 
         return $this;
     }
