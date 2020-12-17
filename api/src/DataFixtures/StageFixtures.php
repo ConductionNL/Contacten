@@ -71,14 +71,14 @@ class StageFixtures extends Fixture
         //Organizations
         //Partners
         // Conduction
-            // Socials
-            $facebook = new Social();
-            $facebook->setName('Conduction Facebook');
-            $facebook->setDescription('Conduction Facebook');
-            $facebook->setType('facebook');
-            $facebook->setUrl('https://www.facebook.com/conductionnl/');
-            $manager->persist($facebook);
-            $manager->flush();
+        //  socials
+        $facebook = new Social();
+        $facebook->setName('Conduction Facebook');
+        $facebook->setDescription('Conduction Facebook');
+        $facebook->setType('facebook');
+        $facebook->setUrl('https://www.facebook.com/conductionnl/');
+        $manager->persist($facebook);
+        $manager->flush();
 
         $id = Uuid::fromString('9650a44d-d7d1-454a-ab4f-2338c90e8c2f');
         $conduction = new Organization();
