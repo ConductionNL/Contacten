@@ -14,7 +14,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -60,7 +59,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"type": "exact"})
  */
 class Social
 {
@@ -78,7 +77,7 @@ class Social
     /**
      * @var string Name of this social
      *
-     * @example Social of an organization/person
+     * @example Twitter of an organization/person
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
@@ -93,99 +92,45 @@ class Social
     /**
      * @var string Description of this social
      *
-     * @example This is the social object of an organization or person
+     * @example This is the twitter of an organization or person
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Person::class, inversedBy="socials")
-     * @MaxDepth(1)
-     */
-    private $person;
-
-    /**
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="socials")
-     * @MaxDepth(1)
-     */
-    private $organization;
-
-    /**
-     * @var string A website
+     * @var string The type of this social
      *
-     * @example https://google.com
+     * @example twitter
      *
      * @Gedmo\Versioned
-     * @Assert\Url
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Choice({"website", "twitter", "facebook", "linkedin", "instagram", "github", "other"})
+     * @Assert\Length(
+     *      max = 255
+     * )
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=12)
      */
-    private $website;
+    private $type = 'other';
 
     /**
-     * @var string A link to a twitter page
+     * @var string Url of this social
      *
-     * @example https://twitter.com/realdonaldtrump
-     *
-     * @Gedmo\Versioned
-     * @Assert\Url
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $twitter;
-
-    /**
-     * @var string A link to a facebook page
-     *
-     * @example https://nl-nl.facebook.com/DonaldTrump/
+     * @example https://www.twitter.com
      *
      * @Gedmo\Versioned
+     * @Assert\NotNull
      * @Assert\Url
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
-    private $facebook;
-
-    /**
-     * @var string A link to a linkedin page
-     *
-     * @example https://nl.linkedin.com/company/donaldj.trumpforpresidentinc.
-     *
-     * @Gedmo\Versioned
-     * @Assert\Url
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $linkedin;
-    /**
-     * @var string A link to a instagram page
-     *
-     * @example https://www.instagram.com/realdonaldtrump/?hl=nl
-     *
-     * @Gedmo\Versioned
-     * @Assert\Url
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $instagram;
-
-    /**
-     * @var string A link to a github page
-     *
-     * @example https://www.github.com/ConductionNL/contactcatalogus
-     *
-     * @Gedmo\Versioned
-     * @Assert\Url
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $github;
+    private $url;
 
     /**
      * @var Datetime The moment this resource was created
@@ -194,7 +139,7 @@ class Social
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $created;
+    private $dateCreated;
 
     /**
      * @var Datetime The moment this resource last Modified
@@ -203,7 +148,7 @@ class Social
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $modified;
+    private $dateModified;
 
     public function getId()
     {
@@ -241,122 +186,50 @@ class Social
         return $this;
     }
 
-    public function getWebsite(): ?string
+    public function getType(): ?string
     {
-        return $this->website;
+        return $this->type;
     }
 
-    public function setWebsite(?string $website): self
+    public function setType(string $type): self
     {
-        $this->website = $website;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getTwitter(): ?string
+    public function getUrl(): ?string
     {
-        return $this->twitter;
+        return $this->url;
     }
 
-    public function setTwitter(?string $twitter): self
+    public function setUrl(string $url): self
     {
-        $this->twitter = $twitter;
+        $this->url = $url;
 
         return $this;
     }
 
-    public function getFacebook(): ?string
+    public function getDateCreated(): ?\DateTimeInterface
     {
-        return $this->facebook;
+        return $this->dateCreated;
     }
 
-    public function setFacebook(?string $facebook): self
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-        $this->facebook = $facebook;
+        $this->dateCreated = $dateCreated;
 
         return $this;
     }
 
-    public function getLinkedin(): ?string
+    public function getDateModified(): ?\DateTimeInterface
     {
-        return $this->linkedin;
+        return $this->dateModified;
     }
 
-    public function setLinkedin(?string $linkedin): self
+    public function setDateModified(\DateTimeInterface $dateModified): self
     {
-        $this->linkedin = $linkedin;
-
-        return $this;
-    }
-
-    public function getInstagram(): ?string
-    {
-        return $this->instagram;
-    }
-
-    public function setInstagram(?string $instagram): self
-    {
-        $this->instagram = $instagram;
-
-        return $this;
-    }
-
-    public function getGithub(): ?string
-    {
-        return $this->github;
-    }
-
-    public function setGithub(?string $github): self
-    {
-        $this->github = $github;
-
-        return $this;
-    }
-
-    public function getPerson(): ?Person
-    {
-        return $this->person;
-    }
-
-    public function setPerson(?Person $person): self
-    {
-        $this->person = $person;
-
-        return $this;
-    }
-
-    public function getOrganization(): ?Organization
-    {
-        return $this->organization;
-    }
-
-    public function setOrganization(?Organization $organization): self
-    {
-        $this->organization = $organization;
-
-        return $this;
-    }
-
-    public function getCreated(): ?\DateTimeInterface
-    {
-        return $this->created;
-    }
-
-    public function setCreated(\DateTimeInterface $created): self
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    public function getModified(): ?\DateTimeInterface
-    {
-        return $this->modified;
-    }
-
-    public function setModified(\DateTimeInterface $modified): self
-    {
-        $this->modified = $modified;
+        $this->dateModified = $dateModified;
 
         return $this;
     }

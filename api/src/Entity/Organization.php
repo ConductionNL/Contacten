@@ -184,6 +184,15 @@ class Organization
     private $adresses;
 
     /**
+     * @var Social Socials of this organisation
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $socials;
+
+    /**
      * @var Email Email of this organisation
      *
      * @Groups({"read", "write"})
@@ -227,13 +236,6 @@ class Organization
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-
-    /**
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="organization" , cascade={"persist"})
-     * @MaxDepth(1)
-     */
-    private $socials;
 
     public function __construct()
     {
@@ -413,6 +415,32 @@ class Organization
     }
 
     /**
+     * @return Collection|Social[]
+     */
+    public function getSocials(): Collection
+    {
+        return $this->socials;
+    }
+
+    public function addSocial(Social $social): self
+    {
+        if (!$this->socials->contains($social)) {
+            $this->socials[] = $social;
+        }
+
+        return $this;
+    }
+
+    public function removeSocial(Social $social): self
+    {
+        if ($this->socials->contains($social)) {
+            $this->socials->removeElement($social);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Email[]
      */
     public function getEmails()
@@ -492,37 +520,6 @@ class Organization
         if ($this->contactLists->contains($contactList)) {
             $this->contactLists->removeElement($contactList);
             $contactList->removeOrganization($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Social[]
-     */
-    public function getSocials(): Collection
-    {
-        return $this->socials;
-    }
-
-    public function addSocial(Social $social): self
-    {
-        if (!$this->socials->contains($social)) {
-            $this->socials[] = $social;
-            $social->setOrganization($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSocial(Social $social): self
-    {
-        if ($this->socials->contains($social)) {
-            $this->socials->removeElement($social);
-            // set the owning side to null (unless already changed)
-            if ($social->getOrganization() === $this) {
-                $social->setOrganization(null);
-            }
         }
 
         return $this;

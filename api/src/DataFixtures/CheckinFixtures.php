@@ -223,12 +223,20 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
 
-        $social = new Social();
-        $social->setName('Creative Ground');
-        $social->setDescription('Socials creative Ground');
-        $social->setWebsite('https://creativegrounds.com/');
-        $social->setInstagram('https://www.instagram.com/creativegroundsnl/');
-        $manager->persist($social);
+        $website = new Social();
+        $website->setName('Creative Ground Website');
+        $website->setDescription('Creative Ground Website');
+        $website->setType('website');
+        $website->setUrl('https://creativegrounds.com/');
+        $manager->persist($website);
+        $manager->flush();
+
+        $instagram = new Social();
+        $instagram->setName('Creative Ground Instagram');
+        $instagram->setDescription('Creative Ground Instagram');
+        $instagram->setType('instagram');
+        $instagram->setUrl('https://www.instagram.com/creativegroundsnl/');
+        $manager->persist($instagram);
         $manager->flush();
 
         $email = new Email();
@@ -248,7 +256,8 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addPerson($person);
-        $organization->addSocial($social);
+        $organization->addSocial($website);
+        $organization->addSocial($instagram);
         $organization->addEmail($email);
         $manager->persist($organization);
         $manager->flush();

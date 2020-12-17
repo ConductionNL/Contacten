@@ -7622,7 +7622,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[website]'
+          name: 'order[type]'
           in: query
           required: false
           schema:
@@ -7631,7 +7631,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[twitter]'
+          name: 'order[url]'
           in: query
           required: false
           schema:
@@ -7640,7 +7640,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[facebook]'
+          name: 'order[dateCreated]'
           in: query
           required: false
           schema:
@@ -7649,7 +7649,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[linkedin]'
+          name: 'order[dateModified]'
           in: query
           required: false
           schema:
@@ -7658,97 +7658,61 @@ paths:
               - asc
               - desc
         -
-          name: 'order[instagram]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[github]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[created]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[modified]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'created[before]'
+          name: 'dateCreated[before]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'created[strictly_before]'
+          name: 'dateCreated[strictly_before]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'created[after]'
+          name: 'dateCreated[after]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'created[strictly_after]'
+          name: 'dateCreated[strictly_after]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'modified[before]'
+          name: 'dateModified[before]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'modified[strictly_before]'
+          name: 'dateModified[strictly_before]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'modified[after]'
+          name: 'dateModified[after]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'modified[strictly_after]'
+          name: 'dateModified[strictly_after]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: id
+          name: type
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'id[]'
+          name: 'type[]'
           in: query
           required: false
           schema:
@@ -7757,158 +7721,6 @@ paths:
               type: string
           style: form
           explode: true
-        -
-          name: name
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: website
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'website[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: twitter
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'twitter[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: facebook
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'facebook[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: linkedin
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'linkedin[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: instagram
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'instagram[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: github
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'github[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: created
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'created[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: modified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'modified[]'
-          in: query
-          required: false
-          schema:
-            type: string
         -
           name: page
           in: query
@@ -10646,6 +10458,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address-read'
+        socials:
+          description: 'Socials of this organisation'
+          type: array
+          items:
+            $ref: '#/components/schemas/Social-read'
         emails:
           description: 'Email of this organisation'
           type: array
@@ -10656,10 +10473,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-read'
-        socials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Social-read'
       required:
         - name
     Organization-write:
@@ -10707,6 +10520,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address-write'
+        socials:
+          description: 'Socials of this organisation'
+          type: array
+          items:
+            $ref: '#/components/schemas/Social-write'
         emails:
           description: 'Email of this organisation'
           type: array
@@ -10717,10 +10535,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-write'
-        socials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Social-write'
     'Organization:jsonld-read':
       type: object
       description: 'All properties that the entity Organisation holds.'
@@ -10778,6 +10592,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address:jsonld-read'
+        socials:
+          description: 'Socials of this organisation'
+          type: array
+          items:
+            $ref: '#/components/schemas/Social:jsonld-read'
         emails:
           description: 'Email of this organisation'
           type: array
@@ -10788,10 +10607,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person:jsonld-read'
-        socials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Social:jsonld-read'
       required:
         - name
     'Organization:jsonld-write':
@@ -10848,6 +10663,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address:jsonld-write'
+        socials:
+          description: 'Socials of this organisation'
+          type: array
+          items:
+            $ref: '#/components/schemas/Social:jsonld-write'
         emails:
           description: 'Email of this organisation'
           type: array
@@ -10858,10 +10678,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person:jsonld-write'
-        socials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Social:jsonld-write'
     Person-read:
       type: object
       description: 'All properties that the entity Person holds.'
@@ -10923,6 +10739,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address-read'
+        socials:
+          description: 'Socials of this person'
+          type: array
+          items:
+            $ref: '#/components/schemas/Social-read'
         emails:
           description: 'Emails of this person'
           type: array
@@ -10938,13 +10759,7 @@ components:
           type: string
           format: date-time
           nullable: true
-        socials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Social-read'
         personalPhoto:
-          externalDocs:
-            url: 'http://schema.org/url'
           type: string
           nullable: true
       required:
@@ -10997,18 +10812,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address-write'
+        socials:
+          description: 'Socials of this person'
+          type: array
+          items:
+            $ref: '#/components/schemas/Social-write'
         emails:
           description: 'Emails of this person'
           type: array
           items:
             $ref: '#/components/schemas/Email-write'
-        socials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Social-write'
         personalPhoto:
-          externalDocs:
-            url: 'http://schema.org/url'
           type: string
           nullable: true
       required:
@@ -11083,6 +10897,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address:jsonld-read'
+        socials:
+          description: 'Socials of this person'
+          type: array
+          items:
+            $ref: '#/components/schemas/Social:jsonld-read'
         emails:
           description: 'Emails of this person'
           type: array
@@ -11098,13 +10917,7 @@ components:
           type: string
           format: date-time
           nullable: true
-        socials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Social:jsonld-read'
         personalPhoto:
-          externalDocs:
-            url: 'http://schema.org/url'
           type: string
           nullable: true
       required:
@@ -11166,18 +10979,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address:jsonld-write'
+        socials:
+          description: 'Socials of this person'
+          type: array
+          items:
+            $ref: '#/components/schemas/Social:jsonld-write'
         emails:
           description: 'Emails of this person'
           type: array
           items:
             $ref: '#/components/schemas/Email:jsonld-write'
-        socials:
-          type: array
-          items:
-            $ref: '#/components/schemas/Social:jsonld-write'
         personalPhoto:
-          externalDocs:
-            url: 'http://schema.org/url'
           type: string
           nullable: true
       required:
@@ -11197,71 +11009,34 @@ components:
         description:
           description: 'Description of this social'
           type: string
-        person:
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Person-read'
-        organization:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Organization-read'
-        website:
-          description: 'A website'
+        type:
+          description: 'The type of this social'
+          type: string
+        url:
+          description: 'Url of this social'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-          nullable: true
-        twitter:
-          description: 'A link to a twitter page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        facebook:
-          description: 'A link to a facebook page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        linkedin:
-          description: 'A link to a linkedin page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        instagram:
-          description: 'A link to a instagram page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        github:
-          description: 'A link to a github page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        created:
+        dateCreated:
           description: 'The moment this resource was created'
           type: string
           format: date-time
           nullable: true
-        modified:
+        dateModified:
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
           nullable: true
       required:
         - name
-        - description
+        - url
     Social-write:
       type: object
       description: 'All properties that the entity Social holds.'
       required:
         - name
-        - description
+        - url
       properties:
         name:
           description: 'Name of this social'
@@ -11269,52 +11044,15 @@ components:
         description:
           description: 'Description of this social'
           type: string
-        person:
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Person-write'
-        organization:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Organization-write'
-        website:
-          description: 'A website'
+        type:
+          description: 'The type of this social'
+          type: string
+        url:
+          description: 'Url of this social'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-          nullable: true
-        twitter:
-          description: 'A link to a twitter page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        facebook:
-          description: 'A link to a facebook page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        linkedin:
-          description: 'A link to a linkedin page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        instagram:
-          description: 'A link to a instagram page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        github:
-          description: 'A link to a github page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
     'Social:jsonld-read':
       type: object
       description: 'All properties that the entity Social holds.'
@@ -11339,71 +11077,34 @@ components:
         description:
           description: 'Description of this social'
           type: string
-        person:
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Person:jsonld-read'
-        organization:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Organization:jsonld-read'
-        website:
-          description: 'A website'
+        type:
+          description: 'The type of this social'
+          type: string
+        url:
+          description: 'Url of this social'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-          nullable: true
-        twitter:
-          description: 'A link to a twitter page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        facebook:
-          description: 'A link to a facebook page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        linkedin:
-          description: 'A link to a linkedin page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        instagram:
-          description: 'A link to a instagram page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        github:
-          description: 'A link to a github page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        created:
+        dateCreated:
           description: 'The moment this resource was created'
           type: string
           format: date-time
           nullable: true
-        modified:
+        dateModified:
           description: 'The moment this resource last Modified'
           type: string
           format: date-time
           nullable: true
       required:
         - name
-        - description
+        - url
     'Social:jsonld-write':
       type: object
       description: 'All properties that the entity Social holds.'
       required:
         - name
-        - description
+        - url
       properties:
         '@context':
           readOnly: true
@@ -11420,52 +11121,15 @@ components:
         description:
           description: 'Description of this social'
           type: string
-        person:
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Person:jsonld-write'
-        organization:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Organization:jsonld-write'
-        website:
-          description: 'A website'
+        type:
+          description: 'The type of this social'
+          type: string
+        url:
+          description: 'Url of this social'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-          nullable: true
-        twitter:
-          description: 'A link to a twitter page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        facebook:
-          description: 'A link to a facebook page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        linkedin:
-          description: 'A link to a linkedin page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        instagram:
-          description: 'A link to a instagram page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
-        github:
-          description: 'A link to a github page'
-          externalDocs:
-            url: 'http://schema.org/url'
-          type: string
-          nullable: true
     Telephone-read:
       type: object
       description: 'All properties that the entity Telephone holds.'
@@ -11808,13 +11472,15 @@ definitions:
       adresses:
         description: 'Address of this organisation'
         type: \Address
+      socials:
+        description: 'Socials of this organisation'
+        type: \Social
       emails:
         description: 'Email of this organisation'
         type: \Email
       persons:
         description: 'Person of this organisation'
         type: \Person
-      socials: []
     required: []
   Organization-write:
     properties:
@@ -11852,13 +11518,15 @@ definitions:
       adresses:
         description: 'Address of this organisation'
         type: \Address
+      socials:
+        description: 'Socials of this organisation'
+        type: \Social
       emails:
         description: 'Email of this organisation'
         type: \Email
       persons:
         description: 'Person of this organisation'
         type: \Person
-      socials: []
     required: []
   Person-read:
     properties:
@@ -11910,19 +11578,19 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
-      personalPhoto:
-        type: string
-        format: url
+      personalPhoto: []
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
       adresses:
         description: 'Adresses of this person'
         type: \Address
+      socials:
+        description: 'Socials of this person'
+        type: \Social
       emails:
         description: 'Emails of this person'
         type: \Email
-      socials: []
     required: []
   Person-write:
     properties:
@@ -11965,19 +11633,19 @@ definitions:
         type: string
         example: 'I like to dance !'
         maxLength: 255
-      personalPhoto:
-        type: string
-        format: url
+      personalPhoto: []
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
       adresses:
         description: 'Adresses of this person'
         type: \Address
+      socials:
+        description: 'Socials of this person'
+        type: \Social
       emails:
         description: 'Emails of this person'
         type: \Email
-      socials: []
     required: []
   Social-read:
     properties:
@@ -11987,97 +11655,57 @@ definitions:
       name:
         description: 'Name of this social'
         type: string
-        example: 'Social of an organization/person'
+        example: 'Twitter of an organization/person'
         maxLength: 255
       description:
         description: 'Description of this social'
         type: string
-        example: 'This is the social object of an organization or person'
-      website:
-        description: 'A website'
+        example: 'This is the twitter of an organization or person'
+      type:
+        description: 'The type of this social'
         type: string
-        example: 'https://google.com'
-        format: url
-      twitter:
-        description: 'A link to a twitter page'
+        example: twitter
+        maxLength: 255
+      url:
+        description: 'Url of this social'
         type: string
-        example: 'https://twitter.com/realdonaldtrump'
+        example: 'https://www.twitter.com'
         format: url
-      facebook:
-        description: 'A link to a facebook page'
-        type: string
-        example: 'https://nl-nl.facebook.com/DonaldTrump/'
-        format: url
-      linkedin:
-        description: 'A link to a linkedin page'
-        type: string
-        example: 'https://nl.linkedin.com/company/donaldj.trumpforpresidentinc.'
-        format: url
-      instagram:
-        description: 'A link to a instagram page'
-        type: string
-        example: 'https://www.instagram.com/realdonaldtrump/?hl=nl'
-        format: url
-      github:
-        description: 'A link to a github page'
-        type: string
-        example: 'https://www.github.com/ConductionNL/contactcatalogus'
-        format: url
-      created:
+        maxLength: 255
+      dateCreated:
         description: 'The moment this resource was created'
         type: \Datetime
-      modified:
+      dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
-      person: []
-      organization: []
     required:
       - name
+      - url
   Social-write:
     properties:
       name:
         description: 'Name of this social'
         type: string
-        example: 'Social of an organization/person'
+        example: 'Twitter of an organization/person'
         maxLength: 255
       description:
         description: 'Description of this social'
         type: string
-        example: 'This is the social object of an organization or person'
-      website:
-        description: 'A website'
+        example: 'This is the twitter of an organization or person'
+      type:
+        description: 'The type of this social'
         type: string
-        example: 'https://google.com'
-        format: url
-      twitter:
-        description: 'A link to a twitter page'
+        example: twitter
+        maxLength: 255
+      url:
+        description: 'Url of this social'
         type: string
-        example: 'https://twitter.com/realdonaldtrump'
+        example: 'https://www.twitter.com'
         format: url
-      facebook:
-        description: 'A link to a facebook page'
-        type: string
-        example: 'https://nl-nl.facebook.com/DonaldTrump/'
-        format: url
-      linkedin:
-        description: 'A link to a linkedin page'
-        type: string
-        example: 'https://nl.linkedin.com/company/donaldj.trumpforpresidentinc.'
-        format: url
-      instagram:
-        description: 'A link to a instagram page'
-        type: string
-        example: 'https://www.instagram.com/realdonaldtrump/?hl=nl'
-        format: url
-      github:
-        description: 'A link to a github page'
-        type: string
-        example: 'https://www.github.com/ConductionNL/contactcatalogus'
-        format: url
-      person: []
-      organization: []
+        maxLength: 255
     required:
       - name
+      - url
   Telephone-read:
     properties:
       id:
@@ -12217,12 +11845,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-15 14:18:24'
+        example: '2020-12-17 15:01:25'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-15 14:18:24'
+        example: '2020-12-17 15:01:25'
     required: []
   AuditTrail-write:
     properties:
@@ -12270,12 +11898,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-15 14:18:24'
+        example: '2020-12-17 15:01:25'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-15 14:18:24'
+        example: '2020-12-17 15:01:25'
     required: []
   ChangeLog-write:
     properties:
