@@ -37,6 +37,19 @@ class ZuidDrechtFixtures extends Fixture
             return false;
         }
 
+        // Zuid-drecht website
+        $id = Uuid::fromString('2edd04cd-117a-45e3-b5b0-5d5d94fd41e9');
+        $website = new Social();
+        $website->setName('Website van Zuid Drecht');
+        $website->setDescription('De meest inovatieve gemeenten van nederland');
+        $website->setType('website');
+        $website->setUrl('https://zuid-drecht.nl');
+        $manager->persist($website);
+        $website->setId($id);
+        $manager->persist($website);
+        $manager->flush();
+        $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
+
         // Zuid-Drecht
         $id = Uuid::fromString('344867d7-d71d-44d6-90ff-8603c2422058');
         $organization = new Organization();
@@ -48,18 +61,9 @@ class ZuidDrechtFixtures extends Fixture
         $manager->persist($organization);
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
-
-        $id = Uuid::fromString('2edd04cd-117a-45e3-b5b0-5d5d94fd41e9');
-        $social = new Social();
-        $social->setName('Social van Zuid Drecht');
-        $social->setDescription('De meest inovatieve gemeenten van nederland');
-        $social->setWebsite('https://zuid-drecht.nl');
-        $social->setOrganization($organization);
-        $manager->persist($social);
-        $social->setId($id);
-        $manager->persist($social);
+        $organization->addSocial($website);
+        $manager->persist($organization);
         $manager->flush();
-        $social = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
 
         // Test Student
         $id = Uuid::fromString('f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f');

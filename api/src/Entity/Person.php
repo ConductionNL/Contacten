@@ -222,6 +222,15 @@ class Person
     private $adresses;
 
     /**
+     * @var Social Socials of this person
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $socials;
+
+    /**
      * @var Email Emails of this person
      *
      * @Groups({"read", "write"})
@@ -263,13 +272,6 @@ class Person
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-
-    /**
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="person", cascade={"persist"})
-     * @MaxDepth(1)
-     */
-    private $socials;
 
     /**
      * @Groups({"read","write"})
@@ -465,6 +467,32 @@ class Person
     }
 
     /**
+     * @return Collection|Social[]
+     */
+    public function getSocials(): Collection
+    {
+        return $this->socials;
+    }
+
+    public function addSocial(Social $social): self
+    {
+        if (!$this->socials->contains($social)) {
+            $this->socials[] = $social;
+        }
+
+        return $this;
+    }
+
+    public function removeSocial(Social $social): self
+    {
+        if ($this->socials->contains($social)) {
+            $this->socials->removeElement($social);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Email[]
      */
     public function getEmails()
@@ -550,37 +578,6 @@ class Person
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Social[]
-     */
-    public function getSocials(): Collection
-    {
-        return $this->socials;
-    }
-
-    public function addSocial(Social $social): self
-    {
-        if (!$this->socials->contains($social)) {
-            $this->socials[] = $social;
-            $social->setPerson($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSocial(Social $social): self
-    {
-        if ($this->socials->contains($social)) {
-            $this->socials->removeElement($social);
-            // set the owning side to null (unless already changed)
-            if ($social->getPerson() === $this) {
-                $social->setPerson(null);
-            }
-        }
 
         return $this;
     }
