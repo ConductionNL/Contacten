@@ -176,6 +176,34 @@ class Person
     private $birthplace;
 
     /**
+     * @var string TIN, CIF, NIF or BSN
+     *
+     * @example 999994670
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length (
+     *     max = 255
+     * )
+     */
+    private $taxID;
+
+    /**
+     * @var string Information about this person
+     *
+     * @example I like to dance !
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length (
+     *     max = 255
+     * )
+     */
+    private $aboutMe;
+
+    /**
      * @var Telephone Telephone of this person
      *
      * @Groups({"read", "write"})
@@ -192,6 +220,15 @@ class Person
      * @MaxDepth(1)
      */
     private $adresses;
+
+    /**
+     * @var Social Socials of this person
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $socials;
 
     /**
      * @var Email Emails of this person
@@ -237,11 +274,10 @@ class Person
     private $dateModified;
 
     /**
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="person")
-     * @MaxDepth(1)
+     * @Groups({"read","write"})
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $socials;
+    private $personalPhoto;
 
     /**
      * @var string The WRC url of the organization that owns this group
@@ -283,7 +319,7 @@ class Person
         return $this->resource;
     }
 
-    public function setResource(string $resource): self
+    public function setResource(?string $resource): self
     {
         $this->resource = $resource;
 
@@ -313,7 +349,7 @@ class Person
         return $this->givenName;
     }
 
-    public function setGivenName(string $givenName): self
+    public function setGivenName(?string $givenName): self
     {
         $this->givenName = $givenName;
 
@@ -349,7 +385,7 @@ class Person
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
 
@@ -364,6 +400,30 @@ class Person
     public function setBirthplace(?string $birthplace): self
     {
         $this->birthplace = $birthplace;
+
+        return $this;
+    }
+
+    public function getTaxID(): ?string
+    {
+        return $this->taxID;
+    }
+
+    public function setTaxID(?string $taxID): self
+    {
+        $this->taxID = $taxID;
+
+        return $this;
+    }
+
+    public function getAboutMe(): ?string
+    {
+        return $this->aboutMe;
+    }
+
+    public function setAboutMe(?string $aboutMe): self
+    {
+        $this->aboutMe = $aboutMe;
 
         return $this;
     }
@@ -415,6 +475,32 @@ class Person
     {
         if ($this->adresses->contains($adress)) {
             $this->adresses->removeElement($adress);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Social[]
+     */
+    public function getSocials(): Collection
+    {
+        return $this->socials;
+    }
+
+    public function addSocial(Social $social): self
+    {
+        if (!$this->socials->contains($social)) {
+            $this->socials[] = $social;
+        }
+
+        return $this;
+    }
+
+    public function removeSocial(Social $social): self
+    {
+        if ($this->socials->contains($social)) {
+            $this->socials->removeElement($social);
         }
 
         return $this;
@@ -510,33 +596,14 @@ class Person
         return $this;
     }
 
-    /**
-     * @return Collection|Social[]
-     */
-    public function getSocials(): Collection
+    public function getPersonalPhoto(): ?string
     {
-        return $this->socials;
+        return $this->personalPhoto;
     }
 
-    public function addSocial(Social $social): self
+    public function setPersonalPhoto(?string $personalPhoto): self
     {
-        if (!$this->socials->contains($social)) {
-            $this->socials[] = $social;
-            $social->setPerson($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSocial(Social $social): self
-    {
-        if ($this->socials->contains($social)) {
-            $this->socials->removeElement($social);
-            // set the owning side to null (unless already changed)
-            if ($social->getPerson() === $this) {
-                $social->setPerson(null);
-            }
-        }
+        $this->personalPhoto = $personalPhoto;
 
         return $this;
     }

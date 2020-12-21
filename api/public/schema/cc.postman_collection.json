@@ -2285,6 +2285,572 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "socials",
+			"item": [
+				{
+					"name": "Retrieves the collection of Social resources.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b8d57e6d-95b5-4616-b5c7-a35d055ada2a",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/socials",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"socials"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Address collection response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/addresses?page=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"bagnummeraanduiding\": \"<string>\",\n  \"street\": \"<string>\",\n  \"houseNumber\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locality\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postOfficeBoxNumber\": \"<string>\"\n },\n {\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"bagnummeraanduiding\": \"<string>\",\n  \"street\": \"<string>\",\n  \"houseNumber\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locality\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postOfficeBoxNumber\": \"<string>\"\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "Creates a Social resource.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3d0b8e6d-0b8e-4d3f-8637-ace37f9317bf",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     // pm.response.to.be.created; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Set ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData);\r",
+									"    //var payloadData = JSON.parse(jsonData.Payload); //parsed payload\r",
+									"\r",
+									"    //console.log(payloadData.Id);\r",
+									"\r",
+									"    pm.environment.set(\"social\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Conduction Website\",\n    \"description\": \"the website of conduction\",\n    \"type\": \"website\",\n    \"url\": \"https://www.conduction.nl\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/socials",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"socials"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Address resource created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/addresses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"bagnummeraanduiding\": \"<string>\",\n \"street\": \"<string>\",\n \"houseNumber\": \"<string>\",\n \"postalCode\": \"<string>\",\n \"region\": \"<string>\",\n \"locality\": \"<string>\",\n \"country\": \"<string>\",\n \"postOfficeBoxNumber\": \"<string>\"\n}"
+						},
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/addresses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/addresses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "socials/{id}",
+			"item": [
+				{
+					"name": "Retrieves a Social resource.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "612bc2c8-0e76-4641-994e-108e3d73c237",
+								"exec": [
+									"// example using pm.response.to.have",
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// example using response assertions",
+									"pm.test(\"response should be okay to process\", function () {",
+									"    pm.response.to.not.be.error;",
+									"    pm.response.to.not.have.jsonBody(\"error\");",
+									"});",
+									"",
+									"// example using pm.response.to.be*",
+									"pm.test(\"response must be valid and have a body\", function () {",
+									"     // assert that the status code is 200",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+									"     // assert that the response has a valid JSON body",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/socials/{{social}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"socials",
+								"{{social}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Address resource response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/addresses/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"bagnummeraanduiding\": \"<string>\",\n \"street\": \"<string>\",\n \"houseNumber\": \"<string>\",\n \"postalCode\": \"<string>\",\n \"region\": \"<string>\",\n \"locality\": \"<string>\",\n \"country\": \"<string>\",\n \"postOfficeBoxNumber\": \"<string>\"\n}"
+						},
+						{
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/addresses/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Replaces the Social resource.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5b54249-ec28-4d23-9c84-289774f16098",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Conduction Website\",\n    \"description\": \"the website of conduction\",\n    \"type\": \"website\",\n    \"url\": \"https://www.conduction.nl\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/socials/{{social}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"socials",
+								"{{social}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/addresses/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Address resource updated",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/addresses/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"bagnummeraanduiding\": \"<string>\",\n \"street\": \"<string>\",\n \"houseNumber\": \"<string>\",\n \"postalCode\": \"<string>\",\n \"region\": \"<string>\",\n \"locality\": \"<string>\",\n \"country\": \"<string>\",\n \"postOfficeBoxNumber\": \"<string>\"\n}"
+						},
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"bagnummeraanduiding\": \"<string>\",\n    \"street\": \"<string>\",\n    \"houseNumber\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postOfficeBoxNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/addresses/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"addresses",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "14e7ad0e-22b0-44de-b984-1b9d0e515851",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a690d20-1c41-4068-bfde-a4d00cd6e1e6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "people",
 			"item": [
 				{
@@ -2320,6 +2886,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2421,7 +3002,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"givenName\": \"John\",\n    \"additionalName\": \"Allan\",\n    \"familyName\": \"Doe\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ]\n}",
+							"raw": "{\n    \"givenName\": \"John\",\n    \"additionalName\": \"Allen\",\n    \"familyName\": \"Doe\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ],\n    \"socials\": [\n\t\t\"/socials/{{social}}\"\n    ]\n}",
 							"options": {
 								"raw": {}
 							}
@@ -2571,6 +3152,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2695,7 +3291,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"givenName\": \"John\",\n    \"additionalName\": \"Allan\",\n    \"familyName\": \"Doe\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ]\n}",
+							"raw": "{\n    \"givenName\": \"John\",\n    \"additionalName\": \"Allan\",\n    \"familyName\": \"Doe\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ],\n    \"socials\": [\n\t\t\"/socials/{{social}}\"\n    ]\n}",
 							"options": {
 								"raw": {}
 							}
@@ -2886,6 +3482,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2995,7 +3606,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Ajax\",\r\n    \"description\": \"Ajax is a dutch soccer club\",\r\n    \"kvk\": \"123456789\",\r\n    \"type\": \"Township\",\r\n    \"telephones\": [\r\n        \"/telephones/{{telephone}}\"\r\n    ],\r\n    \"adresses\": [\r\n        \"/addresses/{{address}}\"\r\n    ],\r\n    \"emails\": [\r\n\t\t\"/emails/{{email}}\"\r\n    ]\r\n}",
+							"raw": "{\r\n    \"name\": \"Ajax\",\r\n    \"description\": \"Ajax is a dutch soccer club\",\r\n    \"kvk\": \"123456789\",\r\n    \"type\": \"Township\",\r\n    \"telephones\": [\r\n        \"/telephones/{{telephone}}\"\r\n    ],\r\n    \"adresses\": [\r\n        \"/addresses/{{address}}\"\r\n    ],\r\n    \"emails\": [\r\n\t\t\"/emails/{{email}}\"\r\n    ],\r\n    \"socials\": [\r\n\t\t\"/socials/{{social}}\"\r\n    ]\r\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3145,6 +3756,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -3269,7 +3895,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Ajax\",\n    \"description\": \"Ajax is a dutch soccer club\",\n    \"kvk\": \"123456789\",\n    \"type\": \"Township\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ]\n}",
+							"raw": "{\n    \"name\": \"Ajax\",\n    \"description\": \"Ajax is a dutch soccer club\",\n    \"kvk\": \"123456789\",\n    \"type\": \"Township\",\n    \"telephones\": [\n        \"/telephones/{{telephone}}\"\n    ],\n    \"adresses\": [\n        \"/addresses/{{address}}\"\n    ],\n    \"emails\": [\n\t\t\"/emails/{{email}}\"\n    ],\n    \"socials\": [\n\t\t\"/socials/{{social}}\"\n    ]\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3557,6 +4183,107 @@
 							"path": [
 								"people",
 								"{{person}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/people/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"people",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Person resource deleted",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/people/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"people",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Removes the Social resource.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81f3ba9e-29b0-4d99-89bb-d86d001bf631",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/socials/{{social}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"socials",
+								"{{social}}"
 							]
 						}
 					},
@@ -4076,12 +4803,12 @@
 	],
 	"variable": [
 		{
-			"id": "45ffbcbe-903a-4bb3-b102-31379d47f257",
+			"id": "4462b635-37e1-482f-99b9-a35352f604e4",
 			"key": "baseUrl",
 			"value": "localhost"
 		},
 		{
-			"id": "fe5813af-abc0-4ced-bb88-a65b1d60ab0b",
+			"id": "c2468fb4-aaad-4647-b27f-4e2b882eb6c4",
 			"key": "authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}

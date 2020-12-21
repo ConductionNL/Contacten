@@ -135,7 +135,7 @@ class Organization
     private $coc;
 
     /**
-     * @var string Value added tax id of this organisation
+     * @var string Value added tax id of this organisation (btw)
      *
      * @Gedmo\Versioned
      *
@@ -146,7 +146,7 @@ class Organization
      *     max = 15
      * )
      */
-    private $vat;
+    private $vatID;
 
     /**
      * @param Organization $parentOrganization The larger organization that this organization is a subOrganization of.
@@ -182,6 +182,15 @@ class Organization
      * @MaxDepth(1)
      */
     private $adresses;
+
+    /**
+     * @var Social Socials of this organisation
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $socials;
 
     /**
      * @var Email Email of this organisation
@@ -229,13 +238,6 @@ class Organization
     private $dateModified;
 
     /**
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="organization" , cascade={"persist"})
-     * @MaxDepth(1)
-     */
-    private $socials;
-
-    /**
      * @var string The WRC url of the organization that owns this group
      *
      * @example 002851234
@@ -248,7 +250,6 @@ class Organization
      * @ApiFilter(SearchFilter::class, strategy="exact")
      */
     private $sourceOrganization;
-
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
@@ -319,14 +320,14 @@ class Organization
         return $this;
     }
 
-    public function getVat(): ?string
+    public function getVatID(): ?string
     {
-        return $this->vat;
+        return $this->vatID;
     }
 
-    public function setVat(?string $vat): self
+    public function setVatID(?string $vatID): self
     {
-        $this->vat = $vat;
+        $this->vatID = $vatID;
 
         return $this;
     }
@@ -427,6 +428,32 @@ class Organization
     }
 
     /**
+     * @return Collection|Social[]
+     */
+    public function getSocials(): Collection
+    {
+        return $this->socials;
+    }
+
+    public function addSocial(Social $social): self
+    {
+        if (!$this->socials->contains($social)) {
+            $this->socials[] = $social;
+        }
+
+        return $this;
+    }
+
+    public function removeSocial(Social $social): self
+    {
+        if ($this->socials->contains($social)) {
+            $this->socials->removeElement($social);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Email[]
      */
     public function getEmails()
@@ -510,47 +537,10 @@ class Organization
 
         return $this;
     }
-
-    /**
-     * @return Collection|Social[]
-     */
-    public function getSocials(): Collection
-    {
-        return $this->socials;
     }
-
-    public function addSocial(Social $social): self
-    {
-        if (!$this->socials->contains($social)) {
-            $this->socials[] = $social;
-            $social->setOrganization($this);
-        }
-
         return $this;
-    }
-
-    public function removeSocial(Social $social): self
-    {
-        if ($this->socials->contains($social)) {
-            $this->socials->removeElement($social);
-            // set the owning side to null (unless already changed)
-            if ($social->getOrganization() === $this) {
-                $social->setOrganization(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getSourceOrganization(): ?string
-    {
-        return $this->sourceOrganization;
-    }
+        $this->sourceOrganization = $sourceOrganization;
 
     public function setSourceOrganization(string $sourceOrganization): self
     {
-        $this->sourceOrganization = $sourceOrganization;
-
-        return $this;
-    }
 }
