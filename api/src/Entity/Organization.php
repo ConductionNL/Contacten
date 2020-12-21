@@ -235,6 +235,20 @@ class Organization
      */
     private $socials;
 
+    /**
+     * @var string The WRC url of the organization that owns this group
+     *
+     * @example 002851234
+     *
+     * @Gedmo\Versioned
+     * @Assert\NotNull
+     * @Assert\Url
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ApiFilter(SearchFilter::class, strategy="exact")
+     */
+    private $sourceOrganization;
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
@@ -524,6 +538,18 @@ class Organization
                 $social->setOrganization(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSourceOrganization(): ?string
+    {
+        return $this->sourceOrganization;
+    }
+
+    public function setSourceOrganization(string $sourceOrganization): self
+    {
+        $this->sourceOrganization = $sourceOrganization;
 
         return $this;
     }
