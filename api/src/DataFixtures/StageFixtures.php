@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
+use App\Entity\Social;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -70,6 +71,15 @@ class StageFixtures extends Fixture
         //Organizations
         //Partners
         // Conduction
+        //  socials
+        $facebook = new Social();
+        $facebook->setName('Conduction Facebook');
+        $facebook->setDescription('Conduction Facebook');
+        $facebook->setType('facebook');
+        $facebook->setUrl('https://www.facebook.com/conductionnl/');
+        $manager->persist($facebook);
+        $manager->flush();
+
         $id = Uuid::fromString('9650a44d-d7d1-454a-ab4f-2338c90e8c2f');
         $conduction = new Organization();
         $conduction->setName('Conduction');
@@ -80,6 +90,9 @@ class StageFixtures extends Fixture
         $manager->persist($conduction);
         $manager->flush();
         $conduction = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $conduction->addSocial($facebook);
+        $manager->persist($conduction);
+        $manager->flush();
 
         // VNG
         $id = Uuid::fromString('80a987a0-a5e0-4aa0-bd90-a931871d9283');
