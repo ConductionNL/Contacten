@@ -97,8 +97,7 @@ class Social
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
