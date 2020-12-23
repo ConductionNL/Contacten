@@ -53,8 +53,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     },
  *  collectionOperations={
- *  	"get",
- *  	"post"
+ *    "get",
+ *    "post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
@@ -250,6 +250,7 @@ class Organization
      * @ApiFilter(SearchFilter::class, strategy="exact")
      */
     private $sourceOrganization;
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
@@ -537,10 +538,17 @@ class Organization
 
         return $this;
     }
+
+
+    public function getSourceOrganization(): ?string
+    {
+        return $this->sourceOrganization;
     }
-        return $this;
+
+    public function setSourceOrganization(?string $sourceOrganization): self
+    {
         $this->sourceOrganization = $sourceOrganization;
 
-    public function setSourceOrganization(string $sourceOrganization): self
-    {
+        return $this;
+    }
 }
