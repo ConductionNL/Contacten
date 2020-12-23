@@ -539,7 +539,6 @@ class Organization
         return $this;
     }
 
-
     public function getSourceOrganization(): ?string
     {
         return $this->sourceOrganization;
