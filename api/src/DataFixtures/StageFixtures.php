@@ -2,8 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
+use App\Entity\Social;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -39,6 +41,22 @@ class StageFixtures extends Fixture
         * Online Stage Platform
         */
 
+        $id = Uuid::fromString('faafee73-2b5a-4cd5-a339-c0c96ba0d7eb');
+        $organization = new Organization();
+        $organization->setName('conduction academy');
+        $organization->setDescription('conduction academy');
+        $organization->setType('platform');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $email = new Email();
+        $email->setEmail('info@conduction.nl');
+        $organization->addEmail($email);
+        $manager->persist($organization);
+        $manager->flush();
+
         // Test Student
         $id = Uuid::fromString('d961291d-f5c1-46f4-8b4a-6abb41df88db');
         $testStudent = new Person();
@@ -53,6 +71,15 @@ class StageFixtures extends Fixture
         //Organizations
         //Partners
         // Conduction
+        //  socials
+        $facebook = new Social();
+        $facebook->setName('Conduction Facebook');
+        $facebook->setDescription('Conduction Facebook');
+        $facebook->setType('facebook');
+        $facebook->setUrl('https://www.facebook.com/conductionnl/');
+        $manager->persist($facebook);
+        $manager->flush();
+
         $id = Uuid::fromString('9650a44d-d7d1-454a-ab4f-2338c90e8c2f');
         $conduction = new Organization();
         $conduction->setName('Conduction');
@@ -63,6 +90,9 @@ class StageFixtures extends Fixture
         $manager->persist($conduction);
         $manager->flush();
         $conduction = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $conduction->addSocial($facebook);
+        $manager->persist($conduction);
+        $manager->flush();
 
         // VNG
         $id = Uuid::fromString('80a987a0-a5e0-4aa0-bd90-a931871d9283');
