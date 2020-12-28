@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Email;
 use App\Entity\Organization;
 use App\Entity\Person;
+use App\Entity\Social;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -42,7 +43,7 @@ class LarpingFixtures extends Fixture
         $person->setId($id);
         $manager->persist($person);
         $manager->flush();
-        $person = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
+        $person = $manager->getRepository('App:Person')->findOneBy(['id' => $id]);
 
         $email = new Email();
         $email->setName('Email');
@@ -57,6 +58,54 @@ class LarpingFixtures extends Fixture
         $org->setId($id);
         $manager->persist($org);
         $manager->flush();
-        $org = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
+        $org = $manager->getRepository('App:Person')->findOneBy(['id' => $id]);
+        $manager->flush();
+
+//        $id = Uuid::fromString('c69a9073-9d72-4743-ad33-3c4c7fb34589');
+//        $org = new Organization();
+//        $org->setName('Vortex Adventures');
+//        $org->setDescription('Vortex Adventures');
+//        $manager->persist($org);
+//        $org->setId($id);
+//        $manager->persist($org);
+//        $manager->flush();
+//        $org = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
+//
+//        $id = Uuid::fromString('58a681b0-7ff8-4b42-98c0-eef371117d4a');
+//        $social = new Social();
+//        $social->setName('Social van Vortex Adventures');
+//        $social->setWebsite('http://www.the-vortex.nl');
+//        $social->setOrganization($org);
+//        $manager->persist($social);
+//        $social->setId($id);
+//        $manager->persist($social);
+//        $manager->flush();
+//        $social = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('58a681b0-7ff8-4b42-98c0-eef371117d4a');
+        $website = new Social();
+        $website->setName('Website van Vortex Adventures');
+        $website->setDescription('Vortex Adventures');
+        $website->setType('website');
+        $website->setUrl('http://www.the-vortex.nl');
+        $manager->persist($website);
+        $website->setId($id);
+        $manager->persist($website);
+        $manager->flush();
+        $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
+
+        // Zuid-Drecht
+        $id = Uuid::fromString('c69a9073-9d72-4743-ad33-3c4c7fb34589');
+        $organization = new Organization();
+        $organization->setName('Vortex Adventures');
+        $organization->setDescription('Vortex Adventures');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $organization->addSocial($website);
+        $manager->persist($organization);
+        $manager->flush();
     }
 }

@@ -222,6 +222,15 @@ class Person
     private $adresses;
 
     /**
+     * @var Social Socials of this person
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $socials;
+
+    /**
      * @var Email Emails of this person
      *
      * @Groups({"read", "write"})
@@ -265,17 +274,24 @@ class Person
     private $dateModified;
 
     /**
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="person", cascade={"persist"})
-     * @MaxDepth(1)
-     */
-    private $socials;
-
-    /**
      * @Groups({"read","write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $personalPhoto;
+
+    /**
+     * @var string The WRC url of the organization that owns this group
+     *
+     * @example 002851234
+     *
+     * @Gedmo\Versioned
+     * @Assert\NotNull
+     * @Assert\Url
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ApiFilter(SearchFilter::class, strategy="exact")
+     */
+    private $sourceOrganization;
 
     public function __construct()
     {
@@ -465,6 +481,32 @@ class Person
     }
 
     /**
+     * @return Collection|Social[]
+     */
+    public function getSocials(): Collection
+    {
+        return $this->socials;
+    }
+
+    public function addSocial(Social $social): self
+    {
+        if (!$this->socials->contains($social)) {
+            $this->socials[] = $social;
+        }
+
+        return $this;
+    }
+
+    public function removeSocial(Social $social): self
+    {
+        if ($this->socials->contains($social)) {
+            $this->socials->removeElement($social);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Email[]
      */
     public function getEmails()
@@ -554,37 +596,6 @@ class Person
         return $this;
     }
 
-    /**
-     * @return Collection|Social[]
-     */
-    public function getSocials(): Collection
-    {
-        return $this->socials;
-    }
-
-    public function addSocial(Social $social): self
-    {
-        if (!$this->socials->contains($social)) {
-            $this->socials[] = $social;
-            $social->setPerson($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSocial(Social $social): self
-    {
-        if ($this->socials->contains($social)) {
-            $this->socials->removeElement($social);
-            // set the owning side to null (unless already changed)
-            if ($social->getPerson() === $this) {
-                $social->setPerson(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getPersonalPhoto(): ?string
     {
         return $this->personalPhoto;
@@ -593,6 +604,18 @@ class Person
     public function setPersonalPhoto(?string $personalPhoto): self
     {
         $this->personalPhoto = $personalPhoto;
+
+        return $this;
+    }
+
+    public function getSourceOrganization(): ?string
+    {
+        return $this->sourceOrganization;
+    }
+
+    public function setSourceOrganization(string $sourceOrganization): self
+    {
+        $this->sourceOrganization = $sourceOrganization;
 
         return $this;
     }

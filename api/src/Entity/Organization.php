@@ -53,8 +53,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     },
  *  collectionOperations={
- *  	"get",
- *  	"post"
+ *    "get",
+ *    "post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
@@ -184,6 +184,15 @@ class Organization
     private $adresses;
 
     /**
+     * @var Social Socials of this organisation
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $socials;
+
+    /**
      * @var Email Email of this organisation
      *
      * @Groups({"read", "write"})
@@ -229,11 +238,18 @@ class Organization
     private $dateModified;
 
     /**
+     * @var string The WRC url of the organization that owns this group
+     *
+     * @example 002851234
+     *
+     * @Gedmo\Versioned
+     * @Assert\NotNull
+     * @Assert\Url
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Social::class, mappedBy="organization" , cascade={"persist"})
-     * @MaxDepth(1)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ApiFilter(SearchFilter::class, strategy="exact")
      */
-    private $socials;
+    private $sourceOrganization;
 
     public function __construct()
     {
@@ -413,6 +429,32 @@ class Organization
     }
 
     /**
+     * @return Collection|Social[]
+     */
+    public function getSocials(): Collection
+    {
+        return $this->socials;
+    }
+
+    public function addSocial(Social $social): self
+    {
+        if (!$this->socials->contains($social)) {
+            $this->socials[] = $social;
+        }
+
+        return $this;
+    }
+
+    public function removeSocial(Social $social): self
+    {
+        if ($this->socials->contains($social)) {
+            $this->socials->removeElement($social);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Email[]
      */
     public function getEmails()
@@ -497,33 +539,14 @@ class Organization
         return $this;
     }
 
-    /**
-     * @return Collection|Social[]
-     */
-    public function getSocials(): Collection
+    public function getSourceOrganization(): ?string
     {
-        return $this->socials;
+        return $this->sourceOrganization;
     }
 
-    public function addSocial(Social $social): self
+    public function setSourceOrganization(?string $sourceOrganization): self
     {
-        if (!$this->socials->contains($social)) {
-            $this->socials[] = $social;
-            $social->setOrganization($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSocial(Social $social): self
-    {
-        if ($this->socials->contains($social)) {
-            $this->socials->removeElement($social);
-            // set the owning side to null (unless already changed)
-            if ($social->getOrganization() === $this) {
-                $social->setOrganization(null);
-            }
-        }
+        $this->sourceOrganization = $sourceOrganization;
 
         return $this;
     }
