@@ -274,6 +274,8 @@ class Person
     private $dateModified;
 
     /**
+     * @var string Base64 of the image
+     *
      * @Groups({"read","write"})
      * @ORM\Column(type="text", nullable=true)
      */

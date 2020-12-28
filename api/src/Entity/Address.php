@@ -60,7 +60,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
  */
-class Address //
+class Address
 {
     /**
      * @var UuidInterface Uuid of this address

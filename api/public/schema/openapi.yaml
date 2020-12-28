@@ -10658,6 +10658,7 @@ components:
           format: date-time
           nullable: true
         personalPhoto:
+          description: 'Base64 of the image'
           type: string
           nullable: true
         sourceOrganization:
@@ -10728,6 +10729,7 @@ components:
           items:
             $ref: '#/components/schemas/Email-write'
         personalPhoto:
+          description: 'Base64 of the image'
           type: string
           nullable: true
         sourceOrganization:
@@ -10830,6 +10832,7 @@ components:
           format: date-time
           nullable: true
         personalPhoto:
+          description: 'Base64 of the image'
           type: string
           nullable: true
         sourceOrganization:
@@ -10909,6 +10912,7 @@ components:
           items:
             $ref: '#/components/schemas/Email:jsonld-write'
         personalPhoto:
+          description: 'Base64 of the image'
           type: string
           nullable: true
         sourceOrganization:
@@ -10937,7 +10941,7 @@ components:
           type: string
           nullable: true
         type:
-          description: 'The type of this social'
+          description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
           type: string
         url:
           description: 'Url of this social'
@@ -10972,7 +10976,7 @@ components:
           type: string
           nullable: true
         type:
-          description: 'The type of this social'
+          description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
           type: string
         url:
           description: 'Url of this social'
@@ -11005,7 +11009,7 @@ components:
           type: string
           nullable: true
         type:
-          description: 'The type of this social'
+          description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
           type: string
         url:
           description: 'Url of this social'
@@ -11049,7 +11053,7 @@ components:
           type: string
           nullable: true
         type:
-          description: 'The type of this social'
+          description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
           type: string
         url:
           description: 'Url of this social'
@@ -11516,7 +11520,9 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
-      personalPhoto: []
+      personalPhoto:
+        description: 'Base64 of the image'
+        type: string
       sourceOrganization:
         description: 'The WRC url of the organization that owns this group'
         type: string
@@ -11577,7 +11583,9 @@ definitions:
         type: string
         example: 'I like to dance !'
         maxLength: 255
-      personalPhoto: []
+      personalPhoto:
+        description: 'Base64 of the image'
+        type: string
       sourceOrganization:
         description: 'The WRC url of the organization that owns this group'
         type: string
@@ -11612,10 +11620,9 @@ definitions:
         type: string
         example: 'This is the twitter of an organization or person'
       type:
-        description: 'The type of this social'
+        description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
         type: string
         example: twitter
-        maxLength: 255
       url:
         description: 'Url of this social'
         type: string
@@ -11643,10 +11650,9 @@ definitions:
         type: string
         example: 'This is the twitter of an organization or person'
       type:
-        description: 'The type of this social'
+        description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
         type: string
         example: twitter
-        maxLength: 255
       url:
         description: 'Url of this social'
         type: string
@@ -11795,12 +11801,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-23 16:07:09'
+        example: '2020-12-28 11:02:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-23 16:07:09'
+        example: '2020-12-28 11:02:20'
     required: []
   AuditTrail-write:
     properties:
@@ -11848,12 +11854,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-23 16:07:09'
+        example: '2020-12-28 11:02:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-23 16:07:09'
+        example: '2020-12-28 11:02:20'
     required: []
   ChangeLog-write:
     properties:

@@ -101,15 +101,12 @@ class Social
     private $description;
 
     /**
-     * @var string The type of this social
+     * @var string The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)
      *
      * @example twitter
      *
      * @Gedmo\Versioned
      * @Assert\Choice({"website", "twitter", "facebook", "linkedin", "instagram", "github", "other"})
-     * @Assert\Length(
-     *      max = 255
-     * )
      *
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=12)
