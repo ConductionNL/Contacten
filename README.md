@@ -1,22 +1,8 @@
-Additional Information
-----
-
-For deployment to kubernetes clusters we use Helm 3.
-
-For an in depth installation guide you can refer to the [installation guide](INSTALLATION.md).
-
-- [Contributing](CONTRIBUTING.md)
-
-- [ChangeLogs](CHANGELOG.md)
-
-- [RoadMap](ROADMAP.md)
-
-- [Security](SECURITY.md)
-
-- [Licence](LICENSE.md)
+# Contact Catalouge
 
 Description
 ----
+The contact catalouge (Contacten Catalogus) contains contact details on persons and organisations
 
 Het Contacten Catalogus bevat lijsten van contact personen, hiermee heeft het vanuit bron perspectief doorgaans een aanvullende of vervangende taak ten opzichte van het BRP. Met andere woorden in het Contacten Component vinden we personen die we niet uit het BRP halen. Dat kan zijn, omdat deze personen niet in het BRP staan, we nog niet weten wat het BSN van een persoon is of omdat we simpelweg geen rechten of toegang hebben tot het BRP vanuit het proces waar we mee bezig zijn.
 
@@ -24,7 +10,48 @@ Daarnaast fungeert het Contacten Component als een Common Ground variant van de 
 
 Als laatste biedt het Contacten Component de mogelijkheid om gegevens van organisaties op te slaan. Het component ondersteunt bewust alleen de persoonsgegevens, maar kan in samenwerking met het CMR en ORC een Customer Relation Management systeem vormen, waarbij het ORC de mogelijkheid biedt om bijvoorbeeld leads in kaart te brengen.
 
+Additional Information
+----
 
+- [Contributing](CONTRIBUTING.md)
+- [ChangeLogs](CHANGELOG.md)
+- [RoadMap](ROADMAP.md)
+- [Security](SECURITY.md)
+- [Licence](LICENSE.md)
+
+
+Installation
+----
+We difrentiate between two way's of installing this component, a local installation as part of the provided developers toolkit or an [helm](https://helm.sh/) installtion on an development or production envirnoment. 
+
+#### Local installation
+First make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer. The clone the repository to your local machine and use your favorite commandline interface to navigate to your 
+
+#### Instalation on Kubernetes or Haven
+
+
+For an in depth installation guide you can refer to the [installation guide](INSTALLATION.md).
+
+Standards
+----
+
+This component adheres to international, national and local standards (in that order), notable standards are:
+
+- Any applicable [W3C](https://www.w3.org) standard, including but not limited to [rest](https://www.w3.org/2001/sw/wiki/REST), [JSON-LD](https://www.w3.org/TR/json-ld11/) and [WEBSUB](https://www.w3.org/TR/websub/)
+- Any applicable [schema](https://schema.org/) standard
+- [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
+- [GAIA-X](https://www.data-infrastructure.eu/GAIAX/Navigation/EN/Home/home.html)
+- [Publiccode](https://docs.italia.it/italia/developers-italia/publiccodeyml-en/en/master/index.html)
+- [Forum Stanaardisatie](https://www.forumstandaardisatie.nl/open-standaarden)
+- [NL API Strategie](https://docs.geostandaarden.nl/api/API-Strategie/)
+- [Common Ground Realisatieprincipes](https://componentencatalogus.commonground.nl/20190130_-_Common_Ground_-_Realisatieprincipes.pdf)
+- [Haven](https://haven.commonground.nl/docs/de-standaard)
+- [NLX](https://docs.nlx.io/understanding-the-basics/introduction)
+- [Standard for Public Code](https://standard.publiccode.net/), see the [compliancy scan](publiccode.md) for further information. 
+
+This component is based on the following [schema.org](https://schema.org) sources:
+- [Address](https://schema.org/PostalAddress)
+- [Person](https://schema.org/Person)
 
 Tutorial
 ----
@@ -53,15 +80,28 @@ Your computer should now start up your local development environment. Don't worr
 
 Open your browser type [<http://localhost/>](https://localhost) as address and hit enter, you should now see your common ground component up and running.
 
+Developers toolkit and technical information
+----
+- Waar vind het data model waar vind ik de OAS documantie en de postman colletie
+
+Contributing
+----
+- Terug verwijsen naar locaal opspinnen, dooverwijzen naar onze github pagina (voor overige componenten)
+- Dooverwijzen naar commonground.conduction.nl voor makenlijk uitrollen van test omgeving
+- Doorverwijzen naar de tutotial in de example repro, voor als als mensen zelf componentne optuien
+
+- Ecosysteem -> commonground.nl
+
+- [Contributing](CONTRIBUTING.md)
+
+
 
 Credits
 ----
 
 Information about the authors of this component can be found [here](AUTHORS.md)
 
-This component is based on the following [schema.org](https://schema.org) sources:
-- [Address](https://schema.org/PostalAddress)
-- [Person](https://schema.org/Person)
+
 
 
 
