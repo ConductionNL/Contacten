@@ -274,6 +274,8 @@ class Person
     private $dateModified;
 
     /**
+     * @var string Base64 of the image
+     *
      * @Groups({"read","write"})
      * @ORM\Column(type="text", nullable=true)
      */
@@ -285,7 +287,6 @@ class Person
      * @example 002851234
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
