@@ -20,7 +20,7 @@ tekst
 tekst
 
 ### Make contributing easy
-het dashboard en example reprop
+To make contributing as easy as possible we created an [example github repository](https://github.com/ConductionNL/commonground-example), that anyone can use to create their own commonground component just like this one. We also have a [dashboard application](https://commonground.conduction.nl/) that anyone can use to deploy their own created components or the ones created by other organizations/people.
 
 ### Maintain version control
 tekst
@@ -32,13 +32,13 @@ tekst
 tekst
 
 ### Use plain English
-Altijd engels
+During development we always write our documentation in English and we make sure to create file and class names in american english.
 
 ### Use open standards
 We use a number of standards as mandatory, see the readme for these standards we use.
 
 ### Use continuous integration
-github workflow
+To quickly identify problems and reduce risks during development we make use of github workflow and include automated tests such as StyleCI, Better Code Hub and a Postman Collection.
 
 ### Publish with an open license
 publiceren alles onder eupld
