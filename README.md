@@ -1,14 +1,14 @@
-# Contact Catalouge
+# Contact Catalogue
 
 Description
 ----
-The contact catalouge (Contacten Catalogus) contains contact details on persons and organisations
+The Contact Catalogue (Contacten Catalogus) contains contact details on persons and organisations.
 
-Het Contacten Catalogus bevat lijsten van contact personen, hiermee heeft het vanuit bron perspectief doorgaans een aanvullende of vervangende taak ten opzichte van het BRP. Met andere woorden in het Contacten Component vinden we personen die we niet uit het BRP halen. Dat kan zijn, omdat deze personen niet in het BRP staan, we nog niet weten wat het BSN van een persoon is of omdat we simpelweg geen rechten of toegang hebben tot het BRP vanuit het proces waar we mee bezig zijn.
+The Contact Catalogue contains lists of contacts, from a source perspective it usually has an additional or replacement task with respect to the BRP. In other words, in the Contact Catalogue we find people that we do not get from the BRP. This may be because these persons are not in the BRP, we do not yet know what a person's BSN is or because we simply do not have any rights or access to the BRP from the process we are working with.
 
-Daarnaast fungeert het Contacten Component als een Common Ground variant van de contactpersonenlijst zoals we die kennen vanuit een e-mail applicatie of telefoon. Het is dus ook mogelijk om personen op te nemen in een contactenlijst. Hiermee worden contact en functionaliteiten voor gebruikers (in application form) gerealiseerd.
+In addition, the Contact Catalogue functions as a Common Ground variant of the contact list as we know it from an e-mail application or telephone. It is therefore also possible to include people in a contact list. With this we can realise contact and functionalities for users (in application form).
 
-Als laatste biedt het Contacten Component de mogelijkheid om gegevens van organisaties op te slaan. Het component ondersteunt bewust alleen de persoonsgegevens, maar kan in samenwerking met het CMR en ORC een Customer Relation Management systeem vormen, waarbij het ORC de mogelijkheid biedt om bijvoorbeeld leads in kaart te brengen.
+Finally, the Contact Catalogue offers the possibility to store data from organizations. This component deliberately supports only the personal data, but can form a Customer Relation Management system in collaboration with the CMR and ORC, whereby the ORC offers the possibility to map leads, for example.
 
 Additional Information
 ----
@@ -22,15 +22,21 @@ Additional Information
 
 Installation
 ----
-We difrentiate between two way's of installing this component, a local installation as part of the provided developers toolkit or an [helm](https://helm.sh/) installtion on an development or production envirnoment. 
+We differentiate between two way's of installing this component, a local installation as part of the provided developers toolkit or an [helm](https://helm.sh/) installation on an development or production environment. 
 
 #### Local installation
-First make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer. The clone the repository to your local machine and use your favorite commandline interface to navigate to your 
+First make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer. Then clone the repository to a directory on your local machine through a [git command](https://github.com/git-guides/git-clone) or [git kraken](https://www.gitkraken.com) (ui for git). If successful you can now navigate to the directory of your cloned repository in a command prompt and execute docker-compose up. 
+```CLI
+$ docker-compose up
+```
+This will build the docker image and run the used containers and when seeing the log from the php container: "NOTICE: ready to handle connections", u are ready to view the documentation at localhost on your preferred browser.
 
 #### Instalation on Kubernetes or Haven
-
-
-For an in depth installation guide you can refer to the [installation guide](INSTALLATION.md).
+As a haven compliant commonground component this component is installable on kubernetes trough helm. The helm files can be found in the api/helm folder. For installing this component trough helm simply open your (still) favorite command line interface and run 
+```CLI
+$ helm install [name] ./api/helm --kubeconfig kubeconfig.yaml --namespace [name] --set settings.env=prod,settings.debug=0,settings.cache=1
+```
+For an in depth installation guide you can refer to the [installation guide](INSTALLATION.md), it also contains a short tutorial on getting your cluster ready to expose your installation to the world
 
 Standards
 ----
@@ -41,7 +47,7 @@ This component adheres to international, national and local standards (in that o
 - Any applicable [schema](https://schema.org/) standard
 - [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
 - [GAIA-X](https://www.data-infrastructure.eu/GAIAX/Navigation/EN/Home/home.html)
-- [Publiccode](https://docs.italia.it/italia/developers-italia/publiccodeyml-en/en/master/index.html)
+- [Publiccode](https://docs.italia.it/italia/developers-italia/publiccodeyml-en/en/master/index.html), see the [publiccode](api/public/schema/publiccode.yaml) for further information
 - [Forum Stanaardisatie](https://www.forumstandaardisatie.nl/open-standaarden)
 - [NL API Strategie](https://docs.geostandaarden.nl/api/API-Strategie/)
 - [Common Ground Realisatieprincipes](https://componentencatalogus.commonground.nl/20190130_-_Common_Ground_-_Realisatieprincipes.pdf)
@@ -53,52 +59,23 @@ This component is based on the following [schema.org](https://schema.org) source
 - [Address](https://schema.org/PostalAddress)
 - [Person](https://schema.org/Person)
 
-Tutorial
-----
-
-For information on how to work with the component you can refer to the tutorial [here](TUTORIAL.md).
-
-#### Setup your local environment
-Before we can spin up our component we must first get a local copy from our repository, we can either do this through the command line or use a Git client. 
-
-For this example we're going to use [GitKraken](https://www.gitkraken.com/) but you can use any tool you like, feel free to skip this part if you are already familiar with setting up a local clone of your repository.
-
-Open gitkraken press "clone a repo" and fill in the form (select where on your local machine you want the repository to be stored, and fill in the link of your repository on github), press "clone a repo" and you should then see GitKraken downloading your code. After it's done press "open now" (in the box on top) and voilá your codebase (you should see an initial commit on a master branch).
-
-You can now navigate to the folder where you just installed your code, it should contain some folders and files and generally look like this. We will get into the files later, lets first spin up our component!
-
-Next make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer.
-
-Open a command window (example) and browse to the folder where you just stuffed your code, navigating in a command window is done by cd, so for our example we could type 
-cd c:\repos\common-ground\my-component (if you installed your code on a different disk then where the cmd window opens first type <diskname>: for example D: and hit enter to go to that disk, D in this case). We are now in our folder, so let's go! Type docker-compose up and hit enter. From now on whenever we describe a command line command we will document it as follows (the $ isn't actually typed but represents your folder structure):
-
-```CLI
-$ docker-compose up
-```
-
-Your computer should now start up your local development environment. Don't worry about al the code coming by, let's just wait until it finishes. You're free to watch along and see what exactly docker is doing, you will know when it's finished when it tells you that it is ready to handle connections. 
-
-Open your browser type [<http://localhost/>](https://localhost) as address and hit enter, you should now see your common ground component up and running.
-
 Developers toolkit and technical information
 ----
+You can find the data model, OAS documentation and other helpfull developers material like a  postman collection under api/public/schema, development support is provided trough the [samenorganiseren slack channel](https://join.slack.com/t/samenorganiseren/shared_invite/zt-dex1d7sk-wy11sKYWCF0qQYjJHSMW5Q).
 
-You can find the data model, OAS documentation and postman collection under api/public/schema
-
-If you run the component locally you will see all the files under the API details.
+Couple of quick tips when you start developing
+- If you not yet have setup the component locally read the Tutorial for setting up your local environment.
+- You can find the other components on [Github](https://github.com/ConductionNL).
+- Take a look at the [commonground componenten catalogus](https://componentencatalogus.commonground.nl/componenten?) to prevent development collitions. 
+- Use [Commongroun.conduction.nl](https://commonground.conduction.nl/) for easy deployment of test environments to deploy your development to.
+- For information on how to work with the component you can refer to the tutorial [here](TUTORIAL.md).
   
 
 Contributing
 ----
-- If you not yet have setup the component locally read the Tutorial for setting up your local environment.
-- You can find the other components on [Github](https://github.com/ConductionNL).
-- Use [Commongroun.conduction.nl](https://commonground.conduction.nl/) for easy deployment of test environments.
-- For information on how to work with the component you can refer to the tutorial [here](TUTORIAL.md).
+First of al please read the [Contributing](CONTRIBUTING.md) guideline's ;)
 
-- Ecosysteem -> [commonground.nl](https://commonground.nl/)
-
-- [Contributing](CONTRIBUTING.md)
-
+But most imporantly, welcome! We strife to keep an active community at [commonground.nl](https://commonground.nl/), please drop by and tell is what you are thinking about so that we can help you along.
 
 
 Credits
