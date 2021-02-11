@@ -22,10 +22,10 @@ Additional Information
 
 Installation
 ----
-We difrentiate between two way's of installing this component, a local installation as part of the provided developers toolkit or an [helm](https://helm.sh/) installtion on an development or production envirnoment. 
+We differentiate between two way's of installing this component, a local installation as part of the provided developers toolkit or an [helm](https://helm.sh/) installation on an development or production environment. 
 
 #### Local installation
-First make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer. The clone the repository to your local machine and use your favorite commandline interface to navigate to your 
+First make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer. Then clone the repository to a directory on your local machine through a [git command](https://github.com/git-guides/git-clone) or [git kraken](https://www.gitkraken.com) (ui for git). If successful you can now navigate to the directory of your cloned repository in a command prompt and execute docker-compose up. This will build the docker image and run the used containers and when seeing the log from the php container: "NOTICE: ready to handle connections", u are ready to view the documentation at localhost on your preferred browser.
 
 #### Instalation on Kubernetes or Haven
 
@@ -82,15 +82,20 @@ Open your browser type [<http://localhost/>](https://localhost) as address and h
 
 Developers toolkit and technical information
 ----
-- Waar vind het data model waar vind ik de OAS documantie en de postman colletie
+
+You can find the data model, OAS documentation and postman collection under api/public/schema
+
+If you run the component locally you will see all the files under the API details.
+  
 
 Contributing
 ----
-- Terug verwijsen naar locaal opspinnen, dooverwijzen naar onze github pagina (voor overige componenten)
-- Dooverwijzen naar commonground.conduction.nl voor makenlijk uitrollen van test omgeving
-- Doorverwijzen naar de tutotial in de example repro, voor als als mensen zelf componentne optuien
+- If you not yet have setup the component locally read the Tutorial for setting up your local environment.
+- You can find the other components on [Github](https://github.com/ConductionNL).
+- Use [Commongroun.conduction.nl](https://commonground.conduction.nl/) for easy deployment of test environments.
+- For information on how to work with the component you can refer to the tutorial [here](TUTORIAL.md).
 
-- Ecosysteem -> commonground.nl
+- Ecosysteem -> [commonground.nl](https://commonground.nl/)
 
 - [Contributing](CONTRIBUTING.md)
 
