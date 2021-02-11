@@ -53,8 +53,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     },
  *  collectionOperations={
- *  	"get",
- *  	"post"
+ *    "get",
+ *    "post"
  *  })
  * @ORM\Entity(repositoryClass="App\Repository\OrganizationRepository")
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
@@ -236,6 +236,19 @@ class Organization
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
+
+    /**
+     * @var string The WRC url of the organization that owns this group
+     *
+     * @example 002851234
+     *
+     * @Gedmo\Versioned
+     * @Assert\Url
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ApiFilter(SearchFilter::class, strategy="exact")
+     */
+    private $sourceOrganization;
 
     public function __construct()
     {
@@ -521,6 +534,18 @@ class Organization
             $this->contactLists->removeElement($contactList);
             $contactList->removeOrganization($this);
         }
+
+        return $this;
+    }
+
+    public function getSourceOrganization(): ?string
+    {
+        return $this->sourceOrganization;
+    }
+
+    public function setSourceOrganization(?string $sourceOrganization): self
+    {
+        $this->sourceOrganization = $sourceOrganization;
 
         return $this;
     }

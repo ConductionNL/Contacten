@@ -5421,6 +5421,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[sourceOrganization]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -5476,6 +5485,22 @@ paths:
             type: string
         -
           name: 'type[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: sourceOrganization
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'sourceOrganization[]'
           in: query
           required: false
           schema:
@@ -6468,6 +6493,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[sourceOrganization]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'birthday[before]'
           in: query
           required: false
@@ -6540,177 +6574,13 @@ paths:
           schema:
             type: string
         -
-          name: id
+          name: sourceOrganization
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: resource
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'resource[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: givenName
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'givenName[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: additionalName
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'additionalName[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: familyName
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'familyName[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: birthday
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'birthday[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: birthplace
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'birthplace[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: taxID
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'taxID[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: aboutMe
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'aboutMe[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: personalPhoto
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'personalPhoto[]'
+          name: 'sourceOrganization[]'
           in: query
           required: false
           schema:
@@ -10473,13 +10343,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-read'
+        sourceOrganization:
+          description: 'The WRC url of the organization that owns this group'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - name
+        - sourceOrganization
     Organization-write:
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
+        - sourceOrganization
       properties:
         name:
           description: 'Name of this organisation'
@@ -10535,6 +10413,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person-write'
+        sourceOrganization:
+          description: 'The WRC url of the organization that owns this group'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     'Organization:jsonld-read':
       type: object
       description: 'All properties that the entity Organisation holds.'
@@ -10607,13 +10491,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person:jsonld-read'
+        sourceOrganization:
+          description: 'The WRC url of the organization that owns this group'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - name
+        - sourceOrganization
     'Organization:jsonld-write':
       type: object
       description: 'All properties that the entity Organisation holds.'
       required:
         - name
+        - sourceOrganization
       properties:
         '@context':
           readOnly: true
@@ -10678,6 +10570,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Person:jsonld-write'
+        sourceOrganization:
+          description: 'The WRC url of the organization that owns this group'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     Person-read:
       type: object
       description: 'All properties that the entity Person holds.'
@@ -10760,10 +10658,18 @@ components:
           format: date-time
           nullable: true
         personalPhoto:
+          description: 'Base64 of the image'
+          type: string
+          nullable: true
+        sourceOrganization:
+          description: 'The WRC url of the organization that owns this group'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
           nullable: true
       required:
         - givenName
+        - sourceOrganization
     Person-write:
       type: object
       description: 'All properties that the entity Person holds.'
@@ -10823,10 +10729,18 @@ components:
           items:
             $ref: '#/components/schemas/Email-write'
         personalPhoto:
+          description: 'Base64 of the image'
+          type: string
+          nullable: true
+        sourceOrganization:
+          description: 'The WRC url of the organization that owns this group'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
           nullable: true
       required:
         - givenName
+        - sourceOrganization
     'Person:jsonld-read':
       type: object
       description: 'All properties that the entity Person holds.'
@@ -10918,10 +10832,18 @@ components:
           format: date-time
           nullable: true
         personalPhoto:
+          description: 'Base64 of the image'
+          type: string
+          nullable: true
+        sourceOrganization:
+          description: 'The WRC url of the organization that owns this group'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
           nullable: true
       required:
         - givenName
+        - sourceOrganization
     'Person:jsonld-write':
       type: object
       description: 'All properties that the entity Person holds.'
@@ -10990,10 +10912,18 @@ components:
           items:
             $ref: '#/components/schemas/Email:jsonld-write'
         personalPhoto:
+          description: 'Base64 of the image'
+          type: string
+          nullable: true
+        sourceOrganization:
+          description: 'The WRC url of the organization that owns this group'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
           nullable: true
       required:
         - givenName
+        - sourceOrganization
     Social-read:
       type: object
       description: 'All properties that the entity Social holds.'
@@ -11011,7 +10941,7 @@ components:
           type: string
           nullable: true
         type:
-          description: 'The type of this social'
+          description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
           type: string
         url:
           description: 'Url of this social'
@@ -11046,7 +10976,7 @@ components:
           type: string
           nullable: true
         type:
-          description: 'The type of this social'
+          description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
           type: string
         url:
           description: 'Url of this social'
@@ -11079,7 +11009,7 @@ components:
           type: string
           nullable: true
         type:
-          description: 'The type of this social'
+          description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
           type: string
         url:
           description: 'Url of this social'
@@ -11123,7 +11053,7 @@ components:
           type: string
           nullable: true
         type:
-          description: 'The type of this social'
+          description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
           type: string
         url:
           description: 'Url of this social'
@@ -11462,6 +11392,11 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
       parentOrganization: []
       subOrganizations:
         description: 'The sub-organizations of which this organization is the parent organization.'
@@ -11481,7 +11416,8 @@ definitions:
       persons:
         description: 'Person of this organisation'
         type: \Person
-    required: []
+    required:
+      - sourceOrganization
   Organization-write:
     properties:
       name:
@@ -11508,6 +11444,11 @@ definitions:
         type: string
         example: '123456'
         maxLength: 15
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
       parentOrganization: []
       subOrganizations:
         description: 'The sub-organizations of which this organization is the parent organization.'
@@ -11527,7 +11468,8 @@ definitions:
       persons:
         description: 'Person of this organisation'
         type: \Person
-    required: []
+    required:
+      - sourceOrganization
   Person-read:
     properties:
       id:
@@ -11578,7 +11520,14 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
-      personalPhoto: []
+      personalPhoto:
+        description: 'Base64 of the image'
+        type: string
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11591,7 +11540,8 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
-    required: []
+    required:
+      - sourceOrganization
   Person-write:
     properties:
       resource:
@@ -11633,7 +11583,14 @@ definitions:
         type: string
         example: 'I like to dance !'
         maxLength: 255
-      personalPhoto: []
+      personalPhoto:
+        description: 'Base64 of the image'
+        type: string
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11646,7 +11603,8 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
-    required: []
+    required:
+      - sourceOrganization
   Social-read:
     properties:
       id:
@@ -11662,10 +11620,9 @@ definitions:
         type: string
         example: 'This is the twitter of an organization or person'
       type:
-        description: 'The type of this social'
+        description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
         type: string
         example: twitter
-        maxLength: 255
       url:
         description: 'Url of this social'
         type: string
@@ -11693,10 +11650,9 @@ definitions:
         type: string
         example: 'This is the twitter of an organization or person'
       type:
-        description: 'The type of this social'
+        description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
         type: string
         example: twitter
-        maxLength: 255
       url:
         description: 'Url of this social'
         type: string
@@ -11845,12 +11801,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-17 15:01:25'
+        example: '2020-12-28 11:02:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-17 15:01:25'
+        example: '2020-12-28 11:02:20'
     required: []
   AuditTrail-write:
     properties:
@@ -11898,12 +11854,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-17 15:01:25'
+        example: '2020-12-28 11:02:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-17 15:01:25'
+        example: '2020-12-28 11:02:20'
     required: []
   ChangeLog-write:
     properties:
