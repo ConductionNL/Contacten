@@ -82,15 +82,20 @@ Open your browser type [<http://localhost/>](https://localhost) as address and h
 
 Developers toolkit and technical information
 ----
-- Waar vind het data model waar vind ik de OAS documantie en de postman colletie
+
+You can find the data model, OAS documentation and postman collection under api/public/schema
+
+If you run the component locally you will see all the files under the API details.
+  
 
 Contributing
 ----
-- Terug verwijsen naar locaal opspinnen, dooverwijzen naar onze github pagina (voor overige componenten)
-- Dooverwijzen naar commonground.conduction.nl voor makenlijk uitrollen van test omgeving
-- Doorverwijzen naar de tutotial in de example repro, voor als als mensen zelf componentne optuien
+- If you not yet have setup the component locally read the Tutorial for setting up your local environment.
+- You can find the other components on [Github](https://github.com/ConductionNL).
+- Use [Commongroun.conduction.nl](https://commonground.conduction.nl/) for easy deployment of test environments.
+- For information on how to work with the component you can refer to the tutorial [here](TUTORIAL.md).
 
-- Ecosysteem -> commonground.nl
+- Ecosysteem -> [commonground.nl](https://commonground.nl/)
 
 - [Contributing](CONTRIBUTING.md)
 
