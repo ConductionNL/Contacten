@@ -1,14 +1,14 @@
-# Contact Catalouge
+# Contact Catalogue
 
 Description
 ----
-The contact catalouge (Contacten Catalogus) contains contact details on persons and organisations
+The Contact Catalogue (Contacten Catalogus) contains contact details on persons and organisations.
 
-Het Contacten Catalogus bevat lijsten van contact personen, hiermee heeft het vanuit bron perspectief doorgaans een aanvullende of vervangende taak ten opzichte van het BRP. Met andere woorden in het Contacten Component vinden we personen die we niet uit het BRP halen. Dat kan zijn, omdat deze personen niet in het BRP staan, we nog niet weten wat het BSN van een persoon is of omdat we simpelweg geen rechten of toegang hebben tot het BRP vanuit het proces waar we mee bezig zijn.
+The Contact Catalogue contains lists of contacts, from a source perspective it usually has an additional or replacement task with respect to the BRP. In other words, in the Contact Catalogue we find people that we do not get from the BRP. This may be because these persons are not in the BRP, we do not yet know what a person's BSN is or because we simply do not have any rights or access to the BRP from the process we are working with.
 
-Daarnaast fungeert het Contacten Component als een Common Ground variant van de contactpersonenlijst zoals we die kennen vanuit een e-mail applicatie of telefoon. Het is dus ook mogelijk om personen op te nemen in een contactenlijst. Hiermee worden contact en functionaliteiten voor gebruikers (in application form) gerealiseerd.
+In addition, the Contact Catalogue functions as a Common Ground variant of the contact list as we know it from an e-mail application or telephone. It is therefore also possible to include people in a contact list. With this we can realise contact and functionalities for users (in application form).
 
-Als laatste biedt het Contacten Component de mogelijkheid om gegevens van organisaties op te slaan. Het component ondersteunt bewust alleen de persoonsgegevens, maar kan in samenwerking met het CMR en ORC een Customer Relation Management systeem vormen, waarbij het ORC de mogelijkheid biedt om bijvoorbeeld leads in kaart te brengen.
+Finally, the Contact Catalogue offers the possibility to store data from organizations. This component deliberately supports only the personal data, but can form a Customer Relation Management system in collaboration with the CMR and ORC, whereby the ORC offers the possibility to map leads, for example.
 
 Additional Information
 ----
