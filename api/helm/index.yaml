@@ -3,10 +3,10 @@ entries:
   cc:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-02-11T09:14:18.4009253Z"
+    created: "2021-02-13T10:18:40.3274685Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 1f738cf484b464a1cd661c75c6901290268f8afa80eb677cb6c808b0ee6861b8
+    digest: 47f5191bfcc0854cd0ee744ee796e33eb44ea1f50597e024c16ca2f0a93e4129
     home: cc.zaakonline.nl
     icon: cc.zaakonline.nl
     name: cc
@@ -18,7 +18,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-02-11T09:14:18.4134556Z"
+    created: "2021-02-13T10:18:40.342305Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -47,4 +47,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2021-02-11T09:14:18.3884359Z"
+generated: "2021-02-13T10:18:40.3105355Z"

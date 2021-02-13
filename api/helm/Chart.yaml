@@ -3,8 +3,8 @@ appVersion: V1.0
 description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
 name: cc
 version: 0.1.0
-home: cc.zaakonline.nl
-icon: cc.zaakonline.nl
+home: https://www.conduction.nl
+icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
 dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
