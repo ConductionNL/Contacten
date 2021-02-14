@@ -5,14 +5,14 @@ info:
   description: |
     API Details
     - Component: Contacten Catalogus
-    - Reference: cc
+    - Reference: Contacten Catalogus
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
-    - Datamodel: [postman](schema/cc.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
+    - Datamodel: [postman](schema/Contacten Catalogus.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    The Contact Catalogue (Contacten Catalogus) contains contact details on persons and organisations.         
     
 paths:
   /addresses:
@@ -11723,12 +11723,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-14 11:54:17'
+        example: '2021-02-14 13:07:25'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-14 11:54:17'
+        example: '2021-02-14 13:07:25'
     required: []
   ChangeLog-write:
     properties:
@@ -11842,12 +11842,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-14 11:54:17'
+        example: '2021-02-14 13:07:25'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-14 11:54:17'
+        example: '2021-02-14 13:07:25'
     required: []
   AuditTrail-write:
     properties:
@@ -11931,7 +11931,7 @@ host: irc.zaakonline.nl
 servers:
   -
     name: zuid-drecht.nl
-    url: cc.dev.zuid-drecht.nl
+    url: 'Contacten Catalogus.dev.zuid-drecht.nl'
 externalDocs:
   -
     description: 'OAS Documentatie'

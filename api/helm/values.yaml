@@ -5,12 +5,12 @@
 settings:
   registryBase: docker.io/conduction
   projectName: cc
-  name: cc
+  name: Contacten Catalogus
   title: Contacten Catalogus
   version: V1.0
   majorVersion: v1
   id: 
-  description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
+  description: 'The Contact Catalogue (Contacten Catalogus) contains contact details on persons and organisations.'
   type: component
   repro: https://github.com/ConductionNL/contactcatalogus
   demo: cc.zaakonline.nl

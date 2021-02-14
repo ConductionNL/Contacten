@@ -36,7 +36,7 @@ As a haven compliant commonground component this component is installable on kub
 ```CLI
 $ helm install [name] ./api/helm --kubeconfig kubeconfig.yaml --namespace [name] --set settings.env=prod,settings.debug=0,settings.cache=1
 ```
-For an in depth installation guide you can refer to the [installation guide](INSTALLATION.md), it also contains a short tutorial on getting your cluster ready to expose your installation to the world
+For an in depth installation guide you can refer to the [installation guide](/api/helm) contained with the helm files, it also contains a short tutorial on getting your cluster ready to expose your installation to the world
 
 Standards
 ----
@@ -80,11 +80,6 @@ But most imporantly, welcome! We strife to keep an active community at [commongr
 
 Credits
 ----
-
 Information about the authors of this component can be found [here](AUTHORS.md)
-
-
-
-
 
 Copyright © [Utrecht](https://www.utrecht.nl/) 2019
