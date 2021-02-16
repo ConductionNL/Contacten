@@ -6,12 +6,10 @@ settings:
   registryBase: {{ container_registry_base }}
   projectName: {{ container_project_name }}
   name: {{ app_name }}
-  title: {{ app_title }}
   version: {{ app_version }}
   description: '{{ app_description }}'
   repro: {{ app_repro }}
   demo: {{ app_demo }}
-  container: {{ app_container }}
   domain: {{ app_domain }}
   subdomain: {{ app_subdomain }}
   subpath: {{ app_subpath }}
@@ -31,8 +29,6 @@ settings:
     - 192.168.0.0/16
   # If you are runnig a single component on a kubernetes cluster you can just easaliy enable the load balancer, if not you need to set up a multi component load balancer
   loadbalancerEnabled: false
-  # If you want to enable NLX you are requered to add the appropreate certificates to you nlx-settings folder (located in the /api folder)
-  nlxInwayEnabled: {{ nlx_inway }}
   # If you are runnig a single component on a kubernetes cluster you can just easaliy enable the load balancer, if not you need to set up a multi component load balancer
   notificationEnabled: false
   audittrailEnabled: false
@@ -41,12 +37,7 @@ settings:
   archiveEnabled: false
 
 security:
-  commongroundId: "{{ app_commonground_id }}"
   applicationKey: "{{  app_application_key }}"
-  userKey: "{{ app_user_key }}"
-  authorisationProviderUser: {{ auth_provider_user }}
-  authorisationProviderApplication: {{ auth_provider_application }}
-
 
 php:
   repository: docker.io/conduction/protocomponent-php

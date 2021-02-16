@@ -1,15 +1,13 @@
 openapi: 3.0.2
 info:
-  title: 'Contacten Catalogus'
+  title: ''
   version: V1.0
   description: |
     API Details
-    - Component: Contacten Catalogus
     - Reference: Contacten Catalogus
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
     - Datamodel: [postman](schema/Contacten Catalogus.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
     The Contact Catalogue (Contacten Catalogus) contains contact details on persons and organisations.         
@@ -11789,12 +11787,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-15 15:02:08'
+        example: '2021-02-16 14:50:07'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-15 15:02:08'
+        example: '2021-02-16 14:50:07'
     required: []
   AuditTrail-write:
     properties:
@@ -11842,12 +11840,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-15 15:02:08'
+        example: '2021-02-16 14:50:07'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-15 15:02:08'
+        example: '2021-02-16 14:50:07'
     required: []
   ChangeLog-write:
     properties:

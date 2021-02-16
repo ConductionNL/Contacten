@@ -54,11 +54,6 @@ spec:
                 configMapKeyRef:
                   name: {{ template "fullname" . }}
                   key: app-name
-            - name: APP_TITLE
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: app-title
             - name: APP_DESCRIPTION
               valueFrom:
                 configMapKeyRef:
@@ -96,11 +91,6 @@ spec:
                   configMapKeyRef:
                       name: {{ template "fullname" . }}
                       key: app-repro
-            - name: APP_CONTAINER
-              valueFrom:
-                  configMapKeyRef:
-                      name: {{ template "fullname" . }}
-                      key: app-container
             - name: APP_DOMAIN
               valueFrom:
                   configMapKeyRef:
@@ -127,16 +117,6 @@ spec:
                 configMapKeyRef:
                   name: {{ template "fullname" . }}
                   key: app-notification
-            - name: HEALTH_ENABLED
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: app-health
-            - name: ARCHIVE_ENABLED
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: app-archive
             - name: APP_WEB
               valueFrom:
                 configMapKeyRef:
@@ -196,11 +176,6 @@ spec:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: app_application_key
-            - name: APP_USER_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: app_user_key
             - name: APP_URL
               {{- if and (eq $.Values.settings.env "prod") (eq $.Values.settings.type "component") }}
               value: https://{{ $.Values.settings.domain }}/api/{{ $.Values.settings.majorVersion }}/{{ $.Values.settings.subpath }}
