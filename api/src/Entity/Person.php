@@ -280,6 +280,32 @@ class Person
      */
     private $sourceOrganization;
 
+    /**
+     *  @var string Birthplace of this person
+     *
+     * @Assert\Length (
+     *     max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\OneToOne(targetEntity=address::class, cascade={"persist", "remove"})
+     */
+    private $birthplace;
+
+    /**
+     * @var string The gender of the person. **Male**, **Female**
+     * @Gedmo\Versioned
+     * @example Male
+     *
+     * @Assert\Choice(
+     *      {"Male","Female"}
+     * )
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $gender;
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
@@ -591,6 +617,30 @@ class Person
     public function setSourceOrganization(string $sourceOrganization): self
     {
         $this->sourceOrganization = $sourceOrganization;
+
+        return $this;
+    }
+
+    public function getBirthplace(): ?address
+    {
+        return $this->birthplace;
+    }
+
+    public function setBirthplace(?address $birthplace): self
+    {
+        $this->birthplace = $birthplace;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
 
         return $this;
     }
