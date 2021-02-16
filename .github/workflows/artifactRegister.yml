@@ -21,8 +21,9 @@ jobs:
                   else
                     echo "##[set-output name=success;]false"
                   fi
-            - name: Register To Artifact Hub
+            - name: defining variables
               id: request
+              if: steps.process.outputs.success == 'true'
               run: |
                   export HEADER='{"X-API-KEY": "'${{ secrets.ARTIFACT_KEY }}'"}'
                   echo "HEADER=$HEADER" >> $GITHUB_ENV
@@ -37,6 +38,7 @@ jobs:
                   export DATA='{"url": "'${HELM_REPOSITORY}'", "name": "'${APP_NAME}'"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
+            - name: Register To Artifact Hub
               if: steps.process.outputs.success == 'true'
               uses: CamiloGarciaLaRotta/watermelon-http-client@v1
               with:
