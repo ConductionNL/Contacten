@@ -162,20 +162,6 @@ class Person
     private $birthday;
 
     /**
-     * @var string Birthplace of this person
-     *
-     * @example Amsterdam
-     *
-     * @Assert\Length (
-     *     max = 255
-     * )
-     * @Gedmo\Versioned
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $birthplace;
-
-    /**
      * @var string TIN, CIF, NIF or BSN
      *
      * @example 999994670
@@ -389,18 +375,6 @@ class Person
     public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
-
-        return $this;
-    }
-
-    public function getBirthplace(): ?string
-    {
-        return $this->birthplace;
-    }
-
-    public function setBirthplace(?string $birthplace): self
-    {
-        $this->birthplace = $birthplace;
 
         return $this;
     }
