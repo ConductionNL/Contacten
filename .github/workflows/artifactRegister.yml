@@ -47,6 +47,7 @@ jobs:
               if: steps.process.outputs.success == 'true'
               uses: CamiloGarciaLaRotta/watermelon-http-client@v1
               with:
+                headers: steps.request.header
                 url: steps.request.url
                 method: post
                 data: '{ "title": "dummy-todo", "userId": 1, "completed": false }'
