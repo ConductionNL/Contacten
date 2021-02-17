@@ -35,7 +35,7 @@ jobs:
                   fi
                   echo "URL=$URL" >> $GITHUB_ENV
                   echo "##[set-output name=url]$URL"
-                  export DATA='{"url": "'${HELM_REPOSITORY}'", "name": "'${APP_NAME}'"}'
+                  export DATA='{"url": "${HELM_REPOSITORY}", "name": "${APP_NAME}"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
             - name: Register To Artifact Hub
