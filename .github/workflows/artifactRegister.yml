@@ -28,8 +28,8 @@ jobs:
                   export HEADER='{"X-API-KEY": "'${{secrets.ARTIFACT_KEY}}'"}'
                   echo "HEADER=$HEADER" >> $GITHUB_ENV
                   echo "##[set-output name=header]$HEADER"
-                  if [ "$'{ARTIFACTHUB_USER}'" != "" ]; then
-                    export USER=$(grep APP_ARTIFACTHUB_USER= .env | cut -d '=' -f2)
+                  if [ "'${ARTIFACTHUB_USER}'" != "" ]; then
+                    export USER=$(grep ARTIFACTHUB_USER= .env | cut -d '=' -f2)
                     export URL="https://artifacthub.io/api/v1/repositories/org/$USER"
                   else
                     export URL='https://artifacthub.io/api/v1/repositories/user'
@@ -37,7 +37,7 @@ jobs:
                   echo "URL=$URL" >> $GITHUB_ENV
                   echo "##[set-output name=url]$URL"
                   
-                  export DATA='{"url": "'$HELM_REPOSITORY}'", "name": "'${APP_NAME}'"}'
+                  export DATA='{"url": "'${HELM_REPOSITORY}'", "name": "'${APP_NAME}'"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
             - name: Register To Artifact Hub
