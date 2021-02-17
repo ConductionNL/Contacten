@@ -44,12 +44,12 @@ jobs:
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
             - name: test
-              run: echo $steps.request.url
+              run: echo echo ${{ steps.request.url }}
             - name: Register To Artifact Hub
               if: steps.process.outputs.success == 'true'
               uses: CamiloGarciaLaRotta/watermelon-http-client@v1
               with:
-                headers: steps.request.url
+                headers: ${{ steps.request.url }}
                 url: steps.request.url
                 method: post
                 data: steps.request.data
