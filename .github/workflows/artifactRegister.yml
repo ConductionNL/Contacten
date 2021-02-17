@@ -40,14 +40,12 @@ jobs:
                   export DATA='{"url": "'$HELM'", "name": "'$NAME'"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
-            - name: test
-              run: echo ${{ steps.request.url }}
             - name: Register To Artifact Hub
               id: myRequest
               if: steps.process.outputs.success == 'true'
               uses: fjogeleit/http-request-action@master
               with:
-                url: ${{ steps.request.url }}
+                url: 'https://artifacthub.io/api/v1/repositories/user'
                 customHeaders: ${{ steps.request.url }}
                 method: 'POST'
                 data: ${{ steps.request.data }}
