@@ -13,6 +13,7 @@ jobs:
     register:
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v1
             - name: Check if we need to take action
               id: process
               run: |
@@ -25,10 +26,12 @@ jobs:
               id: request
               if: steps.process.outputs.success == 'true'
               run: |
+                  export VERSION=$(grep APP_VERSION= .env | cut -d '=' -f2)
+                  echo $VERSION
                   export HEADER='{"X-API-KEY": "'${{secrets.ARTIFACT_KEY}}'"}'
                   echo "HEADER=$HEADER" >> $GITHUB_ENV
                   echo "##[set-output name=header]$HEADER"
-                  if [ "'${ARTIFACTHUB_USER}'" != "" ]; then
+                  if [ "${ARTIFACTHUB_USER}" != "" ]; then
                     export URL="https://artifacthub.io/api/v1/repositories/org/'${ARTIFACTHUB_USER}'"
                   else
                     export URL='https://artifacthub.io/api/v1/repositories/user'
