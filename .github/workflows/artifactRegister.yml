@@ -13,7 +13,6 @@ jobs:
     register:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v1
             - name: Check if we need to take action
               id: process
               run: |
@@ -26,8 +25,8 @@ jobs:
               id: request
               if: steps.process.outputs.success == 'true'
               run: |
-                  export VERSION=$(grep APP_VERSION= .env | cut -d '=' -f2)
-                  echo $VERSION
+                  export HELM=$(grep HELM_REPOSITORY= .env | cut -d '=' -f2)
+                  echo $HELM
                   export HEADER='{"X-API-KEY": "'${{secrets.ARTIFACT_KEY}}'"}'
                   echo "HEADER=$HEADER" >> $GITHUB_ENV
                   echo "##[set-output name=header]$HEADER"
