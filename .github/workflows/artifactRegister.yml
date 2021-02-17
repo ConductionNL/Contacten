@@ -18,7 +18,7 @@ jobs:
               id: process
               run: |
                   export ARTIFACTHUB_ID=$(grep ARTIFACTHUB_ID= .env | cut -d '=' -f2)
-                  if [ "${{ secrets.ARTIFACT_KEY }}" != "" ] || [ "$ARTIFACTHUB_ID" != "false" ] || [ "ARTIFACTHUB_ID" == "" ]; then
+                  if [ "${{ secrets.ARTIFACT_KEY }}" != "" ] && [ "$ARTIFACTHUB_ID" != "false" ] || [ "ARTIFACTHUB_ID" == "" ]; then
                     echo "##[set-output name=success;]true"
                   else
                     echo "##[set-output name=success;]false"
@@ -40,8 +40,8 @@ jobs:
                   echo "##[set-output name=url]$URL"
 
                   export HELM=$(grep HELM_REPOSITORY= .env | cut -d '=' -f2)
-                  export APP_NAME=$(grep APP_NAME_TECHNICAL= .env | cut -d '=' -f2)
-                  export DATA='{"url": "'$HELM'", "name": "'$APP_NAME'"}'
+                  export NAME=$(grep APP_NAME_TECHNICAL= .env | cut -d '=' -f2)
+                  export DATA='{"url": "'$HELM'", "name": "'$NAME'"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
             - name: Register To Artifact Hub
