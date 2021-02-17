@@ -30,25 +30,29 @@ jobs:
                   export HEADER='{"X-API-KEY": "'${{secrets.ARTIFACT_KEY}}'"}'
                   echo "HEADER=$HEADER" >> $GITHUB_ENV
                   echo "##[set-output name=header]$HEADER"
+                  echo $HEADER
                   export USER=$(grep ARTIFACTHUB_USER= .env | cut -d '=' -f2)
-                  export URL='https://artifacthub.io/api/v1/repositories/user'
+                  if [ $USER != "" ]; then
+                    export URL="https://artifacthub.io/api/v1/repositories/org/$USER"
+                  else
+                    export URL='https://artifacthub.io/api/v1/repositories/user'
+                  fi
                   echo "URL=$URL" >> $GITHUB_ENV
                   echo "##[set-output name=url]$URL"
-                  echo $URL
                   export HELM=$(grep HELM_REPOSITORY= .env | cut -d '=' -f2)
                   export NAME=$(grep APP_NAME_TECHNICAL= .env | cut -d '=' -f2)
                   export DATA='{"url": "'$HELM'", "name": "'$NAME'"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
             - name: Register To Artifact Hub
-              id: myRequest
               if: steps.process.outputs.success == 'true'
-              uses: fjogeleit/http-request-action@master
+              uses: CamiloGarciaLaRotta/watermelon-http-client@v1
               with:
+                headers: '{"X-API-KEY": "***"}'
                 url: 'https://artifacthub.io/api/v1/repositories/user'
-                customHeaders: ${{ steps.request.url }}
-                method: 'POST'
-                data: ${{ steps.request.data }}
-            - name: Show Response
-              run: echo ${{ steps.myRequest.outputs.response }}
-
+                method: post
+                data: '{"url": "https://raw.githubusercontent.com/ConductionNL/contactcatalogus/master/api/helm/", "name": "contacten-catalogus"}'
+            - name: Print the response status
+              run: echo ${{ steps.request.outputs.status }}
+            - name: Print the response payload
+              run: echo ${{ steps.request.outputs.response }}
