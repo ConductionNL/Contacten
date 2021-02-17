@@ -31,7 +31,7 @@ jobs:
                   if [ "${ARTIFACTHUB_USER}" != "" ]; then
                     export URL='https://artifacthub.io/api/v1/repositories/org/${ARTIFACTHUB_USER}'
                   else
-                    export URL='https://artifacthub.io/api/v1/repositories/user
+                    export URL='https://artifacthub.io/api/v1/repositories/user'
                   fi
                   echo "URL=$URL" >> $GITHUB_ENV
                   echo "##[set-output name=url]$URL"
