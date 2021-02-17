@@ -47,7 +47,7 @@ jobs:
               if: steps.process.outputs.success == 'true'
               uses: CamiloGarciaLaRotta/watermelon-http-client@v1
               with:
-                headers: steps.request.header
+                headers: '{"X-API-KEY": "***"}'
                 url: steps.request.url
                 method: post
                 data: steps.request.data
