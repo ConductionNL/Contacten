@@ -24,8 +24,10 @@ jobs:
             - name: defining variables
               id: request
               if: steps.process.outputs.success == 'true'
+              env:
+                  ARTIFACT_KEY: ${{ secrets.ARTIFACT_KEY }}
               run: |
-                  export HEADER='{"X-API-KEY": "${{ secrets.ARTIFACT_KEY }}"}'
+                  export HEADER='{"X-API-KEY": "env.ARTIFACT_KEY"}'
                   echo "HEADER=$HEADER" >> $GITHUB_ENV
                   echo "##[set-output name=header]$HEADER"
                   if [ "${ARTIFACTHUB_USER}" != "" ]; then
