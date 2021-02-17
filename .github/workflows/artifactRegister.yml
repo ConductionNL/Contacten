@@ -16,7 +16,7 @@ jobs:
             - name: Check if we need to take action
               id: process
               run: |
-                  if [ "${{ secrets.ARTIFACT_KEY }}" != "" ] || [ "${ARTIFACTHUB_ID}" != "false" ] || [ "${ARTIFACTHUB_ID}" == "" ]; then
+                  if [ "${{ secrets.ARTIFACT_KEY }}" != "" ] || [ "$ARTIFACTHUB_ID" != "false" ] || [ "$ARTIFACTHUB_ID" == "" ]; then
                     echo "##[set-output name=success;]true"
                   else
                     echo "##[set-output name=success;]false"
@@ -29,13 +29,13 @@ jobs:
                   echo "HEADER=$HEADER" >> $GITHUB_ENV
                   echo "##[set-output name=header]$HEADER"
                   if [ "${ARTIFACTHUB_USER}" != "" ]; then
-                    export URL='https://artifacthub.io/api/v1/repositories/org/${ARTIFACTHUB_USER}'
+                    export URL='https://artifacthub.io/api/v1/repositories/org/$ARTIFACTHUB_USER'
                   else
                     export URL='https://artifacthub.io/api/v1/repositories/user'
                   fi
                   echo "URL=$URL" >> $GITHUB_ENV
                   echo "##[set-output name=url]$URL"
-                  export DATA='{"url": "${HELM_REPOSITORY}", "name": "${APP_NAME}"}'
+                  export DATA='{"url": "$HELM_REPOSITORY", "name": "$APP_NAME"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
             - name: Register To Artifact Hub
