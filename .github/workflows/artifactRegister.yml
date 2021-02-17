@@ -52,8 +52,8 @@ jobs:
               with:
                   url: https://artifacthub.io/api/v1/repositories/user
                   method: POST
-                  payload: '{"name": "${{ steps.request.name }}", "url": "${{ steps.request.helm }}"}'
-                  headers: '{"X-API-Key": "Token ${{secrets.ARTIFACT_KEY}}"}'
+                  payload: '{"name": "${ steps.request.name }", "url": "${ steps.request.helm }"}'
+                  headers: '{"X-API-Key": "${{secrets.ARTIFACT_KEY}}"}'
             - name: Print the response status
               run: |
                   $output = '${{ steps.webhook.outputs.output }}' | ConvertFrom-Json
