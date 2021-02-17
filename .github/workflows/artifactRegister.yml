@@ -46,13 +46,12 @@ jobs:
                   echo "##[set-output name=data]$DATA"
             - name: Register To Artifact Hub
               if: steps.process.outputs.success == 'true'
-              uses: CamiloGarciaLaRotta/watermelon-http-client@v1
+              uses: fjogeleit/http-request-action@master
               with:
-                headers: ${{ steps.request.url }}
+                customHeaders: ${{ steps.request.url }}
                 url: ${{ steps.request.url }}
-                method: post
+                method: 'POST'
                 data: ${{ steps.request.data }}
-            - name: Print the response status
-              run: echo ${{ steps.request.outputs.status }}
-            - name: Print the response payload
+            - name: Show Response
               run: echo ${{ steps.request.outputs.response }}
+
