@@ -49,10 +49,13 @@ jobs:
               if: steps.process.outputs.success == 'true'
               uses: satak/webrequest-action@master
               id: webhook
+              env:
+                  NAME: ${ steps.request.name }
+                  HELM: ${ steps.request.helm }
               with:
                   url: https://artifacthub.io/api/v1/repositories/user
                   method: POST
-                  payload: '{"name": "${ steps.request.name }", "url": "${ steps.request.helm }"}'
+                  payload: '{"name": "${ steps.request.name }", "url": "${{env.HELM}}"}'
                   headers: '{"X-API-Key": "${{secrets.ARTIFACT_KEY}}"}'
             - name: Print the response status
               run: |
