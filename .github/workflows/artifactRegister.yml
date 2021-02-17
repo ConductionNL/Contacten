@@ -40,23 +40,19 @@ jobs:
                   echo "URL=$URL" >> $GITHUB_ENV
                   echo "##[set-output name=url]$URL"
                   export HELM=$(grep HELM_REPOSITORY= .env | cut -d '=' -f2)
-                  echo "HELM=$HELM" >> $GITHUB_ENV
-                  echo "##[set-output name=helm]$HELM"
                   export NAME=$(grep APP_NAME_TECHNICAL= .env | cut -d '=' -f2)
-                  echo "NAME=$NAME" >> $GITHUB_ENV
-                  echo "##[set-output name=name]$NAME"
+                  export DATA='{"url": "'$HELM'", "name": "'$NAME'"}'
+                  echo "DATA=$DATA" >> $GITHUB_ENV
+                  echo "##[set-output name=data]$DATA"
             - name: Register To Artifact Hub
               if: steps.process.outputs.success == 'true'
               uses: satak/webrequest-action@master
               id: webhook
-              env:
-                  NAME: ${ steps.request.name }
-                  HELM: ${ steps.request.helm }
               with:
                   url: https://artifacthub.io/api/v1/repositories/user
                   method: POST
-                  payload: '{"name": "${{env.NAME}}", "url": "${{env.HELM}}"}'
-                  headers: '{"X-API-Key": "${{secrets.ARTIFACT_KEY}}"}'
+                  payload: ${ steps.request.data }
+                  headers: '{"X-API-Key": "Token ${{secrets.ARTIFACT_KEY}}"}'
             - name: Print the response status
               run: |
                   $output = '${{ steps.webhook.outputs.output }}' | ConvertFrom-Json
