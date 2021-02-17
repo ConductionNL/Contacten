@@ -43,11 +43,12 @@ jobs:
                   export DATA='{"url": "'$HELM'", "name": "'$NAME'"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
+                  echo steps.request.url
             - name: Register To Artifact Hub
               if: steps.process.outputs.success == 'true'
               uses: CamiloGarciaLaRotta/watermelon-http-client@v1
               with:
-                headers: '{"X-API-KEY": "test"}'
+                headers: echo steps.request.url
                 url: steps.request.url
                 method: post
                 data: steps.request.data
