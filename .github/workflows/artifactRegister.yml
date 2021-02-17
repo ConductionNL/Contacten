@@ -32,11 +32,7 @@ jobs:
                   echo "##[set-output name=header]$HEADER"
                   echo $HEADER
                   export USER=$(grep ARTIFACTHUB_USER= .env | cut -d '=' -f2)
-                  if [ $USER != "" ]; then
-                    export URL="https://artifacthub.io/api/v1/repositories/org/$USER"
-                  else
-                    export URL='https://artifacthub.io/api/v1/repositories/user'
-                  fi
+                  export URL='https://artifacthub.io/api/v1/repositories/user'
                   echo "URL=$URL" >> $GITHUB_ENV
                   echo "##[set-output name=url]$URL"
                   export HELM=$(grep HELM_REPOSITORY= .env | cut -d '=' -f2)
@@ -44,7 +40,8 @@ jobs:
                   export DATA='{"url": "'$HELM'", "name": "'$NAME'"}'
                   echo "DATA=$DATA" >> $GITHUB_ENV
                   echo "##[set-output name=data]$DATA"
-                  echo ${{ steps.request.url }}
+            - name: test
+              run: echo ${{ steps.request.url }}
             - name: Register To Artifact Hub
               id: myRequest
               if: steps.process.outputs.success == 'true'
