@@ -51,7 +51,7 @@ jobs:
               with:
                   url: https://artifacthub.io/api/v1/repositories/user
                   method: POST
-                  payload: '{"name": "", "url": "${{ env.APP_NAME_TECHNICAL }}"}'
+                  payload: '{"name": "", "url": "${{ env.URL }}"}'
                   headers: '{"X-API-Key": "${{secrets.ARTIFACT_KEY}}"}'
             - name: Print the response status
               run: |
