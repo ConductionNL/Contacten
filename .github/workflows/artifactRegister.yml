@@ -13,6 +13,7 @@ jobs:
     register:
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v1
             - name: Check if we need to take action
               id: process
               run: |
