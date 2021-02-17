@@ -51,7 +51,7 @@ jobs:
               with:
                   url: https://artifacthub.io/api/v1/repositories/user
                   method: POST
-                  payload: ${ steps.request.data }
+                  payload: steps.request.data
                   headers: '{"X-API-Key": "Token ${{secrets.ARTIFACT_KEY}}"}'
             - name: Print the response status
               run: |
