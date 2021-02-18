@@ -4,8 +4,8 @@
 
 settings:
   registryBase: docker.io/conduction
-  projectName: contactcatalogus
-  name: contactcatalogus
+  projectName: contact-catalogus
+  name: Contact Catalogus
   version: V1.0
   description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
   repro: https://github.com/ConductionNL/contactcatalogus
