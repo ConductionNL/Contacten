@@ -1,8 +1,8 @@
-# Contacten Catalogus
+# cc
 
 Description
 ----
-The Contact Catalogue (Contacten Catalogus) contains contact details on persons and organisations.
+Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.
 
 Additional Information
 ----

@@ -1,14 +1,8 @@
-# Contact Catalogue
+# cc
 
 Description
 ----
-The Contact Catalogue (Contacten Catalogus) contains contact details on persons and organisations.
-
-The Contact Catalogue contains lists of contacts, from a source perspective it usually has an additional or replacement task with respect to the BRP. In other words, in the Contact Catalogue we find people that we do not get from the BRP. This may be because these persons are not in the BRP, we do not yet know what a person's BSN is or because we simply do not have any rights or access to the BRP from the process we are working with.
-
-In addition, the Contact Catalogue functions as a Common Ground variant of the contact list as we know it from an e-mail application or telephone. It is therefore also possible to include people in a contact list. With this we can realise contact and functionalities for users (in application form).
-
-Finally, the Contact Catalogue offers the possibility to store data from organizations. This component deliberately supports only the personal data, but can form a Customer Relation Management system in collaboration with the CMR and ORC, whereby the ORC offers the possibility to map leads, for example.
+Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.
 
 Additional Information
 ----
@@ -22,17 +16,17 @@ Additional Information
 
 Installation
 ----
-We differentiate between two way's of installing this component, a local installation as part of the provided developers toolkit or an [helm](https://helm.sh/) installation on an development or production environment. 
+We differentiate between two way's of installing this component, a local installation as part of the provided developers toolkit or an [helm](https://helm.sh/) installation on an development or production environment.
 
 #### Local installation
-First make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer. Then clone the repository to a directory on your local machine through a [git command](https://github.com/git-guides/git-clone) or [git kraken](https://www.gitkraken.com) (ui for git). If successful you can now navigate to the directory of your cloned repository in a command prompt and execute docker-compose up. 
+First make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer. Then clone the repository to a directory on your local machine through a [git command](https://github.com/git-guides/git-clone) or [git kraken](https://www.gitkraken.com) (ui for git). If successful you can now navigate to the directory of your cloned repository in a command prompt and execute docker-compose up.
 ```CLI
 $ docker-compose up
 ```
 This will build the docker image and run the used containers and when seeing the log from the php container: "NOTICE: ready to handle connections", u are ready to view the documentation at localhost on your preferred browser.
 
 #### Instalation on Kubernetes or Haven
-As a haven compliant commonground component this component is installable on kubernetes trough helm. The helm files can be found in the api/helm folder. For installing this component trough helm simply open your (still) favorite command line interface and run 
+As a haven compliant commonground component this component is installable on kubernetes trough helm. The helm files can be found in the api/helm folder. For installing this component trough helm simply open your (still) favorite command line interface and run
 ```CLI
 $ helm install [name] ./api/helm --kubeconfig kubeconfig.yaml --namespace [name] --set settings.env=prod,settings.debug=0,settings.cache=1
 ```
@@ -53,7 +47,7 @@ This component adheres to international, national and local standards (in that o
 - [Common Ground Realisatieprincipes](https://componentencatalogus.commonground.nl/20190130_-_Common_Ground_-_Realisatieprincipes.pdf)
 - [Haven](https://haven.commonground.nl/docs/de-standaard)
 - [NLX](https://docs.nlx.io/understanding-the-basics/introduction)
-- [Standard for Public Code](https://standard.publiccode.net/), see the [compliancy scan](publiccode.md) for further information. 
+- [Standard for Public Code](https://standard.publiccode.net/), see the [compliancy scan](publiccode.md) for further information.
 
 This component is based on the following [schema.org](https://schema.org) sources:
 - [Address](https://schema.org/PostalAddress)
@@ -66,10 +60,10 @@ You can find the data model, OAS documentation and other helpfull developers mat
 Couple of quick tips when you start developing
 - If you not yet have setup the component locally read the Tutorial for setting up your local environment.
 - You can find the other components on [Github](https://github.com/ConductionNL).
-- Take a look at the [commonground componenten catalogus](https://componentencatalogus.commonground.nl/componenten?) to prevent development collitions. 
+- Take a look at the [commonground componenten catalogus](https://componentencatalogus.commonground.nl/componenten?) to prevent development collitions.
 - Use [Commongroun.conduction.nl](https://commonground.conduction.nl/) for easy deployment of test environments to deploy your development to.
 - For information on how to work with the component you can refer to the tutorial [here](TUTORIAL.md).
-  
+
 
 Contributing
 ----
