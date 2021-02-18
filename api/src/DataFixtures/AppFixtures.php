@@ -21,7 +21,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        var_dump($this->params->get('app_domain'));
         if (
             $this->params->get('app_domain') == 'huwelijksplanner.online' ||
             strpos($this->params->get('app_domain'), 'huwelijksplanner.online') != false ||

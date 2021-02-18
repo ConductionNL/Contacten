@@ -9,7 +9,7 @@
 # when the hash of the last commit in the branch you set up changes. This does
 # NOT apply to ownership claim operations, which are processed immediately.
 #
-repositoryID:
+repositoryID: 33672265-98c4-4a1b-a49b-d1dd864e0c9d
 owners: # (optional, used to claim repository ownership)
     - name: Ruben van der linde
       email: ruben@conduction.nl
