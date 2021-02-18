@@ -1,0 +1,274 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "ingress": {
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "type": "null"
+                },
+                "hosts": {
+                    "type": "object",
+                    "properties": {
+                        "api": {
+                            "type": "object",
+                            "properties": {
+                                "host": {
+                                    "type": "string"
+                                },
+                                "serviceName": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "mercure": {
+                            "type": "object",
+                            "properties": {
+                                "host": {
+                                    "type": "string"
+                                },
+                                "serviceName": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tls": {
+                    "type": "null"
+                }
+            }
+        },
+        "mercure": {
+            "type": "object",
+            "properties": {
+                "acmeHosts": {
+                    "type": "string"
+                },
+                "allowAnonymous": {
+                    "type": "string"
+                },
+                "corsAllowedOrigins": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "publishUrl": {
+                    "type": "string"
+                },
+                "service": {
+                    "type": "object",
+                    "properties": {
+                        "port": {
+                            "type": "integer"
+                        },
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "subscribeUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "nginx": {
+            "type": "object",
+            "properties": {
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "replicaCount": {
+                    "type": "integer"
+                },
+                "repository": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "php": {
+            "type": "object",
+            "properties": {
+                "env": {
+                    "type": "string"
+                },
+                "mercure": {
+                    "type": "object",
+                    "properties": {
+                        "jwtSecret": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "replicaCount": {
+                    "type": "integer"
+                },
+                "repository": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "postgresql": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "imageTag": {
+                    "type": "string"
+                },
+                "persistence": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "postgresqlDatabase": {
+                    "type": "string"
+                },
+                "postgresqlPassword": {
+                    "type": "string"
+                },
+                "postgresqlUsername": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                }
+            }
+        },
+        "resources": {
+            "type": "object"
+        },
+        "security": {
+            "type": "object",
+            "properties": {
+                "applicationKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "settings": {
+            "type": "object",
+            "properties": {
+                "archiveEnabled": {
+                    "type": "boolean"
+                },
+                "audittrailEnabled": {
+                    "type": "boolean"
+                },
+                "authorisationEnabled": {
+                    "type": "boolean"
+                },
+                "cache": {
+                    "type": "boolean"
+                },
+                "corsAllowOrigin": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "debug": {
+                    "type": "integer"
+                },
+                "demo": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "env": {
+                    "type": "string"
+                },
+                "healthEnabled": {
+                    "type": "boolean"
+                },
+                "loadbalancerEnabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notificationEnabled": {
+                    "type": "boolean"
+                },
+                "projectName": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "registryBase": {
+                    "type": "string"
+                },
+                "replicaCount": {
+                    "type": "integer"
+                },
+                "repro": {
+                    "type": "string"
+                },
+                "subdomain": {
+                    "type": "string"
+                },
+                "subpath": {
+                    "type": "string"
+                },
+                "subpathRouting": {
+                    "type": "boolean"
+                },
+                "trustedHosts": {
+                    "type": "string"
+                },
+                "trustedProxies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "version": {
+                    "type": "string"
+                },
+                "web": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "varnish": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "replicaCount": {
+                    "type": "integer"
+                },
+                "repository": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

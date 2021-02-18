@@ -4,15 +4,13 @@ info:
   version: V1.0
   description: |
     API Details
-    - Component: 
     - Reference: contactcatalogus
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
-    - Docker Image: [online]() 
     - Datamodel: [postman](schema/contactcatalogus.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
-    The Contact Catalogue (Contacten Catalogus) contains contact details on persons and organisations.         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /addresses:
@@ -11789,12 +11787,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-17 20:15:09'
+        example: '2021-02-18 08:27:28'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-17 20:15:09'
+        example: '2021-02-18 08:27:28'
     required: []
   AuditTrail-write:
     properties:
@@ -11842,12 +11840,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-17 20:15:09'
+        example: '2021-02-18 08:27:28'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-17 20:15:09'
+        example: '2021-02-18 08:27:28'
     required: []
   ChangeLog-write:
     properties:

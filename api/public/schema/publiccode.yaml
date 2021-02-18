@@ -3,10 +3,10 @@ publiccodeYmlVersion: "0.2"
 name: contactcatalogus
 applicationSuite: commonground
 url: "https://github.com/ConductionNL/contactcatalogus"
-landingURL: "test.conduction.nl"
+landingURL: "cc.zaakonline.nl"
 isBasedOn: "https://github.com/ConductionNL/Proto-component-commonground.git"
 softwareVersion: "V1.0"
-releaseDate: "2021-17-02"
+releaseDate: "2021-18-02"
 logo: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
 monochromeLogo: img/logo-mono.svg
 
@@ -70,7 +70,7 @@ description:
         #          is and why one should need it.
 
         documentation: "https://github.com/ConductionNL/contactcatalogus/blob/master/README.md"
-        apiDocumentation: "test.conduction.nl"
+        apiDocumentation: "cc.zaakonline.nl"
 #
 #    features:
 #       - Very important feature
