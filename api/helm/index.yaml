@@ -3,10 +3,10 @@ entries:
   contactcatalogus:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-02-18T08:26:13.8890685Z"
+    created: "2021-02-18T11:02:55.958856Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: f942d0ff4b13ca3f6945c415f9d7b7193bf8d7a80e96f97f07016a0d75a9ae54
+    digest: 6a09ee56a0ab2ab53661cc7b0140dc0380ccc315f50453ae4db27565a4aa6d54
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -26,38 +26,12 @@ entries:
     urls:
     - contactcatalogus-0.1.0.tgz
     version: 0.1.0
-  contacten-catalogus:
-  - apiVersion: v1
-    appVersion: V1.0
-    created: "2021-02-18T08:26:13.9012441Z"
-    description: The Contact Catalogue (Contacten Catalogus) contains contact details
-      on persons and organisations.
-    digest: f6b5b3334addb04a4606ce409ec640e50966811518a9eb29ecec8aae12ecf68f
-    home: https://www.conduction.nl
-    icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
-    keywords:
-    - commonground
-    - haven
-    - nlx
-    - component
-    maintainers:
-    - email: ruben@conduction.nl
-      name: Ruben van der Linde
-    - email: info@conduction.nl
-      name: Conduction
-    name: contacten-catalogus
-    sources:
-    - https://commonground.conduction.nl/
-    - https://www.commonground.nl/
-    urls:
-    - contacten-catalogus-0.1.0.tgz
-    version: 0.1.0
   postgresql:
   - annotations:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-02-18T08:26:13.9125327Z"
+    created: "2021-02-18T11:02:55.9690833Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -86,4 +60,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2021-02-18T08:26:13.8654973Z"
+generated: "2021-02-18T11:02:55.9482737Z"

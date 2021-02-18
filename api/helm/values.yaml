@@ -9,10 +9,10 @@ settings:
   version: V1.0
   description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
   repro: https://github.com/ConductionNL/contactcatalogus
-  demo: cc.zaakonline.nl
+  demo: contactcatalogus.zuid-drecht.nl
   domain: zuid-drecht.nl
-  subdomain: cc
-  subpath: cc
+  subdomain: contactcatalogus
+  subpath: contactcatalogus
   subpathRouting: true
   env: dev
   web: false
