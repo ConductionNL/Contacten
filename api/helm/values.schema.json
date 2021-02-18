@@ -15,10 +15,12 @@
                             "type": "object",
                             "properties": {
                                 "host": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": ""
                                 },
                                 "serviceName": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": ""
                                 }
                             }
                         },
@@ -26,17 +28,20 @@
                             "type": "object",
                             "properties": {
                                 "host": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": ""
                                 },
                                 "serviceName": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": ""
                                 }
                             }
                         }
                     }
                 },
                 "tls": {
-                    "type": "null"
+                    "type": "null",
+                    "description": ""
                 }
             }
         },
@@ -44,19 +49,24 @@
             "type": "object",
             "properties": {
                 "acmeHosts": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "allowAnonymous": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "corsAllowedOrigins": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "publishUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "service": {
                     "type": "object",
@@ -70,7 +80,8 @@
                     }
                 },
                 "subscribeUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 }
             }
         },
@@ -78,16 +89,20 @@
             "type": "object",
             "properties": {
                 "pullPolicy": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "replicaCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": ""
                 },
                 "repository": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "tag": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 }
             }
         },
@@ -95,7 +110,8 @@
             "type": "object",
             "properties": {
                 "env": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "mercure": {
                     "type": "object",
@@ -103,19 +119,24 @@
                         "jwtSecret": {
                             "type": "string"
                         }
-                    }
+                    },
+                    "description": ""
                 },
                 "replicaCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": ""
                 },
                 "repository": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "secret": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "tag": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 }
             }
         },
@@ -123,10 +144,12 @@
             "type": "object",
             "properties": {
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "imageTag": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "persistence": {
                     "type": "object",
@@ -134,19 +157,24 @@
                         "enabled": {
                             "type": "boolean"
                         }
-                    }
+                    },
+                    "description": ""
                 },
                 "postgresqlDatabase": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "postgresqlPassword": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "postgresqlUsername": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "pullPolicy": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 }
             }
         },
@@ -157,7 +185,8 @@
             "type": "object",
             "properties": {
                 "applicationKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 }
             }
         },
@@ -165,76 +194,99 @@
             "type": "object",
             "properties": {
                 "archiveEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "audittrailEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "authorisationEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "cache": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "corsAllowOrigin": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                  "description": ""
                 },
                 "debug": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": ""
                 },
                 "demo": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "domain": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "env": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "healthEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "loadbalancerEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "notificationEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "projectName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "pullPolicy": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "registryBase": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "replicaCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": ""
                 },
                 "repro": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "subdomain": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "subpath": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "subpathRouting": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "trustedHosts": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "trustedProxies": {
                     "type": "array",
@@ -243,10 +295,12 @@
                     }
                 },
                 "version": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "web": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 }
             }
         },
@@ -254,19 +308,24 @@
             "type": "object",
             "properties": {
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": ""
                 },
                 "pullPolicy": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "replicaCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": ""
                 },
                 "repository": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 },
                 "tag": {
-                    "type": "string"
+                    "type": "string",
+                    "description": ""
                 }
             }
         }

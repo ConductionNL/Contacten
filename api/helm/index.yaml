@@ -1,31 +1,5 @@
 apiVersion: v1
 entries:
-  cc:
-  - apiVersion: v1
-    appVersion: V1.0
-    created: "2021-02-18T08:26:13.8790784Z"
-    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
-      beschikbaar.
-    digest: b3e3ce228ceb5ada669804595fa5a11f7d2adac9a57f178eed4b28a88a043a16
-    home: cc.zaakonline.nl
-    icon: cc.zaakonline.nl
-    keywords:
-    - commonground
-    - haven
-    - nlx
-    - component
-    maintainers:
-    - email: ruben@conduction.nl
-      name: Ruben van der Linde
-    - email: info@conduction.nl
-      name: Conduction
-    name: cc
-    sources:
-    - https://commonground.conduction.nl/
-    - https://www.commonground.nl/
-    urls:
-    - cc-0.1.0.tgz
-    version: 0.1.0
   contactcatalogus:
   - apiVersion: v1
     appVersion: V1.0
