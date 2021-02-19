@@ -74,17 +74,23 @@ spec:
                 configMapKeyRef:
                   name: {{ template "fullname" . }}
                   key: debug
+            - name: APP_TYPE
+              valueFrom:
+                  configMapKeyRef:
+                      name: {{ template "fullname" . }}
+                      key: app-type
             {{ if .Values.settings.id }}
+            - name: APP_ID
+              valueFrom:
+                    configMapKeyRef:
+                        name: {{ template "fullname" . }}
+                        key: app-id
+            {{ end }}
             - name: APP_DEMO
               valueFrom:
                 configMapKeyRef:
                   name: {{ template "fullname" . }}
                   key: app-demo
-            - name: APP_DOMAINS
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: app-domains-json
 
             - name: APP_REPRO
               valueFrom:
@@ -96,7 +102,7 @@ spec:
                   configMapKeyRef:
                       name: {{ template "fullname" . }}
                       key: app-domain
-            - name: APP_CASH
+            - name: APP_CACHE
               valueFrom:
                   configMapKeyRef:
                       name: {{ template "fullname" . }}
@@ -134,43 +140,11 @@ spec:
                   key: app-subpath
             
             # bla bla      
-            - name: CORS_ALLOW_ORIGIN
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: cors-allow-origin
-            - name: VARNISH_URL
-              value: {{ .Values.settings.name }}-varnish
-            - name: APP_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: secret
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: database-url
-            - name: MERCURE_PUBLISH_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: mercure-publish-url
-            - name: MERCURE_SUBSCRIBE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: mercure-subscribe-url
-            - name: MERCURE_JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: mercure-jwt-secret
-            - name: APP_COMMONGROUND_ID
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: app_commonground_id
             - name: APP_APPLICATION_KEY
               valueFrom:
                 secretKeyRef:
