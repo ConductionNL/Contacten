@@ -1,4 +1,4 @@
-# contactcatalogus
+# Contact Catalogus
 
 Description
 ----
