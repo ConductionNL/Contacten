@@ -280,17 +280,6 @@ class Person
      */
     private $sourceOrganization;
 
-    /**
-     *  @var string Birthplace of this person
-     *
-     * @Assert\Length (
-     *     max = 255
-     * )
-     * @Gedmo\Versioned
-     * @Groups({"read", "write"})
-     * @ORM\OneToOne(targetEntity=address::class, cascade={"persist", "remove"})
-     */
-    private $birthplace;
 
     /**
      * @var string The gender of the person. **Male**, **Female**
@@ -305,6 +294,15 @@ class Person
      * @Groups({"read","write"})
      */
     private $gender;
+
+    /**
+     * @var Address Birthplace of this person
+     *
+     * @Groups({"read", "write"})
+     * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
+     * @MaxDepth(1)
+     */
+    private $birthplace;
 
     public function __construct()
     {
@@ -621,18 +619,6 @@ class Person
         return $this;
     }
 
-    public function getBirthplace(): ?address
-    {
-        return $this->birthplace;
-    }
-
-    public function setBirthplace(?address $birthplace): self
-    {
-        $this->birthplace = $birthplace;
-
-        return $this;
-    }
-
     public function getGender(): ?string
     {
         return $this->gender;
@@ -641,6 +627,18 @@ class Person
     public function setGender(?string $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getBirthplace(): ?Address
+    {
+        return $this->birthplace;
+    }
+
+    public function setBirthplace(?Address $birthplace): self
+    {
+        $this->birthplace = $birthplace;
 
         return $this;
     }
