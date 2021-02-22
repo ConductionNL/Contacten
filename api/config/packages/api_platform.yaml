@@ -6,7 +6,6 @@ parameters:
     env(VARNISH_URL): ''
     env(APP_VERSION): ''
     env(APP_NAME): ''
-    env(APP_TITLE): ''
     env(APP_DESCRIPTION): ''
     env(APP_REPRO): ''
     env(APP_DEMO): ''
@@ -14,8 +13,6 @@ parameters:
     env(AUTH_ENABLED): ''
     env(AUDITTRAIL_ENABLED): ''
     env(NOTIFICATION_ENABLED): ''
-    env(HEALTH_ENABLED): ''
-    env(ARCHIVE_ENABLED): ''
     env(CONTAINER_REGISTRY_BASE): ''
     env(CONTAINER_PROJECT_NAME): ''
     env(CONTAINER_REPRO): ''
@@ -25,15 +22,12 @@ api_platform:
         paths: ['%kernel.project_dir%/src/Entity']
 
     # The basic API data
-    title: '%env(APP_TITLE)%'
     description: |
         API Details
-        - Component: %env(APP_TITLE)%
         - Reference: %env(APP_NAME)%
         - Enviroment: %env(APP_ENV)%
         - Version: %env(APP_VERSION)%
         - Repository: [online](%env(APP_REPRO)%) / [zip](%env(APP_REPRO)%/archive/master.zip)
-        - Docker Image: [online](%env(APP_CONTAINER)%) 
         - Datamodel: [postman](schema/%env(APP_NAME)%.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
         
         %env(APP_DESCRIPTION)%         

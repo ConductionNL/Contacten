@@ -1,16 +1,14 @@
 openapi: 3.0.2
 info:
-  title: 'Contacten Catalogus'
+  title: ''
   version: V1.0
   description: |
     API Details
-    - Component: Contacten Catalogus
-    - Reference: cc
+    - Reference: contactcatalogus
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/cc-php) 
-    - Datamodel: [postman](schema/cc.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
+    - Datamodel: [postman](schema/contactcatalogus.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
@@ -6439,15 +6437,6 @@ paths:
               - asc
               - desc
         -
-          name: 'order[birthplace]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
           name: 'order[taxID]'
           in: query
           required: false
@@ -6494,6 +6483,15 @@ paths:
               - desc
         -
           name: 'order[sourceOrganization]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[gender]'
           in: query
           required: false
           schema:
@@ -10611,10 +10609,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        birthplace:
-          description: 'Birthplace of this person'
-          type: string
-          nullable: true
         taxID:
           description: 'TIN, CIF, NIF or BSN'
           type: string
@@ -10663,6 +10657,16 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        gender:
+          description: 'The gender of the person. **Male**, **Female**'
+          type: string
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Address-read'
       required:
         - givenName
     Person-write:
@@ -10690,10 +10694,6 @@ components:
           description: 'Date of birth of this person'
           type: string
           format: date-time
-          nullable: true
-        birthplace:
-          description: 'Birthplace of this person'
-          type: string
           nullable: true
         taxID:
           description: 'TIN, CIF, NIF or BSN'
@@ -10733,6 +10733,16 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        gender:
+          description: 'The gender of the person. **Male**, **Female**'
+          type: string
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Address-write'
       required:
         - givenName
     'Person:jsonld-read':
@@ -10783,10 +10793,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        birthplace:
-          description: 'Birthplace of this person'
-          type: string
-          nullable: true
         taxID:
           description: 'TIN, CIF, NIF or BSN'
           type: string
@@ -10835,6 +10841,16 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        gender:
+          description: 'The gender of the person. **Male**, **Female**'
+          type: string
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Address:jsonld-read'
       required:
         - givenName
     'Person:jsonld-write':
@@ -10871,10 +10887,6 @@ components:
           description: 'Date of birth of this person'
           type: string
           format: date-time
-          nullable: true
-        birthplace:
-          description: 'Birthplace of this person'
-          type: string
           nullable: true
         taxID:
           description: 'TIN, CIF, NIF or BSN'
@@ -10914,6 +10926,16 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        gender:
+          description: 'The gender of the person. **Male**, **Female**'
+          type: string
+          nullable: true
+        birthplace:
+          description: 'Birthplace of this person'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Address:jsonld-write'
       required:
         - givenName
     Social-read:
@@ -11489,11 +11511,6 @@ definitions:
         description: 'Date of birth of this person'
         type: string
         example: 15-03-2000
-      birthplace:
-        description: 'Birthplace of this person'
-        type: string
-        example: Amsterdam
-        maxLength: 255
       taxID:
         description: 'TIN, CIF, NIF or BSN'
         type: string
@@ -11518,6 +11535,10 @@ definitions:
         type: string
         example: '002851234'
         format: url
+      gender:
+        description: 'The gender of the person. **Male**, **Female**'
+        type: string
+        example: Male
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11530,6 +11551,9 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
+      birthplace:
+        description: 'Birthplace of this person'
+        type: \Address
     required: []
   Person-write:
     properties:
@@ -11557,11 +11581,6 @@ definitions:
         description: 'Date of birth of this person'
         type: string
         example: 15-03-2000
-      birthplace:
-        description: 'Birthplace of this person'
-        type: string
-        example: Amsterdam
-        maxLength: 255
       taxID:
         description: 'TIN, CIF, NIF or BSN'
         type: string
@@ -11580,6 +11599,10 @@ definitions:
         type: string
         example: '002851234'
         format: url
+      gender:
+        description: 'The gender of the person. **Male**, **Female**'
+        type: string
+        example: Male
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11592,6 +11615,9 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
+      birthplace:
+        description: 'Birthplace of this person'
+        type: \Address
     required: []
   Social-read:
     properties:
@@ -11789,12 +11815,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-11 09:18:58'
+        example: '2021-02-22 09:54:06'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-11 09:18:58'
+        example: '2021-02-22 09:54:06'
     required: []
   AuditTrail-write:
     properties:
@@ -11842,12 +11868,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-11 09:18:58'
+        example: '2021-02-22 09:54:06'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-11 09:18:58'
+        example: '2021-02-22 09:54:06'
     required: []
   ChangeLog-write:
     properties:
@@ -11931,7 +11957,7 @@ host: irc.zaakonline.nl
 servers:
   -
     name: zuid-drecht.nl
-    url: cc.dev.zuid-drecht.nl
+    url: contactcatalogus.dev.zuid-drecht.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
