@@ -162,20 +162,6 @@ class Person
     private $birthday;
 
     /**
-     * @var string Birthplace of this person
-     *
-     * @example Amsterdam
-     *
-     * @Assert\Length (
-     *     max = 255
-     * )
-     * @Gedmo\Versioned
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $birthplace;
-
-    /**
      * @var string TIN, CIF, NIF or BSN
      *
      * @example 999994670
@@ -294,6 +280,30 @@ class Person
      */
     private $sourceOrganization;
 
+
+    /**
+     * @var string The gender of the person. **Male**, **Female**
+     * @Gedmo\Versioned
+     * @example Male
+     *
+     * @Assert\Choice(
+     *      {"Male","Female"}
+     * )
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $gender;
+
+    /**
+     * @var Address Birthplace of this person
+     *
+     * @Groups({"read", "write"})
+     * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
+     * @MaxDepth(1)
+     */
+    private $birthplace;
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
@@ -389,18 +399,6 @@ class Person
     public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
-
-        return $this;
-    }
-
-    public function getBirthplace(): ?string
-    {
-        return $this->birthplace;
-    }
-
-    public function setBirthplace(?string $birthplace): self
-    {
-        $this->birthplace = $birthplace;
 
         return $this;
     }
@@ -617,6 +615,30 @@ class Person
     public function setSourceOrganization(string $sourceOrganization): self
     {
         $this->sourceOrganization = $sourceOrganization;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getBirthplace(): ?Address
+    {
+        return $this->birthplace;
+    }
+
+    public function setBirthplace(?Address $birthplace): self
+    {
+        $this->birthplace = $birthplace;
 
         return $this;
     }
