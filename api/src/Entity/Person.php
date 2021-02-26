@@ -329,9 +329,7 @@ class Person
     private $primaryLanguage;
 
     /**
-     * @var string The speaking languages of the person.
-     *
-     * @Assert\Country
+     * @var array The speaking languages of the person.
      *
      * @ORM\Column(type="array", nullable=true)
      * @Groups({"read","write"})
