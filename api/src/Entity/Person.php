@@ -304,6 +304,46 @@ class Person
      */
     private $birthplace;
 
+    /**
+     * @var string The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**
+     * @Gedmo\Versioned
+     * @example Married
+     *
+     * @Assert\Choice(
+     *      {"Married","Single","Divorced","Widow/Widower"}
+     * )
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $maritalStatus;
+
+    /**
+     * @var string The primary language of the person.
+     *
+     * @Assert\Country
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $primaryLanguage;
+
+    /**
+     * @var array The speaking languages of the person.
+     *
+     * @ORM\Column(type="array", nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $speakingLanguages = [];
+
+    /**
+     * @var string The contact preference of the person.
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $contactPreference;
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
@@ -642,4 +682,54 @@ class Person
 
         return $this;
     }
+
+    public function getMaritalStatus(): ?string
+    {
+        return $this->maritalStatus;
+    }
+
+    public function setMaritalStatus(?string $maritalStatus): self
+    {
+        $this->maritalStatus = $maritalStatus;
+
+        return $this;
+    }
+
+    public function getPrimaryLanguage(): ?string
+    {
+        return $this->primaryLanguage;
+    }
+
+    public function setPrimaryLanguage(?string $primaryLanguage): self
+    {
+        $this->primaryLanguage = $primaryLanguage;
+
+        return $this;
+    }
+
+    public function getSpeakingLanguages(): ?array
+    {
+        return $this->speakingLanguages;
+    }
+
+    public function setSpeakingLanguages(?array $speakingLanguages): self
+    {
+        $this->speakingLanguages = $speakingLanguages;
+
+        return $this;
+    }
+
+    public function getContactPreference(): ?string
+    {
+        return $this->contactPreference;
+    }
+
+    public function setContactPreference(?string $contactPreference): self
+    {
+        $this->contactPreference = $contactPreference;
+
+        return $this;
+    }
+
+
 }

@@ -6500,6 +6500,42 @@ paths:
               - asc
               - desc
         -
+          name: 'order[maritalStatus]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[primaryLanguage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[speakingLanguages]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[contactPreference]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'birthday[before]'
           in: query
           required: false
@@ -10667,6 +10703,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address-read'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     Person-write:
@@ -10743,6 +10797,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address-write'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-read':
@@ -10851,6 +10923,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address:jsonld-read'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-write':
@@ -10936,6 +11026,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address:jsonld-write'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     Social-read:
@@ -11539,6 +11647,19 @@ definitions:
         description: 'The gender of the person. **Male**, **Female**'
         type: string
         example: Male
+      maritalStatus:
+        description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+        type: string
+        example: Married
+      primaryLanguage:
+        description: 'The primary language of the person.'
+        type: string
+      speakingLanguages:
+        description: 'The speaking languages of the person.'
+        type: array
+      contactPreference:
+        description: 'The contact preference of the person.'
+        type: string
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11603,6 +11724,19 @@ definitions:
         description: 'The gender of the person. **Male**, **Female**'
         type: string
         example: Male
+      maritalStatus:
+        description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+        type: string
+        example: Married
+      primaryLanguage:
+        description: 'The primary language of the person.'
+        type: string
+      speakingLanguages:
+        description: 'The speaking languages of the person.'
+        type: array
+      contactPreference:
+        description: 'The contact preference of the person.'
+        type: string
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11815,12 +11949,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-22 09:54:06'
+        example: '2021-02-26 16:03:50'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-22 09:54:06'
+        example: '2021-02-26 16:03:50'
     required: []
   AuditTrail-write:
     properties:
@@ -11868,12 +12002,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-22 09:54:06'
+        example: '2021-02-26 16:03:50'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-22 09:54:06'
+        example: '2021-02-26 16:03:50'
     required: []
   ChangeLog-write:
     properties:
