@@ -280,10 +280,10 @@ class Person
      */
     private $sourceOrganization;
 
-
     /**
      * @var string The gender of the person. **Male**, **Female**
      * @Gedmo\Versioned
+     *
      * @example Male
      *
      * @Assert\Choice(
