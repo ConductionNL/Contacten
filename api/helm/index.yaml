@@ -3,10 +3,10 @@ entries:
   contactcatalogus:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-03-01T20:23:51.2684651Z"
+    created: "2021-03-04T14:05:30.2788433Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: a29e4d8103d3e3e6c7448e2571bf848dc33f202849addb15fbb93c08d30987d4
+    digest: f6821158f0eaecb1e0d2d9b46753538cf4ac06db9dbec4b447b3ecf57722f831
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -31,7 +31,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-03-01T20:23:51.2925923Z"
+    created: "2021-03-04T14:05:30.3178161Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -60,4 +60,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2021-03-01T20:23:51.2482446Z"
+generated: "2021-03-04T14:05:30.2321234Z"
