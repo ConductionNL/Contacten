@@ -234,8 +234,18 @@ class Person
     private $organization;
 
     /**
-     * @var ContactList Contact lists of this person
+     * @var ContactList Contact lists this person owns
      *
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\ContactList", mappedBy="owner", cascade={"remove"})
+     * @MaxDepth(1)
+     */
+    private $ownedContactLists;
+
+    /**
+     * @var ContactList Contact lists this person is on
+     *
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
      * @MaxDepth(1)
      */
@@ -349,6 +359,7 @@ class Person
     {
         $this->telephones = new ArrayCollection();
         $this->adresses = new ArrayCollection();
+        $this->ownedContactLists = new ArrayCollection();
         $this->contactLists = new ArrayCollection();
         $this->emails = new ArrayCollection();
         $this->socials = new ArrayCollection();
@@ -580,6 +591,32 @@ class Person
     public function setOrganization(?Organization $organization): self
     {
         $this->organization = $organization;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ContactList[]
+     */
+    public function getOwnedContactLists()
+    {
+        return $this->ownedContactLists;
+    }
+
+    public function addOwnedContactList(ContactList $ownedContactList): self
+    {
+        if (!$this->ownedContactLists->contains($ownedContactList)) {
+            $this->ownedContactLists[] = $ownedContactList;
+        }
+
+        return $this;
+    }
+
+    public function removeOwnedContactList(ContactList $ownedContactList): self
+    {
+        if ($this->ownedContactLists->contains($ownedContactList)) {
+            $this->ownedContactLists->removeElement($ownedContactList);
+        }
 
         return $this;
     }
