@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * All properties that the entity ContactList holds.
  *
- * Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
+ * Entity ContactList is a link object between one person contact and one or more persons and/or one or more organisations. It also has a name, and description to describe the relation between the objects.
  *
  * @author Ruben van der Linde <ruben@conduction.nl>
  * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
@@ -102,6 +102,15 @@ class ContactList
     private $description;
 
     /**
+     * @var Person The owner of this ContactList
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Person", inversedBy="ownedContactLists", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $owner;
+
+    /**
      * @var Person Persons this contact list has
      *
      * @example Hans
@@ -172,6 +181,18 @@ class ContactList
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getOwner(): ?Person
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Person $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }

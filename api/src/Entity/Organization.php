@@ -181,7 +181,7 @@ class Organization
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $adresses;
+    private $addresses;
 
     /**
      * @var Social Socials of this organisation
@@ -404,24 +404,24 @@ class Organization
     /**
      * @return Collection|Address[]
      */
-    public function getAdresses()
+    public function getAddresses()
     {
-        return $this->adresses;
+        return $this->addresses;
     }
 
-    public function addAdress(Address $adress): self
+    public function addAddress(Address $address): self
     {
-        if (!$this->adresses->contains($adress)) {
-            $this->adresses[] = $adress;
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
         }
 
         return $this;
     }
 
-    public function removeAdress(Address $adress): self
+    public function removeAddress(Address $address): self
     {
-        if ($this->adresses->contains($adress)) {
-            $this->adresses->removeElement($adress);
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
         }
 
         return $this;

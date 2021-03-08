@@ -6500,6 +6500,42 @@ paths:
               - asc
               - desc
         -
+          name: 'order[maritalStatus]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[primaryLanguage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[speakingLanguages]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[contactPreference]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'birthday[before]'
           in: query
           required: false
@@ -10054,6 +10090,12 @@ components:
           description: 'Description of this contact list'
           type: string
           nullable: true
+        owner:
+          description: 'The owner of this ContactList'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person-read'
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -10089,6 +10131,12 @@ components:
           description: 'Description of this contact list'
           type: string
           nullable: true
+        owner:
+          description: 'The owner of this ContactList'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person-write'
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -10124,6 +10172,12 @@ components:
           description: 'Description of this contact list'
           type: string
           nullable: true
+        owner:
+          description: 'The owner of this ContactList'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person:jsonld-read'
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -10168,6 +10222,12 @@ components:
           description: 'Description of this contact list'
           type: string
           nullable: true
+        owner:
+          description: 'The owner of this ContactList'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person:jsonld-write'
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -10321,7 +10381,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone-read'
-        adresses:
+        addresses:
           description: 'Address of this organisation'
           type: array
           items:
@@ -10389,7 +10449,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone-write'
-        adresses:
+        addresses:
           description: 'Address of this organisation'
           type: array
           items:
@@ -10467,7 +10527,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone:jsonld-read'
-        adresses:
+        addresses:
           description: 'Address of this organisation'
           type: array
           items:
@@ -10544,7 +10604,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone:jsonld-write'
-        adresses:
+        addresses:
           description: 'Address of this organisation'
           type: array
           items:
@@ -10622,8 +10682,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone-read'
-        adresses:
-          description: 'Adresses of this person'
+        addresses:
+          description: 'Addresses of this person'
           type: array
           items:
             $ref: '#/components/schemas/Address-read'
@@ -10637,6 +10697,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email-read'
+        ownedContactLists:
+          description: 'Contact lists this person owns'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList-read'
+        contactLists:
+          description: 'Contact lists this person is on'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList-read'
         dateCreated:
           description: 'The moment this resource was created'
           type: string
@@ -10667,6 +10737,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address-read'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     Person-write:
@@ -10708,8 +10796,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone-write'
-        adresses:
-          description: 'Adresses of this person'
+        addresses:
+          description: 'Addresses of this person'
           type: array
           items:
             $ref: '#/components/schemas/Address-write'
@@ -10723,6 +10811,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email-write'
+        ownedContactLists:
+          description: 'Contact lists this person owns'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList-write'
+        contactLists:
+          description: 'Contact lists this person is on'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList-write'
         personalPhoto:
           description: 'Base64 of the image'
           type: string
@@ -10743,6 +10841,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address-write'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-read':
@@ -10806,8 +10922,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone:jsonld-read'
-        adresses:
-          description: 'Adresses of this person'
+        addresses:
+          description: 'Addresses of this person'
           type: array
           items:
             $ref: '#/components/schemas/Address:jsonld-read'
@@ -10821,6 +10937,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email:jsonld-read'
+        ownedContactLists:
+          description: 'Contact lists this person owns'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList:jsonld-read'
+        contactLists:
+          description: 'Contact lists this person is on'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList:jsonld-read'
         dateCreated:
           description: 'The moment this resource was created'
           type: string
@@ -10851,6 +10977,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address:jsonld-read'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-write':
@@ -10901,8 +11045,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone:jsonld-write'
-        adresses:
-          description: 'Adresses of this person'
+        addresses:
+          description: 'Addresses of this person'
           type: array
           items:
             $ref: '#/components/schemas/Address:jsonld-write'
@@ -10916,6 +11060,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email:jsonld-write'
+        ownedContactLists:
+          description: 'Contact lists this person owns'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList:jsonld-write'
+        contactLists:
+          description: 'Contact lists this person is on'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList:jsonld-write'
         personalPhoto:
           description: 'Base64 of the image'
           type: string
@@ -10936,6 +11090,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address:jsonld-write'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     Social-read:
@@ -11309,6 +11481,9 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
+      owner:
+        description: 'The owner of this ContactList'
+        type: \Person
       persons:
         description: 'Persons this contact list has'
         type: \Person
@@ -11329,6 +11504,9 @@ definitions:
         description: 'Description of this contact list'
         type: string
         example: 'This contact list holds all users.'
+      owner:
+        description: 'The owner of this ContactList'
+        type: \Person
       persons:
         description: 'Persons this contact list has'
         type: \Person
@@ -11418,7 +11596,7 @@ definitions:
       telephones:
         description: 'Telephone of this organisation'
         type: \Telephone
-      adresses:
+      addresses:
         description: 'Address of this organisation'
         type: \Address
       socials:
@@ -11469,7 +11647,7 @@ definitions:
       telephones:
         description: 'Telephone of this organisation'
         type: \Telephone
-      adresses:
+      addresses:
         description: 'Address of this organisation'
         type: \Address
       socials:
@@ -11539,11 +11717,24 @@ definitions:
         description: 'The gender of the person. **Male**, **Female**'
         type: string
         example: Male
+      maritalStatus:
+        description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+        type: string
+        example: Married
+      primaryLanguage:
+        description: 'The primary language of the person.'
+        type: string
+      speakingLanguages:
+        description: 'The speaking languages of the person.'
+        type: array
+      contactPreference:
+        description: 'The contact preference of the person.'
+        type: string
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
+      addresses:
+        description: 'Addresses of this person'
         type: \Address
       socials:
         description: 'Socials of this person'
@@ -11551,6 +11742,12 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
+      ownedContactLists:
+        description: 'Contact lists this person owns'
+        type: \ContactList
+      contactLists:
+        description: 'Contact lists this person is on'
+        type: \ContactList
       birthplace:
         description: 'Birthplace of this person'
         type: \Address
@@ -11603,11 +11800,24 @@ definitions:
         description: 'The gender of the person. **Male**, **Female**'
         type: string
         example: Male
+      maritalStatus:
+        description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+        type: string
+        example: Married
+      primaryLanguage:
+        description: 'The primary language of the person.'
+        type: string
+      speakingLanguages:
+        description: 'The speaking languages of the person.'
+        type: array
+      contactPreference:
+        description: 'The contact preference of the person.'
+        type: string
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
+      addresses:
+        description: 'Addresses of this person'
         type: \Address
       socials:
         description: 'Socials of this person'
@@ -11615,6 +11825,12 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
+      ownedContactLists:
+        description: 'Contact lists this person owns'
+        type: \ContactList
+      contactLists:
+        description: 'Contact lists this person is on'
+        type: \ContactList
       birthplace:
         description: 'Birthplace of this person'
         type: \Address
@@ -11815,12 +12031,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-03-01 20:23:28'
+        example: '2021-03-08 15:28:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-03-01 20:23:28'
+        example: '2021-03-08 15:28:13'
     required: []
   AuditTrail-write:
     properties:
@@ -11868,12 +12084,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-03-01 20:23:28'
+        example: '2021-03-08 15:28:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-03-01 20:23:28'
+        example: '2021-03-08 15:28:13'
     required: []
   ChangeLog-write:
     properties:
@@ -11895,7 +12111,7 @@ tags:
     description: |
       All properties that the entity ContactList holds.
       
-      Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
+      Entity ContactList is a link object between one person contact and one or more persons and/or one or more organisations. It also has a name, and description to describe the relation between the objects.
   -
     name: Email
     description: |
