@@ -6500,6 +6500,42 @@ paths:
               - asc
               - desc
         -
+          name: 'order[maritalStatus]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[primaryLanguage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[speakingLanguages]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[contactPreference]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'birthday[before]'
           in: query
           required: false
@@ -10054,6 +10090,12 @@ components:
           description: 'Description of this contact list'
           type: string
           nullable: true
+        owner:
+          description: 'The owner of this ContactList'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person-read'
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -10089,6 +10131,12 @@ components:
           description: 'Description of this contact list'
           type: string
           nullable: true
+        owner:
+          description: 'The owner of this ContactList'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person-write'
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -10124,6 +10172,12 @@ components:
           description: 'Description of this contact list'
           type: string
           nullable: true
+        owner:
+          description: 'The owner of this ContactList'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person:jsonld-read'
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -10168,6 +10222,12 @@ components:
           description: 'Description of this contact list'
           type: string
           nullable: true
+        owner:
+          description: 'The owner of this ContactList'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Person:jsonld-write'
         persons:
           description: 'Persons this contact list has'
           type: array
@@ -10321,7 +10381,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone-read'
-        adresses:
+        addresses:
           description: 'Address of this organisation'
           type: array
           items:
@@ -10389,7 +10449,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone-write'
-        adresses:
+        addresses:
           description: 'Address of this organisation'
           type: array
           items:
@@ -10467,7 +10527,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone:jsonld-read'
-        adresses:
+        addresses:
           description: 'Address of this organisation'
           type: array
           items:
@@ -10544,7 +10604,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone:jsonld-write'
-        adresses:
+        addresses:
           description: 'Address of this organisation'
           type: array
           items:
@@ -10622,8 +10682,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone-read'
-        adresses:
-          description: 'Adresses of this person'
+        addresses:
+          description: 'Addresses of this person'
           type: array
           items:
             $ref: '#/components/schemas/Address-read'
@@ -10637,6 +10697,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email-read'
+        ownedContactLists:
+          description: 'Contact lists this person owns'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList-read'
+        contactLists:
+          description: 'Contact lists this person is on'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList-read'
         dateCreated:
           description: 'The moment this resource was created'
           type: string
@@ -10667,6 +10737,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address-read'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     Person-write:
@@ -10708,8 +10796,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone-write'
-        adresses:
-          description: 'Adresses of this person'
+        addresses:
+          description: 'Addresses of this person'
           type: array
           items:
             $ref: '#/components/schemas/Address-write'
@@ -10723,6 +10811,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email-write'
+        ownedContactLists:
+          description: 'Contact lists this person owns'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList-write'
+        contactLists:
+          description: 'Contact lists this person is on'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList-write'
         personalPhoto:
           description: 'Base64 of the image'
           type: string
@@ -10743,6 +10841,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address-write'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-read':
@@ -10806,8 +10922,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone:jsonld-read'
-        adresses:
-          description: 'Adresses of this person'
+        addresses:
+          description: 'Addresses of this person'
           type: array
           items:
             $ref: '#/components/schemas/Address:jsonld-read'
@@ -10821,6 +10937,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email:jsonld-read'
+        ownedContactLists:
+          description: 'Contact lists this person owns'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList:jsonld-read'
+        contactLists:
+          description: 'Contact lists this person is on'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList:jsonld-read'
         dateCreated:
           description: 'The moment this resource was created'
           type: string
@@ -10851,6 +10977,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address:jsonld-read'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     'Person:jsonld-write':
@@ -10901,8 +11045,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telephone:jsonld-write'
-        adresses:
-          description: 'Adresses of this person'
+        addresses:
+          description: 'Addresses of this person'
           type: array
           items:
             $ref: '#/components/schemas/Address:jsonld-write'
@@ -10916,6 +11060,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email:jsonld-write'
+        ownedContactLists:
+          description: 'Contact lists this person owns'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList:jsonld-write'
+        contactLists:
+          description: 'Contact lists this person is on'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactList:jsonld-write'
         personalPhoto:
           description: 'Base64 of the image'
           type: string
@@ -10936,6 +11090,24 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Address:jsonld-write'
+        maritalStatus:
+          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          type: string
+          nullable: true
+        primaryLanguage:
+          description: 'The primary language of the person.'
+          type: string
+          nullable: true
+        speakingLanguages:
+          description: 'The speaking languages of the person.'
+          type: array
+          items:
+            type: string
+          nullable: true
+        contactPreference:
+          description: 'The contact preference of the person.'
+          type: string
+          nullable: true
       required:
         - givenName
     Social-read:
@@ -11175,379 +11347,6 @@ components:
       required:
         - telephone
 definitions:
-  Person-read:
-    properties:
-      id:
-        description: 'UUID of this person'
-        type: \UuidInterface
-      resource:
-        description: 'A specific commonground resource'
-        type: string
-        example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
-        format: url
-      givenName:
-        description: 'Given name of this person'
-        type: string
-        example: John
-        maxLength: 255
-      additionalName:
-        description: 'Additional name of this person'
-        type: string
-        example: von
-        maxLength: 255
-      familyName:
-        description: 'Family name of this person'
-        type: string
-        example: Do
-        maxLength: 255
-      birthday:
-        description: 'Date of birth of this person'
-        type: string
-        example: 15-03-2000
-      taxID:
-        description: 'TIN, CIF, NIF or BSN'
-        type: string
-        example: '999994670'
-        maxLength: 255
-      aboutMe:
-        description: 'Information about this person'
-        type: string
-        example: 'I like to dance !'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      personalPhoto:
-        description: 'Base64 of the image'
-        type: string
-      sourceOrganization:
-        description: 'The WRC url of the organization that owns this group'
-        type: string
-        example: '002851234'
-        format: url
-      gender:
-        description: 'The gender of the person. **Male**, **Female**'
-        type: string
-        example: Male
-      telephones:
-        description: 'Telephone of this person'
-        type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
-        type: \Address
-      socials:
-        description: 'Socials of this person'
-        type: \Social
-      emails:
-        description: 'Emails of this person'
-        type: \Email
-      birthplace:
-        description: 'Birthplace of this person'
-        type: \Address
-    required: []
-  Person-write:
-    properties:
-      resource:
-        description: 'A specific commonground resource'
-        type: string
-        example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
-        format: url
-      givenName:
-        description: 'Given name of this person'
-        type: string
-        example: John
-        maxLength: 255
-      additionalName:
-        description: 'Additional name of this person'
-        type: string
-        example: von
-        maxLength: 255
-      familyName:
-        description: 'Family name of this person'
-        type: string
-        example: Do
-        maxLength: 255
-      birthday:
-        description: 'Date of birth of this person'
-        type: string
-        example: 15-03-2000
-      taxID:
-        description: 'TIN, CIF, NIF or BSN'
-        type: string
-        example: '999994670'
-        maxLength: 255
-      aboutMe:
-        description: 'Information about this person'
-        type: string
-        example: 'I like to dance !'
-        maxLength: 255
-      personalPhoto:
-        description: 'Base64 of the image'
-        type: string
-      sourceOrganization:
-        description: 'The WRC url of the organization that owns this group'
-        type: string
-        example: '002851234'
-        format: url
-      gender:
-        description: 'The gender of the person. **Male**, **Female**'
-        type: string
-        example: Male
-      telephones:
-        description: 'Telephone of this person'
-        type: \Telephone
-      adresses:
-        description: 'Adresses of this person'
-        type: \Address
-      socials:
-        description: 'Socials of this person'
-        type: \Social
-      emails:
-        description: 'Emails of this person'
-        type: \Email
-      birthplace:
-        description: 'Birthplace of this person'
-        type: \Address
-    required: []
-  Organization-read:
-    properties:
-      id:
-        description: 'UUID of this organisation'
-        type: \UuidInterface
-      name:
-        description: 'Name of this organisation'
-        type: string
-        example: Ajax
-        maxLength: 255
-      description:
-        description: 'Description of this organisation'
-        type: string
-        example: 'Ajax is a dutch soccer club'
-      type:
-        description: 'Type of this organisation'
-        type: string
-        example: Township
-        maxLength: 255
-      coc:
-        description: 'Chamber Of Comerce number of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      vatID:
-        description: 'Value added tax id of this organisation (btw)'
-        type: string
-        example: '123456'
-        maxLength: 15
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      sourceOrganization:
-        description: 'The WRC url of the organization that owns this group'
-        type: string
-        example: '002851234'
-        format: url
-      parentOrganization: []
-      subOrganizations:
-        description: 'The sub-organizations of which this organization is the parent organization.'
-        type: '\ArrayCollection|\Organization[]'
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      adresses:
-        description: 'Address of this organisation'
-        type: \Address
-      socials:
-        description: 'Socials of this organisation'
-        type: \Social
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-    required: []
-  Organization-write:
-    properties:
-      name:
-        description: 'Name of this organisation'
-        type: string
-        example: Ajax
-        maxLength: 255
-      description:
-        description: 'Description of this organisation'
-        type: string
-        example: 'Ajax is a dutch soccer club'
-      type:
-        description: 'Type of this organisation'
-        type: string
-        example: Township
-        maxLength: 255
-      coc:
-        description: 'Chamber Of Comerce number of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      vatID:
-        description: 'Value added tax id of this organisation (btw)'
-        type: string
-        example: '123456'
-        maxLength: 15
-      sourceOrganization:
-        description: 'The WRC url of the organization that owns this group'
-        type: string
-        example: '002851234'
-        format: url
-      parentOrganization: []
-      subOrganizations:
-        description: 'The sub-organizations of which this organization is the parent organization.'
-        type: '\ArrayCollection|\Organization[]'
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      adresses:
-        description: 'Address of this organisation'
-        type: \Address
-      socials:
-        description: 'Socials of this organisation'
-        type: \Social
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-    required: []
-  Telephone-read:
-    properties:
-      id:
-        description: 'UUID of this telephone'
-        type: \UuidInterface
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Telephone-write:
-    properties:
-      name:
-        description: 'Name of this telephone'
-        type: string
-        example: Mobile
-        maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
-        type: string
-        example: '+31 (0)10-1234567'
-        maxLength: 255
-    required: []
-  Email-read:
-    properties:
-      id:
-        description: 'UUID of this email'
-        type: \UuidInterface
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Email-write:
-    properties:
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-    required: []
-  Social-read:
-    properties:
-      id:
-        description: 'UUID of this telephone'
-        type: \UuidInterface
-      name:
-        description: 'Name of this social'
-        type: string
-        example: 'Twitter of an organization/person'
-        maxLength: 255
-      description:
-        description: 'Description of this social'
-        type: string
-        example: 'This is the twitter of an organization or person'
-      type:
-        description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
-        type: string
-        example: twitter
-      url:
-        description: 'Url of this social'
-        type: string
-        example: 'https://www.twitter.com'
-        format: url
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required:
-      - name
-      - url
-  Social-write:
-    properties:
-      name:
-        description: 'Name of this social'
-        type: string
-        example: 'Twitter of an organization/person'
-        maxLength: 255
-      description:
-        description: 'Description of this social'
-        type: string
-        example: 'This is the twitter of an organization or person'
-      type:
-        description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
-        type: string
-        example: twitter
-      url:
-        description: 'Url of this social'
-        type: string
-        example: 'https://www.twitter.com'
-        format: url
-        maxLength: 255
-    required:
-      - name
-      - url
   Address-read:
     properties:
       id:
@@ -11682,6 +11481,9 @@ definitions:
       dateModified:
         description: 'The moment this resource last Modified'
         type: \Datetime
+      owner:
+        description: 'The owner of this ContactList'
+        type: \Person
       persons:
         description: 'Persons this contact list has'
         type: \Person
@@ -11702,6 +11504,9 @@ definitions:
         description: 'Description of this contact list'
         type: string
         example: 'This contact list holds all users.'
+      owner:
+        description: 'The owner of this ContactList'
+        type: \Person
       persons:
         description: 'Persons this contact list has'
         type: \Person
@@ -11711,58 +11516,416 @@ definitions:
         type: \Organization
         example: Ajax
     required: []
-  ChangeLog-read:
+  Email-read:
     properties:
       id:
-        description: 'The UUID identifier of this object'
+        description: 'UUID of this email'
+        type: \UuidInterface
+      name:
+        description: 'Name of this email'
         type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
         type: string
         maxLength: 255
       dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2021-03-04 14:05:44'
+        description: 'The moment this resource was created'
+        type: \Datetime
       dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2021-03-04 14:05:44'
+        description: 'The moment this resource last Modified'
+        type: \Datetime
     required: []
-  ChangeLog-write:
+  Email-write:
     properties:
-      note:
-        description: 'A note conserning this log lin'
+      name:
+        description: 'Name of this email'
         type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+    required: []
+  Organization-read:
+    properties:
+      id:
+        description: 'UUID of this organisation'
+        type: \UuidInterface
+      name:
+        description: 'Name of this organisation'
+        type: string
+        example: Ajax
+        maxLength: 255
+      description:
+        description: 'Description of this organisation'
+        type: string
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
+        maxLength: 255
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vatID:
+        description: 'Value added tax id of this organisation (btw)'
+        type: string
+        example: '123456'
+        maxLength: 15
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      addresses:
+        description: 'Address of this organisation'
+        type: \Address
+      socials:
+        description: 'Socials of this organisation'
+        type: \Social
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+    required: []
+  Organization-write:
+    properties:
+      name:
+        description: 'Name of this organisation'
+        type: string
+        example: Ajax
+        maxLength: 255
+      description:
+        description: 'Description of this organisation'
+        type: string
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
+        maxLength: 255
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vatID:
+        description: 'Value added tax id of this organisation (btw)'
+        type: string
+        example: '123456'
+        maxLength: 15
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      addresses:
+        description: 'Address of this organisation'
+        type: \Address
+      socials:
+        description: 'Socials of this organisation'
+        type: \Social
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+    required: []
+  Person-read:
+    properties:
+      id:
+        description: 'UUID of this person'
+        type: \UuidInterface
+      resource:
+        description: 'A specific commonground resource'
+        type: string
+        example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
+        format: url
+      givenName:
+        description: 'Given name of this person'
+        type: string
+        example: John
+        maxLength: 255
+      additionalName:
+        description: 'Additional name of this person'
+        type: string
+        example: von
+        maxLength: 255
+      familyName:
+        description: 'Family name of this person'
+        type: string
+        example: Do
+        maxLength: 255
+      birthday:
+        description: 'Date of birth of this person'
+        type: string
+        example: 15-03-2000
+      taxID:
+        description: 'TIN, CIF, NIF or BSN'
+        type: string
+        example: '999994670'
+        maxLength: 255
+      aboutMe:
+        description: 'Information about this person'
+        type: string
+        example: 'I like to dance !'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      personalPhoto:
+        description: 'Base64 of the image'
+        type: string
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
+      gender:
+        description: 'The gender of the person. **Male**, **Female**'
+        type: string
+        example: Male
+      maritalStatus:
+        description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+        type: string
+        example: Married
+      primaryLanguage:
+        description: 'The primary language of the person.'
+        type: string
+      speakingLanguages:
+        description: 'The speaking languages of the person.'
+        type: array
+      contactPreference:
+        description: 'The contact preference of the person.'
+        type: string
+      telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
+      addresses:
+        description: 'Addresses of this person'
+        type: \Address
+      socials:
+        description: 'Socials of this person'
+        type: \Social
+      emails:
+        description: 'Emails of this person'
+        type: \Email
+      ownedContactLists:
+        description: 'Contact lists this person owns'
+        type: \ContactList
+      contactLists:
+        description: 'Contact lists this person is on'
+        type: \ContactList
+      birthplace:
+        description: 'Birthplace of this person'
+        type: \Address
+    required: []
+  Person-write:
+    properties:
+      resource:
+        description: 'A specific commonground resource'
+        type: string
+        example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
+        format: url
+      givenName:
+        description: 'Given name of this person'
+        type: string
+        example: John
+        maxLength: 255
+      additionalName:
+        description: 'Additional name of this person'
+        type: string
+        example: von
+        maxLength: 255
+      familyName:
+        description: 'Family name of this person'
+        type: string
+        example: Do
+        maxLength: 255
+      birthday:
+        description: 'Date of birth of this person'
+        type: string
+        example: 15-03-2000
+      taxID:
+        description: 'TIN, CIF, NIF or BSN'
+        type: string
+        example: '999994670'
+        maxLength: 255
+      aboutMe:
+        description: 'Information about this person'
+        type: string
+        example: 'I like to dance !'
+        maxLength: 255
+      personalPhoto:
+        description: 'Base64 of the image'
+        type: string
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
+      gender:
+        description: 'The gender of the person. **Male**, **Female**'
+        type: string
+        example: Male
+      maritalStatus:
+        description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+        type: string
+        example: Married
+      primaryLanguage:
+        description: 'The primary language of the person.'
+        type: string
+      speakingLanguages:
+        description: 'The speaking languages of the person.'
+        type: array
+      contactPreference:
+        description: 'The contact preference of the person.'
+        type: string
+      telephones:
+        description: 'Telephone of this person'
+        type: \Telephone
+      addresses:
+        description: 'Addresses of this person'
+        type: \Address
+      socials:
+        description: 'Socials of this person'
+        type: \Social
+      emails:
+        description: 'Emails of this person'
+        type: \Email
+      ownedContactLists:
+        description: 'Contact lists this person owns'
+        type: \ContactList
+      contactLists:
+        description: 'Contact lists this person is on'
+        type: \ContactList
+      birthplace:
+        description: 'Birthplace of this person'
+        type: \Address
+    required: []
+  Social-read:
+    properties:
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
+      name:
+        description: 'Name of this social'
+        type: string
+        example: 'Twitter of an organization/person'
+        maxLength: 255
+      description:
+        description: 'Description of this social'
+        type: string
+        example: 'This is the twitter of an organization or person'
+      type:
+        description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
+        type: string
+        example: twitter
+      url:
+        description: 'Url of this social'
+        type: string
+        example: 'https://www.twitter.com'
+        format: url
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required:
+      - name
+      - url
+  Social-write:
+    properties:
+      name:
+        description: 'Name of this social'
+        type: string
+        example: 'Twitter of an organization/person'
+        maxLength: 255
+      description:
+        description: 'Description of this social'
+        type: string
+        example: 'This is the twitter of an organization or person'
+      type:
+        description: 'The type of this social. Options: (website, twitter, facebook, linkedin, instagram, github, other)'
+        type: string
+        example: twitter
+      url:
+        description: 'Url of this social'
+        type: string
+        example: 'https://www.twitter.com'
+        format: url
+        maxLength: 255
+    required:
+      - name
+      - url
+  Telephone-read:
+    properties:
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Telephone-write:
+    properties:
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
     required: []
   AuditTrail-read:
     properties:
@@ -11868,12 +12031,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-03-04 14:05:44'
+        example: '2021-03-08 15:28:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-03-04 14:05:44'
+        example: '2021-03-08 15:28:13'
     required: []
   AuditTrail-write:
     properties:
@@ -11883,37 +12046,60 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2021-03-08 15:28:13'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2021-03-08 15:28:13'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
 tags:
-  -
-    name: Person
-    description: |
-      All properties that the entity Person holds.
-      
-      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
-  -
-    name: Organization
-    description: |
-      All properties that the entity Organisation holds.
-      
-      Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
-  -
-    name: Telephone
-    description: |
-      All properties that the entity Telephone holds.
-      
-      Entity Telephone exists of an id, a name and a telephone.
-  -
-    name: Email
-    description: |
-      All properties that the entity Email holds.
-      
-      Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
-  -
-    name: Social
-    description: |
-      All properties that the entity Social holds.
-      
-      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
   -
     name: Address
     description: |
@@ -11925,15 +12111,45 @@ tags:
     description: |
       All properties that the entity ContactList holds.
       
-      Entity ContactList exists of an id, a name, a description, one or more persons and one or more organisations.
+      Entity ContactList is a link object between one person contact and one or more persons and/or one or more organisations. It also has a name, and description to describe the relation between the objects.
   -
-    name: ChangeLog
+    name: Email
+    description: |
+      All properties that the entity Email holds.
+      
+      Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
+  -
+    name: Organization
+    description: |
+      All properties that the entity Organisation holds.
+      
+      Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
+  -
+    name: Person
+    description: |
+      All properties that the entity Person holds.
+      
+      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
+  -
+    name: Social
+    description: |
+      All properties that the entity Social holds.
+      
+      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
+  -
+    name: Telephone
+    description: |
+      All properties that the entity Telephone holds.
+      
+      Entity Telephone exists of an id, a name and a telephone.
+  -
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -11944,15 +12160,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
