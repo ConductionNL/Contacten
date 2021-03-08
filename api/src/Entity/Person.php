@@ -290,10 +290,10 @@ class Person
      */
     private $sourceOrganization;
 
-
     /**
      * @var string The gender of the person. **Male**, **Female**
      * @Gedmo\Versioned
+     *
      * @example Male
      *
      * @Assert\Choice(
@@ -317,6 +317,7 @@ class Person
     /**
      * @var string The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**
      * @Gedmo\Versioned
+     *
      * @example Married
      *
      * @Assert\Choice(
@@ -353,7 +354,6 @@ class Person
      * @Groups({"read","write"})
      */
     private $contactPreference;
-
 
     public function __construct()
     {
@@ -768,5 +768,4 @@ class Person
 
         return $this;
     }
-
 }
