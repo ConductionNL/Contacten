@@ -253,7 +253,7 @@ class Organization
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
-        $this->adresses = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
         $this->persons = new ArrayCollection();
         $this->contactLists = new ArrayCollection();
         $this->emails = new ArrayCollection();
