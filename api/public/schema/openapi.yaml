@@ -991,7 +991,7 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/adresses/{id}/audit_trail':
+  '/addresses/{id}/audit_trail':
     get:
       tags:
         - Address
@@ -1122,7 +1122,7 @@ paths:
           description: 'Resource not found'
       produces:
         - application/health+json
-  '/adresses/{id}/change_log':
+  '/addresses/{id}/change_log':
     get:
       tags:
         - Address
@@ -12031,12 +12031,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-03-09 14:08:34'
+        example: '2021-03-12 09:36:19'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-03-09 14:08:34'
+        example: '2021-03-12 09:36:19'
     required: []
   AuditTrail-write:
     properties:
@@ -12084,12 +12084,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-03-09 14:08:34'
+        example: '2021-03-12 09:36:19'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-03-09 14:08:34'
+        example: '2021-03-12 09:36:19'
     required: []
   ChangeLog-write:
     properties:
