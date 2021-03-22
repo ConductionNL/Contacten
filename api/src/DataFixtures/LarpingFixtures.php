@@ -35,31 +35,31 @@ class LarpingFixtures extends Fixture
             return false;
         }
 
-        $id = Uuid::fromString('e68232e4-9601-4c8a-996d-8dcf739e62d9');
-        $person = new Person();
-        $person->setGivenName('Barry');
-        $person->setFamilyName('Brands');
-        $manager->persist($person);
-        $person->setId($id);
-        $manager->persist($person);
-        $manager->flush();
-        $person = $manager->getRepository('App:Person')->findOneBy(['id' => $id]);
-
-        $email = new Email();
-        $email->setName('Email');
-        $email->setEmail('barry@conduction.nl');
-        $manager->persist($email);
-        $manager->flush();
-
-        $id = Uuid::fromString('51178e23-62e8-42f1-a96b-f60e7513a694');
-        $org = new Organization();
-        $org->setName('Larping');
-        $manager->persist($org);
-        $org->setId($id);
-        $manager->persist($org);
-        $manager->flush();
-        $org = $manager->getRepository('App:Person')->findOneBy(['id' => $id]);
-        $manager->flush();
+//        $id = Uuid::fromString('e68232e4-9601-4c8a-996d-8dcf739e62d9');
+//        $person = new Person();
+//        $person->setGivenName('Barry');
+//        $person->setFamilyName('Brands');
+//        $manager->persist($person);
+//        $person->setId($id);
+//        $manager->persist($person);
+//        $manager->flush();
+//        $person = $manager->getRepository('App:Person')->findOneBy(['id' => $id]);
+//
+//        $email = new Email();
+//        $email->setName('Email');
+//        $email->setEmail('barry@conduction.nl');
+//        $manager->persist($email);
+//        $manager->flush();
+//
+//        $id = Uuid::fromString('51178e23-62e8-42f1-a96b-f60e7513a694');
+//        $org = new Organization();
+//        $org->setName('Larping');
+//        $manager->persist($org);
+//        $org->setId($id);
+//        $manager->persist($org);
+//        $manager->flush();
+//        $org = $manager->getRepository('App:Person')->findOneBy(['id' => $id]);
+//        $manager->flush();
 
 //        $id = Uuid::fromString('c69a9073-9d72-4743-ad33-3c4c7fb34589');
 //        $org = new Organization();
@@ -94,11 +94,12 @@ class LarpingFixtures extends Fixture
         $manager->flush();
         $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
 
-        // Zuid-Drecht
+        // Vortex
         $id = Uuid::fromString('c69a9073-9d72-4743-ad33-3c4c7fb34589');
         $organization = new Organization();
         $organization->setName('Vortex Adventures');
         $organization->setDescription('Vortex Adventures');
+        $organization->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'e62b32b5-2d1f-4412-9eb7-225bce414d05']));
         $manager->persist($organization);
         $organization->setId($id);
         $manager->persist($organization);
@@ -108,29 +109,29 @@ class LarpingFixtures extends Fixture
         $manager->persist($organization);
         $manager->flush();
 
-        $id = Uuid::fromString('f13c6c4c-047d-4c2a-b2ea-8bb798c90190');
-        $website = new Social();
-        $website->setName('Website van Conduction');
-        $website->setDescription('Conduction');
-        $website->setType('website');
-        $website->setUrl('https://www.conduction.nl');
-        $manager->persist($website);
-        $website->setId($id);
-        $manager->persist($website);
-        $manager->flush();
-        $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
-
-        $id = Uuid::fromString('a2177b92-56e0-4edf-9af2-8b98eb2aea0e');
-        $organization = new Organization();
-        $organization->setName('Conduction');
-        $organization->setDescription('Conduction organisatie');
-        $manager->persist($organization);
-        $organization->setId($id);
-        $manager->persist($organization);
-        $manager->flush();
-        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
-        $organization->addSocial($website);
-        $manager->persist($organization);
-        $manager->flush();
+//        $id = Uuid::fromString('f13c6c4c-047d-4c2a-b2ea-8bb798c90190');
+//        $website = new Social();
+//        $website->setName('Website van Conduction');
+//        $website->setDescription('Conduction');
+//        $website->setType('website');
+//        $website->setUrl('https://www.conduction.nl');
+//        $manager->persist($website);
+//        $website->setId($id);
+//        $manager->persist($website);
+//        $manager->flush();
+//        $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
+//
+//        $id = Uuid::fromString('a2177b92-56e0-4edf-9af2-8b98eb2aea0e');
+//        $organization = new Organization();
+//        $organization->setName('Conduction');
+//        $organization->setDescription('Conduction organisatie');
+//        $manager->persist($organization);
+//        $organization->setId($id);
+//        $manager->persist($organization);
+//        $manager->flush();
+//        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+//        $organization->addSocial($website);
+//        $manager->persist($organization);
+//        $manager->flush();
     }
 }
