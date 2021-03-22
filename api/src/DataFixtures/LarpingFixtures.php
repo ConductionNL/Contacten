@@ -107,5 +107,30 @@ class LarpingFixtures extends Fixture
         $organization->addSocial($website);
         $manager->persist($organization);
         $manager->flush();
+
+        $id = Uuid::fromString('f13c6c4c-047d-4c2a-b2ea-8bb798c90190');
+        $website = new Social();
+        $website->setName('Website van Conduction');
+        $website->setDescription('Conduction');
+        $website->setType('website');
+        $website->setUrl('https://www.conduction.nl');
+        $manager->persist($website);
+        $website->setId($id);
+        $manager->persist($website);
+        $manager->flush();
+        $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('a2177b92-56e0-4edf-9af2-8b98eb2aea0e');
+        $organization = new Organization();
+        $organization->setName('Conduction');
+        $organization->setDescription('Conduction organisatie');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $organization->addSocial($website);
+        $manager->persist($organization);
+        $manager->flush();
     }
 }
