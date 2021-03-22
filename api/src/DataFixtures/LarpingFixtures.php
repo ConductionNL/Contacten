@@ -94,6 +94,42 @@ class LarpingFixtures extends Fixture
         $manager->flush();
         $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('8cca7475-f157-4430-91ae-a5afb8e98dd1');
+        $instagram = new Social();
+        $instagram->setName('Instagram van Vortex Adventures');
+        $instagram->setDescription('Vortex Adventures');
+        $instagram->setType('instagram');
+        $instagram->setUrl('https://www.instagram.com/vortex.adventures/');
+        $manager->persist($instagram);
+        $instagram->setId($id);
+        $manager->persist($instagram);
+        $manager->flush();
+        $instagram = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
+
+        $id = Uuid::fromString('b75935c3-ea0e-4b75-9ff4-e3344a1f21c2');
+        $facebook = new Social();
+        $facebook->setName('Facebook van Vortex Adventures');
+        $facebook->setDescription('Vortex Adventures');
+        $facebook->setType('facebook');
+        $facebook->setUrl('https://www.facebook.com/VortexAdventures');
+        $manager->persist($facebook);
+        $facebook->setId($id);
+        $manager->persist($facebook);
+        $manager->flush();
+        $facebook = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
+
+        $email1 = new Email();
+        $email1->setName('Email van de voorzitter van Vortex Adventures');
+        $email1->setEmail('voorzitterva@gmail.com');
+        $manager->persist($email1);
+        $manager->flush();
+
+        $email2 = new Email();
+        $email2->setName('Email van de secretaris van Vortex Adventures');
+        $email2->setEmail('vasecretaris@gmail.com');
+        $manager->persist($email2);
+        $manager->flush();
+
         // Vortex
         $id = Uuid::fromString('c69a9073-9d72-4743-ad33-3c4c7fb34589');
         $organization = new Organization();
@@ -106,6 +142,10 @@ class LarpingFixtures extends Fixture
         $manager->flush();
         $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
         $organization->addSocial($website);
+        $organization->addSocial($instagram);
+        $organization->addSocial($facebook);
+        $organization->addEmail($email1);
+        $organization->addEmail($email2);
         $manager->persist($organization);
         $manager->flush();
 
