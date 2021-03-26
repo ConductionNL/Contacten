@@ -35,53 +35,6 @@ class LarpingFixtures extends Fixture
             return false;
         }
 
-//        $id = Uuid::fromString('e68232e4-9601-4c8a-996d-8dcf739e62d9');
-//        $person = new Person();
-//        $person->setGivenName('Barry');
-//        $person->setFamilyName('Brands');
-//        $manager->persist($person);
-//        $person->setId($id);
-//        $manager->persist($person);
-//        $manager->flush();
-//        $person = $manager->getRepository('App:Person')->findOneBy(['id' => $id]);
-//
-//        $email = new Email();
-//        $email->setName('Email');
-//        $email->setEmail('barry@conduction.nl');
-//        $manager->persist($email);
-//        $manager->flush();
-//
-//        $id = Uuid::fromString('51178e23-62e8-42f1-a96b-f60e7513a694');
-//        $org = new Organization();
-//        $org->setName('Larping');
-//        $manager->persist($org);
-//        $org->setId($id);
-//        $manager->persist($org);
-//        $manager->flush();
-//        $org = $manager->getRepository('App:Person')->findOneBy(['id' => $id]);
-//        $manager->flush();
-
-//        $id = Uuid::fromString('c69a9073-9d72-4743-ad33-3c4c7fb34589');
-//        $org = new Organization();
-//        $org->setName('Vortex Adventures');
-//        $org->setDescription('Vortex Adventures');
-//        $manager->persist($org);
-//        $org->setId($id);
-//        $manager->persist($org);
-//        $manager->flush();
-//        $org = $manager->getRepository('App:Person')->findOneBy(['id'=> $id]);
-//
-//        $id = Uuid::fromString('58a681b0-7ff8-4b42-98c0-eef371117d4a');
-//        $social = new Social();
-//        $social->setName('Social van Vortex Adventures');
-//        $social->setWebsite('http://www.the-vortex.nl');
-//        $social->setOrganization($org);
-//        $manager->persist($social);
-//        $social->setId($id);
-//        $manager->persist($social);
-//        $manager->flush();
-//        $social = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
-
         $id = Uuid::fromString('58a681b0-7ff8-4b42-98c0-eef371117d4a');
         $website = new Social();
         $website->setName('Website van Vortex Adventures');
@@ -161,17 +114,17 @@ class LarpingFixtures extends Fixture
 //        $manager->flush();
 //        $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
 //
-//        $id = Uuid::fromString('a2177b92-56e0-4edf-9af2-8b98eb2aea0e');
-//        $organization = new Organization();
-//        $organization->setName('Conduction');
-//        $organization->setDescription('Conduction organisatie');
-//        $manager->persist($organization);
-//        $organization->setId($id);
-//        $manager->persist($organization);
-//        $manager->flush();
-//        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
-//        $organization->addSocial($website);
-//        $manager->persist($organization);
-//        $manager->flush();
+       $id = Uuid::fromString('a2177b92-56e0-4edf-9af2-8b98eb2aea0e');
+       $organization = new Organization();
+       $organization->setName('Conduction');
+       $organization->setDescription('Conduction organisatie');
+       $manager->persist($organization);
+       $organization->setId($id);
+       $manager->persist($organization);
+       $manager->flush();
+       $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+       $organization->addSocial($website);
+       $manager->persist($organization);
+       $manager->flush();
     }
 }
