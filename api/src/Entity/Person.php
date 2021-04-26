@@ -162,20 +162,6 @@ class Person
     private $birthday;
 
     /**
-     * @var string Birthplace of this person
-     *
-     * @example Amsterdam
-     *
-     * @Assert\Length (
-     *     max = 255
-     * )
-     * @Gedmo\Versioned
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $birthplace;
-
-    /**
      * @var string TIN, CIF, NIF or BSN
      *
      * @example 999994670
@@ -213,13 +199,13 @@ class Person
     private $telephones;
 
     /**
-     * @var Address Adresses of this person
+     * @var Address Addresses of this person
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $adresses;
+    private $addresses;
 
     /**
      * @var Social Socials of this person
@@ -248,8 +234,18 @@ class Person
     private $organization;
 
     /**
-     * @var ContactList Contact lists of this person
+     * @var ContactList Contact lists this person owns
      *
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\ContactList", mappedBy="owner", cascade={"remove"})
+     * @MaxDepth(1)
+     */
+    private $ownedContactLists;
+
+    /**
+     * @var ContactList Contact lists this person is on
+     *
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
      * @MaxDepth(1)
      */
@@ -294,10 +290,76 @@ class Person
      */
     private $sourceOrganization;
 
+    /**
+     * @var string The gender of the person. **Male**, **Female**
+     * @Gedmo\Versioned
+     *
+     * @example Male
+     *
+     * @Assert\Choice(
+     *      {"Male","Female"}
+     * )
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $gender;
+
+    /**
+     * @var Address Birthplace of this person
+     *
+     * @Groups({"read", "write"})
+     * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
+     * @MaxDepth(1)
+     */
+    private $birthplace;
+
+    /**
+     * @var string The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**
+     * @Gedmo\Versioned
+     *
+     * @example Married
+     *
+     * @Assert\Choice(
+     *      {"Married","Single","Divorced","Widow/Widower"}
+     * )
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $maritalStatus;
+
+    /**
+     * @var string The primary language of the person.
+     *
+     * @Assert\Country
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $primaryLanguage;
+
+    /**
+     * @var array The speaking languages of the person.
+     *
+     * @ORM\Column(type="array", nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $speakingLanguages = [];
+
+    /**
+     * @var string The contact preference of the person.
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $contactPreference;
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
-        $this->adresses = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
+        $this->ownedContactLists = new ArrayCollection();
         $this->contactLists = new ArrayCollection();
         $this->emails = new ArrayCollection();
         $this->socials = new ArrayCollection();
@@ -393,18 +455,6 @@ class Person
         return $this;
     }
 
-    public function getBirthplace(): ?string
-    {
-        return $this->birthplace;
-    }
-
-    public function setBirthplace(?string $birthplace): self
-    {
-        $this->birthplace = $birthplace;
-
-        return $this;
-    }
-
     public function getTaxID(): ?string
     {
         return $this->taxID;
@@ -458,24 +508,24 @@ class Person
     /**
      * @return Collection|Address[]
      */
-    public function getAdresses()
+    public function getAddresses()
     {
-        return $this->adresses;
+        return $this->addresses;
     }
 
-    public function addAdress(Address $adress): self
+    public function addAddress(Address $address): self
     {
-        if (!$this->adresses->contains($adress)) {
-            $this->adresses[] = $adress;
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
         }
 
         return $this;
     }
 
-    public function removeAdress(Address $adress): self
+    public function removeAddress(Address $address): self
     {
-        if ($this->adresses->contains($adress)) {
-            $this->adresses->removeElement($adress);
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
         }
 
         return $this;
@@ -541,6 +591,32 @@ class Person
     public function setOrganization(?Organization $organization): self
     {
         $this->organization = $organization;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ContactList[]
+     */
+    public function getOwnedContactLists()
+    {
+        return $this->ownedContactLists;
+    }
+
+    public function addOwnedContactList(ContactList $ownedContactList): self
+    {
+        if (!$this->ownedContactLists->contains($ownedContactList)) {
+            $this->ownedContactLists[] = $ownedContactList;
+        }
+
+        return $this;
+    }
+
+    public function removeOwnedContactList(ContactList $ownedContactList): self
+    {
+        if ($this->ownedContactLists->contains($ownedContactList)) {
+            $this->ownedContactLists->removeElement($ownedContactList);
+        }
 
         return $this;
     }
@@ -617,6 +693,78 @@ class Person
     public function setSourceOrganization(string $sourceOrganization): self
     {
         $this->sourceOrganization = $sourceOrganization;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getBirthplace(): ?Address
+    {
+        return $this->birthplace;
+    }
+
+    public function setBirthplace(?Address $birthplace): self
+    {
+        $this->birthplace = $birthplace;
+
+        return $this;
+    }
+
+    public function getMaritalStatus(): ?string
+    {
+        return $this->maritalStatus;
+    }
+
+    public function setMaritalStatus(?string $maritalStatus): self
+    {
+        $this->maritalStatus = $maritalStatus;
+
+        return $this;
+    }
+
+    public function getPrimaryLanguage(): ?string
+    {
+        return $this->primaryLanguage;
+    }
+
+    public function setPrimaryLanguage(?string $primaryLanguage): self
+    {
+        $this->primaryLanguage = $primaryLanguage;
+
+        return $this;
+    }
+
+    public function getSpeakingLanguages(): ?array
+    {
+        return $this->speakingLanguages;
+    }
+
+    public function setSpeakingLanguages(?array $speakingLanguages): self
+    {
+        $this->speakingLanguages = $speakingLanguages;
+
+        return $this;
+    }
+
+    public function getContactPreference(): ?string
+    {
+        return $this->contactPreference;
+    }
+
+    public function setContactPreference(?string $contactPreference): self
+    {
+        $this->contactPreference = $contactPreference;
 
         return $this;
     }
