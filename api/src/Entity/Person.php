@@ -292,14 +292,13 @@ class Person
 
     /**
      * @var string The gender of the person. **Male**, **Female**
-     * @Gedmo\Versioned
      *
      * @example Male
      *
+     * @Gedmo\Versioned
      * @Assert\Choice(
      *      {"Male","Female"}
      * )
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
      */
@@ -307,6 +306,7 @@ class Person
 
     /**
      * @var Address Birthplace of this person
+     *
      *
      * @Groups({"read", "write"})
      * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
@@ -316,14 +316,13 @@ class Person
 
     /**
      * @var string The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**
-     * @Gedmo\Versioned
      *
      * @example Married
      *
+     * @Gedmo\Versioned
      * @Assert\Choice(
      *      {"Married","Single","Divorced","Widow/Widower"}
      * )
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
      */
@@ -332,8 +331,9 @@ class Person
     /**
      * @var string The primary language of the person.
      *
-     * @Assert\Country
+     * @example Dutch
      *
+     * @Gedmo\Versioned
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
      */
@@ -342,6 +342,9 @@ class Person
     /**
      * @var array The speaking languages of the person.
      *
+     * @example "English", "NLD"
+     *
+     * @Gedmo\Versioned
      * @ORM\Column(type="array", nullable=true)
      * @Groups({"read","write"})
      */
@@ -350,10 +353,24 @@ class Person
     /**
      * @var string The contact preference of the person.
      *
+     * @example Whatsapp
+     *
+     * @Gedmo\Versioned
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
      */
     private $contactPreference;
+
+    /**
+     * @var array The dependents of this person
+     *
+     * @example array(0 => "dateOfBirth" => "2000-05-15")
+     *
+     * @Gedmo\Versioned
+     * @ORM\Column(type="json", nullable=true)
+     * @Groups({"read","write"})
+     */
+    private array $dependents;
 
     public function __construct()
     {
@@ -765,6 +782,18 @@ class Person
     public function setContactPreference(?string $contactPreference): self
     {
         $this->contactPreference = $contactPreference;
+
+        return $this;
+    }
+
+    public function getDependents(): ?array
+    {
+        return $this->dependents;
+    }
+
+    public function setDependents(?array $dependents): self
+    {
+        $this->dependents = $dependents;
 
         return $this;
     }
