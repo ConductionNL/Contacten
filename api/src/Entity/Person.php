@@ -315,13 +315,13 @@ class Person
     private $birthplace;
 
     /**
-     * @var string The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**
+     * @var string The marital status of the person. **MARRIED_PARTNER**, **SINGLE**, **DIVORCED**, **WIDOW**
      *
      * @example Married
      *
      * @Gedmo\Versioned
      * @Assert\Choice(
-     *      {"Married","Single","Divorced","Widow/Widower"}
+     *      {"MARRIED_PARTNER","SINGLE","DIVORCED","WIDOW"}
      * )
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
