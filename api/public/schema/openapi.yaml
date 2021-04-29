@@ -10747,7 +10747,7 @@ components:
             -
               $ref: '#/components/schemas/Address-read'
         maritalStatus:
-          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          description: 'The marital status of the person. **MARRIED_PARTNER**, **SINGLE**, **DIVORCED**, **WIDOW**'
           type: string
           nullable: true
         primaryLanguage:
@@ -10856,7 +10856,7 @@ components:
             -
               $ref: '#/components/schemas/Address-write'
         maritalStatus:
-          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          description: 'The marital status of the person. **MARRIED_PARTNER**, **SINGLE**, **DIVORCED**, **WIDOW**'
           type: string
           nullable: true
         primaryLanguage:
@@ -10997,7 +10997,7 @@ components:
             -
               $ref: '#/components/schemas/Address:jsonld-read'
         maritalStatus:
-          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          description: 'The marital status of the person. **MARRIED_PARTNER**, **SINGLE**, **DIVORCED**, **WIDOW**'
           type: string
           nullable: true
         primaryLanguage:
@@ -11115,7 +11115,7 @@ components:
             -
               $ref: '#/components/schemas/Address:jsonld-write'
         maritalStatus:
-          description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+          description: 'The marital status of the person. **MARRIED_PARTNER**, **SINGLE**, **DIVORCED**, **WIDOW**'
           type: string
           nullable: true
         primaryLanguage:
@@ -11747,7 +11747,7 @@ definitions:
         type: string
         example: Male
       maritalStatus:
-        description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+        description: 'The marital status of the person. **MARRIED_PARTNER**, **SINGLE**, **DIVORCED**, **WIDOW**'
         type: string
         example: Married
       primaryLanguage:
@@ -11837,7 +11837,7 @@ definitions:
         type: string
         example: Male
       maritalStatus:
-        description: 'The marital status of the person. **Married**, **Single**, **Divorced**, **Widow/Widower**'
+        description: 'The marital status of the person. **MARRIED_PARTNER**, **SINGLE**, **DIVORCED**, **WIDOW**'
         type: string
         example: Married
       primaryLanguage:
@@ -12074,12 +12074,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-04-26 16:10:18'
+        example: '2021-04-29 12:09:45'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-04-26 16:10:18'
+        example: '2021-04-29 12:09:45'
     required: []
   AuditTrail-write:
     properties:
@@ -12127,12 +12127,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-04-26 16:10:18'
+        example: '2021-04-29 12:09:45'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-04-26 16:10:18'
+        example: '2021-04-29 12:09:45'
     required: []
   ChangeLog-write:
     properties:
