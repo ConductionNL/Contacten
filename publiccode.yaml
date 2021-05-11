@@ -44,7 +44,7 @@ roadmap: "https://github.com/ConductionNL/contactcatalogus/blob/master/ROADMAP.m
 
 developmentStatus: development
 
-softwareType: "standalone/other"
+softwareType: "standalone/backend"
 
 #intendedAudience:
 #  scope:
