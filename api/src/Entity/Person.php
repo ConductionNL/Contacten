@@ -237,7 +237,7 @@ class Person
      * @var ContactList Contact lists this person owns
      *
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\ContactList", mappedBy="owner", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\ContactList", mappedBy="owner", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $ownedContactLists;
@@ -360,17 +360,6 @@ class Person
      * @Groups({"read","write"})
      */
     private $contactPreference;
-
-    /**
-     * @var array The dependents of this person
-     *
-     * @example array(0 => "dateOfBirth" => "2000-05-15")
-     *
-     * @Gedmo\Versioned
-     * @ORM\Column(type="json", nullable=true)
-     * @Groups({"read","write"})
-     */
-    private array $dependents;
 
     public function __construct()
     {
@@ -782,18 +771,6 @@ class Person
     public function setContactPreference(?string $contactPreference): self
     {
         $this->contactPreference = $contactPreference;
-
-        return $this;
-    }
-
-    public function getDependents(): ?array
-    {
-        return $this->dependents;
-    }
-
-    public function setDependents(?array $dependents): self
-    {
-        $this->dependents = $dependents;
 
         return $this;
     }

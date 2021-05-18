@@ -6536,15 +6536,6 @@ paths:
               - asc
               - desc
         -
-          name: 'order[dependents]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
           name: 'birthday[before]'
           in: query
           required: false
@@ -10764,11 +10755,6 @@ components:
           description: 'The contact preference of the person.'
           type: string
           nullable: true
-        dependents:
-          description: 'The dependents of this person'
-          type: array
-          items:
-            type: string
       required:
         - givenName
     Person-write:
@@ -10873,11 +10859,6 @@ components:
           description: 'The contact preference of the person.'
           type: string
           nullable: true
-        dependents:
-          description: 'The dependents of this person'
-          type: array
-          items:
-            type: string
       required:
         - givenName
     'Person:jsonld-read':
@@ -11014,11 +10995,6 @@ components:
           description: 'The contact preference of the person.'
           type: string
           nullable: true
-        dependents:
-          description: 'The dependents of this person'
-          type: array
-          items:
-            type: string
       required:
         - givenName
     'Person:jsonld-write':
@@ -11132,11 +11108,6 @@ components:
           description: 'The contact preference of the person.'
           type: string
           nullable: true
-        dependents:
-          description: 'The dependents of this person'
-          type: array
-          items:
-            type: string
       required:
         - givenName
     Social-read:
@@ -11762,10 +11733,6 @@ definitions:
         description: 'The contact preference of the person.'
         type: string
         example: Whatsapp
-      dependents:
-        description: 'The dependents of this person'
-        type: array
-        example: 'array(0 => "dateOfBirth" => "2000-05-15")'
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -11852,10 +11819,6 @@ definitions:
         description: 'The contact preference of the person.'
         type: string
         example: Whatsapp
-      dependents:
-        description: 'The dependents of this person'
-        type: array
-        example: 'array(0 => "dateOfBirth" => "2000-05-15")'
       telephones:
         description: 'Telephone of this person'
         type: \Telephone
@@ -12074,12 +12037,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-04-29 12:09:45'
+        example: '2021-05-18 09:24:16'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-04-29 12:09:45'
+        example: '2021-05-18 09:24:16'
     required: []
   AuditTrail-write:
     properties:
@@ -12127,12 +12090,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-04-29 12:09:45'
+        example: '2021-05-18 09:24:16'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-04-29 12:09:45'
+        example: '2021-05-18 09:24:16'
     required: []
   ChangeLog-write:
     properties:
