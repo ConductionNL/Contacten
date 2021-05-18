@@ -361,17 +361,6 @@ class Person
      */
     private $contactPreference;
 
-    /**
-     * @var array The dependents of this person
-     *
-     * @example array(0 => "dateOfBirth" => "2000-05-15")
-     *
-     * @Gedmo\Versioned
-     * @ORM\Column(type="json", nullable=true)
-     * @Groups({"read","write"})
-     */
-    private array $dependents;
-
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
@@ -782,18 +771,6 @@ class Person
     public function setContactPreference(?string $contactPreference): self
     {
         $this->contactPreference = $contactPreference;
-
-        return $this;
-    }
-
-    public function getDependents(): ?array
-    {
-        return $this->dependents;
-    }
-
-    public function setDependents(?array $dependents): self
-    {
-        $this->dependents = $dependents;
 
         return $this;
     }
