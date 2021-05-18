@@ -237,7 +237,7 @@ class Person
      * @var ContactList Contact lists this person owns
      *
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\ContactList", mappedBy="owner", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\ContactList", mappedBy="owner", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $ownedContactLists;
