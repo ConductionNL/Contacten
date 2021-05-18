@@ -10091,13 +10091,13 @@ components:
           type: string
           nullable: true
         owner:
-          description: 'The owner of this ContactList'
+          description: 'the owner of this contact list'
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Person-read'
-        persons:
-          description: 'Persons this contact list has'
+        people:
+          description: 'People this contact list has'
           type: array
           items:
             $ref: '#/components/schemas/Person-read'
@@ -10132,13 +10132,13 @@ components:
           type: string
           nullable: true
         owner:
-          description: 'The owner of this ContactList'
+          description: 'the owner of this contact list'
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Person-write'
-        persons:
-          description: 'Persons this contact list has'
+        people:
+          description: 'People this contact list has'
           type: array
           items:
             $ref: '#/components/schemas/Person-write'
@@ -10173,13 +10173,13 @@ components:
           type: string
           nullable: true
         owner:
-          description: 'The owner of this ContactList'
+          description: 'the owner of this contact list'
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Person:jsonld-read'
-        persons:
-          description: 'Persons this contact list has'
+        people:
+          description: 'People this contact list has'
           type: array
           items:
             $ref: '#/components/schemas/Person:jsonld-read'
@@ -10223,13 +10223,13 @@ components:
           type: string
           nullable: true
         owner:
-          description: 'The owner of this ContactList'
+          description: 'the owner of this contact list'
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Person:jsonld-write'
-        persons:
-          description: 'Persons this contact list has'
+        people:
+          description: 'People this contact list has'
           type: array
           items:
             $ref: '#/components/schemas/Person:jsonld-write'
@@ -10698,12 +10698,12 @@ components:
           items:
             $ref: '#/components/schemas/Email-read'
         ownedContactLists:
-          description: 'Contact lists this person owns'
+          description: 'the contact lists this person owns'
           type: array
           items:
             $ref: '#/components/schemas/ContactList-read'
         contactLists:
-          description: 'Contact lists this person is on'
+          description: 'the contact lists this person is on'
           type: array
           items:
             $ref: '#/components/schemas/ContactList-read'
@@ -10812,12 +10812,12 @@ components:
           items:
             $ref: '#/components/schemas/Email-write'
         ownedContactLists:
-          description: 'Contact lists this person owns'
+          description: 'the contact lists this person owns'
           type: array
           items:
             $ref: '#/components/schemas/ContactList-write'
         contactLists:
-          description: 'Contact lists this person is on'
+          description: 'the contact lists this person is on'
           type: array
           items:
             $ref: '#/components/schemas/ContactList-write'
@@ -10938,12 +10938,12 @@ components:
           items:
             $ref: '#/components/schemas/Email:jsonld-read'
         ownedContactLists:
-          description: 'Contact lists this person owns'
+          description: 'the contact lists this person owns'
           type: array
           items:
             $ref: '#/components/schemas/ContactList:jsonld-read'
         contactLists:
-          description: 'Contact lists this person is on'
+          description: 'the contact lists this person is on'
           type: array
           items:
             $ref: '#/components/schemas/ContactList:jsonld-read'
@@ -11061,12 +11061,12 @@ components:
           items:
             $ref: '#/components/schemas/Email:jsonld-write'
         ownedContactLists:
-          description: 'Contact lists this person owns'
+          description: 'the contact lists this person owns'
           type: array
           items:
             $ref: '#/components/schemas/ContactList:jsonld-write'
         contactLists:
-          description: 'Contact lists this person is on'
+          description: 'the contact lists this person is on'
           type: array
           items:
             $ref: '#/components/schemas/ContactList:jsonld-write'
@@ -11482,12 +11482,11 @@ definitions:
         description: 'The moment this resource last Modified'
         type: \Datetime
       owner:
-        description: 'The owner of this ContactList'
+        description: 'the owner of this contact list'
         type: \Person
-      persons:
-        description: 'Persons this contact list has'
+      people:
+        description: 'People this contact list has'
         type: \Person
-        example: Hans
       organizations:
         description: 'Organisations this contact list has'
         type: \Organization
@@ -11505,12 +11504,11 @@ definitions:
         type: string
         example: 'This contact list holds all users.'
       owner:
-        description: 'The owner of this ContactList'
+        description: 'the owner of this contact list'
         type: \Person
-      persons:
-        description: 'Persons this contact list has'
+      people:
+        description: 'People this contact list has'
         type: \Person
-        example: Hans
       organizations:
         description: 'Organisations this contact list has'
         type: \Organization
@@ -11746,10 +11744,10 @@ definitions:
         description: 'Emails of this person'
         type: \Email
       ownedContactLists:
-        description: 'Contact lists this person owns'
+        description: 'the contact lists this person owns'
         type: \ContactList
       contactLists:
-        description: 'Contact lists this person is on'
+        description: 'the contact lists this person is on'
         type: \ContactList
       birthplace:
         description: 'Birthplace of this person'
@@ -11832,10 +11830,10 @@ definitions:
         description: 'Emails of this person'
         type: \Email
       ownedContactLists:
-        description: 'Contact lists this person owns'
+        description: 'the contact lists this person owns'
         type: \ContactList
       contactLists:
-        description: 'Contact lists this person is on'
+        description: 'the contact lists this person is on'
         type: \ContactList
       birthplace:
         description: 'Birthplace of this person'
@@ -12037,12 +12035,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-05-18 09:24:16'
+        example: '2021-05-18 12:08:11'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-05-18 09:24:16'
+        example: '2021-05-18 12:08:11'
     required: []
   AuditTrail-write:
     properties:
@@ -12090,12 +12088,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-05-18 09:24:16'
+        example: '2021-05-18 12:08:11'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-05-18 09:24:16'
+        example: '2021-05-18 12:08:11'
     required: []
   ChangeLog-write:
     properties:

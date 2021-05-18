@@ -258,6 +258,7 @@ class Organization
         $this->contactLists = new ArrayCollection();
         $this->emails = new ArrayCollection();
         $this->socials = new ArrayCollection();
+        $this->subOrganizations = new ArrayCollection();
     }
 
     public function getId()

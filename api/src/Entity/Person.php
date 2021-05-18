@@ -228,25 +228,26 @@ class Person
     /**
      * @var Organization Organisations of this person
      *
+     * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $organization;
 
     /**
-     * @var ContactList Contact lists this person owns
+     * @var ContactList the contact lists this person owns
      *
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\ContactList", mappedBy="owner", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=ContactList::class, mappedBy="owner", cascade={"persist", "remove"})
      * @MaxDepth(1)
      */
     private $ownedContactLists;
 
     /**
-     * @var ContactList Contact lists this person is on
+     * @var ContactList the contact lists this person is on
      *
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="persons")
+     * @ORM\ManyToMany(targetEntity=ContactList::class, mappedBy="people")
      * @MaxDepth(1)
      */
     private $contactLists;
@@ -365,8 +366,8 @@ class Person
     {
         $this->telephones = new ArrayCollection();
         $this->addresses = new ArrayCollection();
-        $this->ownedContactLists = new ArrayCollection();
         $this->contactLists = new ArrayCollection();
+        $this->ownedContactLists = new ArrayCollection();
         $this->emails = new ArrayCollection();
         $this->socials = new ArrayCollection();
     }
@@ -604,7 +605,7 @@ class Person
     /**
      * @return Collection|ContactList[]
      */
-    public function getOwnedContactLists()
+    public function getOwnedContactLists(): Collection
     {
         return $this->ownedContactLists;
     }
@@ -613,6 +614,7 @@ class Person
     {
         if (!$this->ownedContactLists->contains($ownedContactList)) {
             $this->ownedContactLists[] = $ownedContactList;
+            $ownedContactList->setOwner($this);
         }
 
         return $this;
@@ -620,8 +622,11 @@ class Person
 
     public function removeOwnedContactList(ContactList $ownedContactList): self
     {
-        if ($this->ownedContactLists->contains($ownedContactList)) {
-            $this->ownedContactLists->removeElement($ownedContactList);
+        if ($this->ownedContactLists->removeElement($ownedContactList)) {
+            // set the owning side to null (unless already changed)
+            if ($ownedContactList->getOwner() === $this) {
+                $ownedContactList->setOwner(null);
+            }
         }
 
         return $this;
@@ -630,7 +635,7 @@ class Person
     /**
      * @return Collection|ContactList[]
      */
-    public function getContactLists()
+    public function getContactLists(): Collection
     {
         return $this->contactLists;
     }
@@ -647,8 +652,7 @@ class Person
 
     public function removeContactList(ContactList $contactList): self
     {
-        if ($this->contactLists->contains($contactList)) {
-            $this->contactLists->removeElement($contactList);
+        if ($this->contactLists->removeElement($contactList)) {
             $contactList->removePerson($this);
         }
 

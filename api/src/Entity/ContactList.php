@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
@@ -102,24 +103,22 @@ class ContactList
     private $description;
 
     /**
-     * @var Person The owner of this ContactList
+     * @var Person the owner of this contact list
      *
      * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity="App\Entity\Person", inversedBy="ownedContactLists", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Person::class, inversedBy="ownedContactLists", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $owner;
 
     /**
-     * @var Person Persons this contact list has
-     *
-     * @example Hans
+     * @var Person People this contact list has
      *
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="contactLists", fetch="EAGER", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Person::class, inversedBy="contactLists", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $persons;
+    private $people;
 
     /**
      * @var Organization Organisations this contact list has
@@ -152,7 +151,7 @@ class ContactList
 
     public function __construct()
     {
-        $this->persons = new ArrayCollection();
+        $this->people = new ArrayCollection();
         $this->organizations = new ArrayCollection();
     }
 
@@ -200,15 +199,16 @@ class ContactList
     /**
      * @return Collection|Person[]
      */
-    public function getPersons()
+    public function getPeople(): Collection
     {
-        return $this->persons;
+        return $this->people;
     }
 
     public function addPerson(Person $person): self
     {
-        if (!$this->persons->contains($person)) {
-            $this->persons[] = $person;
+        if (!$this->people->contains($person)) {
+            $this->people[] = $person;
+            $person->addContactList($this);
         }
 
         return $this;
@@ -216,8 +216,8 @@ class ContactList
 
     public function removePerson(Person $person): self
     {
-        if ($this->persons->contains($person)) {
-            $this->persons->removeElement($person);
+        if ($this->people->removeElement($person)) {
+            $this->people->removeElement($person);
         }
 
         return $this;
