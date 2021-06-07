@@ -10697,6 +10697,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email-read'
+        organization:
+          description: 'Organisations of this person'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-read'
         ownedContactLists:
           description: 'the contact lists this person owns'
           type: array
@@ -10811,6 +10817,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email-write'
+        organization:
+          description: 'Organisations of this person'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization-write'
         ownedContactLists:
           description: 'the contact lists this person owns'
           type: array
@@ -10937,6 +10949,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email:jsonld-read'
+        organization:
+          description: 'Organisations of this person'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-read'
         ownedContactLists:
           description: 'the contact lists this person owns'
           type: array
@@ -11060,6 +11078,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Email:jsonld-write'
+        organization:
+          description: 'Organisations of this person'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Organization:jsonld-write'
         ownedContactLists:
           description: 'the contact lists this person owns'
           type: array
@@ -11743,6 +11767,9 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
+      organization:
+        description: 'Organisations of this person'
+        type: \Organization
       ownedContactLists:
         description: 'the contact lists this person owns'
         type: \ContactList
@@ -11829,6 +11856,9 @@ definitions:
       emails:
         description: 'Emails of this person'
         type: \Email
+      organization:
+        description: 'Organisations of this person'
+        type: \Organization
       ownedContactLists:
         description: 'the contact lists this person owns'
         type: \ContactList
@@ -12035,12 +12065,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-05-18 12:08:11'
+        example: '2021-06-07 09:15:47'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-05-18 12:08:11'
+        example: '2021-06-07 09:15:47'
     required: []
   AuditTrail-write:
     properties:
@@ -12088,12 +12118,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-05-18 12:08:11'
+        example: '2021-06-07 09:15:47'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-05-18 12:08:11'
+        example: '2021-06-07 09:15:47'
     required: []
   ChangeLog-write:
     properties:
