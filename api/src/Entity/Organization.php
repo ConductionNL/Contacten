@@ -181,7 +181,7 @@ class Organization
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $adresses;
+    private $addresses;
 
     /**
      * @var Social Socials of this organisation
@@ -243,7 +243,6 @@ class Organization
      * @example 002851234
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -254,11 +253,12 @@ class Organization
     public function __construct()
     {
         $this->telephones = new ArrayCollection();
-        $this->adresses = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
         $this->persons = new ArrayCollection();
         $this->contactLists = new ArrayCollection();
         $this->emails = new ArrayCollection();
         $this->socials = new ArrayCollection();
+        $this->subOrganizations = new ArrayCollection();
     }
 
     public function getId()
@@ -405,24 +405,24 @@ class Organization
     /**
      * @return Collection|Address[]
      */
-    public function getAdresses()
+    public function getAddresses()
     {
-        return $this->adresses;
+        return $this->addresses;
     }
 
-    public function addAdress(Address $adress): self
+    public function addAddress(Address $address): self
     {
-        if (!$this->adresses->contains($adress)) {
-            $this->adresses[] = $adress;
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
         }
 
         return $this;
     }
 
-    public function removeAdress(Address $adress): self
+    public function removeAddress(Address $address): self
     {
-        if ($this->adresses->contains($adress)) {
-            $this->adresses->removeElement($adress);
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
         }
 
         return $this;
