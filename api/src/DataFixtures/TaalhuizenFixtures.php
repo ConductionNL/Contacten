@@ -70,6 +70,5 @@ class TaalhuizenFixtures extends Fixture
         $person->addEmail($email);
         $manager->persist($person);
         $manager->flush();
-
     }
 }
