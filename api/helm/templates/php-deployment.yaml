@@ -108,7 +108,7 @@ spec:
                 configMapKeyRef:
                   name: {{ template "fullname" . }}
                   key: redis-port
-            {{-end }}
+            {{- end }}
             - name: APP_URL
               value: https://{{ $.Values.ingress.domain }}/{{ $.Values.ingress.path }}
           resources:
