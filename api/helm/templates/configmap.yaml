@@ -1,4 +1,3 @@
-{{ $redisServiceName := printf "%s-redis" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -21,8 +20,8 @@ data:
   trusted-hosts: {{ .Values.php.trustedHosts | quote }}
   php-service: {{ .Release.Name }}-php  
 
-  {{- if (.Values.redis.enabled true) }}
-  redis-host: {{ $redisServiceName | quote }}
+  {{- if .Values.redis.enabled }}
+  redis-host: {{ printf "%s-redis" $redisServiceName | quote }}
   redis-port: {{ .Values.redis.redisPort | toString | quote }}
 
-  {{- end }}
+  {{-end }}
