@@ -29,7 +29,7 @@ spec:
               defaultMode: 420
       containers:
         - name: {{ .Release.Name }}-php
-          image: {{ .Values.php.image }}:{{ .Values.php.tag }}
+          image: "{{ .Values.php.image }}:{{ .Values.php.tag }}"
           imagePullPolicy: {{ .Values.php.pullPolicy }}
           ports:
             - containerPort: 9000
