@@ -24,4 +24,4 @@ data:
   redis-host: {{ printf "%s-redis" $redisServiceName | quote }}
   redis-port: {{ .Values.redis.redisPort | toString | quote }}
 
-  {{-end }}
+  {{- end }}
