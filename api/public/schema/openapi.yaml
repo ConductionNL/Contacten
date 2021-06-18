@@ -10,7 +10,7 @@ info:
     - Repository: [online](https://github.com/ConductionNL/contactcatalogus) / [zip](https://github.com/ConductionNL/contactcatalogus/archive/master.zip)
     - Datamodel: [postman](schema/contactcatalogus.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    Het Contacten Component bevat lijsten van contactpersonen, hiermee heeft het vanuit bron perspectief doorgaans een aanvullende of vervangende taak ten opzichte van het BRP. Met andere woorden in het Contacten Component vinden we personen die we niet uit het BRP halen. Dat kan zijn, omdat deze personen niet in het BRP staan, we nog niet weten wat het BSN van een persoon is of omdat we simpelweg geen rechten of toegang hebben tot het BRP vanuit het proces waar we mee bezig zijn. Daarnaast fungeert het Contacten Component als een Common Ground variant van de contactpersonenlijst, zoals we die kennen vanuit een e-mail applicatie of telefoon. Het is dus ook mogelijk om personen op te nemen in een contactenlijst. Hiermee worden contact en functionaliteiten voor gebruikers (in application form) gerealiseerd. Als laatste biedt het Contacten Component de mogelijkheid om gegevens van organisaties op te slaan. Het component ondersteunt bewust alleen de persoonsgegevens, maar kan in samenwerking met het CMR en ORC een Customer Relation Management systeem vormen, waarbij het ORC de mogelijkheid biedt om bijvoorbeeld leads in kaart te brengen.         
     
 paths:
   /addresses:
@@ -11371,317 +11371,6 @@ components:
       required:
         - telephone
 definitions:
-  Address-read:
-    properties:
-      id:
-        description: 'Uuid of this address'
-        type: string
-        format: uuid
-      name:
-        description: 'Name of this Address'
-        type: string
-        example: 'Amsterdam Office'
-        maxLength: 255
-      bagnummeraanduiding:
-        description: 'Bagnummeraanduiding of this Address'
-        type: string
-        example: '0363200000218908'
-        maxLength: 16
-      street:
-        description: 'Street of this Address'
-        type: string
-        example: appelstreet
-        maxLength: 255
-      houseNumber:
-        description: 'House number of this Address'
-        type: string
-        example: '8'
-        maxLength: 255
-      houseNumberSuffix:
-        description: 'House number suffix of this Address'
-        type: string
-        example: b
-        maxLength: 255
-      postalCode:
-        description: 'Postalcode of a Address'
-        type: string
-        example: 1234AB
-      region:
-        description: 'region Region of a Address'
-        type: string
-        example: Noord-Holland
-        maxLength: 255
-      locality:
-        description: 'Locality of a Address'
-        type: string
-        example: Oud-Zuid
-        maxLength: 255
-      country:
-        description: 'Country of a Address'
-        type: string
-        example: 'The Netherlands'
-        maxLength: 255
-      postOfficeBoxNumber:
-        description: 'Post office box number of a Address'
-        type: string
-        example: 'PO Box 1234'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Address-write:
-    properties:
-      name:
-        description: 'Name of this Address'
-        type: string
-        example: 'Amsterdam Office'
-        maxLength: 255
-      bagnummeraanduiding:
-        description: 'Bagnummeraanduiding of this Address'
-        type: string
-        example: '0363200000218908'
-        maxLength: 16
-      street:
-        description: 'Street of this Address'
-        type: string
-        example: appelstreet
-        maxLength: 255
-      houseNumber:
-        description: 'House number of this Address'
-        type: string
-        example: '8'
-        maxLength: 255
-      houseNumberSuffix:
-        description: 'House number suffix of this Address'
-        type: string
-        example: b
-        maxLength: 255
-      postalCode:
-        description: 'Postalcode of a Address'
-        type: string
-        example: 1234AB
-      region:
-        description: 'region Region of a Address'
-        type: string
-        example: Noord-Holland
-        maxLength: 255
-      locality:
-        description: 'Locality of a Address'
-        type: string
-        example: Oud-Zuid
-        maxLength: 255
-      country:
-        description: 'Country of a Address'
-        type: string
-        example: 'The Netherlands'
-        maxLength: 255
-      postOfficeBoxNumber:
-        description: 'Post office box number of a Address'
-        type: string
-        example: 'PO Box 1234'
-        maxLength: 255
-    required: []
-  ContactList-read:
-    properties:
-      id:
-        description: 'UUID of this contact list'
-        type: \UuidInterface
-      name:
-        description: 'Name of this contact list'
-        type: string
-        example: 'All users'
-        maxLength: 255
-      description:
-        description: 'Description of this contact list'
-        type: string
-        example: 'This contact list holds all users.'
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      owner:
-        description: 'the owner of this contact list'
-        type: \Person
-      people:
-        description: 'People this contact list has'
-        type: \Person
-      organizations:
-        description: 'Organisations this contact list has'
-        type: \Organization
-        example: Ajax
-    required: []
-  ContactList-write:
-    properties:
-      name:
-        description: 'Name of this contact list'
-        type: string
-        example: 'All users'
-        maxLength: 255
-      description:
-        description: 'Description of this contact list'
-        type: string
-        example: 'This contact list holds all users.'
-      owner:
-        description: 'the owner of this contact list'
-        type: \Person
-      people:
-        description: 'People this contact list has'
-        type: \Person
-      organizations:
-        description: 'Organisations this contact list has'
-        type: \Organization
-        example: Ajax
-    required: []
-  Email-read:
-    properties:
-      id:
-        description: 'UUID of this email'
-        type: \UuidInterface
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-    required: []
-  Email-write:
-    properties:
-      name:
-        description: 'Name of this email'
-        type: string
-        example: Private
-        maxLength: 255
-      email:
-        description: 'Email of this email'
-        type: string
-        maxLength: 255
-    required: []
-  Organization-read:
-    properties:
-      id:
-        description: 'UUID of this organisation'
-        type: \UuidInterface
-      name:
-        description: 'Name of this organisation'
-        type: string
-        example: Ajax
-        maxLength: 255
-      description:
-        description: 'Description of this organisation'
-        type: string
-        example: 'Ajax is a dutch soccer club'
-      type:
-        description: 'Type of this organisation'
-        type: string
-        example: Township
-        maxLength: 255
-      coc:
-        description: 'Chamber Of Comerce number of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      vatID:
-        description: 'Value added tax id of this organisation (btw)'
-        type: string
-        example: '123456'
-        maxLength: 15
-      dateCreated:
-        description: 'The moment this resource was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this resource last Modified'
-        type: \Datetime
-      sourceOrganization:
-        description: 'The WRC url of the organization that owns this group'
-        type: string
-        example: '002851234'
-        format: url
-      parentOrganization: []
-      subOrganizations:
-        description: 'The sub-organizations of which this organization is the parent organization.'
-        type: '\ArrayCollection|\Organization[]'
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      addresses:
-        description: 'Address of this organisation'
-        type: \Address
-      socials:
-        description: 'Socials of this organisation'
-        type: \Social
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-    required: []
-  Organization-write:
-    properties:
-      name:
-        description: 'Name of this organisation'
-        type: string
-        example: Ajax
-        maxLength: 255
-      description:
-        description: 'Description of this organisation'
-        type: string
-        example: 'Ajax is a dutch soccer club'
-      type:
-        description: 'Type of this organisation'
-        type: string
-        example: Township
-        maxLength: 255
-      coc:
-        description: 'Chamber Of Comerce number of this organisation'
-        type: string
-        example: '123456'
-        maxLength: 15
-      vatID:
-        description: 'Value added tax id of this organisation (btw)'
-        type: string
-        example: '123456'
-        maxLength: 15
-      sourceOrganization:
-        description: 'The WRC url of the organization that owns this group'
-        type: string
-        example: '002851234'
-        format: url
-      parentOrganization: []
-      subOrganizations:
-        description: 'The sub-organizations of which this organization is the parent organization.'
-        type: '\ArrayCollection|\Organization[]'
-      telephones:
-        description: 'Telephone of this organisation'
-        type: \Telephone
-      addresses:
-        description: 'Address of this organisation'
-        type: \Address
-      socials:
-        description: 'Socials of this organisation'
-        type: \Social
-      emails:
-        description: 'Email of this organisation'
-        type: \Email
-      persons:
-        description: 'Person of this organisation'
-        type: \Person
-    required: []
   Person-read:
     properties:
       id:
@@ -11869,6 +11558,185 @@ definitions:
         description: 'Birthplace of this person'
         type: \Address
     required: []
+  Organization-read:
+    properties:
+      id:
+        description: 'UUID of this organisation'
+        type: \UuidInterface
+      name:
+        description: 'Name of this organisation'
+        type: string
+        example: Ajax
+        maxLength: 255
+      description:
+        description: 'Description of this organisation'
+        type: string
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
+        maxLength: 255
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vatID:
+        description: 'Value added tax id of this organisation (btw)'
+        type: string
+        example: '123456'
+        maxLength: 15
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      addresses:
+        description: 'Address of this organisation'
+        type: \Address
+      socials:
+        description: 'Socials of this organisation'
+        type: \Social
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+    required: []
+  Organization-write:
+    properties:
+      name:
+        description: 'Name of this organisation'
+        type: string
+        example: Ajax
+        maxLength: 255
+      description:
+        description: 'Description of this organisation'
+        type: string
+        example: 'Ajax is a dutch soccer club'
+      type:
+        description: 'Type of this organisation'
+        type: string
+        example: Township
+        maxLength: 255
+      coc:
+        description: 'Chamber Of Comerce number of this organisation'
+        type: string
+        example: '123456'
+        maxLength: 15
+      vatID:
+        description: 'Value added tax id of this organisation (btw)'
+        type: string
+        example: '123456'
+        maxLength: 15
+      sourceOrganization:
+        description: 'The WRC url of the organization that owns this group'
+        type: string
+        example: '002851234'
+        format: url
+      parentOrganization: []
+      subOrganizations:
+        description: 'The sub-organizations of which this organization is the parent organization.'
+        type: '\ArrayCollection|\Organization[]'
+      telephones:
+        description: 'Telephone of this organisation'
+        type: \Telephone
+      addresses:
+        description: 'Address of this organisation'
+        type: \Address
+      socials:
+        description: 'Socials of this organisation'
+        type: \Social
+      emails:
+        description: 'Email of this organisation'
+        type: \Email
+      persons:
+        description: 'Person of this organisation'
+        type: \Person
+    required: []
+  Telephone-read:
+    properties:
+      id:
+        description: 'UUID of this telephone'
+        type: \UuidInterface
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Telephone-write:
+    properties:
+      name:
+        description: 'Name of this telephone'
+        type: string
+        example: Mobile
+        maxLength: 255
+      telephone:
+        description: 'The actual phone number including any international prefixes'
+        type: string
+        example: '+31 (0)10-1234567'
+        maxLength: 255
+    required: []
+  Email-read:
+    properties:
+      id:
+        description: 'UUID of this email'
+        type: \UuidInterface
+      name:
+        description: 'Name of this email'
+        type: string
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+    required: []
+  Email-write:
+    properties:
+      name:
+        description: 'Name of this email'
+        type: string
+        example: Private
+        maxLength: 255
+      email:
+        description: 'Email of this email'
+        type: string
+        maxLength: 255
+    required: []
   Social-read:
     properties:
       id:
@@ -11926,20 +11794,60 @@ definitions:
     required:
       - name
       - url
-  Telephone-read:
+  Address-read:
     properties:
       id:
-        description: 'UUID of this telephone'
-        type: \UuidInterface
+        description: 'Uuid of this address'
+        type: string
+        format: uuid
       name:
-        description: 'Name of this telephone'
+        description: 'Name of this Address'
         type: string
-        example: Mobile
+        example: 'Amsterdam Office'
         maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
+      bagnummeraanduiding:
+        description: 'Bagnummeraanduiding of this Address'
         type: string
-        example: '+31 (0)10-1234567'
+        example: '0363200000218908'
+        maxLength: 16
+      street:
+        description: 'Street of this Address'
+        type: string
+        example: appelstreet
+        maxLength: 255
+      houseNumber:
+        description: 'House number of this Address'
+        type: string
+        example: '8'
+        maxLength: 255
+      houseNumberSuffix:
+        description: 'House number suffix of this Address'
+        type: string
+        example: b
+        maxLength: 255
+      postalCode:
+        description: 'Postalcode of a Address'
+        type: string
+        example: 1234AB
+      region:
+        description: 'region Region of a Address'
+        type: string
+        example: Noord-Holland
+        maxLength: 255
+      locality:
+        description: 'Locality of a Address'
+        type: string
+        example: Oud-Zuid
+        maxLength: 255
+      country:
+        description: 'Country of a Address'
+        type: string
+        example: 'The Netherlands'
+        maxLength: 255
+      postOfficeBoxNumber:
+        description: 'Post office box number of a Address'
+        type: string
+        example: 'PO Box 1234'
         maxLength: 255
       dateCreated:
         description: 'The moment this resource was created'
@@ -11948,18 +11856,163 @@ definitions:
         description: 'The moment this resource last Modified'
         type: \Datetime
     required: []
-  Telephone-write:
+  Address-write:
     properties:
       name:
-        description: 'Name of this telephone'
+        description: 'Name of this Address'
         type: string
-        example: Mobile
+        example: 'Amsterdam Office'
         maxLength: 255
-      telephone:
-        description: 'The actual phone number including any international prefixes'
+      bagnummeraanduiding:
+        description: 'Bagnummeraanduiding of this Address'
         type: string
-        example: '+31 (0)10-1234567'
+        example: '0363200000218908'
+        maxLength: 16
+      street:
+        description: 'Street of this Address'
+        type: string
+        example: appelstreet
         maxLength: 255
+      houseNumber:
+        description: 'House number of this Address'
+        type: string
+        example: '8'
+        maxLength: 255
+      houseNumberSuffix:
+        description: 'House number suffix of this Address'
+        type: string
+        example: b
+        maxLength: 255
+      postalCode:
+        description: 'Postalcode of a Address'
+        type: string
+        example: 1234AB
+      region:
+        description: 'region Region of a Address'
+        type: string
+        example: Noord-Holland
+        maxLength: 255
+      locality:
+        description: 'Locality of a Address'
+        type: string
+        example: Oud-Zuid
+        maxLength: 255
+      country:
+        description: 'Country of a Address'
+        type: string
+        example: 'The Netherlands'
+        maxLength: 255
+      postOfficeBoxNumber:
+        description: 'Post office box number of a Address'
+        type: string
+        example: 'PO Box 1234'
+        maxLength: 255
+    required: []
+  ContactList-read:
+    properties:
+      id:
+        description: 'UUID of this contact list'
+        type: \UuidInterface
+      name:
+        description: 'Name of this contact list'
+        type: string
+        example: 'All users'
+        maxLength: 255
+      description:
+        description: 'Description of this contact list'
+        type: string
+        example: 'This contact list holds all users.'
+      dateCreated:
+        description: 'The moment this resource was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this resource last Modified'
+        type: \Datetime
+      owner:
+        description: 'the owner of this contact list'
+        type: \Person
+      people:
+        description: 'People this contact list has'
+        type: \Person
+      organizations:
+        description: 'Organisations this contact list has'
+        type: \Organization
+        example: Ajax
+    required: []
+  ContactList-write:
+    properties:
+      name:
+        description: 'Name of this contact list'
+        type: string
+        example: 'All users'
+        maxLength: 255
+      description:
+        description: 'Description of this contact list'
+        type: string
+        example: 'This contact list holds all users.'
+      owner:
+        description: 'the owner of this contact list'
+        type: \Person
+      people:
+        description: 'People this contact list has'
+        type: \Person
+      organizations:
+        description: 'Organisations this contact list has'
+        type: \Organization
+        example: Ajax
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2021-06-18 09:57:49'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2021-06-18 09:57:49'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
     required: []
   AuditTrail-read:
     properties:
@@ -12065,12 +12118,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-06-07 09:15:47'
+        example: '2021-06-18 09:57:49'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-06-07 09:15:47'
+        example: '2021-06-18 09:57:49'
     required: []
   AuditTrail-write:
     properties:
@@ -12080,60 +12133,37 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2021-06-07 09:15:47'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2021-06-07 09:15:47'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
 tags:
+  -
+    name: Person
+    description: |
+      All properties that the entity Person holds.
+      
+      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
+  -
+    name: Organization
+    description: |
+      All properties that the entity Organisation holds.
+      
+      Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
+  -
+    name: Telephone
+    description: |
+      All properties that the entity Telephone holds.
+      
+      Entity Telephone exists of an id, a name and a telephone.
+  -
+    name: Email
+    description: |
+      All properties that the entity Email holds.
+      
+      Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
+  -
+    name: Social
+    description: |
+      All properties that the entity Social holds.
+      
+      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
   -
     name: Address
     description: |
@@ -12147,43 +12177,13 @@ tags:
       
       Entity ContactList is a link object between one person contact and one or more persons and/or one or more organisations. It also has a name, and description to describe the relation between the objects.
   -
-    name: Email
-    description: |
-      All properties that the entity Email holds.
-      
-      Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
-  -
-    name: Organization
-    description: |
-      All properties that the entity Organisation holds.
-      
-      Entity Organisation exists of an id, a name, a description, a kvk number, one or more telephones, one or more addresses, one or more emails, one or more persons and one or more contactLists.
-  -
-    name: Person
-    description: |
-      All properties that the entity Person holds.
-      
-      Entity Person exists of an id, a givenName, a additionalName, a familyName, one or more telephones, one or more addresses, one or more emails, one or more organisations and one or more contactLists.
-  -
-    name: Social
-    description: |
-      All properties that the entity Social holds.
-      
-      Entity Organisation exists of an id, a name, a description, a person, a organization, a url to a website, a url to a twitter page, a url to a facebook page, a url to a linkedin page.
-  -
-    name: Telephone
-    description: |
-      All properties that the entity Telephone holds.
-      
-      Entity Telephone exists of an id, a name and a telephone.
-  -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
@@ -12194,15 +12194,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -
