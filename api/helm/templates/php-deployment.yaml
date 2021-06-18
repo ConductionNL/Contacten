@@ -72,16 +72,6 @@ spec:
                   configMapKeyRef:
                       name: {{ template "fullname" . }}
                       key: cache      
-            - name: AUTHORIZATION
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: app-authorization
-            - name: NOTIFICATION
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "fullname" . }}
-                  key: app-notification
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:

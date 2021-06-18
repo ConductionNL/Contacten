@@ -12,8 +12,6 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 data:
   app-version: {{ .Values.config.version | quote }}
-  app-authorization: {{ .Values.config.authorisation | quote }}
-  app-notification: {{ .Values.config.notification | quote }}
   app-corsAllowOrigin: {{ .Values.php.corsAllowOrigin | quote }}
   cache: {{ .Values.config.cache | quote }}
   debug: {{ .Values.config.debug | quote }}
