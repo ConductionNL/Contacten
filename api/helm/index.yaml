@@ -3,9 +3,9 @@ entries:
   contactcatalogus:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-06-18T14:51:05.8372366+02:00"
+    created: "2021-06-18T14:57:20.1573537+02:00"
     description: Het Contacten Component bevat lijsten van contactpersonen, hiermee heeft het vanuit bron perspectief doorgaans een aanvullende of vervangende taak ten opzichte van het BRP. Met andere woorden in het Contacten Component vinden we personen die we niet uit het BRP halen. Dat kan zijn, omdat deze personen niet in het BRP staan, we nog niet weten wat het BSN van een persoon is of omdat we simpelweg geen rechten of toegang hebben tot het BRP vanuit het proces waar we mee bezig zijn. Daarnaast fungeert het Contacten Component als een Common Ground variant van de contactpersonenlijst, zoals we die kennen vanuit een e-mail applicatie of telefoon. Het is dus ook mogelijk om personen op te nemen in een contactenlijst. Hiermee worden contact en functionaliteiten voor gebruikers (in application form) gerealiseerd. Als laatste biedt het Contacten Component de mogelijkheid om gegevens van organisaties op te slaan. Het component ondersteunt bewust alleen de persoonsgegevens, maar kan in samenwerking met het CMR en ORC een Customer Relation Management systeem vormen, waarbij het ORC de mogelijkheid biedt om bijvoorbeeld leads in kaart te brengen.
-    digest: e660cc2ecdc2d6af2188eb92a2e32b3788ee3fc84fc3ed5f5cdbfe029fca6e9b
+    digest: d86ff824b921c8da32ad2320472be2870ad86818ee3d539fc058c13edfae477d
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -30,7 +30,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-06-18T14:51:05.8402359+02:00"
+    created: "2021-06-18T14:57:20.160354+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -63,7 +63,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.0.11
-    created: "2021-06-18T14:51:05.8452364+02:00"
+    created: "2021-06-18T14:57:20.1633535+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -90,4 +90,4 @@ entries:
     urls:
     - charts/redis-12.7.7.tgz
     version: 12.7.7
-generated: "2021-06-18T14:51:05.8282352+02:00"
+generated: "2021-06-18T14:57:20.1473522+02:00"
