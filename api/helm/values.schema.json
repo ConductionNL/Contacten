@@ -214,7 +214,7 @@
                     "items": {
                         "type": "string"
                     },
-                  "description": ""
+                    "description": ""
                 },
                 "debug": {
                     "type": "integer",
