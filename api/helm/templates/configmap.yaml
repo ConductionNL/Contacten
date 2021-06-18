@@ -21,7 +21,7 @@ data:
   trusted-hosts: {{ .Values.php.trustedHosts | quote }}
   php-service: {{ .Release.Name }}-php  
 
-  {{- if (.Values.redis.enabled true) }}
+  {{- if .Values.redis.enabled }}
   redis-host: {{ $redisServiceName | quote }}
   redis-port: {{ .Values.redis.redisPort | toString | quote }}
 
