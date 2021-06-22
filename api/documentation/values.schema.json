@@ -11,17 +11,21 @@
                 "version": "V1.0",
                 "debug": 0,
                 "cache": true,
-                "internal": false,
-                "notification": null,
-                "authorisation": null
+                "internal": false
             },
             "security": {
-                "applicationKey": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
+                "applicationKey": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+                "secret": "",
+                "jwt": {
+                    "id": "",
+                    "privateKey": ""
+                }
             },
             "php": {
                 "repository": "docker.io/conduction/protocomponent-php",
-                "image": "docker.io/conduction/proto-component-commonground-php",
+                "image": "docker.io/conduction/contactcatalogus-php",
                 "tag": "latest",
+                "env": "prod",
                 "replicaCount": 2,
                 "pullPolicy": "Always",
                 "trustedHosts": "^.+$",
@@ -45,7 +49,7 @@
             },
             "nginx": {
                 "repository": "docker.io/conduction/protocomponent-nginx",
-                "image": "docker.io/conduction/proto-component-commonground-nginx",
+                "image": "docker.io/conduction/contactcatalogus-nginx",
                 "tag": "latest",
                 "pullPolicy": "Always",
                 "replicaCount": 2
@@ -53,7 +57,7 @@
             "postgresql": {
                 "enabled": true,
                 "imageTag": "10-alpine",
-                "url": null,
+                "url": "",
                 "postgresqlUsername": "example",
                 "postgresqlPassword": "!ChangeMe!",
                 "postgresqlDatabase": "api",
@@ -64,7 +68,7 @@
             },
             "ingress": {
                 "enabled": false,
-                "hostname": "proto-component.local",
+                "hostname": "contactcatalogus.local",
                 "path": "/",
                 "annotations": null,
                 "tls": null
@@ -94,18 +98,14 @@
                     "version": "V1.0",
                     "debug": 0,
                     "cache": true,
-                    "internal": false,
-                    "notification": null,
-                    "authorisation": null
+                    "internal": false
                 }
             ],
             "required": [
                 "version",
                 "debug",
                 "cache",
-                "internal",
-                "notification",
-                "authorisation"
+                "internal"
             ],
             "properties": {
                 "version": {
@@ -147,26 +147,6 @@
                     "examples": [
                         false
                     ]
-                },
-                "notification": {
-                    "$id": "#/properties/config/properties/notification",
-                    "type": "null",
-                    "title": "The notification schema",
-                    "description": "",
-                    "default": null,
-                    "examples": [
-                        null
-                    ]
-                },
-                "authorisation": {
-                    "$id": "#/properties/config/properties/authorisation",
-                    "type": "null",
-                    "title": "The authorisation schema",
-                    "description": "",
-                    "default": null,
-                    "examples": [
-                        null
-                    ]
                 }
             },
             "additionalProperties": true
@@ -179,12 +159,15 @@
             "default": {},
             "examples": [
                 {
-                    "applicationKey": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
+                    "applicationKey": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+                    "secret": "",
+                    "jwt": {
+                        "id": null,
+                        "privateKey": null
+                    }
                 }
             ],
-            "required": [
-                "applicationKey"
-            ],
+            "required": [],
             "properties": {
                 "applicationKey": {
                     "$id": "#/properties/security/properties/applicationKey",
@@ -195,6 +178,51 @@
                     "examples": [
                         "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
                     ]
+                },
+                "secret": {
+                    "$id": "#/properties/security/properties/secret",
+                    "type": "string",
+                    "title": "The secret schema",
+                    "description": "",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ]
+                },
+                "jwt": {
+                    "$id": "#/properties/security/properties/jwt",
+                    "type": "object",
+                    "title": "The jwt schema",
+                    "description": "",
+                    "default": {},
+                    "examples": [
+                        {
+                            "id": null,
+                            "privateKey": null
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "id": {
+                            "$id": "#/properties/security/properties/jwt/properties/id",
+                            "title": "The id schema",
+                            "description": "",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        },
+                        "privateKey": {
+                            "$id": "#/properties/security/properties/jwt/properties/privateKey",
+                            "title": "The privateKey schema",
+                            "description": "",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
                 }
             },
             "additionalProperties": true
@@ -208,8 +236,9 @@
             "examples": [
                 {
                     "repository": "docker.io/conduction/protocomponent-php",
-                    "image": "docker.io/conduction/proto-component-commonground-php",
+                    "image": "docker.io/conduction/contactcatalogus-php",
                     "tag": "latest",
+                    "env": "prod",
                     "replicaCount": 2,
                     "pullPolicy": "Always",
                     "trustedHosts": "^.+$",
@@ -227,6 +256,7 @@
                 "repository",
                 "image",
                 "tag",
+                "env",
                 "replicaCount",
                 "pullPolicy",
                 "trustedHosts",
@@ -251,7 +281,7 @@
                     "description": "",
                     "default": "",
                     "examples": [
-                        "docker.io/conduction/proto-component-commonground-php"
+                        "docker.io/conduction/contactcatalogus-php"
                     ]
                 },
                 "tag": {
@@ -262,6 +292,16 @@
                     "default": "",
                     "examples": [
                         "latest"
+                    ]
+                },
+                "env": {
+                    "$id": "#/properties/php/properties/env",
+                    "type": "string",
+                    "title": "The env schema",
+                    "description": "",
+                    "default": "",
+                    "examples": [
+                        "prod"
                     ]
                 },
                 "replicaCount": {
@@ -460,7 +500,7 @@
             "examples": [
                 {
                     "repository": "docker.io/conduction/protocomponent-nginx",
-                    "image": "docker.io/conduction/proto-component-commonground-nginx",
+                    "image": "docker.io/conduction/contactcatalogus-nginx",
                     "tag": "latest",
                     "pullPolicy": "Always",
                     "replicaCount": 2
@@ -491,7 +531,7 @@
                     "description": "",
                     "default": "",
                     "examples": [
-                        "docker.io/conduction/proto-component-commonground-nginx"
+                        "docker.io/conduction/contactcatalogus-nginx"
                     ]
                 },
                 "tag": {
@@ -537,7 +577,7 @@
                 {
                     "enabled": true,
                     "imageTag": "10-alpine",
-                    "url": null,
+                    "url": "",
                     "postgresqlUsername": "example",
                     "postgresqlPassword": "!ChangeMe!",
                     "postgresqlDatabase": "api",
@@ -550,10 +590,6 @@
             "required": [
                 "enabled",
                 "imageTag",
-                "url",
-                "postgresqlUsername",
-                "postgresqlPassword",
-                "postgresqlDatabase",
                 "persistence",
                 "pullPolicy"
             ],
@@ -580,12 +616,11 @@
                 },
                 "url": {
                     "$id": "#/properties/postgresql/properties/url",
-                    "type": "null",
                     "title": "The url schema",
                     "description": "",
-                    "default": null,
+                    "default": "",
                     "examples": [
-                        null
+                        ""
                     ]
                 },
                 "postgresqlUsername": {
@@ -668,7 +703,7 @@
             "examples": [
                 {
                     "enabled": false,
-                    "hostname": "proto-component.local",
+                    "hostname": "contactcatalogus.local",
                     "path": "/",
                     "annotations": null,
                     "tls": null
@@ -677,9 +712,7 @@
             "required": [
                 "enabled",
                 "hostname",
-                "path",
-                "annotations",
-                "tls"
+                "path"
             ],
             "properties": {
                 "enabled": {
@@ -699,7 +732,7 @@
                     "description": "",
                     "default": "",
                     "examples": [
-                        "proto-component.local"
+                        "contactcatalogus.local"
                     ]
                 },
                 "path": {
