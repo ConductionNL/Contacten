@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94ad232ca794b96973738b703e03b6f5",
+    "content-hash": "baed72176e75596a7e7f1af909265d03",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -624,12 +624,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConductionNL/CommonGroundBundle.git",
-                "reference": "2b5e397ff2109b82391307bddf2efc931f32223e"
+                "reference": "803a6ac6a52c4bcbe2ad00405a3a93928578c7b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConductionNL/CommonGroundBundle/zipball/2b5e397ff2109b82391307bddf2efc931f32223e",
-                "reference": "2b5e397ff2109b82391307bddf2efc931f32223e",
+                "url": "https://api.github.com/repos/ConductionNL/CommonGroundBundle/zipball/803a6ac6a52c4bcbe2ad00405a3a93928578c7b5",
+                "reference": "803a6ac6a52c4bcbe2ad00405a3a93928578c7b5",
                 "shasum": ""
             },
             "require": {
@@ -712,7 +712,7 @@
                 "issues": "https://github.com/ConductionNL/ConductionCommonGroundBundle/issues",
                 "source": "https://github.com/ConductionNL/ConductionCommonGroundBundle"
             },
-            "time": "2021-06-18T12:10:09+00:00"
+            "time": "2021-06-22T13:13:54+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1889,16 +1889,16 @@
         },
         {
             "name": "doctrine/migrations",
-            "version": "3.1.3",
+            "version": "3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "8d0c58655cf9d76462d00ec5dd099737e513e86d"
+                "reference": "207210c57f6c15835e8d6228075cd235bd061efc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/8d0c58655cf9d76462d00ec5dd099737e513e86d",
-                "reference": "8d0c58655cf9d76462d00ec5dd099737e513e86d",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/207210c57f6c15835e8d6228075cd235bd061efc",
+                "reference": "207210c57f6c15835e8d6228075cd235bd061efc",
                 "shasum": ""
             },
             "require": {
@@ -1973,7 +1973,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/migrations/issues",
-                "source": "https://github.com/doctrine/migrations/tree/3.1.3"
+                "source": "https://github.com/doctrine/migrations/tree/3.1.4"
             },
             "funding": [
                 {
@@ -1989,7 +1989,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-10T19:24:33+00:00"
+            "time": "2021-06-15T18:57:30+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -2549,22 +2549,21 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v3.0.5",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine-extensions/DoctrineExtensions.git",
-                "reference": "f956c3c4d0c0ffdc5dd879288073772e439b6c1a"
+                "reference": "0803fa56b13cf858951599027f451738078c49f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine-extensions/DoctrineExtensions/zipball/f956c3c4d0c0ffdc5dd879288073772e439b6c1a",
-                "reference": "f956c3c4d0c0ffdc5dd879288073772e439b6c1a",
+                "url": "https://api.github.com/repos/doctrine-extensions/DoctrineExtensions/zipball/0803fa56b13cf858951599027f451738078c49f8",
+                "reference": "0803fa56b13cf858951599027f451738078c49f8",
                 "shasum": ""
             },
             "require": {
                 "behat/transliterator": "~1.2",
-                "doctrine/annotations": "^1.2",
-                "doctrine/cache": "^1.0",
+                "doctrine/annotations": "^1.13",
                 "doctrine/collections": "^1.0",
                 "doctrine/common": "^2.13 || ^3.0",
                 "doctrine/event-manager": "^1.0",
@@ -2580,16 +2579,19 @@
             },
             "require-dev": {
                 "alcaeus/mongo-php-adapter": "^1.1",
+                "doctrine/cache": "^1.11 || ^2.0",
                 "doctrine/doctrine-bundle": "^2.3",
                 "doctrine/mongodb-odm": "^2.0",
                 "doctrine/orm": "^2.6.3",
                 "friendsofphp/php-cs-fixer": "^2.16",
                 "phpunit/phpunit": "^8.5",
+                "symfony/cache": "^4.4 || ^5.0",
                 "symfony/yaml": "^4.1"
             },
             "suggest": {
                 "doctrine/mongodb-odm": "to use the extensions with the MongoDB ODM",
-                "doctrine/orm": "to use the extensions with the ORM"
+                "doctrine/orm": "to use the extensions with the ORM",
+                "symfony/cache": "to cache parsed annotations"
             },
             "type": "library",
             "extra": {
@@ -2640,10 +2642,10 @@
             "support": {
                 "email": "gediminas.morkevicius@gmail.com",
                 "issues": "https://github.com/doctrine-extensions/DoctrineExtensions/issues",
-                "source": "https://github.com/doctrine-extensions/DoctrineExtensions/tree/v3.0.5",
+                "source": "https://github.com/doctrine-extensions/DoctrineExtensions/tree/v3.1.0",
                 "wiki": "https://github.com/Atlantic18/DoctrineExtensions/tree/main/doc"
             },
-            "time": "2021-04-23T09:16:01+00:00"
+            "time": "2021-06-22T11:23:22+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3256,16 +3258,16 @@
         },
         {
             "name": "mollie/mollie-api-php",
-            "version": "v2.33.0",
+            "version": "v2.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mollie/mollie-api-php.git",
-                "reference": "c45d7749a64ec6978016d4a52e2c1bf1d8051d29"
+                "reference": "2e9d241c51f4cb747c79b0b0572e56dc10f7d664"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/c45d7749a64ec6978016d4a52e2c1bf1d8051d29",
-                "reference": "c45d7749a64ec6978016d4a52e2c1bf1d8051d29",
+                "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/2e9d241c51f4cb747c79b0b0572e56dc10f7d664",
+                "reference": "2e9d241c51f4cb747c79b0b0572e56dc10f7d664",
                 "shasum": ""
             },
             "require": {
@@ -3341,9 +3343,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mollie/mollie-api-php/issues",
-                "source": "https://github.com/mollie/mollie-api-php/tree/v2.33.0"
+                "source": "https://github.com/mollie/mollie-api-php/tree/v2.35.0"
             },
-            "time": "2021-06-14T08:14:14+00:00"
+            "time": "2021-06-22T10:48:15+00:00"
         },
         {
             "name": "moneyphp/money",
@@ -6549,16 +6551,16 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.31.1",
+            "version": "v1.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "4f57a44cef0b4555043160b8bf223fcde8a7a59a"
+                "reference": "702558c5fc5a27796eedad12a82bb27be76247dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/4f57a44cef0b4555043160b8bf223fcde8a7a59a",
-                "reference": "4f57a44cef0b4555043160b8bf223fcde8a7a59a",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/702558c5fc5a27796eedad12a82bb27be76247dc",
+                "reference": "702558c5fc5a27796eedad12a82bb27be76247dc",
                 "shasum": ""
             },
             "require": {
@@ -6617,7 +6619,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/maker-bundle/issues",
-                "source": "https://github.com/symfony/maker-bundle/tree/v1.31.1"
+                "source": "https://github.com/symfony/maker-bundle/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -6633,7 +6635,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-12T14:01:20+00:00"
+            "time": "2021-06-18T18:00:44+00:00"
         },
         {
             "name": "symfony/mercure",
