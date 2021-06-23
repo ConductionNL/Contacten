@@ -17,7 +17,7 @@ security:
 
 php:
   repository: docker.io/conduction/protocomponent-php
-  image: docker.io/conduction/contactcatalogus-php
+  image: ghcr.io/conductionnl/contactcatalogus-php
   tag: latest
   env: prod
   replicaCount: 2
@@ -39,7 +39,7 @@ redis:
 
 nginx:
   repository: docker.io/conduction/protocomponent-nginx
-  image: docker.io/conduction/contactcatalogus-nginx
+  image: ghcr.io/conductionnl/contactcatalogus-nginx
   tag: latest
   pullPolicy: Always
   replicaCount: 2
@@ -48,7 +48,7 @@ postgresql:
   enabled: true
   imageTag: 10-alpine
   # If bringing your own PostgreSQL, the full uri to use
-  url:
+  url: "psql://a:b@example.com/c"
   postgresqlUsername: "example"
   postgresqlPassword: "!ChangeMe!"
   postgresqlDatabase: "api"
@@ -60,7 +60,7 @@ postgresql:
 
 ingress:
   enabled: false
-  hostname: contactcatalogus.local
+  hostname: .local
   path: /
   annotations:
     # kubernetes.io/ingress.global-static-ip-name: chart-ip
