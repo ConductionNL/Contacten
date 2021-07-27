@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Email;
 use App\Entity\Organization;
-use App\Entity\Person;
 use App\Entity\Social;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -114,17 +113,17 @@ class LarpingFixtures extends Fixture
 //        $manager->flush();
 //        $website = $manager->getRepository('App:Social')->findOneBy(['id'=> $id]);
 //
-       $id = Uuid::fromString('a2177b92-56e0-4edf-9af2-8b98eb2aea0e');
-       $organization = new Organization();
-       $organization->setName('Conduction');
-       $organization->setDescription('Conduction organisatie');
-       $manager->persist($organization);
-       $organization->setId($id);
-       $manager->persist($organization);
-       $manager->flush();
-       $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
-       $organization->addSocial($website);
-       $manager->persist($organization);
-       $manager->flush();
+        $id = Uuid::fromString('a2177b92-56e0-4edf-9af2-8b98eb2aea0e');
+        $organization = new Organization();
+        $organization->setName('Conduction');
+        $organization->setDescription('Conduction organisatie');
+        $manager->persist($organization);
+        $organization->setId($id);
+        $manager->persist($organization);
+        $manager->flush();
+        $organization = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $organization->addSocial($website);
+        $manager->persist($organization);
+        $manager->flush();
     }
 }
