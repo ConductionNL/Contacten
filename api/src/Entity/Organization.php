@@ -152,6 +152,8 @@ class Organization
     /**
      * @param Organization $parentOrganization The larger organization that this organization is a subOrganization of.
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="subOrganizations")
@@ -160,6 +162,8 @@ class Organization
 
     /**
      * @var ArrayCollection|Organization[] The sub-organizations of which this organization is the parent organization.
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @MaxDepth(1)
@@ -170,6 +174,8 @@ class Organization
     /**
      * @var Telephone Telephone of this organisation
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -177,6 +183,8 @@ class Organization
     private $telephones;
     /**
      * @var Address Address of this organisation
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
@@ -187,6 +195,8 @@ class Organization
     /**
      * @var Social Socials of this organisation
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -195,6 +205,8 @@ class Organization
 
     /**
      * @var Email Email of this organisation
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organizations", cascade={"persist"})
@@ -205,6 +217,8 @@ class Organization
     /**
      * @var Person Person of this organisation
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization", cascade={"persist"})
      * @MaxDepth(1)
@@ -214,6 +228,7 @@ class Organization
     /**
      * @var ContactList Contact list of this organisation
      *
+     * @Assert\Valid()
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organizations")
      * @MaxDepth(1)

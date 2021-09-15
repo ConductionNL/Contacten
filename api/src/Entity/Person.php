@@ -192,6 +192,8 @@ class Person
     /**
      * @var Telephone Telephone of this person
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -200,6 +202,8 @@ class Person
 
     /**
      * @var Address Addresses of this person
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
@@ -210,6 +214,8 @@ class Person
     /**
      * @var Social Socials of this person
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -218,6 +224,8 @@ class Person
 
     /**
      * @var Email Emails of this person
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="people", cascade={"persist"})
@@ -228,6 +236,8 @@ class Person
     /**
      * @var Organization Organisations of this person
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -236,6 +246,8 @@ class Person
 
     /**
      * @var ContactList the contact lists this person owns
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=ContactList::class, mappedBy="owner", cascade={"persist", "remove"})
@@ -308,6 +320,7 @@ class Person
     /**
      * @var Address Birthplace of this person
      *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
