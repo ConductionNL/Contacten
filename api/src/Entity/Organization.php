@@ -103,7 +103,11 @@ class Organization
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="text", length=255, nullable=true)
+     * @ORM\Column(type="text", length=2550, nullable=true)
+     *
+     * @Assert\Length(
+     *     max = 2550
+     * )
      */
     private $description;
 
@@ -156,7 +160,7 @@ class Organization
      *
      * @Groups({"read", "write"})
      * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="subOrganizations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="subOrganizations", cascade={"persist"})
      */
     private $parentOrganization;
 
@@ -167,7 +171,7 @@ class Organization
      *
      * @Groups({"read", "write"})
      * @MaxDepth(1)
-     * @ORM\OneToMany(targetEntity="App\Entity\Organization", mappedBy="parentOrganization")
+     * @ORM\OneToMany(targetEntity="App\Entity\Organization", mappedBy="parentOrganization", cascade={"persist"})
      */
     private $subOrganizations;
 
@@ -230,7 +234,7 @@ class Organization
      *
      * @Assert\Valid()
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organizations")
+     * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organizations", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $contactLists;
@@ -262,6 +266,10 @@ class Organization
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
+     *
      * @ApiFilter(SearchFilter::class, strategy="exact")
      */
     private $sourceOrganization;

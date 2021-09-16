@@ -110,6 +110,10 @@ class Social
      *
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=12)
+     *
+     * @Assert\Length(
+     *     max = 12
+     * )
      */
     private $type = 'other';
 

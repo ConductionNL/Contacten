@@ -86,6 +86,9 @@ class Person
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $resource;
 
@@ -258,8 +261,10 @@ class Person
     /**
      * @var ContactList the contact lists this person is on
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity=ContactList::class, mappedBy="people")
+     * @ORM\ManyToMany(targetEntity=ContactList::class, mappedBy="people", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $contactLists;
@@ -299,6 +304,9 @@ class Person
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @ApiFilter(SearchFilter::class, strategy="exact")
      */
     private $sourceOrganization;
@@ -311,6 +319,10 @@ class Person
      * @Gedmo\Versioned
      * @Assert\Choice(
      *      {"Male","Female"}
+     * )
+     *
+     * @Assert\Length(
+     *     max = 255
      * )
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
@@ -337,6 +349,10 @@ class Person
      * @Assert\Choice(
      *      {"MARRIED_PARTNER","SINGLE","DIVORCED","WIDOW"}
      * )
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
      */
@@ -349,6 +365,9 @@ class Person
      *
      * @Gedmo\Versioned
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @Groups({"read","write"})
      */
     private $primaryLanguage;
@@ -372,6 +391,10 @@ class Person
      * @Gedmo\Versioned
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
+     * @Assert\Length(
+     *     max = 255
+     * )
+     *
      */
     private $contactPreference;
 
