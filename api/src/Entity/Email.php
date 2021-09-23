@@ -105,7 +105,9 @@ class Email
     /**
      * @var Person Person of this email
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\Person", mappedBy="emails")
+     * @Assert\Valid()
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Person", mappedBy="emails", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $people;
@@ -113,8 +115,9 @@ class Email
     /**
      * @var Organization Organisation of this email
      *
+     * @Assert\Valid()
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\Organization", mappedBy="emails")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Organization", mappedBy="emails", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $organizations;

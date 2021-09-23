@@ -63,7 +63,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class, properties={
- *     "type": "exact"
+ *     "type": "exact",
+ *     "name": "exact"
  *     })
  */
 class Organization
@@ -102,7 +103,11 @@ class Organization
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="text", length=255, nullable=true)
+     * @ORM\Column(type="text", length=2550, nullable=true)
+     *
+     * @Assert\Length(
+     *     max = 2550
+     * )
      */
     private $description;
 
@@ -151,23 +156,29 @@ class Organization
     /**
      * @param Organization $parentOrganization The larger organization that this organization is a subOrganization of.
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="subOrganizations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="subOrganizations", cascade={"persist"})
      */
     private $parentOrganization;
 
     /**
      * @var ArrayCollection|Organization[] The sub-organizations of which this organization is the parent organization.
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @MaxDepth(1)
-     * @ORM\OneToMany(targetEntity="App\Entity\Organization", mappedBy="parentOrganization")
+     * @ORM\OneToMany(targetEntity="App\Entity\Organization", mappedBy="parentOrganization", cascade={"persist"})
      */
     private $subOrganizations;
 
     /**
      * @var Telephone Telephone of this organisation
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
@@ -176,6 +187,8 @@ class Organization
     private $telephones;
     /**
      * @var Address Address of this organisation
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
@@ -186,6 +199,8 @@ class Organization
     /**
      * @var Social Socials of this organisation
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -194,6 +209,8 @@ class Organization
 
     /**
      * @var Email Email of this organisation
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="organizations", cascade={"persist"})
@@ -204,6 +221,8 @@ class Organization
     /**
      * @var Person Person of this organisation
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity="App\Entity\Person", mappedBy="organization", cascade={"persist"})
      * @MaxDepth(1)
@@ -213,8 +232,9 @@ class Organization
     /**
      * @var ContactList Contact list of this organisation
      *
+     * @Assert\Valid()
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organizations")
+     * @ORM\ManyToMany(targetEntity="App\Entity\ContactList", mappedBy="organizations", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $contactLists;
@@ -246,6 +266,10 @@ class Organization
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
+     *
      * @ApiFilter(SearchFilter::class, strategy="exact")
      */
     private $sourceOrganization;

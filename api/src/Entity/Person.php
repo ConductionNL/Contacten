@@ -86,6 +86,9 @@ class Person
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $resource;
 
@@ -192,6 +195,8 @@ class Person
     /**
      * @var Telephone Telephone of this person
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Telephone", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -200,6 +205,8 @@ class Person
 
     /**
      * @var Address Addresses of this person
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Address", fetch="EAGER", cascade={"persist"})
@@ -210,6 +217,8 @@ class Person
     /**
      * @var Social Socials of this person
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Social", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -218,6 +227,8 @@ class Person
 
     /**
      * @var Email Emails of this person
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity="App\Entity\Email", inversedBy="people", cascade={"persist"})
@@ -228,6 +239,8 @@ class Person
     /**
      * @var Organization Organisations of this person
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="persons", fetch="EAGER", cascade={"persist"})
      * @MaxDepth(1)
@@ -236,6 +249,8 @@ class Person
 
     /**
      * @var ContactList the contact lists this person owns
+     *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=ContactList::class, mappedBy="owner", cascade={"persist", "remove"})
@@ -246,8 +261,10 @@ class Person
     /**
      * @var ContactList the contact lists this person is on
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity=ContactList::class, mappedBy="people")
+     * @ORM\ManyToMany(targetEntity=ContactList::class, mappedBy="people", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $contactLists;
@@ -287,6 +304,9 @@ class Person
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @ApiFilter(SearchFilter::class, strategy="exact")
      */
     private $sourceOrganization;
@@ -298,7 +318,11 @@ class Person
      *
      * @Gedmo\Versioned
      * @Assert\Choice(
-     *      {"Male","Female"}
+     *      {"Male","Female","X","Other"}
+     * )
+     *
+     * @Assert\Length(
+     *     max = 255
      * )
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
@@ -308,6 +332,7 @@ class Person
     /**
      * @var Address Birthplace of this person
      *
+     * @Assert\Valid()
      *
      * @Groups({"read", "write"})
      * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
@@ -324,6 +349,10 @@ class Person
      * @Assert\Choice(
      *      {"MARRIED_PARTNER","SINGLE","DIVORCED","WIDOW"}
      * )
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
      */
@@ -336,6 +365,9 @@ class Person
      *
      * @Gedmo\Versioned
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @Groups({"read","write"})
      */
     private $primaryLanguage;
@@ -359,6 +391,10 @@ class Person
      * @Gedmo\Versioned
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"read","write"})
+     * @Assert\Length(
+     *     max = 255
+     * )
+     *
      */
     private $contactPreference;
 
