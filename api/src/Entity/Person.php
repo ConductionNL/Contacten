@@ -318,7 +318,7 @@ class Person
      *
      * @Gedmo\Versioned
      * @Assert\Choice(
-     *      {"Male","Female"}
+     *      {"Male","Female","X","Other"}
      * )
      *
      * @Assert\Length(
