@@ -240,6 +240,23 @@ class Organization
     private $contactLists;
 
     /**
+     * @var string The WRC url of the organization that owns this group
+     *
+     * @example 002851234
+     *
+     * @Gedmo\Versioned
+     * @Assert\Url
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
+     *
+     * @ApiFilter(SearchFilter::class, strategy="exact")
+     */
+    private $sourceOrganization;
+
+    /**
      * @var Datetime The moment this resource was created
      *
      * @Groups({"read"})
@@ -256,23 +273,6 @@ class Organization
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-
-    /**
-     * @var string The WRC url of the organization that owns this group
-     *
-     * @example 002851234
-     *
-     * @Gedmo\Versioned
-     * @Assert\Url
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(
-     *     max = 255
-     * )
-     *
-     * @ApiFilter(SearchFilter::class, strategy="exact")
-     */
-    private $sourceOrganization;
 
     public function __construct()
     {
@@ -571,6 +571,30 @@ class Organization
     public function setSourceOrganization(?string $sourceOrganization): self
     {
         $this->sourceOrganization = $sourceOrganization;
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->dateCreated;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getDateModified(): ?\DateTimeInterface
+    {
+        return $this->dateModified;
+    }
+
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+        $this->dateModified = $dateModified;
 
         return $this;
     }
