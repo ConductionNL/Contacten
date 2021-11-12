@@ -394,7 +394,6 @@ class Person
      * @Assert\Length(
      *     max = 255
      * )
-     *
      */
     private $contactPreference;
 
