@@ -105,6 +105,8 @@ class ContactList
     /**
      * @var Person the owner of this contact list
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity=Person::class, inversedBy="ownedContactLists", cascade={"persist"})
      * @MaxDepth(1)
@@ -114,6 +116,8 @@ class ContactList
     /**
      * @var Person People this contact list has
      *
+     * @Assert\Valid()
+     *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity=Person::class, inversedBy="contactLists", cascade={"persist"})
      * @MaxDepth(1)
@@ -122,6 +126,8 @@ class ContactList
 
     /**
      * @var Organization Organisations this contact list has
+     *
+     * @Assert\Valid()
      *
      * @example Ajax
      *
