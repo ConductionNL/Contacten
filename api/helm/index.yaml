@@ -5,7 +5,7 @@ entries:
       artifacthub.io/containsSecurityUpdates: "true"
     apiVersion: v2
     appVersion: V1.0
-    created: "2021-12-16T09:17:36.0507066Z"
+    created: "2021-12-16T09:26:34.2013941Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -30,7 +30,7 @@ entries:
       bewust alleen de persoonsgegevens, maar kan in samenwerking met het CMR en ORC
       een Customer Relation Management systeem vormen, waarbij het ORC de mogelijkheid
       biedt om bijvoorbeeld leads in kaart te brengen.
-    digest: be88788cc99ddf2d3003b1e88b7d90906075cf33776196b175f8780a50484077
+    digest: 3613cd2f011b025e30caecac07b8457cf5ff971e3ffca538eae991ea26fab11a
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -52,7 +52,7 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-12-16T09:17:36.0322347Z"
+    created: "2021-12-16T09:26:34.1819042Z"
     description: Het Contacten Component bevat lijsten van contactpersonen, hiermee
       heeft het vanuit bron perspectief doorgaans een aanvullende of vervangende taak
       ten opzichte van het BRP. Met andere woorden in het Contacten Component vinden
@@ -93,7 +93,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-12-16T09:17:36.0634474Z"
+    created: "2021-12-16T09:26:34.2130028Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -127,7 +127,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.0.11
-    created: "2021-12-16T09:17:36.0771802Z"
+    created: "2021-12-16T09:26:34.2274811Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -156,4 +156,4 @@ entries:
     urls:
     - charts/redis-12.7.7.tgz
     version: 12.7.7
-generated: "2021-12-16T09:17:36.0010741Z"
+generated: "2021-12-16T09:26:34.1508482Z"
