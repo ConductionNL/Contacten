@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * All properties that the entity Email holds.
  *
- * Entity Email exists of an id, a name, a email, one or more people and one or more organisations.
+ * Entity Email exists of an id, a name, an email, one or more people and one or more organisations.
  *
  * @author Ruben van der Linde <ruben@conduction.nl>
  * @license EUPL <https://github.com/ConductionNL/contactcatalogus/blob/master/LICENSE.md>
