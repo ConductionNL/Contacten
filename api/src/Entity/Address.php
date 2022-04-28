@@ -110,11 +110,10 @@ class Address
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
      * )
-     * @Assert\NotNull
      */
     private $street;
 
@@ -125,11 +124,10 @@ class Address
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
      * )
-     * @Assert\NotNull
      */
     private $houseNumber;
 
@@ -154,11 +152,10 @@ class Address
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15, nullable=true)
      * @Assert\Length(
      *     max = 15
      * )
-     * @Assert\NotNull
      */
     private $postalCode;
 
@@ -183,11 +180,10 @@ class Address
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255
      *)
-     * @Assert\NotNull
      */
     private $locality;
 
